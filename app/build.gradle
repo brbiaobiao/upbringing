@@ -1,0 +1,120 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.jakewharton.butterknife'
+
+def androidConfig = rootProject.ext.android
+android {
+    compileSdkVersion androidConfig.compileSdkVersion
+    buildToolsVersion androidConfig.buildToolsVersion
+
+    def keystoreFilepath = ''
+    def keystorePSW = ''
+    def keystoreAlias = ''
+    def keystoreAliasPSW = ''
+    // 默认地址,具体地址定义在local.properties
+    def keyfile = file('s.keystore.temp')
+
+    Properties properties = new Properties()
+    properties.load(project.rootProject.file('local.properties').newDataInputStream())
+    keystoreFilepath = properties.getProperty("keystore.path")
+
+    if (keystoreFilepath) {
+        keystorePSW = properties.getProperty("keystore.password")
+        keystoreAlias = properties.getProperty("keystore.alias")
+        keystoreAliasPSW = properties.getProperty("keystore.alias_password")
+        keyfile = file(keystoreFilepath)
+    }
+
+    defaultConfig {
+        applicationId "com.teaching.upbringing"
+        minSdkVersion androidConfig.minSdkVersion
+        targetSdkVersion androidConfig.targetSdkVersion
+        versionCode androidConfig.versionCode
+        versionName androidConfig.versionName
+        multiDexEnabled true
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    dexOptions {
+        javaMaxHeapSize "4g"
+    }
+
+    //签名部署
+    signingConfigs{
+        release {
+            storeFile keyfile
+            storePassword keystorePSW
+            keyAlias keystoreAlias
+            keyPassword keystoreAliasPSW
+        }
+        debug {
+            storeFile keyfile
+            storePassword keystorePSW
+            keyAlias keystoreAlias
+            keyPassword keystoreAliasPSW
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false//不混淆
+            zipAlignEnabled true//Zipalign优化
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+            buildConfigField "Boolean", "ENVIRONMENT", "true"
+        }
+        debug {
+            signingConfig signingConfigs.debug
+            buildConfigField "Boolean", "ENVIRONMENT", "false"
+//            minifyEnabled true
+//            debuggable true
+        }
+        dexOptions {
+            matchingFallbacks = ['release', 'debug']
+        }
+    }
+
+    packagingOptions {
+        exclude 'META-INF/rxjava.properties'
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+
+    android.applicationVariants.all {
+        variant ->
+            buildConfigField("String", "CHANNEL", "\"${variant.flavorName}\"")
+            variant.outputs.all {
+                def versionName = variant.mergedFlavor.versionName
+                def customName = versionName + "_" + getDate()
+                outputFileName = "upbringing${variant.name}-$customName" + ".apk"
+            }
+    }
+}
+
+static String getDate() {
+    Date date = new Date()
+    String dates = date.format("yyyyMMddHHmm")
+    return dates
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    //butterknife
+    implementation 'com.jakewharton:butterknife:10.1.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.1.0'
+
+    api project(':baselibs')
+}
