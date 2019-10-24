@@ -1,4 +1,4 @@
-package com.gzfn.cardealer.function.title;
+package com.teaching.upbringing.widget;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -8,7 +8,8 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.gzfn.cardealer.R;
+import com.outsourcing.library.widget.AbsTitleBar;
+import com.teaching.upbringing.R;
 
 import butterknife.BindView;
 

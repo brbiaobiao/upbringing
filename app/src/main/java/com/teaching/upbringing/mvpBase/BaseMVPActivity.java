@@ -24,9 +24,9 @@ import com.outsourcing.library.mvp.rxbase.IBasePresenter;
 import com.outsourcing.library.mvp.rxbase.IContextView;
 import com.outsourcing.library.utils.StatusBarUtil;
 import com.outsourcing.library.widget.AbsTitleBar;
-import com.outsourcing.library.widget.DefaultTitleBar;
 import com.teaching.upbringing.R;
 import com.teaching.upbringing.manager.AppManager;
+import com.teaching.upbringing.widget.DefaultTitleBar;
 import com.teaching.upbringing.widget.LoadingDialog;
 
 import androidx.annotation.DrawableRes;
