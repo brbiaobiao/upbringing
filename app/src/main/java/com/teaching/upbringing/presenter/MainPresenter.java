@@ -38,4 +38,19 @@ public class MainPresenter extends Presenter<MainContact.IView> implements MainC
                     }
                 });
     }
+
+    @Override
+    public void initPresenter() {
+
+    }
+
+    @Override
+    public void onViewInited() {
+
+    }
+
+    @Override
+    public void onDestroyView() {
+
+    }
 }

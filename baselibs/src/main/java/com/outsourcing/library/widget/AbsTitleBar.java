@@ -3,6 +3,8 @@ package com.outsourcing.library.widget;
 import android.content.Context;
 import android.view.View;
 
+import butterknife.ButterKnife;
+
 /**
  * @author: biao
  * @create: 2019/4/10
@@ -17,5 +19,6 @@ public abstract class AbsTitleBar implements ITitleView {
     }
 
     protected void init( View viewGroup) {
+        ButterKnife.bind(this, viewGroup);
     }
 }

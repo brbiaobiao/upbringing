@@ -3,4 +3,65 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+
+    <color name="white">#fff</color>
+    <color name="text_black">#333333</color>
+    <color name="text_black_1a">#1a1a1a</color>
+    <color name="line_gray">#ededed</color>
+    <color name="bg_gray">#ededed</color>
+    <color name="text_gray">#999999</color>
+    <color name="text_blue_0294f5">#0294f5</color>
+    <color name="red">#f00</color>
+    <color name="red_ff522a">#ff522a</color>
+    <color name="red_ff401a">#ff401a</color>
+    <color name="blue_c2e0ff">#c2e0ff</color>
+    <color name="blue_edf6ff">#edf6ff</color>
+    <color name="blue_0294F5">#0294F5</color>
+    <!--<color name="ededed">#969696</color>-->
+    <color name="ededed">#ededed</color>
+    <color name="transparent">#00ffffff</color>
+    <color name="txt_main">#50B6FF</color>
+    <color name="e6e6e6">#e6e6e6</color>
+    <color name="txt_invalid">#666666</color>
+    <color name="btn_invalid">#dddddd</color>
+    <color name="pg_orange">#FF6F20</color>
+    <color name="getcode_color">#0284f5</color>
+    <color name="getcode_bg">#f5f5f5</color>
+    <color name="getcode_bg_invalid">#999999</color>
+    <color name="yellow_ffcd45">#ffcd45</color>
+    <color name="yellow_ffe139">#ffe139</color>
+    <color name="orange_ff8e1d">#ff8e1d</color>
+    <color name="orange_f58a20">#f58a20</color>
+    <color name="orange_FF6B21">#FF6B21</color>
+    <color name="orange_ffb92c">#ffb92c</color>
+    <color name="money_yellow">#ff3a13</color>
+    <color name="cl_333333">#333333</color>
+    <color name="green_09b642">#09b642</color>
+    <color name="green_1cd675">#1cd675</color>
+    <color name="cl_f9840f">#f9840f</color>
+    <color name="cl_ffffff">#ffffff</color>
+    <color name="color_239BF6">#239BF6</color>
+    <color name="color_F9CC48">#F9CC48</color>
+    <color name="color_EFF9FF">#EFF9FF</color>
+    <color name="color_FFFAE8">#FFFAE8</color>
+
+    <color name="gray">#ff888888</color>
+
+
+    <!--半透明色-->
+    <color name="translucent">#CCffffff</color>
+
+    <color name="newCarNumBg">#FFCD44</color>
+
+    <!-- 通用 -->
+    <color name="bgGray">#F5F5F5</color>
+    <color name="textGray">#999999</color>
+    <color name="textRed">#FF5500</color>
+    <color name="textRed2">#ff3636</color>
+    <color name="textBlackLight">#666666</color>
+    <color name="dividerColor">#c1c1c1</color>
+    <!-- 平台车列表 -->
+    <color name="textCarPrice">@color/textRed</color>
+    <!--相册状态栏-->
+    <color name="multiple_image_select_primaryDark">@color/white</color>
 </resources>

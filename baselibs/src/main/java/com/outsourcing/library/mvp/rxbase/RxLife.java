@@ -26,6 +26,7 @@ public class RxLife {
         return upstream -> upstream.takeUntil(lift.getRxLiftSubject().skipWhile(t -> t != event));
     }
 
+
     public interface IRxLift {
         BehaviorSubject<Event> getRxLiftSubject();
 

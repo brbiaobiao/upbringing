@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical"
+    android:minHeight="@dimen/qb_px_80"
+    android:orientation="vertical"
+    android:padding="@dimen/qb_px_20">
+
+
+    <TextView android:id="@+id/tv_content"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_gravity="center"
+              android:textColor="@color/text_black"
+              android:paddingLeft="@dimen/qb_px_20"
+              android:paddingRight="@dimen/qb_px_20"
+              android:paddingTop="@dimen/qb_px_30"
+              android:paddingBottom="@dimen/qb_px_30"
+              android:textSize="@dimen/sp_18"
+              tools:text="好哦家里看建档立卡的"/>
+</LinearLayout>

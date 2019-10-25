@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:fitsSystemWindows="true"
+              android:orientation="vertical">
+
+    <RelativeLayout android:id="@+id/custom_actionbar_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="130px"
+                    android:background="@color/white">
+
+        <TextView
+            android:id="@+id/actionbar_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20px"
+            android:drawableLeft="@mipmap/back_btn"
+            android:paddingLeft="25px"
+            android:paddingTop="25px"
+            android:paddingRight="80px"
+            android:paddingBottom="25px"/>
+
+
+        <TextView
+            android:id="@+id/actionbar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="70dp"
+            android:layout_marginRight="90dp"
+            android:ellipsize="middle"
+            android:gravity="center"
+            android:scrollHorizontally="true"
+            android:singleLine="true"
+            android:textAlignment="center"
+            android:textColor="#333333"
+            android:textSize="@dimen/sp_18"
+            tools:text="新建任务"/>
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/actionbar_tab_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="#333333"
+            android:textSize="@dimen/sp_18"
+            android:visibility="gone"
+            app:tabIndicatorColor="@color/blue_0294F5"
+            app:tabIndicatorHeight="6px"
+            app:tabSelectedTextColor="@color/blue_0294F5"/>
+
+
+        <TextView
+            android:id="@+id/actionbar_confirm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20px"
+            android:layout_marginTop="10px"
+            android:layout_marginRight="35px"
+            android:layout_marginBottom="10px"
+            android:gravity="center"
+            android:text="保存"
+            android:textColor="#0284f5"
+            android:textSize="15sp"
+            android:visibility="gone"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2px"
+            android:layout_alignParentBottom="true"
+            android:background="#ededed"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/linearLayout_WebView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+            <ProgressBar
+                android:id="@+id/web_progress"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="2px"/>
+
+            <WebView
+                android:id="@+id/webView_histroyImgCheck"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:layerType="software"/>
+            <!--保存相册,微信分享-->
+
+            <ViewStub android:layout_width="match_parent"
+                      android:id="@+id/view_stub"
+                      android:layout="@layout/layout_share_web_btns"
+                      android:inflatedId="@+id/ll_btns"
+                      android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout_HttpError"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/bg_gray"
+            android:visibility="gone"
+            tools:visibility="visible">
+
+            <ImageView
+                android:id="@+id/imageView_HttpError"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:src="@mipmap/icon_fail"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/imageView_HttpError"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/qb_px_30"
+                android:text="网络异常，请检查网络设置"
+                android:textSize="15sp"/>
+        </RelativeLayout>
+    </RelativeLayout>
+</LinearLayout>

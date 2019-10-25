@@ -17,7 +17,20 @@ public abstract class Presenter<V> implements IBasePresenter<V>, RxLife.IRxLift 
     private BehaviorSubject<RxLife.Event> mRxLifeSubject = RxLife.createSubject();
 
     private V view;
-    private boolean isInited = false;//是否已经初始化
+    boolean isInited = false;//是否已经初始化
+    private InitListener mListener;
+
+    public interface InitListener{
+        void onInited();
+    }
+
+    /**
+     * 监听presenter初始化(其实没什么好监听的)
+     * @param listener
+     */
+    public void setInitListener(InitListener listener) {
+        mListener = listener;
+    }
 
     public Presenter(V view) {
         this.view = view;
@@ -38,22 +51,42 @@ public abstract class Presenter<V> implements IBasePresenter<V>, RxLife.IRxLift 
     public void onRestart() {
     }
 
+    @Override
+    public void initPresenter() {
+        if (!isInited) {
+            init();
+            isInited = true;
+            if (mListener != null) {
+                mListener.onInited();
+            }
+        }
+    }
+
     /**
      * Method that control the lifecycle of the view. It should be called in the view's
      * (ModuleActivity or Fragment) onResume() method.
      */
     public void onResume() {
         RxLife.onEvent(mRxLifeSubject, RxLife.Event.RESUME);
-        if (!isInited) {
-            init();
-            isInited = true;
-        }
     }
 
     /**
-     * 初始化presenter
+     * 手动调用初始化
+     */
+    public void executeInit() {
+        init();
+    }
+
+    /**
+     * 初始化presenter(如用于初始化数据,使用{@link #onViewInited()}更优)
+     * 如果要初始化内部变量,应该在构造方法中初始化
      */
     protected abstract void init();
+
+    @Override
+    public void onViewInited() {
+
+    }
 
     /**
      * Method that control the lifecycle of the view. It should be called in the view's
@@ -82,8 +115,13 @@ public abstract class Presenter<V> implements IBasePresenter<V>, RxLife.IRxLift 
 
     @Override
     public void detach() {
-        RxLife.onEvent(mRxLifeSubject, RxLife.Event.DESTROY_VIEW);
+        RxLife.onEvent(mRxLifeSubject, RxLife.Event.DETACH);
         view = null;
+    }
+
+    @Override
+    public void onDestroyView() {
+        RxLife.onEvent(mRxLifeSubject, RxLife.Event.DESTROY_VIEW);
     }
 
     public boolean isAttach() {
@@ -99,6 +137,7 @@ public abstract class Presenter<V> implements IBasePresenter<V>, RxLife.IRxLift 
     public <T> ObservableTransformer<T, T> bindLife(RxLife.Event event) {
         return RxLife.bindLife(this,event);
     }
+
 
     @Override
     public BehaviorSubject<RxLife.Event> getRxLiftSubject() {
