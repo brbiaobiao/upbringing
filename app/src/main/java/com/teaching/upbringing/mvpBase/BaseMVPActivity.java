@@ -26,6 +26,7 @@ import com.outsourcing.library.utils.StatusBarUtil;
 import com.outsourcing.library.widget.AbsTitleBar;
 import com.teaching.upbringing.R;
 import com.teaching.upbringing.manager.AppManager;
+import com.teaching.upbringing.utils.ToastUtil;
 import com.teaching.upbringing.widget.DefaultTitleBar;
 import com.teaching.upbringing.widget.LoadingDialog;
 
@@ -34,7 +35,6 @@ import androidx.annotation.Nullable;
 import butterknife.ButterKnife;
 
 /**
- * Created by SpannerBear on 2018/9/10.
  * use to:
  */
 public abstract class BaseMVPActivity<T extends IBasePresenter> extends MvpActivity<T> implements IContextView, IProgressAble {
@@ -166,7 +166,7 @@ public abstract class BaseMVPActivity<T extends IBasePresenter> extends MvpActiv
     @Override
     protected void onDestroy() {
         AppManager.removeActivity(this);
-//        ToastUtil.cancelToast(this);
+        ToastUtil.cancelToast(this);
         super.onDestroy();
     }
 

@@ -1,4 +1,4 @@
-package cn.spannerbear.gz.common.function;
+package com.outsourcing.library.manager;
 
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
@@ -12,7 +12,7 @@ import java.util.List;
 import androidx.recyclerview.widget.RecyclerView;
 
 /**
- * Created by LJJ on 2017/10/31.
+ * Created by bb
  * use to:自动加载更多管理
  * 使用普通RecyclerView.Adapter需要自行把数据list和adapter关联上
  *
