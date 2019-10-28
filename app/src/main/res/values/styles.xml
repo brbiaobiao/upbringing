@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -42,6 +42,27 @@
         <item name="android:backgroundDimEnabled">true</item>
         <!-- 是否半透明 -->
         <item name="android:windowIsTranslucent">true</item>
+    </style>
+
+    <style name="ripple_clickable_view_style">
+        <item name="android:stateListAnimator"
+            tools:targetApi="lollipop">@drawable/item_lift_on_touch
+        </item>
+        <item name="android:foreground">?android:attr/selectableItemBackground</item>
+        <!--<item name="android:foreground">?android:attr/selectableItemBackgroundBorderless</item>-->
+        <item name="android:clickable">true</item>
+    </style>
+
+    <!-- 底部导航栏的按钮 -->
+    <style name="home_navi_radiobutton" parent="ripple_clickable_view_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:button">@null</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">#333333</item>
+        <item name="android:textSize">11sp</item>
+
     </style>
 
 </resources>

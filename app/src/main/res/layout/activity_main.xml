@@ -1,35 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/btn_webview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="baseWebView"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <Button
-        android:id="@+id/btn_dialog"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/btn_webview"
-        android:text="basedialog"/>
+        <FrameLayout
+            android:id="@+id/fl_fragmentContent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:clipToPadding="false"/>
 
-    <Button
-        android:id="@+id/btn_my"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/btn_dialog"
-        android:text="my"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2px"
+            android:background="#EDEDED"/>
 
-    <Button
-        android:id="@+id/btn_login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/btn_webview"
-        android:text="login"/>
+        <RadioGroup
+            android:id="@+id/main_btngroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="@color/white"
+            android:gravity="center"
+            android:orientation="horizontal"
+            >
 
-</RelativeLayout>
+            <RadioButton
+                android:id="@+id/home"
+                style="@style/home_navi_radiobutton"
+                android:drawableTop="@drawable/selector_home_tab"
+                android:paddingTop="@dimen/qb_px_15"
+                android:paddingBottom="@dimen/qb_px_15"
+                android:text="首页"/>
+
+            <RadioButton
+                android:id="@+id/study"
+                style="@style/home_navi_radiobutton"
+                android:drawableTop="@drawable/selector_study_tab"
+                android:paddingTop="@dimen/qb_px_15"
+                android:paddingBottom="@dimen/qb_px_15"
+                android:text="学习"/>
+
+            <RadioButton
+                android:id="@+id/community"
+                style="@style/home_navi_radiobutton"
+                android:drawableTop="@drawable/selector_community_tab"
+                android:paddingTop="@dimen/qb_px_15"
+                android:paddingBottom="@dimen/qb_px_15"
+                android:text="社区"/>
+
+            <RadioButton
+                android:id="@+id/hot"
+                style="@style/home_navi_radiobutton"
+                android:drawableTop="@drawable/selector_hot_tab"
+                android:paddingTop="@dimen/qb_px_15"
+                android:paddingBottom="@dimen/qb_px_15"
+                android:text="热榜"/>
+
+
+            <RadioButton
+                android:id="@+id/personal"
+                style="@style/home_navi_radiobutton"
+                android:drawableTop="@drawable/selector_personal_tab"
+                android:paddingTop="@dimen/qb_px_15"
+                android:paddingBottom="@dimen/qb_px_15"
+                android:text="我的"/>
+
+
+            <!--<LinearLayout android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:id="@+id/ll_carSource"
+                android:clickable="true"
+                style="@style/ripple_clickable_view_style"
+                android:paddingTop="@dimen/qb_px_15"
+                android:paddingBottom="@dimen/qb_px_15"
+                android:gravity="center">
+
+                <FrameLayout android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    >
+                    <RadioButton
+                        android:clickable="false"
+                        android:id="@+id/carSource"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/cl_333333"
+                        android:textSize="@dimen/sp_11"
+                        android:button="@null"
+                        android:layout_width="match_parent"
+                        android:drawableTop="@drawable/selector_car_source_tab"
+                        android:text="车源展示"/>
+
+                    <TextView android:id="@+id/tv_carSource_redDot"
+                        android:layout_width="@dimen/qb_px_24"
+                        android:layout_height="@dimen/qb_px_24"
+                        android:background="@drawable/sp_red_dot"
+                        android:gravity="center"
+                        android:layout_gravity="end|right"
+                        android:textColor="@color/white"
+                        android:textSize="8sp"
+                        android:visibility="invisible"
+                        tools:text="10"
+                        tools:visibility="visible"/>
+                </FrameLayout>
+            </LinearLayout>-->
+        </RadioGroup>
+    </LinearLayout>
+</FrameLayout>

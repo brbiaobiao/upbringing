@@ -590,18 +590,10 @@ public class WebViewActivity extends BaseMVPActivity<WebViewContract.Ipresenter>
                                 dialog.setLeftBtnText("取消");
                                 dialog.setCancelable(true);
                                 dialog.setRightBtnText("去设置");
-                                dialog.setOnLeftConfirmListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
-                                        dialog.dismiss();
-                                    }
-                                });
-                                dialog.setOnRightConfirmListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
-                                        NotificationUtils.toSetting(mContext);
-                                        dialog.dismiss();
-                                    }
+                                dialog.setOnLeftConfirmListener(v -> dialog.dismiss());
+                                dialog.setOnRightConfirmListener(v -> {
+                                    NotificationUtils.toSetting(mContext);
+                                    dialog.dismiss();
                                 });
                                 dialog.show();
                             }
