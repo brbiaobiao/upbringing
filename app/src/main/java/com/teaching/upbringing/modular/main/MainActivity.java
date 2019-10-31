@@ -76,7 +76,7 @@ public class MainActivity extends BaseMVPActivity {
 
     @Override
     protected void init() {
-
+        hideHeadBar();
     }
 
     @Override

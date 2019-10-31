@@ -16,7 +16,7 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 /**
- * @author ChenHh
+ * @author bb
  * @time 2019/10/27 13:17
  * @des baseFragment
  **/

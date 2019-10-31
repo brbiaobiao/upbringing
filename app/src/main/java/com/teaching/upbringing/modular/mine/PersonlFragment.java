@@ -7,6 +7,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.teaching.upbringing.R;
+import com.teaching.upbringing.modular.setting.SettingActivity;
 import com.teaching.upbringing.mvpBase.BaseMVPFragment;
 import com.teaching.upbringing.utils.FragmentHelper;
 
@@ -72,12 +73,13 @@ public class PersonlFragment extends BaseMVPFragment<PersonlContract.Ipresenter>
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_setting:
+                SettingActivity.goIntent(getActivity());
                 break;
             case R.id.iv_heat:
             case R.id.tv_nickname:
             case R.id.tv_sign:
             case R.id.iv_to_right:
-
+                PersonlInforActivity.goIntent(getActivity());
                 break;
         }
     }

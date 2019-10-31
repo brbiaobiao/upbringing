@@ -21,7 +21,7 @@ import com.outsourcing.library.utils.NavigationBarUtils;
 import com.outsourcing.library.utils.ScreenUtils;
 import com.outsourcing.library.utils.UIUtils;
 import com.teaching.upbringing.R;
-import com.teaching.upbringing.utils.StatusBarUtils;
+import com.outsourcing.library.utils.StatusBarUtils;
 
 /**
  * @author bb

@@ -1,4 +1,4 @@
-package com.teaching.upbringing.utils;
+package com.outsourcing.library.utils;
 
 import android.content.Context;
 import android.text.TextUtils;

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_chang_pwd"
+        style="@style/setting_title_text"
+        android:gravity="left"
+        android:text="修改登录密码" />
+
+    <View style="@style/setting_divider" />
+
+    <TextView
+        android:id="@+id/tv_common_add"
+        style="@style/setting_title_text"
+        android:gravity="left"
+        android:text="常用地址管理" />
+
+    <View style="@style/setting_divider" />
+
+    <TextView
+        android:id="@+id/tv_class_area_setting"
+        style="@style/setting_title_text"
+        android:gravity="left"
+        android:text="上课区域设置" />
+
+    <View style="@style/setting_divider" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_gravity="center_vertical"
+        android:background="@color/white"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_class_push"
+            style="@style/setting_title_text_whiteout_right"
+            android:drawablePadding="@dimen/qb_px_10"
+            android:gravity="left"
+            android:text="上课前推送提醒" />
+
+        <Switch
+            android:id="@+id/switch_release"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/setting_title_text_whiteout_right"
+            android:layout_alignParentRight="true"/>
+
+    </RelativeLayout>
+
+
+    <TextView
+        android:id="@+id/tv_login_out"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:textSize="14sp"
+        android:textColor="@color/color_FD8440"
+        android:layout_marginTop="15dp"
+        android:gravity="center_horizontal"
+        android:padding="15dp"
+        android:text="退出登录"
+        android:layout_gravity="center_horizontal"
+        />
+</LinearLayout>

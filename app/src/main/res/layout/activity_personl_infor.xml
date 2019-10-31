@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:background="@color/white"
+            android:layout_height="match_parent">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <ImageView
+            android:id="@+id/iv_head_pic"
+            android:layout_width="90dp"
+            android:src="@mipmap/icon_personl_head"
+            android:layout_marginTop="40dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_height="90dp"/>
+
+
+        <ImageView
+            android:id="@+id/iv_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/icon_message"
+            app:layout_constraintTop_toBottomOf="@id/iv_head_pic"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="40dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="账号信息"
+            android:textColor="@color/color_1A1A1A"
+            android:textSize="14sp"
+            android:layout_marginLeft="10dp"
+            app:layout_constraintTop_toTopOf="@id/iv_message"
+            app:layout_constraintLeft_toRightOf="@id/iv_message"
+            app:layout_constraintBottom_toBottomOf="@id/iv_message"/>
+
+        <LinearLayout
+            android:id="@+id/ll_nickname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="15dp"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/iv_message">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="昵称"
+                android:textSize="14sp"
+                android:paddingRight="47dp"
+                android:gravity="center_vertical"
+                android:textColor="@color/color_7a7a7a"/>
+
+            <TextView
+                android:id="@+id/tv_nickname"
+                style="@style/person_infor_title_text"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:gravity="left"
+                android:text="XXX" />
+
+        </LinearLayout>
+
+        <View
+            style="@style/setting_divider"
+            android:id="@+id/line_nickname"
+            app:layout_constraintTop_toBottomOf="@id/ll_nickname"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="15dp"/>
+
+        <LinearLayout
+            android:id="@+id/ll_sex"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="15dp"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/line_nickname">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="性别"
+                android:textSize="14sp"
+                android:paddingRight="47dp"
+                android:gravity="center_vertical"
+                android:textColor="@color/color_7a7a7a"/>
+
+            <TextView
+                android:id="@+id/tv_sex"
+                style="@style/person_infor_title_text"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:gravity="left"
+                android:text="男" />
+
+        </LinearLayout>
+
+        <View
+            style="@style/setting_divider"
+            android:id="@+id/line_sex"
+            app:layout_constraintTop_toBottomOf="@id/ll_sex"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="15dp"/>
+
+        <LinearLayout
+            android:id="@+id/ll_account"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="15dp"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/line_sex">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="简介"
+                android:textSize="14sp"
+                android:paddingRight="47dp"
+                android:gravity="center_vertical"
+                android:textColor="@color/color_7a7a7a"/>
+
+            <TextView
+                android:id="@+id/tv_account"
+                style="@style/person_infor_title_text"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:gravity="left"
+                android:text="爱好光浩国际，平时喜爱参加各种兴趣班，学习各种技能，这是我的一段很长很长的简介，会全部显示出来" />
+
+        </LinearLayout>
+
+        <View
+            style="@style/setting_divider"
+            android:id="@+id/line_account"
+            app:layout_constraintTop_toBottomOf="@id/ll_account"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="15dp"/>
+
+        <LinearLayout
+            android:id="@+id/ll_regist_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="15dp"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/line_account">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="注册时间"
+                android:textSize="14sp"
+                android:paddingRight="19dp"
+                android:gravity="center_vertical"
+                android:textColor="@color/color_7a7a7a"/>
+
+            <TextView
+                android:id="@+id/tv_regist_time"
+                style="@style/person_infor_title_text"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:gravity="left"
+                android:text="2019-09-09" />
+
+        </LinearLayout>
+
+        <View
+            style="@style/setting_divider"
+            android:id="@+id/line_regist_time"
+            app:layout_constraintTop_toBottomOf="@id/ll_regist_time"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="15dp"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

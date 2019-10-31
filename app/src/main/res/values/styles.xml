@@ -5,7 +5,7 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorAccent">@color/color00AE66</item>
     </style>
 
     <style name="baseDialog" parent="@android:style/Theme.Dialog">
@@ -62,7 +62,47 @@
         <item name="android:gravity">center</item>
         <item name="android:textColor">#333333</item>
         <item name="android:textSize">11sp</item>
+    </style>
 
+    <style name="setting_title_text">
+        <item name="android:drawablePadding">@dimen/qb_px_20</item>
+        <item name="android:textColor">@color/text_black</item>
+        <item name="android:padding">@dimen/qb_px_30</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:drawableRight">@mipmap/icon_to_right_gray</item>
+        <item name="android:drawableEnd">@mipmap/icon_to_right_gray</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="person_infor_title_text">
+        <item name="android:drawablePadding">@dimen/qb_px_20</item>
+        <item name="android:textColor">@color/color_3A3A3A</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:paddingRight">@dimen/qb_px_30</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:drawableRight">@mipmap/icon_to_right_gray</item>
+        <item name="android:drawableEnd">@mipmap/icon_to_right_gray</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="setting_title_text_whiteout_right">
+        <item name="android:drawablePadding">@dimen/qb_px_20</item>
+        <item name="android:textColor">@color/text_black</item>
+        <item name="android:padding">15dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="setting_divider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">2px</item>
+        <item name="android:background">@color/bgGray</item>
     </style>
 
 </resources>

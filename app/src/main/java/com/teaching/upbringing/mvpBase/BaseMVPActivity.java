@@ -103,6 +103,7 @@ public abstract class BaseMVPActivity<T extends IBasePresenter> extends MvpActiv
             if (parentView != null && Build.VERSION.SDK_INT >= 14) {
                 parentView.setFitsSystemWindows(true);
             }
+            StatusBarUtil.transparencyBar(this);
         }
         setImgTransparent(this);
     }
