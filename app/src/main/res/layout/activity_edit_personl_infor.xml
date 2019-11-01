@@ -17,6 +17,13 @@
             android:layout_height="wrap_content"
             app:constraint_referenced_ids="iv_teacher_id,tv_teacher_id,ll_title,line_line,ll_bright_point,line_bright_point" />
 
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/verticel_gd"
+            android:layout_width="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.53"
+            android:layout_height="wrap_content"/>
+
         <ImageView
             android:id="@+id/iv_head_pic"
             android:layout_width="90dp"
@@ -26,6 +33,14 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_height="90dp"/>
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="100dp"
+            app:layout_constraintStart_toStartOf="@id/verticel_gd"
+            android:src="@mipmap/icon_edit_head_pic"/>
 
 
         <ImageView
@@ -69,7 +84,7 @@
 
             <TextView
                 android:id="@+id/tv_nickname"
-                style="@style/person_infor_title_text"
+                style="@style/person_edit_infor_title_text"
                 android:paddingTop="15dp"
                 android:paddingBottom="15dp"
                 android:gravity="left"
@@ -104,11 +119,13 @@
 
             <TextView
                 android:id="@+id/tv_sex"
-                style="@style/person_infor_title_text"
+                style="@style/person_edit_infor_title_text"
                 android:paddingTop="15dp"
                 android:paddingBottom="15dp"
                 android:gravity="left"
-                android:text="男" />
+                android:hint="点击选择"
+                android:textColorHint="@color/color_3A3A3A"
+                android:text="" />
 
         </LinearLayout>
 
@@ -139,7 +156,7 @@
 
             <TextView
                 android:id="@+id/tv_account"
-                style="@style/person_infor_title_text"
+                style="@style/person_edit_infor_title_text"
                 android:paddingTop="15dp"
                 android:paddingBottom="15dp"
                 android:gravity="left"
@@ -232,7 +249,7 @@
 
             <TextView
                 android:id="@+id/tv_title"
-                style="@style/person_infor_title_text"
+                style="@style/person_edit_infor_title_text"
                 android:paddingTop="15dp"
                 android:paddingBottom="15dp"
                 android:gravity="left"
@@ -267,7 +284,7 @@
 
             <TextView
                 android:id="@+id/tv_bright_point"
-                style="@style/person_infor_title_text"
+                style="@style/person_edit_infor_title_text"
                 android:paddingTop="15dp"
                 android:paddingBottom="15dp"
                 android:gravity="left"

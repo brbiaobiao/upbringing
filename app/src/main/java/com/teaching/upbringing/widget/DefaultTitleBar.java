@@ -13,10 +13,6 @@ import com.teaching.upbringing.R;
 
 import butterknife.BindView;
 
-/**
- * Created by SpannerBear on 2019/1/3.
- * use to:
- */
 public class DefaultTitleBar extends AbsTitleBar {
     
     @BindView(R.id.actionbar_back)

@@ -13,10 +13,6 @@ import androidx.annotation.ColorRes;
 import androidx.annotation.StringRes;
 import androidx.core.content.ContextCompat;
 
-/**
- * Created by SpannerBear on 2018/9/21.
- * use to:
- */
 public class AppUtils {
     public static Application getApp() {
         return (Application) BaseApplication.getIntansce();

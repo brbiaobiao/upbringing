@@ -15,10 +15,6 @@ import android.view.WindowManager;
 import java.lang.reflect.Method;
 import java.util.List;
 
-/**
- * Created by SpannerBear on 2018/10/10.
- * use to:
- */
 public class UIUtils {
     /**
      * 判断是否是全面屏

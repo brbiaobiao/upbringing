@@ -7,10 +7,6 @@ import com.teaching.upbringing.application.AppFileManager;
 import com.teaching.upbringing.utils.ToastUtil;
 
 
-/**
- * Created by SpannerBear on 2019/2/3.
- * use to:图片保存
- */
 public class SaveImageSeedModule extends SeedModule {
     @Override
     public boolean work(Context context, SeedEntity seedEntity) {

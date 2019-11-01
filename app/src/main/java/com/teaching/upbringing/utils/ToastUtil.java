@@ -19,7 +19,6 @@ import java.util.WeakHashMap;
 import androidx.annotation.DrawableRes;
 
 /**
- * Created by SpannerBear on 2019/7/4.
  * use to:Toast工具,传入Activity作参数的会在Activity关闭时调用{@link #cancelToast(Activity)}取消,反之不会
  */
 public class ToastUtil {

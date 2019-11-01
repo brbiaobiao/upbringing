@@ -14,10 +14,6 @@ import android.provider.Settings;
 
 import androidx.core.app.NotificationManagerCompat;
 
-/**
- * Created by SpannerBear on 2018/9/11.
- * use to:通知工具
- */
 public class NotificationUtils {
     
     /**

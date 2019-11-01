@@ -13,10 +13,6 @@ import androidx.annotation.NonNull;
 
 import static android.view.View.NO_ID;
 
-/**
- * Created by SpannerBear on 2018/11/8.
- * use to:
- */
 public class NavigationBarUtils {
     private static final String NAVIGATION = "navigationBarBackground";
     private static final String NAVIGATION_GESTURE = "navigation_gesture_on";

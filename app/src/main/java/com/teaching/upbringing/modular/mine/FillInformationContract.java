@@ -1,5 +1,6 @@
 package com.teaching.upbringing.modular.mine;
 
+import com.outsourcing.library.mvp.IProgressAble;
 import com.outsourcing.library.mvp.rxbase.IBasePresenter;
 import com.outsourcing.library.mvp.rxbase.IContextView;
 
@@ -8,9 +9,9 @@ import com.outsourcing.library.mvp.rxbase.IContextView;
  * @time 2019/10/27 16:11
  * @des
  **/
-public interface PersonlInforContract {
+public interface FillInformationContract {
 
-    interface IView extends IContextView{
+    interface IView extends IContextView, IProgressAble{
 
     }
 

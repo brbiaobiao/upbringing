@@ -79,7 +79,7 @@ public class PersonlFragment extends BaseMVPFragment<PersonlContract.Ipresenter>
             case R.id.tv_nickname:
             case R.id.tv_sign:
             case R.id.iv_to_right:
-                PersonlInforActivity.goIntent(getActivity());
+                PersonInfoActivity.goIntent(getActivity());
                 break;
         }
     }

@@ -2,10 +2,6 @@ package com.teaching.upbringing.widget.share;
 
 import android.graphics.Bitmap;
 
-/**
- * Created by SpannerBear on 2019/1/22.
- * use to:
- */
 public class SeedEntity {
     public Bitmap mBitmap;
     public String imageFilePath;
