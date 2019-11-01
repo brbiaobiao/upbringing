@@ -85,16 +85,19 @@ public class EditPersonInfoActivity extends BaseMVPActivity<EditPersonlInfoContr
         });
     }
 
-    @OnClick({R.id.ll_nickname, R.id.ll_sex, R.id.ll_account, R.id.ll_regist_time,
-            R.id.ll_title,R.id.ll_bright_point})
+    @OnClick({R.id.iv_head_pic, R.id.ll_nickname, R.id.ll_sex, R.id.ll_account,
+            R.id.ll_regist_time, R.id.ll_title, R.id.ll_bright_point})
     public void onViewClicked(View view) {
-        if(onResultUtil == null) {
+        if (onResultUtil == null) {
             onResultUtil = new OnResultUtil(this);
         }
         switch (view.getId()) {
+            case R.id.iv_head_pic:
+
+                break;
             case R.id.ll_nickname:
-                onResultUtil.call(FillInformationActivity.getCallIntent(this,"昵称","请输入昵称"))
-                        .filter(info ->OnResultUtil.isOk(info))
+                onResultUtil.call(FillInformationActivity.getCallIntent(this, "昵称", "请输入昵称"))
+                        .filter(info -> OnResultUtil.isOk(info))
                         .subscribe(activityResultInfo -> {
                             String reback_text = activityResultInfo.getData().getStringExtra(FillInformationActivity.REBACKTEXT);
                             mTvNickname.setText(reback_text);
@@ -104,24 +107,24 @@ public class EditPersonInfoActivity extends BaseMVPActivity<EditPersonlInfoContr
                 showSelectDialog();
                 break;
             case R.id.ll_account:
-                onResultUtil.call(FillInformationActivity.getCallIntent(this,"简介","简单介绍下自己吧！"))
-                        .filter(info ->OnResultUtil.isOk(info))
+                onResultUtil.call(FillInformationActivity.getCallIntent(this, "简介", "简单介绍下自己吧！"))
+                        .filter(info -> OnResultUtil.isOk(info))
                         .subscribe(activityResultInfo -> {
                             String reback_text = activityResultInfo.getData().getStringExtra(FillInformationActivity.REBACKTEXT);
                             mTvAccount.setText(reback_text);
                         });
                 break;
             case R.id.ll_title:
-                onResultUtil.call(FillInformationActivity.getCallIntent(this,"头衔","请输入您的头衔"))
-                        .filter(info ->OnResultUtil.isOk(info))
+                onResultUtil.call(FillInformationActivity.getCallIntent(this, "头衔", "请输入您的头衔"))
+                        .filter(info -> OnResultUtil.isOk(info))
                         .subscribe(activityResultInfo -> {
                             String reback_text = activityResultInfo.getData().getStringExtra(FillInformationActivity.REBACKTEXT);
                             mTvTitle.setText(reback_text);
                         });
                 break;
             case R.id.ll_bright_point:
-                onResultUtil.call(FillInformationActivity.getCallIntent(this,"亮点","请填写您的亮点，让同学们跟喜欢您"))
-                        .filter(info ->OnResultUtil.isOk(info))
+                onResultUtil.call(FillInformationActivity.getCallIntent(this, "亮点", "请填写您的亮点，让同学们跟喜欢您"))
+                        .filter(info -> OnResultUtil.isOk(info))
                         .subscribe(activityResultInfo -> {
                             String reback_text = activityResultInfo.getData().getStringExtra(FillInformationActivity.REBACKTEXT);
                             mTvBrightPoint.setText(reback_text);
