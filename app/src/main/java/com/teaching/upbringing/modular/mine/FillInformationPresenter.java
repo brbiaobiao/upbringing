@@ -30,8 +30,8 @@ public class FillInformationPresenter extends Presenter<FillInformationContract.
 
     @Override
     public void upDataInfor(String info) {
-        if (type == -1)
-            return;
+        if (type == -1) return;
+
         switch (type) {
             case 1:
                 personInforModel.setNickName(info)
@@ -40,7 +40,7 @@ public class FillInformationPresenter extends Presenter<FillInformationContract.
                         .subscribe(new NextObserver<Boolean>() {
                             @Override
                             public void onNext(Boolean aBoolean) {
-
+                                getView().upDataCallBack();
                             }
                         });
                 break;
@@ -51,7 +51,7 @@ public class FillInformationPresenter extends Presenter<FillInformationContract.
                         .subscribe(new NextObserver<Boolean>() {
                             @Override
                             public void onNext(Boolean aBoolean) {
-
+                                getView().upDataCallBack();
                             }
                         });
                 break;
@@ -62,7 +62,7 @@ public class FillInformationPresenter extends Presenter<FillInformationContract.
                         .subscribe(new NextObserver<Boolean>() {
                             @Override
                             public void onNext(Boolean aBoolean) {
-
+                                getView().upDataCallBack();
                             }
                         });
                 break;
@@ -73,7 +73,7 @@ public class FillInformationPresenter extends Presenter<FillInformationContract.
                         .subscribe(new NextObserver<Boolean>() {
                             @Override
                             public void onNext(Boolean aBoolean) {
-
+                                getView().upDataCallBack();
                             }
                         });
                 break;

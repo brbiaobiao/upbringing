@@ -5,6 +5,7 @@ package com.teaching.upbringing.presenter;
 import android.util.Log;
 
 import com.outsourcing.library.mvp.observer.NextObserver;
+import com.teaching.upbringing.entity.CaptchaEntity;
 import com.teaching.upbringing.entity.TestEntity;
 import com.teaching.upbringing.model.LoginModel;
 import com.teaching.upbringing.model.MainModel;
@@ -31,9 +32,9 @@ public class LoginPresenter extends Presenter<LoginContract.IView> implements Lo
         mMainModels.loginCaptcha()
                 .observeOn(AndroidSchedulers.mainThread())
                 .compose(bindLife())
-                .subscribe(new NextObserver<TestEntity>() {
+                .subscribe(new NextObserver<CaptchaEntity>() {
                     @Override
-                    public void onNext(TestEntity testEntity) {
+                    public void onNext(CaptchaEntity testEntity) {
                         getView().verification(testEntity);
                     }
                 });
@@ -41,12 +42,12 @@ public class LoginPresenter extends Presenter<LoginContract.IView> implements Lo
 
     @Override
     public void login(String captcha, String phone) {
-        mMainModels.captchaLogin()
+        mMainModels.captchaLogin(captcha,phone)
                 .observeOn(AndroidSchedulers.mainThread())
                 .compose(bindLife())
-                .subscribe(new NextObserver<TestEntity>() {
+                .subscribe(new NextObserver<CaptchaEntity>() {
                     @Override
-                    public void onNext(TestEntity testEntity) {
+                    public void onNext(CaptchaEntity testEntity) {
                         getView().login(testEntity);
                     }
                 });

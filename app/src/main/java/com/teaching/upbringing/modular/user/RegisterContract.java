@@ -10,12 +10,12 @@ public interface RegisterContract {
 
     interface IView extends IContextView{
         void signInCaptcha(CaptchaEntity entity);
-        void signIn(TestEntity entity);
+        void signIn(CaptchaEntity entity);
     }
 
     interface IPresenter extends IBasePresenter<RegisterContract.IView> {
         abstract void signInCaptcha(String phone);
-        abstract void signIn(String captcha,String phone);
+        abstract void signIn(String captcha,String invitation,String phone);
     }
 
 }

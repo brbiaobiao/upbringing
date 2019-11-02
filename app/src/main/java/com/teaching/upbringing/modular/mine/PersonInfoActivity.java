@@ -98,6 +98,8 @@ public class PersonInfoActivity extends BaseMVPActivity<PersonInforContract.Ipre
 
     @Override
     public void setInit(PersonInforEntity personInforEntity) {
+        if(personInforEntity == null) return;
+
         mGpTeacherId.setVisibility(personInforEntity.isIfTeacher()?View.VISIBLE:View.GONE);
 
         //普通信息

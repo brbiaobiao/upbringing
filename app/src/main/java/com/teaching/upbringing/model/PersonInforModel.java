@@ -3,7 +3,6 @@ package com.teaching.upbringing.model;
 import com.outsourcing.library.utils.RxUtil;
 import com.teaching.upbringing.api.PersonInforApi;
 import com.teaching.upbringing.entity.PersonInforEntity;
-import com.teaching.upbringing.manager.ApiManager;
 
 import io.reactivex.Observable;
 
@@ -14,27 +13,30 @@ import io.reactivex.Observable;
  **/
 public class PersonInforModel extends ApiModel<PersonInforApi> {
     public PersonInforModel() {
-        super(ApiManager.personInforApi());
+        super(null);
     }
 
-    public Observable<PersonInforEntity> getUserInfo(){
+    public Observable<PersonInforEntity> getUserInfo() {
         return getApi().getUserInfo().compose(RxUtil.httpAsyn());
     }
 
-    public Observable<Boolean> setNickName(String nickname){
+    public Observable<Boolean> setNickName(String nickname) {
         return getApi().setNickName(nickname).compose(RxUtil.httpAsyn());
     }
 
-    public Observable<Boolean> setIntroduce(String introduce){
+    public Observable<Boolean> setIntroduce(String introduce) {
         return getApi().setIntroduce(introduce).compose(RxUtil.httpAsyn());
     }
-    public Observable<Boolean> setTitle(String title){
+
+    public Observable<Boolean> setTitle(String title) {
         return getApi().setTitle(title).compose(RxUtil.httpAsyn());
     }
-    public Observable<Boolean> setBrightSpot(String brightSpot){
+
+    public Observable<Boolean> setBrightSpot(String brightSpot) {
         return getApi().setBrightSpot(brightSpot).compose(RxUtil.httpAsyn());
     }
-    public Observable<Boolean> setSex(int sex){
+
+    public Observable<Boolean> setSex(int sex) {
         return getApi().setSex(sex).compose(RxUtil.httpAsyn());
     }
 }

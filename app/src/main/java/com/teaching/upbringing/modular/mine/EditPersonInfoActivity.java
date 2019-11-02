@@ -2,7 +2,6 @@ package com.teaching.upbringing.modular.mine;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -16,7 +15,6 @@ import com.teaching.upbringing.mvpBase.BaseMVPActivity;
 
 import androidx.constraintlayout.widget.Group;
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -84,6 +82,8 @@ public class EditPersonInfoActivity extends BaseMVPActivity<EditPersonlInfoContr
         setTitleText("编辑资料");
         mLlRegistTime.setVisibility(View.GONE);
         mLineRegistTime.setVisibility(View.GONE);
+
+        getPresenter().getInfo();
     }
 
     private void showSelectDialog() {
@@ -119,6 +119,7 @@ public class EditPersonInfoActivity extends BaseMVPActivity<EditPersonlInfoContr
                         .subscribe(activityResultInfo -> {
                             String reback_text = activityResultInfo.getData().getStringExtra(FillInformationActivity.REBACKTEXT);
                             //                            mTvNickname.setText(reback_text);
+                            getPresenter().getInfo();
                         });
                 break;
             case R.id.ll_sex:
@@ -131,6 +132,7 @@ public class EditPersonInfoActivity extends BaseMVPActivity<EditPersonlInfoContr
                         .subscribe(activityResultInfo -> {
                             String reback_text = activityResultInfo.getData().getStringExtra(FillInformationActivity.REBACKTEXT);
                             //                            mTvAccount.setText(reback_text);
+                            getPresenter().getInfo();
                         });
                 break;
             case R.id.ll_title:
@@ -140,6 +142,7 @@ public class EditPersonInfoActivity extends BaseMVPActivity<EditPersonlInfoContr
                         .subscribe(activityResultInfo -> {
                             String reback_text = activityResultInfo.getData().getStringExtra(FillInformationActivity.REBACKTEXT);
                             //                            mTvTitle.setText(reback_text);
+                            getPresenter().getInfo();
                         });
                 break;
             case R.id.ll_bright_point:
@@ -149,6 +152,7 @@ public class EditPersonInfoActivity extends BaseMVPActivity<EditPersonlInfoContr
                         .subscribe(activityResultInfo -> {
                             String reback_text = activityResultInfo.getData().getStringExtra(FillInformationActivity.REBACKTEXT);
                             //                            mTvBrightPoint.setText(reback_text);
+                            getPresenter().getInfo();
                         });
                 break;
         }
@@ -167,12 +171,5 @@ public class EditPersonInfoActivity extends BaseMVPActivity<EditPersonlInfoContr
         //教员信息
         mTvTitle.setText(personInforEntity.getTitle());
         mTvBrightPoint.setText(personInforEntity.getBrightSpot());
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
     }
 }

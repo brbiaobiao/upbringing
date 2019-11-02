@@ -5,22 +5,22 @@
     android:background="#ffffff"
     android:layout_height="match_parent">
 
-    <RelativeLayout
-        android:id="@+id/rl_close"
-        android:layout_width="match_parent"
-        android:layout_height="44dp">
+<!--    <RelativeLayout-->
+<!--        android:id="@+id/rl_close"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="44dp">-->
 
-        <ImageView
-            android:id="@+id/iv_close"
-            android:layout_marginLeft="20dp"
-            android:layout_centerVertical="true"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@mipmap/icon_close"
-            >
+<!--        <ImageView-->
+<!--            android:id="@+id/iv_close"-->
+<!--            android:layout_marginLeft="20dp"-->
+<!--            android:layout_centerVertical="true"-->
+<!--            android:layout_width="24dp"-->
+<!--            android:layout_height="24dp"-->
+<!--            android:src="@mipmap/icon_close"-->
+<!--            >-->
 
-        </ImageView>
-    </RelativeLayout>
+<!--        </ImageView>-->
+<!--    </RelativeLayout>-->
 
     <TextView
         android:id="@+id/tv_name"
@@ -29,7 +29,6 @@
         android:textColor="#1a1a1a"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp"
-        android:layout_below="@+id/rl_close"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 

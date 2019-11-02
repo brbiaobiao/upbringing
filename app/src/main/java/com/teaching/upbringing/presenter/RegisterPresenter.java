@@ -10,6 +10,7 @@ import com.teaching.upbringing.model.RegisterModel;
 import com.teaching.upbringing.modular.user.LoginContract;
 import com.teaching.upbringing.modular.user.LoginContract.IPresenter;
 import com.teaching.upbringing.modular.user.RegisterContract;
+import com.teaching.upbringing.utils.ToastUtil;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 
@@ -27,7 +28,7 @@ public class RegisterPresenter extends Presenter<RegisterContract.IView> impleme
 
     @Override
     public void signInCaptcha(String phone) {
-        mMainModels.signInCaptcha()
+        mMainModels.signInCaptcha(phone)
                 .observeOn(AndroidSchedulers.mainThread())
                 .compose(bindLife())
                 .subscribe(new NextObserver<CaptchaEntity>() {
@@ -39,13 +40,14 @@ public class RegisterPresenter extends Presenter<RegisterContract.IView> impleme
     }
 
     @Override
-    public void signIn(String captcha, String phone) {
-        mMainModels.signIn()
+    public void signIn(String captcha,String invitation, String phone) {
+        ToastUtil.showShort(phone+"");
+        mMainModels.signIn(captcha,invitation,phone)
                 .observeOn(AndroidSchedulers.mainThread())
                 .compose(bindLife())
-                .subscribe(new NextObserver<TestEntity>() {
+                .subscribe(new NextObserver<CaptchaEntity>() {
                     @Override
-                    public void onNext(TestEntity testEntity) {
+                    public void onNext(CaptchaEntity testEntity) {
                         getView().signIn(testEntity);
                     }
                 });
