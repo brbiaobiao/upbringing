@@ -8,7 +8,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.outsourcing.library.utils.KeyboardUtils;
-import com.outsourcing.library.utils.PreferenceManagers;
 import com.teaching.upbringing.R;
 import com.teaching.upbringing.entity.CaptchaEntity;
 import com.teaching.upbringing.entity.UserInfoEntity;
@@ -113,9 +112,6 @@ public class LoginActivity extends BaseMVPActivity<LoginContract.IPresenter> imp
 
     @Override
     public void login(UserInfoEntity entity) {
-        long userId = entity.getUserId();
-        String token = String.valueOf(userId);
-        PreferenceManagers.saveValue("tokenId", token);
         KeyboardUtils.hideSoftInput(this);
         MainActivity.goInto(this);
         finish();
