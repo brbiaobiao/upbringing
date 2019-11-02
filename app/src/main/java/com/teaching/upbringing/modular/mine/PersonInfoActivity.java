@@ -1,5 +1,6 @@
 package com.teaching.upbringing.modular.mine;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.GradientDrawable;
@@ -9,11 +10,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.outsourcing.library.utils.AppUtils;
+import com.outsourcing.library.utils.OnResultUtil;
 import com.outsourcing.library.utils.ShapeUtils;
 import com.teaching.upbringing.R;
 import com.teaching.upbringing.entity.PersonInforEntity;
 import com.teaching.upbringing.mvpBase.BaseMVPActivity;
 
+import androidx.constraintlayout.widget.Group;
 import butterknife.BindView;
 
 /**
@@ -22,7 +25,6 @@ import butterknife.BindView;
  * @des ${个人信息页面}
  **/
 public class PersonInfoActivity extends BaseMVPActivity<PersonInforContract.Ipresenter> implements PersonInforContract.IView {
-
 
     @BindView(R.id.iv_head_pic)
     ImageView mIvHeadPic;
@@ -56,6 +58,10 @@ public class PersonInfoActivity extends BaseMVPActivity<PersonInforContract.Ipre
     TextView mTvBrightPoint;
     @BindView(R.id.ll_bright_point)
     LinearLayout mLlBrightPoint;
+    @BindView(R.id.gp_teacher_id)
+    Group mGpTeacherId;
+
+    private OnResultUtil onResultUtil = new OnResultUtil(this);
 
     public static void goIntent(Context context) {
         Intent intent = new Intent(context, PersonInfoActivity.class);
@@ -72,13 +78,16 @@ public class PersonInfoActivity extends BaseMVPActivity<PersonInforContract.Ipre
         return R.layout.activity_personl_infor;
     }
 
+    @SuppressLint("CheckResult")
     @Override
     protected void init() {
         setTitleText("个人资料");
         isShowTitleRightText(true);
         setTitleRightText("编辑").setTitleRightTextColor(AppUtils.getColor(R.color.white))
                 .setTitleRightTextClick(v -> {
-                    EditPersonInfoActivity.goIntent(this);
+                    onResultUtil.call(EditPersonInfoActivity.goIntent(this))
+                            .filter(info -> OnResultUtil.isOk(info))
+                            .subscribe(activityResultInfo -> getPresenter().initData());
                 });
         TextView titleRightText = getTitleRightText();
         GradientDrawable shape = ShapeUtils.createShape(-1, 26, -1, null, "#FD8440");
@@ -89,6 +98,15 @@ public class PersonInfoActivity extends BaseMVPActivity<PersonInforContract.Ipre
 
     @Override
     public void setInit(PersonInforEntity personInforEntity) {
+        mGpTeacherId.setVisibility(personInforEntity.isIfTeacher()?View.VISIBLE:View.GONE);
 
+        //普通信息
+        mTvNickname.setText(personInforEntity.getNickname());
+        mTvSex.setText(personInforEntity.getSex() == 1?"男":"女");
+        mTvAccount.setText(personInforEntity.getIntroduce());
+
+        //教员信息
+        mTvTitle.setText(personInforEntity.getTitle());
+        mTvBrightPoint.setText(personInforEntity.getBrightSpot());
     }
 }

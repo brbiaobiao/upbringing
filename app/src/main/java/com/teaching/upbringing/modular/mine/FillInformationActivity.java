@@ -22,7 +22,8 @@ import butterknife.BindView;
  **/
 public class FillInformationActivity extends BaseMVPActivity<FillInformationContract.Ipresenter> implements FillInformationContract.IView {
 
-    private static final String SHOWTITLE = "show_title";
+    public static final String SHOWTITLE = "show_title";
+    public static final String UPDATATYPE = "updataType";
     private static final String HINTCONTENT = "hint_content";
     public static final String REBACKTEXT = "reback_text";
 
@@ -30,10 +31,11 @@ public class FillInformationActivity extends BaseMVPActivity<FillInformationCont
     EditText mEtFillInfo;
     private TextView titleRightText;
 
-    public static Intent getCallIntent(Context context,String title,String hint){
+    public static Intent getCallIntent(Context context,String title,String hint,int updataType){
         Intent intent = new Intent(context, FillInformationActivity.class);
         intent.putExtra(SHOWTITLE,title);
         intent.putExtra(HINTCONTENT,hint);
+        intent.putExtra(UPDATATYPE,updataType);
         return intent;
     }
 
@@ -57,6 +59,11 @@ public class FillInformationActivity extends BaseMVPActivity<FillInformationCont
     };
 
     @Override
+    protected FillInformationContract.Ipresenter initPresenter() {
+        return new FillInformationPresenter(this);
+    }
+
+    @Override
     protected Integer getContentId() {
         return R.layout.activity_fill_information;
     }
@@ -71,11 +78,7 @@ public class FillInformationActivity extends BaseMVPActivity<FillInformationCont
         setTitleRightText("保存");
         setTitleRightTextColor(AppUtils.getColor(R.color.white));
         setTitleRightTextClick(v -> {
-            Intent intent1 = new Intent();
-            intent1.putExtra(REBACKTEXT,mEtFillInfo.getText().toString().trim());
-            setResult(RESULT_OK,intent1);
-            KeyboardUtils.hideSoftInput(this);
-            finish();
+            getPresenter().upDataInfor(mEtFillInfo.getText().toString().trim());
         });
         titleRightText = getTitleRightText();
         GradientDrawable shape = ShapeUtils.createShape(-1, 26, -1, null, "#FEE1D2");
@@ -83,5 +86,16 @@ public class FillInformationActivity extends BaseMVPActivity<FillInformationCont
 
         mEtFillInfo.setHint(hint);
         mEtFillInfo.addTextChangedListener(textWatcher);
+
+        getPresenter().getIntent(intent);
+    }
+
+    @Override
+    public void upDataCallBack() {
+        Intent intent1 = new Intent();
+        intent1.putExtra(REBACKTEXT,mEtFillInfo.getText().toString().trim());
+        setResult(RESULT_OK,intent1);
+        KeyboardUtils.hideSoftInput(this);
+        finish();
     }
 }

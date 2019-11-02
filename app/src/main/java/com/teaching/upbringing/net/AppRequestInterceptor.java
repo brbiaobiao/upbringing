@@ -1,8 +1,6 @@
 package com.teaching.upbringing.net;
 
 
-import android.content.SharedPreferences;
-
 import com.teaching.upbringing.utils.PreferenceManager;
 
 import java.io.IOException;

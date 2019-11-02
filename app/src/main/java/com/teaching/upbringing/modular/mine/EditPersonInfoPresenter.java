@@ -7,16 +7,12 @@ import com.teaching.upbringing.presenter.Presenter;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 
-/**
- * @author bb
- * @time 2019/11/1 16:24
- * @des ${TODO}
- **/
-public class PersonInfoPersenter extends Presenter<PersonInforContract.IView> implements PersonInforContract.Ipresenter{
+public class EditPersonInfoPresenter extends Presenter<EditPersonlInfoContract.IView>
+        implements EditPersonlInfoContract.Ipresenter {
 
     private PersonInforModel personInforModel;
 
-    public  PersonInfoPersenter(PersonInforContract.IView view) {
+    public EditPersonInfoPresenter(EditPersonlInfoContract.IView view) {
         super(view);
     }
 
@@ -25,16 +21,28 @@ public class PersonInfoPersenter extends Presenter<PersonInforContract.IView> im
         personInforModel = new PersonInforModel();
     }
 
-
     @Override
-    public void initData() {
+    public void getInfo() {
         personInforModel.getUserInfo()
                 .observeOn(AndroidSchedulers.mainThread())
                 .compose(bindLife())
                 .subscribe(new NextObserver<PersonInforEntity>() {
                     @Override
                     public void onNext(PersonInforEntity personInforEntity) {
-                        getView().setInit(personInforEntity);
+
+                    }
+                });
+    }
+
+    @Override
+    public void setSex(int sex) {
+        personInforModel.setSex(sex)
+                .observeOn(AndroidSchedulers.mainThread())
+                .compose(bindLife())
+                .subscribe(new NextObserver<Boolean>() {
+                    @Override
+                    public void onNext(Boolean aBoolean) {
+
                     }
                 });
     }

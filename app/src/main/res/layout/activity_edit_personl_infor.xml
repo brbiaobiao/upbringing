@@ -88,7 +88,7 @@
                 android:paddingTop="15dp"
                 android:paddingBottom="15dp"
                 android:gravity="left"
-                android:text="XXX" />
+                android:hint="修改昵称" />
 
         </LinearLayout>
 
@@ -160,7 +160,7 @@
                 android:paddingTop="15dp"
                 android:paddingBottom="15dp"
                 android:gravity="left"
-                android:text="爱好光浩国际，平时喜爱参加各种兴趣班，学习各种技能，这是我的一段很长很长的简介，会全部显示出来" />
+                android:hint="填写简介"/>
 
         </LinearLayout>
 
@@ -195,7 +195,7 @@
                 android:paddingTop="15dp"
                 android:paddingBottom="15dp"
                 android:gravity="left"
-                android:text="2019-09-09" />
+                android:text="" />
 
         </LinearLayout>
 
@@ -253,7 +253,7 @@
                 android:paddingTop="15dp"
                 android:paddingBottom="15dp"
                 android:gravity="left"
-                android:text="广东特技教师" />
+                android:hint="填写头衔" />
 
         </LinearLayout>
 
@@ -288,7 +288,7 @@
                 android:paddingTop="15dp"
                 android:paddingBottom="15dp"
                 android:gravity="left"
-                android:text="这是我的教学亮点，最多显示30字，过长的时候全部显示出来" />
+                android:hint="填写亮点" />
 
         </LinearLayout>
 

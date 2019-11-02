@@ -4,6 +4,7 @@ package com.teaching.upbringing.manager;
 import com.outsourcing.library.net.retrofit.AppHttpClient;
 import com.teaching.upbringing.api.LoginApi;
 import com.teaching.upbringing.api.MainApi;
+import com.teaching.upbringing.api.PersonInforApi;
 import com.teaching.upbringing.api.RegisterApi;
 
 /**
@@ -24,4 +25,6 @@ public class ApiManager {
     public static RegisterApi registerApi(){
         return AppHttpClient.create(RegisterApi.class);
     }
+
+    public static PersonInforApi personInforApi(){return AppHttpClient.create(PersonInforApi.class);}
 }

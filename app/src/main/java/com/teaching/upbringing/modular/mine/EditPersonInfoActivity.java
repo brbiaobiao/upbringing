@@ -2,6 +2,7 @@ package com.teaching.upbringing.modular.mine;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -10,9 +11,12 @@ import android.widget.TextView;
 import com.outsourcing.library.utils.OnResultUtil;
 import com.outsourcing.library.widget.dialog.ActionSheetDialog;
 import com.teaching.upbringing.R;
+import com.teaching.upbringing.entity.PersonInforEntity;
 import com.teaching.upbringing.mvpBase.BaseMVPActivity;
 
+import androidx.constraintlayout.widget.Group;
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -55,12 +59,19 @@ public class EditPersonInfoActivity extends BaseMVPActivity<EditPersonlInfoContr
     TextView mTvBrightPoint;
     @BindView(R.id.ll_bright_point)
     LinearLayout mLlBrightPoint;
+    @BindView(R.id.gp_teacher_id)
+    Group mGpTeacherId;
 
     private OnResultUtil onResultUtil;
 
-    public static void goIntent(Context context) {
+    public static Intent goIntent(Context context) {
         Intent intent = new Intent(context, EditPersonInfoActivity.class);
-        context.startActivity(intent);
+        return intent;
+    }
+
+    @Override
+    protected EditPersonlInfoContract.Ipresenter initPresenter() {
+        return new EditPersonInfoPresenter(this);
     }
 
     @Override
@@ -81,8 +92,14 @@ public class EditPersonInfoActivity extends BaseMVPActivity<EditPersonlInfoContr
         actionSheetDialog.isTitleShow(false).show();
         actionSheetDialog.setOnOpenItemClickL((parent, view, position, id) -> {
             actionSheetDialog.dismiss();
-            mTvSex.setText(items[position]);
+            getPresenter().setSex(position + 1);
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        setResult(RESULT_OK);
     }
 
     @OnClick({R.id.iv_head_pic, R.id.ll_nickname, R.id.ll_sex, R.id.ll_account,
@@ -96,40 +113,66 @@ public class EditPersonInfoActivity extends BaseMVPActivity<EditPersonlInfoContr
 
                 break;
             case R.id.ll_nickname:
-                onResultUtil.call(FillInformationActivity.getCallIntent(this, "昵称", "请输入昵称"))
+                onResultUtil.call(FillInformationActivity.getCallIntent(this, "昵称",
+                        "请输入昵称", 1))
                         .filter(info -> OnResultUtil.isOk(info))
                         .subscribe(activityResultInfo -> {
                             String reback_text = activityResultInfo.getData().getStringExtra(FillInformationActivity.REBACKTEXT);
-                            mTvNickname.setText(reback_text);
+                            //                            mTvNickname.setText(reback_text);
                         });
                 break;
             case R.id.ll_sex:
                 showSelectDialog();
                 break;
             case R.id.ll_account:
-                onResultUtil.call(FillInformationActivity.getCallIntent(this, "简介", "简单介绍下自己吧！"))
+                onResultUtil.call(FillInformationActivity.getCallIntent(this, "简介",
+                        "简单介绍下自己吧！", 2))
                         .filter(info -> OnResultUtil.isOk(info))
                         .subscribe(activityResultInfo -> {
                             String reback_text = activityResultInfo.getData().getStringExtra(FillInformationActivity.REBACKTEXT);
-                            mTvAccount.setText(reback_text);
+                            //                            mTvAccount.setText(reback_text);
                         });
                 break;
             case R.id.ll_title:
-                onResultUtil.call(FillInformationActivity.getCallIntent(this, "头衔", "请输入您的头衔"))
+                onResultUtil.call(FillInformationActivity.getCallIntent(this, "头衔",
+                        "请输入您的头衔", 3))
                         .filter(info -> OnResultUtil.isOk(info))
                         .subscribe(activityResultInfo -> {
                             String reback_text = activityResultInfo.getData().getStringExtra(FillInformationActivity.REBACKTEXT);
-                            mTvTitle.setText(reback_text);
+                            //                            mTvTitle.setText(reback_text);
                         });
                 break;
             case R.id.ll_bright_point:
-                onResultUtil.call(FillInformationActivity.getCallIntent(this, "亮点", "请填写您的亮点，让同学们跟喜欢您"))
+                onResultUtil.call(FillInformationActivity.getCallIntent(this, "亮点",
+                        "请填写您的亮点，让同学们跟喜欢您", 4))
                         .filter(info -> OnResultUtil.isOk(info))
                         .subscribe(activityResultInfo -> {
                             String reback_text = activityResultInfo.getData().getStringExtra(FillInformationActivity.REBACKTEXT);
-                            mTvBrightPoint.setText(reback_text);
+                            //                            mTvBrightPoint.setText(reback_text);
                         });
                 break;
         }
+    }
+
+    @Override
+    public void setInfor(PersonInforEntity personInforEntity) {
+        if(personInforEntity == null) return;
+        mGpTeacherId.setVisibility(personInforEntity.isIfTeacher() ? View.VISIBLE : View.GONE);
+
+        //普通信息
+        mTvNickname.setText(personInforEntity.getNickname());
+        mTvSex.setText(personInforEntity.getSex() == 1 ? "男" : "女");
+        mTvAccount.setText(personInforEntity.getIntroduce());
+
+        //教员信息
+        mTvTitle.setText(personInforEntity.getTitle());
+        mTvBrightPoint.setText(personInforEntity.getBrightSpot());
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
     }
 }
