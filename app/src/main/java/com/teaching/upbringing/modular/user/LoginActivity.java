@@ -1,12 +1,16 @@
 package com.teaching.upbringing.modular.user;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.teaching.upbringing.R;
+import com.teaching.upbringing.entity.CaptchaEntity;
 import com.teaching.upbringing.entity.TestEntity;
 import com.teaching.upbringing.mvpBase.BaseMVPActivity;
+import com.teaching.upbringing.utils.StringUtils;
 import com.teaching.upbringing.utils.TimeCountUtil;
 import com.teaching.upbringing.utils.ToastUtil;
 
@@ -52,16 +56,46 @@ public class LoginActivity extends BaseMVPActivity<LoginContract.IPresenter> imp
     @Override
     protected void init() {
         mTimeCountUtil = new TimeCountUtil(this, 60000, 1000, mTvCode);
+        mEtLoginCode.addTextChangedListener(new MyTextWatcher(mEtLoginCode));
+        mEtPhone.addTextChangedListener(new MyTextWatcher(mEtPhone));
+    }
+    private class MyTextWatcher implements TextWatcher {
+        private View v;
+
+        public MyTextWatcher(View v) {
+            this.v = v;
+        }
+
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            if (!StringUtils.isEmpty(mEtPhone.getText()) && mEtPhone.getText().toString().trim().length()==11
+                    && mEtLoginCode.getText().toString().trim().length() == 4) {
+                mTvLogin.setEnabled(true);
+            } else {
+                mTvLogin.setEnabled(false);
+            }
+        }
     }
 
+
     @Override
-    public void verification(TestEntity entity) {
+    public void verification(CaptchaEntity entity) {
         mTimeCountUtil.start();
         ToastUtil.showShort("获取验证码成功");
     }
 
     @Override
-    public void login(TestEntity entity) {
+    public void login(CaptchaEntity entity) {
 
     }
 }

@@ -43,9 +43,9 @@ public class RegisterPresenter extends Presenter<RegisterContract.IView> impleme
         mMainModels.signIn()
                 .observeOn(AndroidSchedulers.mainThread())
                 .compose(bindLife())
-                .subscribe(new NextObserver<TestEntity>() {
+                .subscribe(new NextObserver<CaptchaEntity>() {
                     @Override
-                    public void onNext(TestEntity testEntity) {
+                    public void onNext(CaptchaEntity testEntity) {
                         getView().signIn(testEntity);
                     }
                 });

@@ -24,7 +24,7 @@ public class RegisterModel extends ApiModel<RegisterApi> {
         return getApi().signInCaptcha().compose(RxUtil.httpAsyn());
     }
 
-    public Observable<TestEntity> signIn(){
+    public Observable<CaptchaEntity> signIn(){
         return getApi().signIn().compose(RxUtil.httpAsyn());
     }
 

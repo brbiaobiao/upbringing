@@ -20,5 +20,5 @@ public interface RegisterApi {
     Observable<RxHttpResponse<CaptchaEntity>> signInCaptcha();
 
     @POST("login/SignIn")
-    Observable<RxHttpResponse<TestEntity>> signIn();
+    Observable<RxHttpResponse<CaptchaEntity>> signIn();
 }
