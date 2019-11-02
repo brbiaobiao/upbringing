@@ -25,7 +25,7 @@ public class RxHttpResponse<T> {
         this.status = status;
     }
 
-    public class Status{
+    private class Status {
         private int code;//标志码
 
         private String message;//错误描述

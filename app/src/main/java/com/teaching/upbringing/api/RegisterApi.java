@@ -2,6 +2,7 @@ package com.teaching.upbringing.api;
 
 
 import com.outsourcing.library.net.RxHttpResponse;
+import com.teaching.upbringing.entity.CaptchaEntity;
 import com.teaching.upbringing.entity.TestEntity;
 
 import io.reactivex.Observable;
@@ -13,10 +14,11 @@ import retrofit2.http.POST;
  * @create: 2019/4/10
  * @Describe:
  */
-public interface MainApi {
+public interface RegisterApi {
 
-    @POST("Task.queryPlatFormUsedCar")
-    Observable<RxHttpResponse<TestEntity>> getTestData();
+    @GET("login/signInCaptcha")
+    Observable<RxHttpResponse<CaptchaEntity>> signInCaptcha();
 
-
+    @POST("login/SignIn")
+    Observable<RxHttpResponse<TestEntity>> signIn();
 }
