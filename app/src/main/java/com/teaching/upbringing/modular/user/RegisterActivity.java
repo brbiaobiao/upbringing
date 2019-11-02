@@ -4,6 +4,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.outsourcing.library.net.RxHttpResponse;
 import com.teaching.upbringing.R;
 import com.teaching.upbringing.entity.CaptchaEntity;
 import com.teaching.upbringing.entity.TestEntity;
@@ -58,8 +59,14 @@ public class RegisterActivity extends BaseMVPActivity<RegisterContract.IPresente
 
     @Override
     public void signInCaptcha(CaptchaEntity entity) {
-        mTimeCountUtil.start();
-        ToastUtil.showShort("获取验证码成功");
+        RxHttpResponse.Status status = entity.getStatus();
+        if(status.getCode()==200){
+            mTimeCountUtil.start();
+            ToastUtil.showShort(status.getMessage());
+        }else {
+            ToastUtil.showShort(status.getMessage());
+        }
+
     }
 
     @Override
