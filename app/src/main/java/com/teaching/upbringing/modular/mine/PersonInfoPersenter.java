@@ -1,7 +1,11 @@
 package com.teaching.upbringing.modular.mine;
 
+import com.outsourcing.library.mvp.observer.NextObserver;
+import com.teaching.upbringing.entity.PersonInforEntity;
 import com.teaching.upbringing.model.PersonInforModel;
 import com.teaching.upbringing.presenter.Presenter;
+
+import io.reactivex.android.schedulers.AndroidSchedulers;
 
 /**
  * @author bb
@@ -24,6 +28,14 @@ public class PersonInfoPersenter extends Presenter<PersonInforContract.IView> im
 
     @Override
     public void initData() {
+        personInforModel.getUserInfo()
+                .observeOn(AndroidSchedulers.mainThread())
+                .compose(bindLife())
+                .subscribe(new NextObserver<PersonInforEntity>() {
+                    @Override
+                    public void onNext(PersonInforEntity personInforEntity) {
 
+                    }
+                });
     }
 }

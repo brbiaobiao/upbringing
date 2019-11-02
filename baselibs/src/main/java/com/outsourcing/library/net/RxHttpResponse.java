@@ -7,8 +7,7 @@ package com.outsourcing.library.net;
  */
 public class RxHttpResponse<T> {
     private T data;//数据
-    private int code;//标志码
-    private String message;//错误描述
+    private Status status;
 
     public T getData() {
         return data;
@@ -18,19 +17,33 @@ public class RxHttpResponse<T> {
         this.data = data;
     }
 
-    public int getCode() {
-        return code;
+    public Status getStatus() {
+        return status;
     }
 
-    public void setCode(int code) {
-        this.code = code;
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
-    public String getMessage() {
-        return message;
-    }
+    public class Status{
+        private int code;//标志码
 
-    public void setMessage(String message) {
-        this.message = message;
+        private String message;//错误描述
+
+        public int getCode() {
+            return code;
+        }
+
+        public void setCode(int code) {
+            this.code = code;
+        }
+
+        public String getMessage() {
+            return message;
+        }
+
+        public void setMessage(String message) {
+            this.message = message;
+        }
     }
 }

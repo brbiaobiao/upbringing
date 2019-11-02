@@ -37,10 +37,10 @@ public class AppResponseConverterFactory extends ResponseConverterFactory<AppRes
             String response = value.string();
 //            LogUtils.json(response);
             RxHttpResponse httpResult = gson.fromJson(response, RxHttpResponse.class);
-            if (httpResult.getCode() == 1) {
+            if (httpResult.getStatus().getCode() == 1) {
                 return gson.fromJson(response, type);
             } else {
-                throw new ExceptionHandler.APIErrorException(httpResult.getMessage(), httpResult.getCode());//自定义异常处理类
+                throw new ExceptionHandler.APIErrorException(httpResult.getStatus().getMessage(), httpResult.getStatus().getCode());//自定义异常处理类
             }
         }
     }
