@@ -28,6 +28,7 @@ public class RegisterPresenter extends Presenter<RegisterContract.IView> impleme
     @Override
     public void signInCaptcha(String phone) {
         mMainModels.signInCaptcha()
+
                 .observeOn(AndroidSchedulers.mainThread())
                 .compose(bindLife())
                 .subscribe(new NextObserver<CaptchaEntity>() {
