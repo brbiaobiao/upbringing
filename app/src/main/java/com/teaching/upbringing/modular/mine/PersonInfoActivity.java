@@ -10,12 +10,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.outsourcing.library.utils.AppUtils;
-import com.outsourcing.library.utils.OnResultUtil;
 import com.outsourcing.library.utils.ShapeUtils;
 import com.teaching.upbringing.R;
 import com.teaching.upbringing.entity.PersonInforEntity;
 import com.teaching.upbringing.mvpBase.BaseMVPActivity;
 
+import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.Group;
 import butterknife.BindView;
 
@@ -61,7 +61,7 @@ public class PersonInfoActivity extends BaseMVPActivity<PersonInforContract.Ipre
     @BindView(R.id.gp_teacher_id)
     Group mGpTeacherId;
 
-    private OnResultUtil onResultUtil = new OnResultUtil(this);
+//    private OnResultUtil onResultUtil = new OnResultUtil(this);
 
     public static void goIntent(Context context) {
         Intent intent = new Intent(context, PersonInfoActivity.class);
@@ -85,9 +85,12 @@ public class PersonInfoActivity extends BaseMVPActivity<PersonInforContract.Ipre
         isShowTitleRightText(true);
         setTitleRightText("编辑").setTitleRightTextColor(AppUtils.getColor(R.color.white))
                 .setTitleRightTextClick(v -> {
-                    onResultUtil.call(EditPersonInfoActivity.goIntent(this))
+                    /*onResultUtil.call(EditPersonInfoActivity.goIntent(this))
                             .filter(info -> OnResultUtil.isOk(info))
-                            .subscribe(activityResultInfo -> getPresenter().initData());
+                            .subscribe(activityResultInfo -> getPresenter().initData());*/
+
+                    Intent intent = new Intent(this, EditPersonInfoActivity.class);
+                    this.startActivityForResult(intent,001);
                 });
         TextView titleRightText = getTitleRightText();
         GradientDrawable shape = ShapeUtils.createShape(-1, 26, -1, null, "#FD8440");
@@ -110,5 +113,13 @@ public class PersonInfoActivity extends BaseMVPActivity<PersonInforContract.Ipre
         //教员信息
         mTvTitle.setText(personInforEntity.getTitle());
         mTvBrightPoint.setText(personInforEntity.getBrightSpot());
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode == RESULT_OK) {
+            getPresenter().initData();
+        }
     }
 }

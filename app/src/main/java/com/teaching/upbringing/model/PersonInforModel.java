@@ -3,6 +3,7 @@ package com.teaching.upbringing.model;
 import com.outsourcing.library.utils.RxUtil;
 import com.teaching.upbringing.api.PersonInforApi;
 import com.teaching.upbringing.entity.PersonInforEntity;
+import com.teaching.upbringing.manager.ApiManager;
 
 import io.reactivex.Observable;
 
@@ -13,7 +14,7 @@ import io.reactivex.Observable;
  **/
 public class PersonInforModel extends ApiModel<PersonInforApi> {
     public PersonInforModel() {
-        super(null);
+        super(ApiManager.personInforApi());
     }
 
     public Observable<PersonInforEntity> getUserInfo() {

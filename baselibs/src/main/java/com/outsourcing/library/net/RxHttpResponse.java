@@ -26,16 +26,16 @@ public class RxHttpResponse<T> {
     }
 
     public class Status {
-        private int code;//标志码
+        private int errCode;//标志码
 
         private String message;//错误描述
 
         public int getCode() {
-            return code;
+            return errCode;
         }
 
         public void setCode(int code) {
-            this.code = code;
+            this.errCode = code;
         }
 
         public String getMessage() {

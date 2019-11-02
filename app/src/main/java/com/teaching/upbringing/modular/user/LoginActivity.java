@@ -7,12 +7,14 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.outsourcing.library.utils.KeyboardUtils;
+import com.outsourcing.library.utils.PreferenceManagers;
 import com.teaching.upbringing.R;
 import com.teaching.upbringing.entity.CaptchaEntity;
-import com.teaching.upbringing.entity.TestEntity;
+import com.teaching.upbringing.entity.UserInfoEntity;
+import com.teaching.upbringing.modular.main.MainActivity;
 import com.teaching.upbringing.mvpBase.BaseMVPActivity;
 import com.teaching.upbringing.presenter.LoginPresenter;
-import com.teaching.upbringing.presenter.RegisterPresenter;
 import com.teaching.upbringing.utils.StringUtils;
 import com.teaching.upbringing.utils.TimeCountUtil;
 import com.teaching.upbringing.utils.ToastUtil;
@@ -110,7 +112,12 @@ public class LoginActivity extends BaseMVPActivity<LoginContract.IPresenter> imp
     }
 
     @Override
-    public void login(CaptchaEntity entity) {
-
+    public void login(UserInfoEntity entity) {
+        long userId = entity.getUserId();
+        String token = String.valueOf(userId);
+        PreferenceManagers.saveValue("tokenId", token);
+        KeyboardUtils.hideSoftInput(this);
+        MainActivity.goInto(this);
+        finish();
     }
 }

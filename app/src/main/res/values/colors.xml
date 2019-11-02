@@ -73,11 +73,6 @@
     <!--相册状态栏-->
     <color name="multiple_image_select_primaryDark">@color/white</color>
 
-
-<<<<<<< HEAD
-=======
-
->>>>>>> 3cc4380d37e137915ac4141faa2b45905c78ea9e
     <color name="color_0AA0FE">#0AA0FE</color>
 
 </resources>

@@ -55,9 +55,9 @@ public class AppRequestInterceptor implements Interceptor {
             bodyBuilder.addEncoded("token", UserInfo.getAccount().getToken());
         }*/
         FormBody newBody = bodyBuilder.build();
-
+        String tokenId = PreferenceManager.getString("tokenId", "");
         oldRequest = oldRequest.newBuilder()
-                .addHeader("x-access-token", PreferenceManager.getString("tokenId",""))
+                .header("x-access-token", "1190728567630073857")
                 .post(newBody).build();
         return oldRequest;
     }

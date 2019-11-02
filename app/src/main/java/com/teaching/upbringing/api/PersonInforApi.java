@@ -6,6 +6,7 @@ import com.teaching.upbringing.entity.PersonInforEntity;
 import io.reactivex.Observable;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 /**
@@ -15,7 +16,7 @@ import retrofit2.http.POST;
  **/
 public interface PersonInforApi {
 
-    @POST("user/getUserInfo")
+    @GET("user/getUserInfo")
     Observable<RxHttpResponse<PersonInforEntity>> getUserInfo();
 
     @FormUrlEncoded

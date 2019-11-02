@@ -3,7 +3,7 @@ package com.teaching.upbringing.api;
 
 import com.outsourcing.library.net.RxHttpResponse;
 import com.teaching.upbringing.entity.CaptchaEntity;
-import com.teaching.upbringing.entity.TestEntity;
+import com.teaching.upbringing.entity.UserInfoEntity;
 
 import java.util.Map;
 
@@ -23,5 +23,5 @@ public interface LoginApi {
     Observable<RxHttpResponse<CaptchaEntity>> loginCaptcha();
 
     @POST("login/captchaLogin")
-    Observable<RxHttpResponse<CaptchaEntity>> captchaLogin(@Body Map<String, String> param);
+    Observable<RxHttpResponse<UserInfoEntity>> captchaLogin(@Body Map<String, String> param);
 }

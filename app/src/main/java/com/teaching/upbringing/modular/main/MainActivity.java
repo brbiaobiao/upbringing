@@ -1,5 +1,7 @@
 package com.teaching.upbringing.modular.main;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
@@ -67,6 +69,11 @@ public class MainActivity extends BaseMVPActivity {
     private PersonlFragment personlFragment;
 
     private int mCurrentPageIndex = -1;
+
+    public static void goInto(Context context){
+        Intent intent = new Intent(context, MainActivity.class);
+        context.startActivity(intent);
+    }
 
 
     @Override
