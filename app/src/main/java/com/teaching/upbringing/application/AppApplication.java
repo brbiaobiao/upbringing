@@ -1,6 +1,7 @@
 package com.teaching.upbringing.application;
 
 
+import android.app.Activity;
 import android.os.Handler;
 import android.os.Looper;
 import android.widget.Toast;
@@ -38,16 +39,20 @@ import io.reactivex.schedulers.Schedulers;
 public class AppApplication extends BaseApplication{
 
     private static Handler mHandler;
+    public static Activity mAppActivity;
     public LogConfigurator logConfigurator;
     public Logger logger = null;
+    public static AppApplication mApp;
 
     @Override
     public void onCreate() {
+
         super.onCreate();
         init();
     }
 
     private void init() {
+        mApp = this;
         AppManager.setApplication(this);
         mHandler = new Handler();
         Observable.empty()
@@ -127,4 +132,19 @@ public class AppApplication extends BaseApplication{
             }, 2000);
         }
     };
+
+    public static AppApplication getApp() {
+        return mApp;
+    }
+
+    public static Activity getCurrentActivity() {
+        return mAppActivity;
+    }
+
+    public static void setApp(AppApplication app) {
+        mApp = app;
+    }
+
+
+
 }

@@ -1,5 +1,7 @@
 package com.teaching.upbringing.model;
 
+import io.reactivex.Completable;
+
 /**
  * @author: biao
  * @create: 2019/4/9
@@ -16,4 +18,6 @@ public class ApiModel<Api> {
     public ApiModel(Api api) {
         mApi = api;
     }
+
+
 }

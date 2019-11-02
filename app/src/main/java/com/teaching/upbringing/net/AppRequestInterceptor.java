@@ -1,6 +1,10 @@
 package com.teaching.upbringing.net;
 
 
+import android.content.SharedPreferences;
+
+import com.teaching.upbringing.utils.PreferenceManager;
+
 import java.io.IOException;
 
 import okhttp3.FormBody;
@@ -55,7 +59,12 @@ public class AppRequestInterceptor implements Interceptor {
         FormBody newBody = bodyBuilder.build();
 
         oldRequest = oldRequest.newBuilder()
+                .addHeader("x-access-token", PreferenceManager.getString("tokenId",""))
                 .post(newBody).build();
         return oldRequest;
     }
+
+
+
+
 }

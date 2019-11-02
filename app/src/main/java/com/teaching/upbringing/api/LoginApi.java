@@ -13,10 +13,11 @@ import retrofit2.http.POST;
  * @create: 2019/4/10
  * @Describe:
  */
-public interface MainApi {
+public interface LoginApi {
 
-    @POST("Task.queryPlatFormUsedCar")
-    Observable<RxHttpResponse<TestEntity>> getTestData();
+    @GET("login/loginCaptcha")
+    Observable<RxHttpResponse<TestEntity>> loginCaptcha();
 
-
+    @POST("login/captchaLogin")
+    Observable<RxHttpResponse<TestEntity>> captchaLogin();
 }
