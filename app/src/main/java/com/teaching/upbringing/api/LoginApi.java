@@ -5,7 +5,10 @@ import com.outsourcing.library.net.RxHttpResponse;
 import com.teaching.upbringing.entity.CaptchaEntity;
 import com.teaching.upbringing.entity.TestEntity;
 
+import java.util.Map;
+
 import io.reactivex.Observable;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 
@@ -20,5 +23,5 @@ public interface LoginApi {
     Observable<RxHttpResponse<CaptchaEntity>> loginCaptcha();
 
     @POST("login/captchaLogin")
-    Observable<RxHttpResponse<CaptchaEntity>> captchaLogin();
+    Observable<RxHttpResponse<CaptchaEntity>> captchaLogin(@Body Map<String, String> param);
 }

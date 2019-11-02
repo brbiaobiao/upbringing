@@ -1,5 +1,6 @@
 package com.teaching.upbringing.modular.user;
 
+import android.content.Intent;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -10,6 +11,8 @@ import com.teaching.upbringing.R;
 import com.teaching.upbringing.entity.CaptchaEntity;
 import com.teaching.upbringing.entity.TestEntity;
 import com.teaching.upbringing.mvpBase.BaseMVPActivity;
+import com.teaching.upbringing.presenter.LoginPresenter;
+import com.teaching.upbringing.presenter.RegisterPresenter;
 import com.teaching.upbringing.utils.StringUtils;
 import com.teaching.upbringing.utils.TimeCountUtil;
 import com.teaching.upbringing.utils.ToastUtil;
@@ -30,11 +33,16 @@ public class LoginActivity extends BaseMVPActivity<LoginContract.IPresenter> imp
     private TimeCountUtil mTimeCountUtil;
 
 
-    @OnClick({R.id.tv_verification_code,R.id.tv_login})
+
+    @Override
+    protected LoginContract.IPresenter initPresenter() {
+        return new LoginPresenter(this);
+    }
+    @OnClick({R.id.tv_verification_code,R.id.tv_login,R.id.tv_register})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_login:
-                getPresenter().login(mEtLoginCode.getText().toString(),mEtPhone.getText().toString());
+                getPresenter().login(mEtLoginCode.getText().toString().trim()+"",mEtPhone.getText().toString().trim()+"");
                 break;
             case R.id.tv_verification_code:
             if(mEtPhone.length()==0){
@@ -42,8 +50,13 @@ public class LoginActivity extends BaseMVPActivity<LoginContract.IPresenter> imp
             } else if(mEtPhone.length()!=11){
                 ToastUtil.showShort("请输入正确的手机号码");
             }else {
-                getPresenter().verification(mEtPhone.getText().toString());
+                mTimeCountUtil.start();
+                //getPresenter().verification(mEtPhone.getText().toString());
             }
+                break;
+            case R.id.tv_register:
+                Intent intent = new Intent(this, RegisterActivity.class);
+                startActivity(intent);
                 break;
         }
     }
@@ -55,6 +68,8 @@ public class LoginActivity extends BaseMVPActivity<LoginContract.IPresenter> imp
 
     @Override
     protected void init() {
+        setTitleText("");
+        setTitleLeftIcon(getResources().getDrawable(R.mipmap.icon_close));
         mTimeCountUtil = new TimeCountUtil(this, 60000, 1000, mTvCode);
         mEtLoginCode.addTextChangedListener(new MyTextWatcher(mEtLoginCode));
         mEtPhone.addTextChangedListener(new MyTextWatcher(mEtPhone));
@@ -90,7 +105,7 @@ public class LoginActivity extends BaseMVPActivity<LoginContract.IPresenter> imp
 
     @Override
     public void verification(CaptchaEntity entity) {
-        mTimeCountUtil.start();
+
         ToastUtil.showShort("获取验证码成功");
     }
 

@@ -42,7 +42,7 @@ public class LoginPresenter extends Presenter<LoginContract.IView> implements Lo
 
     @Override
     public void login(String captcha, String phone) {
-        mMainModels.captchaLogin()
+        mMainModels.captchaLogin(captcha,phone)
                 .observeOn(AndroidSchedulers.mainThread())
                 .compose(bindLife())
                 .subscribe(new NextObserver<CaptchaEntity>() {

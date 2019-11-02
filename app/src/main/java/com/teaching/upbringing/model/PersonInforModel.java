@@ -10,6 +10,6 @@ import com.teaching.upbringing.manager.ApiManager;
  **/
 public class PersonInforModel extends ApiModel<PersonInforApi> {
     public PersonInforModel() {
-        super(ApiManager.personInforApi());
+        super(null);
     }
 }

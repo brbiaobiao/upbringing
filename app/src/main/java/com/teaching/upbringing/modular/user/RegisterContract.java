@@ -15,7 +15,7 @@ public interface RegisterContract {
 
     interface IPresenter extends IBasePresenter<RegisterContract.IView> {
         abstract void signInCaptcha(String phone);
-        abstract void signIn(String captcha,String phone);
+        abstract void signIn(String captcha,String invitation,String phone);
     }
 
 }

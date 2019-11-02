@@ -199,6 +199,16 @@ public abstract class BaseMVPActivity<T extends IBasePresenter> extends MvpActiv
         return this;
     }
 
+    public BaseMVPActivity<T> setTitleLeftIcon(Drawable drawable) {
+        mTitleBar.setTitleRightIcon(drawable);
+        return this;
+    }
+
+    public BaseMVPActivity<T> setTitleLeftIcon(@DrawableRes int res) {
+        mTitleBar.setTitleRightIcon(res);
+        return this;
+    }
+
     public BaseMVPActivity<T> setTitleRightIconClick(View.OnClickListener listener) {
         mTitleBar.setTitleRightIconClick(listener);
         return this;

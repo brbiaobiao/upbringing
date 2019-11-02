@@ -7,6 +7,9 @@ import com.teaching.upbringing.entity.CaptchaEntity;
 import com.teaching.upbringing.entity.TestEntity;
 import com.teaching.upbringing.manager.ApiManager;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import io.reactivex.Observable;
 
 /**
@@ -24,8 +27,11 @@ public class LoginModel extends ApiModel<LoginApi> {
         return getApi().loginCaptcha().compose(RxUtil.httpAsyn());
     }
 
-    public Observable<CaptchaEntity> captchaLogin(){
-        return getApi().captchaLogin().compose(RxUtil.httpAsyn());
+    public Observable<CaptchaEntity> captchaLogin(String captcha,String phone){
+        Map<String,String> map = new HashMap<>();
+        map.put("captcha",captcha);
+        map.put("phone",phone);
+        return getApi().captchaLogin(map).compose(RxUtil.httpAsyn());
     }
 
 }

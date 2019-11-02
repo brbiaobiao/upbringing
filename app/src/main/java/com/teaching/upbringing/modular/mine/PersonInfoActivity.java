@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.GradientDrawable;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -56,6 +57,7 @@ public class PersonInfoActivity extends BaseMVPActivity<PersonInforContract.Ipre
     TextView mTvBrightPoint;
     @BindView(R.id.ll_bright_point)
     LinearLayout mLlBrightPoint;
+
 
     public static void goIntent(Context context) {
         Intent intent = new Intent(context, PersonInfoActivity.class);

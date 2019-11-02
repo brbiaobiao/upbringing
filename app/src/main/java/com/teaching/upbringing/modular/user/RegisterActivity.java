@@ -11,6 +11,7 @@ import com.teaching.upbringing.R;
 import com.teaching.upbringing.entity.CaptchaEntity;
 import com.teaching.upbringing.entity.TestEntity;
 import com.teaching.upbringing.mvpBase.BaseMVPActivity;
+import com.teaching.upbringing.presenter.RegisterPresenter;
 import com.teaching.upbringing.utils.StringUtils;
 import com.teaching.upbringing.utils.TimeCountUtil;
 import com.teaching.upbringing.utils.ToastUtil;
@@ -29,6 +30,8 @@ public class RegisterActivity extends BaseMVPActivity<RegisterContract.IPresente
     @BindView(R.id.tv_verification_code)
     TextView mTvCode;//获取验证码
     private TimeCountUtil mTimeCountUtil;
+    @BindView(R.id.et_invitation)
+    EditText mEtInvitation;//邀请码
 
 
     @Override
@@ -37,10 +40,17 @@ public class RegisterActivity extends BaseMVPActivity<RegisterContract.IPresente
     }
 
     @Override
+    protected RegisterContract.IPresenter initPresenter() {
+        return new RegisterPresenter(this);
+    }
+
+    @Override
     protected void init() {
-         mTimeCountUtil = new TimeCountUtil(this, 60000, 1000, mTvCode);
+        setTitleText("注册");
+        mTimeCountUtil = new TimeCountUtil(this, 60000, 1000, mTvCode);
         mEtLoginCode.addTextChangedListener(new MyTextWatcher(mEtLoginCode));
         mEtPhone.addTextChangedListener(new MyTextWatcher(mEtPhone));
+        mEtInvitation.addTextChangedListener(new MyTextWatcher(mEtInvitation));
     }
 
 
@@ -77,7 +87,7 @@ public class RegisterActivity extends BaseMVPActivity<RegisterContract.IPresente
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_register:
-                getPresenter().signIn(mEtLoginCode.getText().toString(),mEtPhone.getText().toString());
+                getPresenter().signIn(mEtLoginCode.getText().toString().trim()+"",mEtInvitation.getText().toString().trim()+"",mEtPhone.getText().toString().trim()+"");
                 break;
             case R.id.tv_verification_code:
                 if(mEtPhone.length()==0){
@@ -85,7 +95,9 @@ public class RegisterActivity extends BaseMVPActivity<RegisterContract.IPresente
                 } else if(mEtPhone.length()!=11){
                     ToastUtil.showShort("请输入正确的手机号码");
                 }else {
-                    getPresenter().signInCaptcha(mEtPhone.getText().toString());
+                 //   ToastUtil.showShort(mEtPhone.getText().toString().trim()+"123");
+                 //   getPresenter().signInCaptcha(mEtPhone.getText().toString().trim()+"");
+                    mTimeCountUtil.start();
                 }
                 break;
         }
