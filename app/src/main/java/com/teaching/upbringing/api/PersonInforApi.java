@@ -3,11 +3,8 @@ package com.teaching.upbringing.api;
 import com.outsourcing.library.net.RxHttpResponse;
 import com.teaching.upbringing.entity.PersonInforEntity;
 
-import java.util.Map;
-
 import io.reactivex.Observable;
 import retrofit2.http.Field;
-import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
@@ -25,10 +22,6 @@ public interface PersonInforApi {
     @FormUrlEncoded
     @POST("user/setNickname")
     Observable<RxHttpResponse<String>> setNickName(@Field("nickname") String nickname);
-
-    @FormUrlEncoded
-    @POST("user/setNickname")
-    Observable<RxHttpResponse<String>> setNickNameMap(@FieldMap Map<String, String> fields);
 
     @FormUrlEncoded
     @POST("user/setIntroduce")
