@@ -5,7 +5,6 @@ import android.util.Log;
 
 import com.outsourcing.library.utils.PreferenceManagers;
 import com.outsourcing.library.utils.StringUtils;
-import com.teaching.upbringing.utils.PreferenceManager;
 
 import java.io.IOException;
 
@@ -25,7 +24,8 @@ public class AppRequestInterceptor implements Interceptor {
     public Response intercept(Chain chain) throws IOException {
         Request oldRequest = chain.request();
         Request.Builder builder = oldRequest.newBuilder();
-        Request builder1 = builder.addHeader("x-access-token", PreferenceManagers.getString("tokenId", "")).build();
+        Request builder1 = builder.addHeader("x-access-token", PreferenceManagers.getString("tokenId", ""))
+                .addHeader("Content-Type","application/json;charset=UTF-8").build();
         if (oldRequest.method().equals("POST")) {
             if (oldRequest.body() instanceof FormBody) {
                 FormBody oldBody = (FormBody) oldRequest.body();
