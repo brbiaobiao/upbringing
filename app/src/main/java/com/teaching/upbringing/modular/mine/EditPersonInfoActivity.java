@@ -122,6 +122,7 @@ public class EditPersonInfoActivity extends BaseMVPActivity<EditPersonlInfoContr
                         .filter(info -> OnResultUtil.isOk(info))
                         .subscribe(activityResultInfo -> {
                             String reback_text = activityResultInfo.getData().getStringExtra(FillInformationActivity.REBACKTEXT);
+                            finish();
 //                            mTvNickname.setText(reback_text);
                             getPresenter().getInfo();
                         });
@@ -135,6 +136,7 @@ public class EditPersonInfoActivity extends BaseMVPActivity<EditPersonlInfoContr
                         .filter(info -> OnResultUtil.isOk(info))
                         .subscribe(activityResultInfo -> {
                             String reback_text = activityResultInfo.getData().getStringExtra(FillInformationActivity.REBACKTEXT);
+                            finish();
 //                            mTvAccount.setText(reback_text);
                             getPresenter().getInfo();
                         });
@@ -145,6 +147,7 @@ public class EditPersonInfoActivity extends BaseMVPActivity<EditPersonlInfoContr
                         .filter(info -> OnResultUtil.isOk(info))
                         .subscribe(activityResultInfo -> {
                             String reback_text = activityResultInfo.getData().getStringExtra(FillInformationActivity.REBACKTEXT);
+                            finish();
 //                            mTvTitle.setText(reback_text);
                             getPresenter().getInfo();
                         });
@@ -155,6 +158,7 @@ public class EditPersonInfoActivity extends BaseMVPActivity<EditPersonlInfoContr
                         .filter(info -> OnResultUtil.isOk(info))
                         .subscribe(activityResultInfo -> {
                             String reback_text = activityResultInfo.getData().getStringExtra(FillInformationActivity.REBACKTEXT);
+                            finish();
 //                            mTvBrightPoint.setText(reback_text);
                             getPresenter().getInfo();
                         });

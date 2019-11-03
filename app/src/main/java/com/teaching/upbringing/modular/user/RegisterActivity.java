@@ -1,5 +1,6 @@
 package com.teaching.upbringing.modular.user;
 
+import android.content.Intent;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -74,7 +75,7 @@ public class RegisterActivity extends BaseMVPActivity<RegisterContract.IPresente
         @Override
         public void afterTextChanged(Editable s) {
             if (!StringUtils.isEmpty(mEtPhone.getText()) && mEtPhone.getText().toString().trim().length()==11
-                    && mEtLoginCode.getText().toString().trim().length() == 4) {
+                    && mEtLoginCode.getText().toString().trim().length() >= 4) {
                 mTvRegister.setEnabled(true);
             } else {
                 mTvRegister.setEnabled(false);
@@ -118,13 +119,15 @@ public class RegisterActivity extends BaseMVPActivity<RegisterContract.IPresente
 
     @Override
     public void signIn(CaptchaEntity entity) {
-        RxHttpResponse.Status status = entity.getStatus();
-        if(status.getCode()==200){
-            ToastUtil.showShort(status.getMessage());
-        }else {
-            ToastUtil.showShort(status.getMessage());
-            mTvRegister.setEnabled(false);
-        }
+//        RxHttpResponse.Status status = entity.getStatus();
+//        if(status.getCode()==200){
+            Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+            startActivity(intent);
+            finish();
+//        }else {
+//            ToastUtil.showShort(status.getMessage());
+//            mTvRegister.setEnabled(false);
+//        }
 
     }
 }

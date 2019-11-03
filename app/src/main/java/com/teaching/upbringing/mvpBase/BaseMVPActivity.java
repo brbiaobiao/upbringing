@@ -245,6 +245,8 @@ public abstract class BaseMVPActivity<T extends IBasePresenter> extends MvpActiv
         return this;
     }
 
+
+
     public TextView getTitleRightText() {
         return mTitleBar.getRightTextView();
     }

@@ -78,7 +78,7 @@ public class FillInformationActivity extends BaseMVPActivity<FillInformationCont
         setTitleRightText("保存");
         setTitleRightTextColor(AppUtils.getColor(R.color.white));
         setTitleRightTextClick(v -> {
-            getPresenter().upDataInfor(mEtFillInfo.getText().toString().trim());
+            getPresenter().upDataInfor(mEtFillInfo.getText().toString().trim()+"");
             upDataCallBack();
         });
         titleRightText = getTitleRightText();
@@ -100,4 +100,5 @@ public class FillInformationActivity extends BaseMVPActivity<FillInformationCont
         hideProgress();// TODO: 2019/11/3 后台改完接口就删掉
         finish();
     }
+
 }

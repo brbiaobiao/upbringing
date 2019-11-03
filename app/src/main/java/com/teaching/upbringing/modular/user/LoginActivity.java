@@ -58,6 +58,7 @@ public class LoginActivity extends BaseMVPActivity<LoginContract.IPresenter> imp
             case R.id.tv_register:
                 Intent intent = new Intent(this, RegisterActivity.class);
                 startActivity(intent);
+                finish();
                 break;
         }
     }
@@ -70,7 +71,8 @@ public class LoginActivity extends BaseMVPActivity<LoginContract.IPresenter> imp
     @Override
     protected void init() {
         setTitleText("");
-        setTitleLeftIcon(getResources().getDrawable(R.mipmap.icon_close));
+        setTitleLeftIcon(R.mipmap.icon_close);
+//        setTitleLeftIcon(getResources().getDrawable(R.mipmap.icon_close));
         mTimeCountUtil = new TimeCountUtil(this, 60000, 1000, mTvCode);
         mEtLoginCode.addTextChangedListener(new MyTextWatcher(mEtLoginCode));
         mEtPhone.addTextChangedListener(new MyTextWatcher(mEtPhone));
@@ -95,7 +97,7 @@ public class LoginActivity extends BaseMVPActivity<LoginContract.IPresenter> imp
         @Override
         public void afterTextChanged(Editable s) {
             if (!StringUtils.isEmpty(mEtPhone.getText()) && mEtPhone.getText().toString().trim().length()==11
-                    && mEtLoginCode.getText().toString().trim().length() == 4) {
+                    && mEtLoginCode.getText().toString().trim().length() >= 4) {
                 mTvLogin.setEnabled(true);
             } else {
                 mTvLogin.setEnabled(false);

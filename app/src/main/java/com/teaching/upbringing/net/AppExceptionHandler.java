@@ -1,10 +1,13 @@
 package com.teaching.upbringing.net;
 
+import android.content.Intent;
 import android.text.TextUtils;
 import android.widget.Toast;
 
 import com.outsourcing.library.net.ExceptionHandler;
+import com.teaching.upbringing.application.AppApplication;
 import com.teaching.upbringing.manager.AppManager;
+import com.teaching.upbringing.modular.user.LoginActivity;
 
 
 /**
@@ -26,6 +29,8 @@ public class AppExceptionHandler extends ExceptionHandler {
                         return new RespondThrowable(e, ERROR.QUEST_ERROR, e.getMessage());
                     }
                 case 999:
+                case 506:
+                    AppApplication.getApp().startActivity(new Intent(AppApplication.mAppActivity,LoginActivity.class));
                 case 9999:
                     //ResponseUtils.outLogin(e.getMessage());
                     return new RespondThrowable(e, ERROR.NOISE_ELIMINATION, "登录异常");

@@ -41,7 +41,6 @@ public class RegisterPresenter extends Presenter<RegisterContract.IView> impleme
 
     @Override
     public void signIn(String captcha,String invitation, String phone) {
-        ToastUtil.showShort(phone+"");
         mMainModels.signIn(captcha,invitation,phone)
                 .observeOn(AndroidSchedulers.mainThread())
                 .compose(bindLife())

@@ -9,4 +9,13 @@ import com.outsourcing.library.net.RxHttpResponse;
  **/
 public class CaptchaEntity extends RxHttpResponse {
 
+    private  String password;
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }

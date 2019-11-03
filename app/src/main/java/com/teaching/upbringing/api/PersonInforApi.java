@@ -3,10 +3,14 @@ package com.teaching.upbringing.api;
 import com.outsourcing.library.net.RxHttpResponse;
 import com.teaching.upbringing.entity.PersonInforEntity;
 
+import java.util.Map;
+
 import io.reactivex.Observable;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Headers;
 import retrofit2.http.POST;
 
 /**
@@ -19,23 +23,23 @@ public interface PersonInforApi {
     @GET("user/getUserInfo")
     Observable<RxHttpResponse<PersonInforEntity>> getUserInfo();
 
-    @FormUrlEncoded
+
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST("user/setNickname")
-    Observable<RxHttpResponse<String>> setNickName(@Field("nickname") String nickname);
+    Observable<RxHttpResponse<String>> setNickName(@Body Map<String, String> param);
 
-    @FormUrlEncoded
+
     @POST("user/setIntroduce")
-    Observable<RxHttpResponse<String>> setIntroduce(@Field("introduce") String introduce);
+    Observable<RxHttpResponse<String>> setIntroduce(@Body Map<String, String> param);
 
-    @FormUrlEncoded
+
     @POST("user/setTitle")
-    Observable<RxHttpResponse<String>> setTitle(@Field("title") String title);
+    Observable<RxHttpResponse<String>> setTitle(@Body Map<String, String> param);
 
-    @FormUrlEncoded
     @POST("user/setBrightSpot")
-    Observable<RxHttpResponse<String>> setBrightSpot(@Field("brightSpot") String brightSpot);
+    Observable<RxHttpResponse<String>> setBrightSpot(@Body Map<String, String> param);
 
-    @FormUrlEncoded
+
     @POST("user/setSex")
-    Observable<RxHttpResponse<String>> setSex(@Field("sex") int sex);
+    Observable<RxHttpResponse<String>> setSex(@Body Map<String, String> param);
 }
