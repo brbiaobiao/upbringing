@@ -140,7 +140,7 @@
             android:textColor="#7a7a7a"/>
 
         <TextView
-            android:id="@+id/tv_forget"
+            android:id="@+id/tv_password_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="   密码登录"

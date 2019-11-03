@@ -94,6 +94,19 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden"/>
 
+        <activity
+            android:name=".modular.user.PasswordLoginActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden"/>
+
+        <activity
+            android:name=".modular.user.ForgetActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden"/>
+
+
 
     </application>
 

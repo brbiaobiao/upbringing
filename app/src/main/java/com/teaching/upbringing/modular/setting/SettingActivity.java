@@ -6,7 +6,10 @@ import android.view.View;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import com.outsourcing.library.utils.PreferenceManagers;
 import com.teaching.upbringing.R;
+import com.teaching.upbringing.entity.CaptchaEntity;
+import com.teaching.upbringing.modular.user.LoginActivity;
 import com.teaching.upbringing.mvpBase.BaseMVPActivity;
 import com.teaching.upbringing.utils.ToastUtil;
 
@@ -76,5 +79,12 @@ public class SettingActivity extends BaseMVPActivity<SettingContract.IPresenter>
                 getPresenter().loginOut();
                 break;
         }
+    }
+
+    @Override
+    public void loginOut(CaptchaEntity entity) {
+        PreferenceManagers.saveValue("tokenId", "");
+        startActivity(new Intent(this, LoginActivity.class));
+        finish();
     }
 }

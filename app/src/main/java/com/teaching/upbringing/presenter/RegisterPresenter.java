@@ -28,28 +28,42 @@ public class RegisterPresenter extends Presenter<RegisterContract.IView> impleme
 
     @Override
     public void signInCaptcha(String phone) {
+        getView().showProgress();
         mMainModels.signInCaptcha(phone)
                 .observeOn(AndroidSchedulers.mainThread())
                 .compose(bindLife())
                 .subscribe(new NextObserver<CaptchaEntity>() {
                     @Override
                     public void onNext(CaptchaEntity testEntity) {
+                        getView().hideProgress();
                          getView().signInCaptcha(testEntity);
                     }
 
-
+                    @Override
+                    public void onError(Throwable e) {
+                        getView().hideProgress();
+                        super.onError(e);
+                    }
                 });
     }
 
     @Override
     public void signIn(String captcha,String invitation, String phone) {
+        getView().showProgress();
         mMainModels.signIn(captcha,invitation,phone)
                 .observeOn(AndroidSchedulers.mainThread())
                 .compose(bindLife())
                 .subscribe(new NextObserver<CaptchaEntity>() {
                     @Override
                     public void onNext(CaptchaEntity testEntity) {
+                        getView().hideProgress();
                         getView().signIn(testEntity);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        getView().hideProgress();
+                        super.onError(e);
                     }
                 });
     }

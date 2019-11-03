@@ -7,11 +7,10 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.outsourcing.library.net.RxHttpResponse;
 import com.teaching.upbringing.R;
 import com.teaching.upbringing.entity.CaptchaEntity;
-import com.teaching.upbringing.entity.TestEntity;
 import com.teaching.upbringing.mvpBase.BaseMVPActivity;
+import com.teaching.upbringing.presenter.ForgetPresenter;
 import com.teaching.upbringing.presenter.RegisterPresenter;
 import com.teaching.upbringing.utils.StringUtils;
 import com.teaching.upbringing.utils.TimeCountUtil;
@@ -20,7 +19,7 @@ import com.teaching.upbringing.utils.ToastUtil;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class RegisterActivity extends BaseMVPActivity<RegisterContract.IPresenter> implements RegisterContract.IView{
+public class ForgetActivity extends BaseMVPActivity<ForgetContract.IPresenter> implements ForgetContract.IView{
 
     @BindView(R.id.tv_register)
     TextView mTvRegister;//注册
@@ -31,29 +30,39 @@ public class RegisterActivity extends BaseMVPActivity<RegisterContract.IPresente
     @BindView(R.id.tv_verification_code)
     TextView mTvCode;//获取验证码
     private TimeCountUtil mTimeCountUtil;
-    @BindView(R.id.et_invitation)
-    EditText mEtInvitation;//邀请码
-
+    @BindView(R.id.et_password_one)
+    EditText mEtPwdOne;//邀请码
+    @BindView(R.id.et_password_two)
+    EditText mEtPwdTwo;//邀请码
 
     @Override
     protected Integer getContentId() {
-        return R.layout.activity_register;
+        return R.layout.activiy_forget;
     }
 
+
     @Override
-    protected RegisterContract.IPresenter initPresenter() {
-        return new RegisterPresenter(this);
+    protected ForgetContract.IPresenter initPresenter() {
+        return new ForgetPresenter(this);
     }
 
     @Override
     protected void init() {
-        setTitleText("注册");
+        setTitleText("忘记密码");
         mTimeCountUtil = new TimeCountUtil(this, 60000, 1000, mTvCode);
         mEtLoginCode.addTextChangedListener(new MyTextWatcher(mEtLoginCode));
         mEtPhone.addTextChangedListener(new MyTextWatcher(mEtPhone));
-        mEtInvitation.addTextChangedListener(new MyTextWatcher(mEtInvitation));
+        mEtPwdOne.addTextChangedListener(new MyTextWatcher(mEtPwdOne));
+        mEtPwdTwo.addTextChangedListener(new MyTextWatcher(mEtPwdTwo));
     }
 
+    @Override
+    public void forgetPwd(CaptchaEntity entity) {
+        ToastUtil.showShort("密码重置成功");
+        Intent intent = new Intent(ForgetActivity.this, LoginActivity.class);
+        startActivity(intent);
+        finish();
+    }
 
     private class MyTextWatcher implements TextWatcher {
         private View v;
@@ -75,7 +84,7 @@ public class RegisterActivity extends BaseMVPActivity<RegisterContract.IPresente
         @Override
         public void afterTextChanged(Editable s) {
             if (!StringUtils.isEmpty(mEtPhone.getText()) && mEtPhone.getText().toString().trim().length()==11
-                    && mEtLoginCode.getText().toString().trim().length() >= 4) {
+                    && mEtLoginCode.getText().toString().trim().length() >= 4&&mEtPwdOne.getText().toString().trim().equals(mEtPwdTwo.getText().toString().trim())) {
                 mTvRegister.setEnabled(true);
             } else {
                 mTvRegister.setEnabled(false);
@@ -84,11 +93,13 @@ public class RegisterActivity extends BaseMVPActivity<RegisterContract.IPresente
     }
 
 
+
     @OnClick({R.id.tv_verification_code,R.id.tv_register})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_register:
-                getPresenter().signIn(mEtLoginCode.getText().toString().trim()+"",mEtInvitation.getText().toString().trim()+"",mEtPhone.getText().toString().trim()+"");
+                getPresenter().forgetPwd(mEtLoginCode.getText().toString().trim()+"",mEtPwdOne.getText().toString().trim()+"",mEtPhone.getText().toString().trim()+"");
+
                 break;
             case R.id.tv_verification_code:
                 if(mEtPhone.length()==0){
@@ -96,40 +107,12 @@ public class RegisterActivity extends BaseMVPActivity<RegisterContract.IPresente
                 } else if(mEtPhone.length()!=11){
                     ToastUtil.showShort("请输入正确的手机号码");
                 }else {
-                 //   ToastUtil.showShort(mEtPhone.getText().toString().trim()+"123");
-                 //   getPresenter().signInCaptcha(mEtPhone.getText().toString().trim()+"");
+                    //   ToastUtil.showShort(mEtPhone.getText().toString().trim()+"123");
+                    //   getPresenter().signInCaptcha(mEtPhone.getText().toString().trim()+"");
                     mTimeCountUtil.start();
                 }
                 break;
         }
-    }
-
-
-    @Override
-    public void signInCaptcha(CaptchaEntity entity) {
-        RxHttpResponse.Status status = entity.getStatus();
-        if(status.getCode()==200){
-            mTimeCountUtil.start();
-            ToastUtil.showShort(status.getMessage());
-        }else {
-            ToastUtil.showShort(status.getMessage());
-        }
-
-    }
-
-    @Override
-    public void signIn(CaptchaEntity entity) {
-//        RxHttpResponse.Status status = entity.getStatus();
-//        if(status.getCode()==200){
-        ToastUtil.showShort("注册成功");
-            Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-            startActivity(intent);
-            finish();
-//        }else {
-//            ToastUtil.showShort(status.getMessage());
-//            mTvRegister.setEnabled(false);
-//        }
-
     }
 
 

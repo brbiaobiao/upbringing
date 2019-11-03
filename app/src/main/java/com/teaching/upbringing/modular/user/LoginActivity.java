@@ -39,7 +39,7 @@ public class LoginActivity extends BaseMVPActivity<LoginContract.IPresenter> imp
     protected LoginContract.IPresenter initPresenter() {
         return new LoginPresenter(this);
     }
-    @OnClick({R.id.tv_verification_code,R.id.tv_login,R.id.tv_register})
+    @OnClick({R.id.tv_verification_code,R.id.tv_login,R.id.tv_register,R.id.tv_password_login})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_login:
@@ -59,6 +59,10 @@ public class LoginActivity extends BaseMVPActivity<LoginContract.IPresenter> imp
                 Intent intent = new Intent(this, RegisterActivity.class);
                 startActivity(intent);
 
+                break;
+            case R.id.tv_password_login:
+                Intent intents = new Intent(this, PasswordLoginActivity.class);
+                startActivity(intents);
                 break;
         }
     }

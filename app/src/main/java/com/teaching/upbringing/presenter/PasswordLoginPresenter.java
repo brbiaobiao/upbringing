@@ -6,48 +6,37 @@ import com.outsourcing.library.mvp.observer.NextObserver;
 import com.teaching.upbringing.entity.CaptchaEntity;
 import com.teaching.upbringing.entity.UserInfoEntity;
 import com.teaching.upbringing.model.LoginModel;
+import com.teaching.upbringing.model.PasswordLoginModel;
 import com.teaching.upbringing.modular.user.LoginContract;
+import com.teaching.upbringing.modular.user.PasswordLoginContract;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 
-public class LoginPresenter extends Presenter<LoginContract.IView> implements LoginContract.IPresenter{
+public class PasswordLoginPresenter extends Presenter<PasswordLoginContract.IView> implements PasswordLoginContract.IPresenter{
 
-    private LoginModel mMainModels;
+    private PasswordLoginModel mMainModels;
 
-    public LoginPresenter(LoginContract.IView view) {
+    public PasswordLoginPresenter(PasswordLoginContract.IView view) {
         super(view);
     }
     @Override
     protected void init() {
-        mMainModels = new LoginModel();
+        mMainModels = new PasswordLoginModel();
     }
 
-    @Override
-    public void verification(String phone) {
-        getView().showProgress();
-        mMainModels.loginCaptcha()
-                .observeOn(AndroidSchedulers.mainThread())
-                .compose(bindLife())
-                .subscribe(new NextObserver<CaptchaEntity>() {
-                    @Override
-                    public void onNext(CaptchaEntity testEntity) {
-                        getView().hideProgress();
-                        getView().verification(testEntity);
-                    }
-                });
-    }
+
 
     @Override
-    public void login(String captcha, String phone) {
+    public void passwordLogin(String phone, String pwd) {
         getView().showProgress();
-        mMainModels.captchaLogin(captcha,phone)
+        mMainModels.passwordLogin(phone,pwd)
                 .observeOn(AndroidSchedulers.mainThread())
                 .compose(bindLife())
                 .subscribe(new NextObserver<UserInfoEntity>() {
                     @Override
                     public void onNext(UserInfoEntity userInfoEntity) {
                         getView().hideProgress();
-                        getView().login(userInfoEntity);
+                        getView().passwordLogin(userInfoEntity);
                     }
 
                     @Override
@@ -57,6 +46,4 @@ public class LoginPresenter extends Presenter<LoginContract.IView> implements Lo
                     }
                 });
     }
-
-
 }

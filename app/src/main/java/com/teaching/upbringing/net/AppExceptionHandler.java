@@ -38,12 +38,16 @@ public class AppExceptionHandler extends ExceptionHandler {
                 case 500:
                     ToastUtil.showShort("服务器异常");
                         return new RespondThrowable(e, ERROR.NOISE_ELIMINATION, "服务器异常");
+                case 501:
+                    ToastUtil.showShort("密码格式不正确");
                 case 509:
                     ToastUtil.showShort("会话已失效，请退出应用后重新打开");
                     return new RespondThrowable(e, ERROR.NOISE_ELIMINATION, "会话已失效，请退出应用后重新打开");
                 case 130002:
                     ToastUtil.showShort("用户手机号已存在");
                     return new RespondThrowable(e, ERROR.NOISE_ELIMINATION, "用户手机号已存在");
+                case 130004:
+                    ToastUtil.showShort("密码错误");
                 case -1:
                     //弹窗操作
                     return new RespondThrowable(e, 0, e.getMessage());

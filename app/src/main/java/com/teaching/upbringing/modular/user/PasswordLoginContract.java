@@ -9,16 +9,14 @@ import com.teaching.upbringing.entity.CaptchaEntity;
 import com.teaching.upbringing.entity.UserInfoEntity;
 
 
-public interface LoginContract {
+public interface PasswordLoginContract {
 
      interface IView extends IContextView, IProgressAble {
-        void verification(CaptchaEntity entity);
-         void login(UserInfoEntity entity);
+         void passwordLogin(UserInfoEntity entity);
     }
 
-    interface IPresenter extends IBasePresenter<LoginContract.IView> {
-        abstract void verification(String phone);
-        abstract void login(String captcha,String phone);
+    interface IPresenter extends IBasePresenter<PasswordLoginContract.IView> {
+        abstract void passwordLogin(String phone, String pwd);
     }
 
 

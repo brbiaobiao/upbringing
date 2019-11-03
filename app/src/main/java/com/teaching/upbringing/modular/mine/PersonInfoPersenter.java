@@ -38,6 +38,12 @@ public class PersonInfoPersenter extends Presenter<PersonInforContract.IView> im
                         getView().hideProgress();
                         getView().setInit(personInforEntity);
                     }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        getView().hideProgress();
+                        super.onError(e);
+                    }
                 });
     }
 }
