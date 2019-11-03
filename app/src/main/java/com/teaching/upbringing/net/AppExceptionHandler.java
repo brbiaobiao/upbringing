@@ -8,6 +8,7 @@ import com.outsourcing.library.net.ExceptionHandler;
 import com.teaching.upbringing.application.AppApplication;
 import com.teaching.upbringing.manager.AppManager;
 import com.teaching.upbringing.modular.user.LoginActivity;
+import com.teaching.upbringing.utils.ToastUtil;
 
 
 /**
@@ -34,6 +35,15 @@ public class AppExceptionHandler extends ExceptionHandler {
                 case 9999:
                     //ResponseUtils.outLogin(e.getMessage());
                     return new RespondThrowable(e, ERROR.NOISE_ELIMINATION, "登录异常");
+                case 500:
+                    ToastUtil.showShort("服务器异常");
+                        return new RespondThrowable(e, ERROR.NOISE_ELIMINATION, "服务器异常");
+                case 509:
+                    ToastUtil.showShort("会话已失效，请退出应用后重新打开");
+                    return new RespondThrowable(e, ERROR.NOISE_ELIMINATION, "会话已失效，请退出应用后重新打开");
+                case 130002:
+                    ToastUtil.showShort("用户手机号已存在");
+                    return new RespondThrowable(e, ERROR.NOISE_ELIMINATION, "用户手机号已存在");
                 case -1:
                     //弹窗操作
                     return new RespondThrowable(e, 0, e.getMessage());

@@ -130,4 +130,6 @@ public class RegisterActivity extends BaseMVPActivity<RegisterContract.IPresente
 //        }
 
     }
+
+
 }

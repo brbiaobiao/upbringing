@@ -68,6 +68,7 @@ public class ExceptionHandler {
                 case REQUEST_TIMEOUT:
                 case GATEWAY_TIMEOUT:
                 case INTERNAL_SERVER_ERROR:
+                    ex.message = "服务器异常";
                 case BAD_GATEWAY:
                 case SERVICE_UNAVAILABLE:
                 default:

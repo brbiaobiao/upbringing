@@ -121,9 +121,10 @@
 
             <EditText
                 android:id="@+id/et_invitation"
-                android:inputType="number"
                 android:maxLength="11"
                 android:textColor="#1A1A1A"
+                android:inputType="number"
+                android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
                 android:textSize="14sp"
                 android:textColorHint="#9a9a9a"
                 android:hint="请输入验证码（选填）"

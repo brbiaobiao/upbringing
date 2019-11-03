@@ -34,8 +34,10 @@ public class RegisterPresenter extends Presenter<RegisterContract.IView> impleme
                 .subscribe(new NextObserver<CaptchaEntity>() {
                     @Override
                     public void onNext(CaptchaEntity testEntity) {
-                        getView().signInCaptcha(testEntity);
+                         getView().signInCaptcha(testEntity);
                     }
+
+
                 });
     }
 

@@ -58,7 +58,7 @@ public class LoginActivity extends BaseMVPActivity<LoginContract.IPresenter> imp
             case R.id.tv_register:
                 Intent intent = new Intent(this, RegisterActivity.class);
                 startActivity(intent);
-                finish();
+
                 break;
         }
     }
