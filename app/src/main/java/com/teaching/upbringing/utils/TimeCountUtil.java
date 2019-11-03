@@ -28,7 +28,7 @@ public class TimeCountUtil extends CountDownTimer {
     @Override
     public void onTick(long millisUntilFinished) {
         btn.setClickable(false);//设置不能点击
-        btn.setText("获取验证码"+millisUntilFinished / 1000 + "S");//设置倒计时时间
+        btn.setText("获取验证码"+millisUntilFinished / 1000 + "s");//设置倒计时时间
 
         btn.setTextColor(mActivity.getResources().getColor(R.color.color_9A9A9A));
         //设置按钮为灰色，这时是不能点击的

@@ -174,7 +174,13 @@ public class EditPersonInfoActivity extends BaseMVPActivity<EditPersonlInfoContr
 
         //普通信息
         mTvNickname.setText(personInforEntity.getNickname());
-        mTvSex.setText(personInforEntity.getSex() == 1 ? "男" : "女");
+        if(personInforEntity.getSex() == 1){
+            mTvSex.setText("男");
+        }else if(personInforEntity.getSex() == 2){
+            mTvSex.setText("女");
+        }else if(personInforEntity.getSex() == 0){
+            mTvSex.setText("未知");
+        }
         mTvAccount.setText(personInforEntity.getIntroduce());
         String createdAt = DateUtils.long2String(personInforEntity.getCreatedAt(), "yyyy-MM-dd");
         mTvRegistTime.setText(createdAt);

@@ -149,4 +149,32 @@
 
     </LinearLayout>
 
+
+    <LinearLayout
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="15dp"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="登录即代表同意"
+            android:textColor="#3a3a3a"
+            android:textSize="12sp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="《用户协议》"
+            android:textColor="#0AA0FE"
+            android:textSize="12sp"
+            />
+
+    </LinearLayout>
+
+
 </RelativeLayout>

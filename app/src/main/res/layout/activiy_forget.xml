@@ -121,7 +121,7 @@
 
             <EditText
                 android:id="@+id/et_password_one"
-                android:maxLength="11"
+                android:maxLength="15"
                 android:textColor="#1A1A1A"
                 android:inputType="number"
                 android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"

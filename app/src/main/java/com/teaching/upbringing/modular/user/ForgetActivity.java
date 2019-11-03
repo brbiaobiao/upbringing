@@ -84,7 +84,7 @@ public class ForgetActivity extends BaseMVPActivity<ForgetContract.IPresenter> i
         @Override
         public void afterTextChanged(Editable s) {
             if (!StringUtils.isEmpty(mEtPhone.getText()) && mEtPhone.getText().toString().trim().length()==11
-                    && mEtLoginCode.getText().toString().trim().length() >= 4&&mEtPwdOne.getText().toString().trim().equals(mEtPwdTwo.getText().toString().trim())) {
+                    && mEtLoginCode.getText().toString().trim().length() >= 4&&mEtPwdOne.getText().toString().trim().equals(mEtPwdTwo.getText().toString().trim())&&mEtPwdOne.getText().toString().length()>=6) {
                 mTvRegister.setEnabled(true);
             } else {
                 mTvRegister.setEnabled(false);
