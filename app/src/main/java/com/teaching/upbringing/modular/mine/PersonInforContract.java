@@ -1,5 +1,6 @@
 package com.teaching.upbringing.modular.mine;
 
+import com.outsourcing.library.mvp.IProgressAble;
 import com.outsourcing.library.mvp.rxbase.IBasePresenter;
 import com.outsourcing.library.mvp.rxbase.IContextView;
 import com.teaching.upbringing.entity.PersonInforEntity;
@@ -11,7 +12,7 @@ import com.teaching.upbringing.entity.PersonInforEntity;
  **/
 public interface PersonInforContract {
 
-    interface IView extends IContextView{
+    interface IView extends IContextView, IProgressAble {
         void setInit(PersonInforEntity personInforEntity);
     }
 

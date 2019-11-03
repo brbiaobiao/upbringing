@@ -31,7 +31,7 @@ public class FillInformationPresenter extends Presenter<FillInformationContract.
     @Override
     public void upDataInfor(String info) {
         if (type == -1) return;
-
+        getView().showProgress();
         switch (type) {
             case 1:
                 personInforModel.setNickName(info)
@@ -40,6 +40,7 @@ public class FillInformationPresenter extends Presenter<FillInformationContract.
                         .subscribe(new NextObserver<String>() {
                             @Override
                             public void onNext(String string) {
+                                getView().hideProgress();
                                 getView().upDataCallBack();
                             }
                         });
@@ -51,6 +52,7 @@ public class FillInformationPresenter extends Presenter<FillInformationContract.
                         .subscribe(new NextObserver<String>() {
                             @Override
                             public void onNext(String aBoolean) {
+                                getView().hideProgress();
                                 getView().upDataCallBack();
                             }
                         });
@@ -62,6 +64,7 @@ public class FillInformationPresenter extends Presenter<FillInformationContract.
                         .subscribe(new NextObserver<String>() {
                             @Override
                             public void onNext(String aBoolean) {
+                                getView().hideProgress();
                                 getView().upDataCallBack();
                             }
                         });
@@ -73,10 +76,12 @@ public class FillInformationPresenter extends Presenter<FillInformationContract.
                         .subscribe(new NextObserver<String>() {
                             @Override
                             public void onNext(String aBoolean) {
+                                getView().hideProgress();
                                 getView().upDataCallBack();
                             }
                         });
                 break;
+
         }
     }
 }

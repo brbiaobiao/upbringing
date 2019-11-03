@@ -94,6 +94,9 @@ public class EditPersonInfoActivity extends BaseMVPActivity<EditPersonlInfoContr
         actionSheetDialog.setOnOpenItemClickL((parent, view, position, id) -> {
             actionSheetDialog.dismiss();
             getPresenter().setSex(position + 1);
+            // TODO: 2019/11/3 后台改完接口就删
+            mTvSex.setText(items[position]);
+            hideProgress();
         });
     }
 
@@ -119,7 +122,7 @@ public class EditPersonInfoActivity extends BaseMVPActivity<EditPersonlInfoContr
                         .filter(info -> OnResultUtil.isOk(info))
                         .subscribe(activityResultInfo -> {
                             String reback_text = activityResultInfo.getData().getStringExtra(FillInformationActivity.REBACKTEXT);
-                            //                            mTvNickname.setText(reback_text);
+                            mTvNickname.setText(reback_text);
                             getPresenter().getInfo();
                         });
                 break;
@@ -132,7 +135,7 @@ public class EditPersonInfoActivity extends BaseMVPActivity<EditPersonlInfoContr
                         .filter(info -> OnResultUtil.isOk(info))
                         .subscribe(activityResultInfo -> {
                             String reback_text = activityResultInfo.getData().getStringExtra(FillInformationActivity.REBACKTEXT);
-                            //                            mTvAccount.setText(reback_text);
+                            mTvAccount.setText(reback_text);
                             getPresenter().getInfo();
                         });
                 break;
@@ -142,7 +145,7 @@ public class EditPersonInfoActivity extends BaseMVPActivity<EditPersonlInfoContr
                         .filter(info -> OnResultUtil.isOk(info))
                         .subscribe(activityResultInfo -> {
                             String reback_text = activityResultInfo.getData().getStringExtra(FillInformationActivity.REBACKTEXT);
-                            //                            mTvTitle.setText(reback_text);
+                            mTvTitle.setText(reback_text);
                             getPresenter().getInfo();
                         });
                 break;
@@ -152,7 +155,7 @@ public class EditPersonInfoActivity extends BaseMVPActivity<EditPersonlInfoContr
                         .filter(info -> OnResultUtil.isOk(info))
                         .subscribe(activityResultInfo -> {
                             String reback_text = activityResultInfo.getData().getStringExtra(FillInformationActivity.REBACKTEXT);
-                            //                            mTvBrightPoint.setText(reback_text);
+                            mTvBrightPoint.setText(reback_text);
                             getPresenter().getInfo();
                         });
                 break;
@@ -161,7 +164,8 @@ public class EditPersonInfoActivity extends BaseMVPActivity<EditPersonlInfoContr
 
     @Override
     public void setInfor(PersonInforEntity personInforEntity) {
-        if(personInforEntity == null) return;
+        if (personInforEntity == null)
+            return;
         mGpTeacherId.setVisibility(personInforEntity.isIfTeacher() ? View.VISIBLE : View.GONE);
 
         //普通信息

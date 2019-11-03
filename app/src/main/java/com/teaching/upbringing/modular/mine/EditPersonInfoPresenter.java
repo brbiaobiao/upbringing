@@ -23,12 +23,14 @@ public class EditPersonInfoPresenter extends Presenter<EditPersonlInfoContract.I
 
     @Override
     public void getInfo() {
+        getView().showProgress();
         personInforModel.getUserInfo()
                 .observeOn(AndroidSchedulers.mainThread())
                 .compose(bindLife())
                 .subscribe(new NextObserver<PersonInforEntity>() {
                     @Override
                     public void onNext(PersonInforEntity personInforEntity) {
+                        getView().hideProgress();
                         getView().setInfor(personInforEntity);
                     }
                 });
@@ -36,12 +38,14 @@ public class EditPersonInfoPresenter extends Presenter<EditPersonlInfoContract.I
 
     @Override
     public void setSex(int sex) {
+        getView().showProgress();
         personInforModel.setSex(sex)
                 .observeOn(AndroidSchedulers.mainThread())
                 .compose(bindLife())
                 .subscribe(new NextObserver<String>() {
                     @Override
                     public void onNext(String aBoolean) {
+                        getView().hideProgress();
                         getInfo();
                     }
                 });

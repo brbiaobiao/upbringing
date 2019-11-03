@@ -125,4 +125,9 @@ public class PersonInfoActivity extends BaseMVPActivity<PersonInforContract.Ipre
             getPresenter().initData();
         }
     }*/
+
+    @Override
+    public void showProgress() {
+        super.showProgress();
+    }
 }

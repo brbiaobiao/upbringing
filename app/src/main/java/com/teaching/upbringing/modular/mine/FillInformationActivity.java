@@ -79,6 +79,7 @@ public class FillInformationActivity extends BaseMVPActivity<FillInformationCont
         setTitleRightTextColor(AppUtils.getColor(R.color.white));
         setTitleRightTextClick(v -> {
             getPresenter().upDataInfor(mEtFillInfo.getText().toString().trim());
+            upDataCallBack();
         });
         titleRightText = getTitleRightText();
         GradientDrawable shape = ShapeUtils.createShape(-1, 26, -1, null, "#FEE1D2");
@@ -96,6 +97,7 @@ public class FillInformationActivity extends BaseMVPActivity<FillInformationCont
         intent1.putExtra(REBACKTEXT,mEtFillInfo.getText().toString().trim());
         setResult(RESULT_OK,intent1);
         KeyboardUtils.hideSoftInput(this);
+        hideProgress();// TODO: 2019/11/3 后台改完接口就删掉
         finish();
     }
 }
