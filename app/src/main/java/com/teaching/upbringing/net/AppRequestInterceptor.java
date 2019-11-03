@@ -1,6 +1,10 @@
 package com.teaching.upbringing.net;
 
 
+import android.util.Log;
+
+import com.outsourcing.library.utils.PreferenceManagers;
+import com.outsourcing.library.utils.StringUtils;
 import com.teaching.upbringing.utils.PreferenceManager;
 
 import java.io.IOException;
@@ -20,7 +24,8 @@ public class AppRequestInterceptor implements Interceptor {
     @Override
     public Response intercept(Chain chain) throws IOException {
         Request oldRequest = chain.request();
-
+        Request.Builder builder = oldRequest.newBuilder();
+        Request builder1 = builder.addHeader("x-access-token", PreferenceManagers.getString("tokenId", "")).build();
         if (oldRequest.method().equals("POST")) {
             if (oldRequest.body() instanceof FormBody) {
                 FormBody oldBody = (FormBody) oldRequest.body();
@@ -32,7 +37,7 @@ public class AppRequestInterceptor implements Interceptor {
                 }
             }
         }
-        return chain.proceed(oldRequest);
+        return chain.proceed(builder1);
     }
 
     private Request getRequest(Request oldRequest, FormBody oldBody) {
@@ -44,6 +49,16 @@ public class AppRequestInterceptor implements Interceptor {
             }
         }
 
+
+
+        String header = oldRequest.header("x-access-token");
+        if (!StringUtils.isEmpty(header)&&!"null".equals(header)) {
+            // String header="eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJleHAiOjE1MTkzNzg5NTEsInVzZXJJZCI6OTQyNTk3ODg5MDY0OTY4MTkyLCJ1c2VybmFtZSI6ImxlZm9yZSIsInN1YiI6ImxlZm9yZSIsIndlY2hhdE9wZW5JZCI6IjEyMzQ1NiIsIndlY2hhdE5pY2tuYW1lIjoibGVmb3JlX3dlY2hhdCIsImFsaVVzZXJJZCI6IjEyMzQ1NiIsImFsaU5pY2tuYW1lIjoibGVmb3JlX2FsaSIsInBob25lIjoiMTg4MTk0NDY4NDUifQ.vNfQMTrs6RBUzPzxhgyZE15DxDGqx8f7iPD7_mNg5zzZT1HXmXiZAQbjKDfStX6-PLFywaKXD64k6j0qiQpr3xwbZeUT0QDF7VNA5eD_0jG347kkKjSwI3-uTkSNtBBkudeRMZmKas2VrE6hyZptmFTgJaSQbhj1m33UpzX9Djg";
+
+            // SessionManager.setSession();
+            Log.i("genericClients", header);
+            PreferenceManagers.saveValue("tokenId", header);
+        }
         //添加公共参数
         /*bodyBuilder
                 .addEncoded("ver", AppConfig.dversion)
@@ -57,7 +72,6 @@ public class AppRequestInterceptor implements Interceptor {
         FormBody newBody = bodyBuilder.build();
 
         oldRequest = oldRequest.newBuilder()
-                .addHeader("x-access-token", PreferenceManager.getString("tokenId",""))
                 .post(newBody).build();
         return oldRequest;
     }

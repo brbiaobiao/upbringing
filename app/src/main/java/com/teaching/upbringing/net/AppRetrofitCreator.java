@@ -24,12 +24,18 @@ public class AppRetrofitCreator implements RetrofitCreator {
     public Retrofit create() {
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
         if (AppConfig.IS_DEBUG){//在debug版本时才打印
-            LoggedInterceptor loggedInterceptor = new LoggedInterceptor();
-            loggedInterceptor.setLevel(LoggedInterceptor.Level.BODY);
-            builder.addInterceptor(loggedInterceptor);//添加网络请求log请求拦截器
+            HttpLog httpLoggingInterceptor = new HttpLog();
+            httpLoggingInterceptor.setLevel(HttpLog.Level.BODY);
+//            LoggedInterceptor loggedInterceptor = new LoggedInterceptor();
+//            loggedInterceptor.setLevel(LoggedInterceptor.Level.BODY);
+//            builder.addInterceptor(loggedInterceptor);//添加网络请求log请求拦截器
+//            builder.addInterceptor(new AppRequestInterceptor());
+            builder.addInterceptor(httpLoggingInterceptor);
+
         }
 
         builder.addInterceptor(new AppRequestInterceptor());
+
 
         builder.connectTimeout(30*1000, TimeUnit.MILLISECONDS)
                 .readTimeout(30*1000,TimeUnit.MILLISECONDS)
@@ -37,6 +43,7 @@ public class AppRetrofitCreator implements RetrofitCreator {
                 .retryOnConnectionFailure(true);//失败重连
 
         OkHttpClient build = builder.build();
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(ApiConfig.getBaseURL())
                 .addConverterFactory(new AppResponseConverterFactory(GsonUtil.getIntance()))//这里可以使用自定义的Gson转换器
