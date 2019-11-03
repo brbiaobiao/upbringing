@@ -1,5 +1,6 @@
 package com.teaching.upbringing.modular.user;
 
+import android.content.Context;
 import android.content.Intent;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -34,6 +35,10 @@ public class LoginActivity extends BaseMVPActivity<LoginContract.IPresenter> imp
     private TimeCountUtil mTimeCountUtil;
 
 
+    public static final void goInto(Context context){
+        Intent intent = new Intent(context, LoginActivity.class);
+        context.startActivity(intent);
+    }
 
     @Override
     protected LoginContract.IPresenter initPresenter() {

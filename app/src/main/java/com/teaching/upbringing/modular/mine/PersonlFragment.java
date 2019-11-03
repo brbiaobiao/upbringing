@@ -6,10 +6,13 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.outsourcing.library.utils.PreferenceManagers;
 import com.teaching.upbringing.R;
 import com.teaching.upbringing.modular.setting.SettingActivity;
+import com.teaching.upbringing.modular.user.LoginActivity;
 import com.teaching.upbringing.mvpBase.BaseMVPFragment;
 import com.teaching.upbringing.utils.FragmentHelper;
+import com.teaching.upbringing.utils.StringUtils;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -71,6 +74,11 @@ public class PersonlFragment extends BaseMVPFragment<PersonlContract.Ipresenter>
 
     @OnClick({R.id.iv_setting, R.id.iv_heat, R.id.tv_nickname, R.id.tv_sign, R.id.iv_to_right})
     public void onViewClicked(View view) {
+        String tokenId = PreferenceManagers.getString("tokenId", "");
+        if(StringUtils.isEmpty(tokenId)) {
+            LoginActivity.goInto(getActivity());
+            return;
+        }
         switch (view.getId()) {
             case R.id.iv_setting:
                 SettingActivity.goIntent(getActivity());

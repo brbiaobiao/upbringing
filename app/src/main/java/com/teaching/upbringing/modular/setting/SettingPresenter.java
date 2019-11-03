@@ -2,7 +2,6 @@ package com.teaching.upbringing.modular.setting;
 
 import com.outsourcing.library.mvp.observer.NextObserver;
 import com.teaching.upbringing.entity.CaptchaEntity;
-import com.teaching.upbringing.model.RegisterModel;
 import com.teaching.upbringing.model.SettingModel;
 import com.teaching.upbringing.presenter.Presenter;
 
@@ -28,16 +27,15 @@ public class SettingPresenter extends Presenter<SettingContract.IView> implement
 
     @Override
     public void loginOut() {
+        getView().showProgress();
         mMainModels.loginOut()
                 .observeOn(AndroidSchedulers.mainThread())
                 .compose(bindLife())
                 .subscribe(new NextObserver<CaptchaEntity>() {
                     @Override
                     public void onNext(CaptchaEntity testEntity) {
-                        getView().loginOut(testEntity);
+                        getView().loginOut();
                     }
-
-
                 });
     }
 }

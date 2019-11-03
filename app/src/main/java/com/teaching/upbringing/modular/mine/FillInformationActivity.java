@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.outsourcing.library.utils.AppUtils;
 import com.outsourcing.library.utils.KeyboardUtils;
 import com.outsourcing.library.utils.ShapeUtils;
+import com.outsourcing.library.utils.StringUtils;
 import com.teaching.upbringing.R;
 import com.teaching.upbringing.mvpBase.BaseMVPActivity;
 
@@ -24,6 +25,7 @@ public class FillInformationActivity extends BaseMVPActivity<FillInformationCont
 
     public static final String SHOWTITLE = "show_title";
     public static final String UPDATATYPE = "updataType";
+    public static final String INFO_TEXT = "info_text";
     private static final String HINTCONTENT = "hint_content";
     public static final String REBACKTEXT = "reback_text";
 
@@ -31,11 +33,12 @@ public class FillInformationActivity extends BaseMVPActivity<FillInformationCont
     EditText mEtFillInfo;
     private TextView titleRightText;
 
-    public static Intent getCallIntent(Context context,String title,String hint,int updataType){
+    public static Intent getCallIntent(Context context,String title,String hint,int updataType,String info_text){
         Intent intent = new Intent(context, FillInformationActivity.class);
         intent.putExtra(SHOWTITLE,title);
         intent.putExtra(HINTCONTENT,hint);
         intent.putExtra(UPDATATYPE,updataType);
+        intent.putExtra(INFO_TEXT,info_text);
         return intent;
     }
 
@@ -73,6 +76,7 @@ public class FillInformationActivity extends BaseMVPActivity<FillInformationCont
         Intent intent = getIntent();
         String title = intent.getStringExtra(SHOWTITLE);
         String hint = intent.getStringExtra(HINTCONTENT);
+        String info_text = intent.getStringExtra(INFO_TEXT);
         setTitleText(title);
         isShowTitleRightText(true);
         setTitleRightText("保存");
@@ -85,11 +89,16 @@ public class FillInformationActivity extends BaseMVPActivity<FillInformationCont
         GradientDrawable shape = ShapeUtils.createShape(-1, 26, -1, null, "#FEE1D2");
         titleRightText.setBackground(shape);
 
-        mEtFillInfo.setHint(hint);
         mEtFillInfo.addTextChangedListener(textWatcher);
+        if(!StringUtils.isEmpty(info_text)) {
+            mEtFillInfo.setText(info_text);
+        }else {
+            mEtFillInfo.setHint(hint);
+        }
 
         getPresenter().getIntent(intent);
     }
+
 
     @Override
     public void upDataCallBack() {

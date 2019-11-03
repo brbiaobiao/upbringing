@@ -118,7 +118,7 @@ public class EditPersonInfoActivity extends BaseMVPActivity<EditPersonlInfoContr
                 break;
             case R.id.ll_nickname:
                 onResultUtil.call(FillInformationActivity.getCallIntent(this, "昵称",
-                        "请输入昵称", 1))
+                        "请输入昵称", 1,mTvNickname.getText().toString().trim()))
                         .filter(info -> OnResultUtil.isOk(info))
                         .subscribe(activityResultInfo -> {
                             String reback_text = activityResultInfo.getData().getStringExtra(FillInformationActivity.REBACKTEXT);
@@ -132,7 +132,7 @@ public class EditPersonInfoActivity extends BaseMVPActivity<EditPersonlInfoContr
                 break;
             case R.id.ll_account:
                 onResultUtil.call(FillInformationActivity.getCallIntent(this, "简介",
-                        "简单介绍下自己吧！", 2))
+                        "简单介绍下自己吧！", 2,mTvAccount.getText().toString().trim()))
                         .filter(info -> OnResultUtil.isOk(info))
                         .subscribe(activityResultInfo -> {
                             String reback_text = activityResultInfo.getData().getStringExtra(FillInformationActivity.REBACKTEXT);
@@ -143,7 +143,7 @@ public class EditPersonInfoActivity extends BaseMVPActivity<EditPersonlInfoContr
                 break;
             case R.id.ll_title:
                 onResultUtil.call(FillInformationActivity.getCallIntent(this, "头衔",
-                        "请输入您的头衔", 3))
+                        "请输入您的头衔", 3,mTvTitle.getText().toString().trim()))
                         .filter(info -> OnResultUtil.isOk(info))
                         .subscribe(activityResultInfo -> {
                             String reback_text = activityResultInfo.getData().getStringExtra(FillInformationActivity.REBACKTEXT);
@@ -154,7 +154,7 @@ public class EditPersonInfoActivity extends BaseMVPActivity<EditPersonlInfoContr
                 break;
             case R.id.ll_bright_point:
                 onResultUtil.call(FillInformationActivity.getCallIntent(this, "亮点",
-                        "请填写您的亮点，让同学们跟喜欢您", 4))
+                        "请填写您的亮点，让同学们跟喜欢您", 4,mTvBrightPoint.getText().toString().trim()))
                         .filter(info -> OnResultUtil.isOk(info))
                         .subscribe(activityResultInfo -> {
                             String reback_text = activityResultInfo.getData().getStringExtra(FillInformationActivity.REBACKTEXT);
