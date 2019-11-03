@@ -21,23 +21,23 @@ public class PersonInforModel extends ApiModel<PersonInforApi> {
         return getApi().getUserInfo().compose(RxUtil.httpAsyn());
     }
 
-    public Observable<Boolean> setNickName(String nickname) {
+    public Observable<String> setNickName(String nickname) {
         return getApi().setNickName(nickname).compose(RxUtil.httpAsyn());
     }
 
-    public Observable<Boolean> setIntroduce(String introduce) {
+    public Observable<String> setIntroduce(String introduce) {
         return getApi().setIntroduce(introduce).compose(RxUtil.httpAsyn());
     }
 
-    public Observable<Boolean> setTitle(String title) {
+    public Observable<String> setTitle(String title) {
         return getApi().setTitle(title).compose(RxUtil.httpAsyn());
     }
 
-    public Observable<Boolean> setBrightSpot(String brightSpot) {
+    public Observable<String> setBrightSpot(String brightSpot) {
         return getApi().setBrightSpot(brightSpot).compose(RxUtil.httpAsyn());
     }
 
-    public Observable<Boolean> setSex(int sex) {
+    public Observable<String> setSex(int sex) {
         return getApi().setSex(sex).compose(RxUtil.httpAsyn());
     }
 }

@@ -29,7 +29,7 @@ public class EditPersonInfoPresenter extends Presenter<EditPersonlInfoContract.I
                 .subscribe(new NextObserver<PersonInforEntity>() {
                     @Override
                     public void onNext(PersonInforEntity personInforEntity) {
-
+                        getView().setInfor(personInforEntity);
                     }
                 });
     }
@@ -39,10 +39,10 @@ public class EditPersonInfoPresenter extends Presenter<EditPersonlInfoContract.I
         personInforModel.setSex(sex)
                 .observeOn(AndroidSchedulers.mainThread())
                 .compose(bindLife())
-                .subscribe(new NextObserver<Boolean>() {
+                .subscribe(new NextObserver<String>() {
                     @Override
-                    public void onNext(Boolean aBoolean) {
-
+                    public void onNext(String aBoolean) {
+                        getInfo();
                     }
                 });
     }

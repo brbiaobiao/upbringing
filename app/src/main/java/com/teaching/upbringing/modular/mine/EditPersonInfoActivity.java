@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.outsourcing.library.utils.DateUtils;
 import com.outsourcing.library.utils.OnResultUtil;
 import com.outsourcing.library.widget.dialog.ActionSheetDialog;
 import com.teaching.upbringing.R;
@@ -97,9 +98,9 @@ public class EditPersonInfoActivity extends BaseMVPActivity<EditPersonlInfoContr
     }
 
     @Override
-    public void onBackPressed() {
-        super.onBackPressed();
+    public void finish() {
         setResult(RESULT_OK);
+        super.finish();
     }
 
     @OnClick({R.id.iv_head_pic, R.id.ll_nickname, R.id.ll_sex, R.id.ll_account,
@@ -167,6 +168,8 @@ public class EditPersonInfoActivity extends BaseMVPActivity<EditPersonlInfoContr
         mTvNickname.setText(personInforEntity.getNickname());
         mTvSex.setText(personInforEntity.getSex() == 1 ? "男" : "女");
         mTvAccount.setText(personInforEntity.getIntroduce());
+        String createdAt = DateUtils.long2String(personInforEntity.getCreatedAt(), "yyyy-MM-dd");
+        mTvRegistTime.setText(createdAt);
 
         //教员信息
         mTvTitle.setText(personInforEntity.getTitle());

@@ -8,14 +8,14 @@ package com.teaching.upbringing.entity;
 public class PersonInforEntity {
 
     private String brightSpot;
-    private int createdAt;
+    private long createdAt;
     private String headImgUrl;
     private boolean ifTeacher;
     private String introduce;
     private String nickname;
     private int sex;
     private String title;
-    private int userId;
+    private long userId;
 
     public String getBrightSpot() {
         return brightSpot;
@@ -26,11 +26,11 @@ public class PersonInforEntity {
         return this;
     }
 
-    public int getCreatedAt() {
+    public long getCreatedAt() {
         return createdAt;
     }
 
-    public PersonInforEntity setCreatedAt(int createdAt) {
+    public PersonInforEntity setCreatedAt(long createdAt) {
         this.createdAt = createdAt;
         return this;
     }
@@ -89,11 +89,11 @@ public class PersonInforEntity {
         return this;
     }
 
-    public int getUserId() {
+    public long getUserId() {
         return userId;
     }
 
-    public PersonInforEntity setUserId(int userId) {
+    public PersonInforEntity setUserId(long userId) {
         this.userId = userId;
         return this;
     }

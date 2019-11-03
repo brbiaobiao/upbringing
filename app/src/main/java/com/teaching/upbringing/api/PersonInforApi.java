@@ -21,21 +21,21 @@ public interface PersonInforApi {
 
     @FormUrlEncoded
     @POST("user/setNickname")
-    Observable<RxHttpResponse<Boolean>> setNickName(@Field("nickname") String nickname);
+    Observable<RxHttpResponse<String>> setNickName(@Field("nickname") String nickname);
 
     @FormUrlEncoded
     @POST("user/setIntroduce")
-    Observable<RxHttpResponse<Boolean>> setIntroduce(@Field("introduce") String introduce);
+    Observable<RxHttpResponse<String>> setIntroduce(@Field("introduce") String introduce);
 
     @FormUrlEncoded
     @POST("user/setTitle")
-    Observable<RxHttpResponse<Boolean>> setTitle(@Field("title") String title);
+    Observable<RxHttpResponse<String>> setTitle(@Field("title") String title);
 
     @FormUrlEncoded
     @POST("user/setBrightSpot")
-    Observable<RxHttpResponse<Boolean>> setBrightSpot(@Field("brightSpot") String brightSpot);
+    Observable<RxHttpResponse<String>> setBrightSpot(@Field("brightSpot") String brightSpot);
 
     @FormUrlEncoded
     @POST("user/setSex")
-    Observable<RxHttpResponse<Boolean>> setSex(@Field("sex") int sex);
+    Observable<RxHttpResponse<String>> setSex(@Field("sex") int sex);
 }

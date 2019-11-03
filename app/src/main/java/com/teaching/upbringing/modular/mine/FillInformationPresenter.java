@@ -37,9 +37,9 @@ public class FillInformationPresenter extends Presenter<FillInformationContract.
                 personInforModel.setNickName(info)
                         .observeOn(AndroidSchedulers.mainThread())
                         .compose(bindLife())
-                        .subscribe(new NextObserver<Boolean>() {
+                        .subscribe(new NextObserver<String>() {
                             @Override
-                            public void onNext(Boolean aBoolean) {
+                            public void onNext(String string) {
                                 getView().upDataCallBack();
                             }
                         });
@@ -48,9 +48,9 @@ public class FillInformationPresenter extends Presenter<FillInformationContract.
                 personInforModel.setIntroduce(info)
                         .observeOn(AndroidSchedulers.mainThread())
                         .compose(bindLife())
-                        .subscribe(new NextObserver<Boolean>() {
+                        .subscribe(new NextObserver<String>() {
                             @Override
-                            public void onNext(Boolean aBoolean) {
+                            public void onNext(String aBoolean) {
                                 getView().upDataCallBack();
                             }
                         });
@@ -59,9 +59,9 @@ public class FillInformationPresenter extends Presenter<FillInformationContract.
                 personInforModel.setTitle(info)
                         .observeOn(AndroidSchedulers.mainThread())
                         .compose(bindLife())
-                        .subscribe(new NextObserver<Boolean>() {
+                        .subscribe(new NextObserver<String>() {
                             @Override
-                            public void onNext(Boolean aBoolean) {
+                            public void onNext(String aBoolean) {
                                 getView().upDataCallBack();
                             }
                         });
@@ -70,9 +70,9 @@ public class FillInformationPresenter extends Presenter<FillInformationContract.
                 personInforModel.setBrightSpot(info)
                         .observeOn(AndroidSchedulers.mainThread())
                         .compose(bindLife())
-                        .subscribe(new NextObserver<Boolean>() {
+                        .subscribe(new NextObserver<String>() {
                             @Override
-                            public void onNext(Boolean aBoolean) {
+                            public void onNext(String aBoolean) {
                                 getView().upDataCallBack();
                             }
                         });
