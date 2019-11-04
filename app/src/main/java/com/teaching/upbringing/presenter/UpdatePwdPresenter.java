@@ -31,9 +31,9 @@ public class UpdatePwdPresenter extends Presenter<UpdatePwdContract.IView> imple
     }
 
     @Override
-    public void updatePwd(String phone, String oldPassword, String newPassword) {
+    public void updatePwd(String captcha, String newPassword,String phone) {
         getView().showProgress();
-        loginModel.setPwd(oldPassword, newPassword)
+        loginModel.setPwd(captcha, newPassword,phone)
                 .observeOn(AndroidSchedulers.mainThread())
                 .compose(bindLife())
                 .doOnError(throwable -> getView().hideProgress())

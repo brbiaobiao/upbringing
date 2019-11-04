@@ -15,6 +15,6 @@ public interface UpdatePwdContract {
     interface IPresenter extends IBasePresenter<UpdatePwdContract.IView> {
         abstract void verification(String phone);
 
-        abstract void updatePwd(String phone, String oldPassword,String newPassword);
+        abstract void updatePwd(String captcha, String newPassword,String phone);
     }
 }

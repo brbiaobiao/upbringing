@@ -53,9 +53,9 @@ public class UpdatePwdActivity extends BaseMVPActivity<UpdatePwdContract.IPresen
             case R.id.tv_verification_code:
                 break;
             case R.id.tv_register:
-                getPresenter().updatePwd(mEtPhone.getText().toString().trim(),
+                getPresenter().updatePwd(mEtLoginCode.getText().toString().trim(),
                         mEtPasswordOne.getText().toString().trim(),
-                        mEtPasswordTwo.getText().toString().trim());
+                        mEtPhone.getText().toString().trim());
                 break;
         }
     }

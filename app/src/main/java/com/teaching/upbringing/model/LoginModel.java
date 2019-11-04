@@ -35,14 +35,15 @@ public class LoginModel extends ApiModel<LoginApi> {
 
     /**
      * 修改密码
-     * @param oldPassword
+     * @param
      * @param newPassword
      * @return
      */
-    public Observable<UserInfoEntity> setPwd(String oldPassword,String newPassword){
+    public Observable<UserInfoEntity> setPwd(String captcha, String newPassword,String phone){
         Map<String,String> map = new HashMap<>();
+        map.put("captcha",captcha);
         map.put("newPassword",newPassword);
-        map.put("oldPassword",oldPassword);
+        map.put("phone",phone);
         return getApi().setPwd(map).compose(RxUtil.httpAsyn());
     }
 }
