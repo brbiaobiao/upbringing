@@ -84,7 +84,7 @@ public class FillInformationActivity extends BaseMVPActivity<FillInformationCont
         setTitleRightTextColor(AppUtils.getColor(R.color.white));
         setTitleRightTextClick(v -> {
             getPresenter().upDataInfor(mEtFillInfo.getText().toString().trim()+"");
-            upDataCallBack();
+           // upDataCallBack();
         });
         titleRightText = getTitleRightText();
         GradientDrawable shape = ShapeUtils.createShape(-1, 26, -1, null, "#FEE1D2");
