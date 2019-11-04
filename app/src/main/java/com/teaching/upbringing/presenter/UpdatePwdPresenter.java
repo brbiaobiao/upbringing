@@ -40,6 +40,7 @@ public class UpdatePwdPresenter extends Presenter<UpdatePwdContract.IView> imple
                 .subscribe(new NextObserver<UserInfoEntity>() {
                     @Override
                     public void onNext(UserInfoEntity userInfoEntity) {
+                        getView().hideProgress();
                         getView().updatePwd();
                     }
                 });

@@ -123,6 +123,8 @@ public class LoginActivity extends BaseMVPActivity<LoginContract.IPresenter> imp
     @Override
     public void login(UserInfoEntity entity) {
         KeyboardUtils.hideSoftInput(this);
+        mEtPhone.setText("");
+        mEtLoginCode.setText("");
         MainActivity.goInto(this);
         PreferenceManagers.saveValue(UserInfo.USERID, String.valueOf(entity.getUserId()));
         UserInfo.notifyUserInfoChange();

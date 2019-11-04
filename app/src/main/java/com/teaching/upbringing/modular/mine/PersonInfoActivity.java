@@ -115,6 +115,11 @@ public class PersonInfoActivity extends BaseMVPActivity<PersonInforContract.Ipre
                     public void onNext(UserInfo.UserInfoChangeEvent userInfoChangeEvent) {
                         getPresenter().initData();
                     }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        super.onError(e);
+                    }
                 });
 
     }
