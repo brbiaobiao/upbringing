@@ -32,17 +32,12 @@ public class PersonInfoPersenter extends Presenter<PersonInforContract.IView> im
         personInforModel.getUserInfo()
                 .observeOn(AndroidSchedulers.mainThread())
                 .compose(bindLife())
+                .doOnError(throwable -> getView().hideProgress())
                 .subscribe(new NextObserver<PersonInforEntity>() {
                     @Override
                     public void onNext(PersonInforEntity personInforEntity) {
                         getView().hideProgress();
                         getView().setInit(personInforEntity);
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        getView().hideProgress();
-                        super.onError(e);
                     }
                 });
     }

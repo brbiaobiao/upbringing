@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.outsourcing.library.utils.PreferenceManagers;
 import com.teaching.upbringing.R;
+import com.teaching.upbringing.entity.PersonInforEntity;
 import com.teaching.upbringing.modular.setting.SettingActivity;
 import com.teaching.upbringing.modular.user.LoginActivity;
 import com.teaching.upbringing.mvpBase.BaseMVPFragment;
@@ -51,6 +52,11 @@ public class PersonlFragment extends BaseMVPFragment<PersonlContract.Ipresenter>
     }
 
     @Override
+    protected PersonlContract.Ipresenter initPresenter() {
+        return new PersonlPresenter(this);
+    }
+
+    @Override
     protected void init() {
         FragmentHelper.addFragment(getActivity(),R.id.fl_inform,new MyInfromationFragment(),null,
                 FragmentHelper.NONE,FragmentHelper.NONE);
@@ -72,6 +78,12 @@ public class PersonlFragment extends BaseMVPFragment<PersonlContract.Ipresenter>
 
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        getPresenter().initData();
+    }
+
     @OnClick({R.id.iv_setting, R.id.iv_heat, R.id.tv_nickname, R.id.tv_sign, R.id.iv_to_right})
     public void onViewClicked(View view) {
         String tokenId = PreferenceManagers.getString("tokenId", "");
@@ -90,5 +102,11 @@ public class PersonlFragment extends BaseMVPFragment<PersonlContract.Ipresenter>
                 PersonInfoActivity.goIntent(getActivity());
                 break;
         }
+    }
+
+    @Override
+    public void setInfo(PersonInforEntity personInforEntity) {
+        mTvNickname.setText(personInforEntity.getNickname());
+        mTvSign.setText(personInforEntity.getIntroduce());
     }
 }

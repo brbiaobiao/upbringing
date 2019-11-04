@@ -2,9 +2,7 @@ package com.teaching.upbringing.model;
 
 import com.outsourcing.library.utils.RxUtil;
 import com.teaching.upbringing.api.ForgetApi;
-import com.teaching.upbringing.api.LoginApi;
 import com.teaching.upbringing.entity.CaptchaEntity;
-import com.teaching.upbringing.entity.UserInfoEntity;
 import com.teaching.upbringing.manager.ApiManager;
 
 import java.util.HashMap;
@@ -32,4 +30,14 @@ public class ForgetModel extends ApiModel<ForgetApi> {
         return getApi().forgetPwd(map).compose(RxUtil.httpAsyn());
     }
 
+    /**
+     * 获取忘记密码验证码
+     * @param phone
+     * @return
+     */
+    public Observable<CaptchaEntity> forgetPwdCaptcha(String phone){
+        Map<String,String> map = new HashMap<>();
+        map.put("phone",phone);
+        return getApi().forgetPwdCaptcha(map).compose(RxUtil.httpAsyn());
+    }
 }

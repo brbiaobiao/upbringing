@@ -38,15 +38,15 @@ public class MyInfromationFragment extends BaseMVPFragment<MyInformationContract
     protected void init() {
         SpannableHelper.start("0\n").color(AppUtils.getColor(R.color.black)).spSize(AppUtils.getApp(), 16)
                 .next("帖子").color(AppUtils.getColor(R.color.color_7a7a7a)).spSize(AppUtils.getApp(), 11).show2(mTvPost);
-        SpannableHelper.start("1\n").color(AppUtils.getColor(R.color.black)).spSize(AppUtils.getApp(), 16)
+        SpannableHelper.start("0\n").color(AppUtils.getColor(R.color.black)).spSize(AppUtils.getApp(), 16)
                 .next("关注").color(AppUtils.getColor(R.color.color_7a7a7a)).spSize(AppUtils.getApp(), 11).show2(mTvFollow);
-        SpannableHelper.start("19\n").color(AppUtils.getColor(R.color.black)).spSize(AppUtils.getApp(), 16)
+        SpannableHelper.start("0\n").color(AppUtils.getColor(R.color.black)).spSize(AppUtils.getApp(), 16)
                 .next("粉丝").color(AppUtils.getColor(R.color.color_7a7a7a)).spSize(AppUtils.getApp(), 11).show2(mTvFans);
-        SpannableHelper.start("10\n").color(AppUtils.getColor(R.color.black)).spSize(AppUtils.getApp(), 16)
+        SpannableHelper.start("0\n").color(AppUtils.getColor(R.color.black)).spSize(AppUtils.getApp(), 16)
                 .next("学分").color(AppUtils.getColor(R.color.color_7a7a7a)).spSize(AppUtils.getApp(), 11).show2(mTvCredit);
-        SpannableHelper.start("2\n").color(AppUtils.getColor(R.color.black)).spSize(AppUtils.getApp(), 16)
+        SpannableHelper.start("0\n").color(AppUtils.getColor(R.color.black)).spSize(AppUtils.getApp(), 16)
                 .next("学习课程").color(AppUtils.getColor(R.color.color_7a7a7a)).spSize(AppUtils.getApp(), 11).show2(mTvCourse);
-        SpannableHelper.start("90\n").color(AppUtils.getColor(R.color.black)).spSize(AppUtils.getApp(), 16)
+        SpannableHelper.start("0\n").color(AppUtils.getColor(R.color.black)).spSize(AppUtils.getApp(), 16)
                 .next("学员评分").color(AppUtils.getColor(R.color.color_7a7a7a)).spSize(AppUtils.getApp(), 11).show2(mTvScore);
     }
 

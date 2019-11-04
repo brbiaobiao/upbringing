@@ -125,6 +125,7 @@ public class MainActivity extends BaseMVPActivity {
             fragments.add(personlFragment);
 
             switchFragment(PAGE_HOME);
+            mMainBtngroup.check(R.id.home);
         }
     }
 

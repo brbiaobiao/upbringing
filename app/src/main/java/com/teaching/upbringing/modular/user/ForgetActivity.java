@@ -11,7 +11,6 @@ import com.teaching.upbringing.R;
 import com.teaching.upbringing.entity.CaptchaEntity;
 import com.teaching.upbringing.mvpBase.BaseMVPActivity;
 import com.teaching.upbringing.presenter.ForgetPresenter;
-import com.teaching.upbringing.presenter.RegisterPresenter;
 import com.teaching.upbringing.utils.StringUtils;
 import com.teaching.upbringing.utils.TimeCountUtil;
 import com.teaching.upbringing.utils.ToastUtil;
@@ -19,7 +18,7 @@ import com.teaching.upbringing.utils.ToastUtil;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class ForgetActivity extends BaseMVPActivity<ForgetContract.IPresenter> implements ForgetContract.IView{
+public class ForgetActivity extends BaseMVPActivity<ForgetContract.IPresenter> implements ForgetContract.IView {
 
     @BindView(R.id.tv_register)
     TextView mTvRegister;//注册
@@ -57,6 +56,11 @@ public class ForgetActivity extends BaseMVPActivity<ForgetContract.IPresenter> i
     }
 
     @Override
+    public void startTimecount() {
+        mTimeCountUtil.start();
+    }
+
+    @Override
     public void forgetPwd(CaptchaEntity entity) {
         ToastUtil.showShort("密码重置成功");
         Intent intent = new Intent(ForgetActivity.this, LoginActivity.class);
@@ -83,8 +87,10 @@ public class ForgetActivity extends BaseMVPActivity<ForgetContract.IPresenter> i
 
         @Override
         public void afterTextChanged(Editable s) {
-            if (!StringUtils.isEmpty(mEtPhone.getText()) && mEtPhone.getText().toString().trim().length()==11
-                    && mEtLoginCode.getText().toString().trim().length() >= 4&&mEtPwdOne.getText().toString().trim().equals(mEtPwdTwo.getText().toString().trim())&&mEtPwdOne.getText().toString().length()>=6) {
+            if (!StringUtils.isEmpty(mEtPhone.getText()) && mEtPhone.getText().toString().trim().length() == 11
+                    && mEtLoginCode.getText().toString().trim().length() >= 4
+                    && mEtPwdOne.getText().toString().trim().equals(mEtPwdTwo.getText().toString().trim())
+                    && mEtPwdOne.getText().toString().length() >= 6) {
                 mTvRegister.setEnabled(true);
             } else {
                 mTvRegister.setEnabled(false);
@@ -93,23 +99,23 @@ public class ForgetActivity extends BaseMVPActivity<ForgetContract.IPresenter> i
     }
 
 
-
-    @OnClick({R.id.tv_verification_code,R.id.tv_register})
+    @OnClick({R.id.tv_verification_code, R.id.tv_register})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_register:
-                getPresenter().forgetPwd(mEtLoginCode.getText().toString().trim()+"",mEtPwdOne.getText().toString().trim()+"",mEtPhone.getText().toString().trim()+"");
+                getPresenter().forgetPwd(mEtLoginCode.getText().toString().trim() + "", mEtPwdOne.getText().toString().trim() + "", mEtPhone.getText().toString().trim() + "");
+                forgetPwd(null);
 
                 break;
             case R.id.tv_verification_code:
-                if(mEtPhone.length()==0){
+                if (mEtPhone.length() == 0) {
                     ToastUtil.showShort("请输入手机号码");
-                } else if(mEtPhone.length()!=11){
+                } else if (mEtPhone.length() != 11) {
                     ToastUtil.showShort("请输入正确的手机号码");
-                }else {
+                } else {
                     //   ToastUtil.showShort(mEtPhone.getText().toString().trim()+"123");
-                    //   getPresenter().signInCaptcha(mEtPhone.getText().toString().trim()+"");
-                    mTimeCountUtil.start();
+                    getPresenter().forgetPwdCaptcha(mEtPhone.getText().toString().trim() + "");
+                    startTimecount();
                 }
                 break;
         }

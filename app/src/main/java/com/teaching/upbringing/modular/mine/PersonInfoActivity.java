@@ -90,8 +90,6 @@ public class PersonInfoActivity extends BaseMVPActivity<PersonInforContract.Ipre
                             .filter(info -> OnResultUtil.isOk(info))
                             .subscribe(activityResultInfo -> getPresenter().initData());
 
-                    /*Intent intent = new Intent(this, EditPersonInfoActivity.class);
-                    this.startActivityForResult(intent,001);*/
                 });
         TextView titleRightText = getTitleRightText();
         GradientDrawable shape = ShapeUtils.createShape(-1, 26, -1, null, "#FD8440");
@@ -124,14 +122,6 @@ public class PersonInfoActivity extends BaseMVPActivity<PersonInforContract.Ipre
         mTvTitle.setText(personInforEntity.getTitle());
         mTvBrightPoint.setText(personInforEntity.getBrightSpot());
     }
-
-    /*@Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(resultCode == RESULT_OK) {
-            getPresenter().initData();
-        }
-    }*/
 
     @Override
     public void showProgress() {

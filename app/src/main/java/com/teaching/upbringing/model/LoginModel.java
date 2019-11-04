@@ -33,4 +33,16 @@ public class LoginModel extends ApiModel<LoginApi> {
         return getApi().captchaLogin(map).compose(RxUtil.httpAsyn());
     }
 
+    /**
+     * 修改密码
+     * @param oldPassword
+     * @param newPassword
+     * @return
+     */
+    public Observable<UserInfoEntity> setPwd(String oldPassword,String newPassword){
+        Map<String,String> map = new HashMap<>();
+        map.put("newPassword",newPassword);
+        map.put("oldPassword",oldPassword);
+        return getApi().setPwd(map).compose(RxUtil.httpAsyn());
+    }
 }

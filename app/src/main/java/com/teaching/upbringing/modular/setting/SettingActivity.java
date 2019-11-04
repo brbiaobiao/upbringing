@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.outsourcing.library.utils.PreferenceManagers;
 import com.teaching.upbringing.R;
 import com.teaching.upbringing.modular.user.LoginActivity;
+import com.teaching.upbringing.modular.user.UpdatePwdActivity;
 import com.teaching.upbringing.mvpBase.BaseMVPActivity;
 import com.teaching.upbringing.utils.ToastUtil;
 
@@ -67,6 +68,7 @@ public class SettingActivity extends BaseMVPActivity<SettingContract.IPresenter>
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_chang_pwd:
+                UpdatePwdActivity.goInto(this);
                 break;
             case R.id.tv_common_add:
                 break;

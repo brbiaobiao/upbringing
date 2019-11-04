@@ -40,6 +40,12 @@ public class LoginActivity extends BaseMVPActivity<LoginContract.IPresenter> imp
         context.startActivity(intent);
     }
 
+    public static Intent getCallInto(Context context){
+        Intent intent = new Intent(context, LoginActivity.class);
+        return intent;
+    }
+
+
     @Override
     protected LoginContract.IPresenter initPresenter() {
         return new LoginPresenter(this);

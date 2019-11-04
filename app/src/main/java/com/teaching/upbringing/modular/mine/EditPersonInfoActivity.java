@@ -96,6 +96,7 @@ public class EditPersonInfoActivity extends BaseMVPActivity<EditPersonlInfoContr
             getPresenter().setSex(position + 1);
             // TODO: 2019/11/3 后台改完接口就删
             mTvSex.setText(items[position]);
+            finish();// TODO: 2019/11/4  修改完直接回到个人信息页面
             hideProgress();
         });
     }
@@ -124,7 +125,7 @@ public class EditPersonInfoActivity extends BaseMVPActivity<EditPersonlInfoContr
                             String reback_text = activityResultInfo.getData().getStringExtra(FillInformationActivity.REBACKTEXT);
                             finish();
 //                            mTvNickname.setText(reback_text);
-                            getPresenter().getInfo();
+//                            getPresenter().getInfo();
                         });
                 break;
             case R.id.ll_sex:
@@ -138,7 +139,7 @@ public class EditPersonInfoActivity extends BaseMVPActivity<EditPersonlInfoContr
                             String reback_text = activityResultInfo.getData().getStringExtra(FillInformationActivity.REBACKTEXT);
                             finish();
 //                            mTvAccount.setText(reback_text);
-                            getPresenter().getInfo();
+//                            getPresenter().getInfo();
                         });
                 break;
             case R.id.ll_title:
@@ -149,7 +150,7 @@ public class EditPersonInfoActivity extends BaseMVPActivity<EditPersonlInfoContr
                             String reback_text = activityResultInfo.getData().getStringExtra(FillInformationActivity.REBACKTEXT);
                             finish();
 //                            mTvTitle.setText(reback_text);
-                            getPresenter().getInfo();
+//                            getPresenter().getInfo();
                         });
                 break;
             case R.id.ll_bright_point:
@@ -160,7 +161,7 @@ public class EditPersonInfoActivity extends BaseMVPActivity<EditPersonlInfoContr
                             String reback_text = activityResultInfo.getData().getStringExtra(FillInformationActivity.REBACKTEXT);
                             finish();
 //                            mTvBrightPoint.setText(reback_text);
-                            getPresenter().getInfo();
+//                            getPresenter().getInfo();
                         });
                 break;
         }

@@ -7,12 +7,16 @@ import com.teaching.upbringing.presenter.Presenter;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 
-public class EditPersonInfoPresenter extends Presenter<EditPersonlInfoContract.IView>
-        implements EditPersonlInfoContract.Ipresenter {
+/**
+ * @author bb
+ * @time 2019/11/4 11:59
+ * @des ${TODO}
+ **/
+public class PersonlPresenter extends Presenter<PersonlContract.IView> implements PersonlContract.Ipresenter {
 
     private PersonInforModel personInforModel;
 
-    public EditPersonInfoPresenter(EditPersonlInfoContract.IView view) {
+    public PersonlPresenter(PersonlContract.IView view) {
         super(view);
     }
 
@@ -22,7 +26,7 @@ public class EditPersonInfoPresenter extends Presenter<EditPersonlInfoContract.I
     }
 
     @Override
-    public void getInfo() {
+    public void initData() {
         getView().showProgress();
         personInforModel.getUserInfo()
                 .observeOn(AndroidSchedulers.mainThread())
@@ -32,23 +36,7 @@ public class EditPersonInfoPresenter extends Presenter<EditPersonlInfoContract.I
                     @Override
                     public void onNext(PersonInforEntity personInforEntity) {
                         getView().hideProgress();
-                        getView().setInfor(personInforEntity);
-                    }
-                });
-    }
-
-    @Override
-    public void setSex(int sex) {
-        getView().showProgress();
-        personInforModel.setSex(sex)
-                .observeOn(AndroidSchedulers.mainThread())
-                .compose(bindLife())
-                .doOnError(throwable -> getView().hideProgress())
-                .subscribe(new NextObserver<String>() {
-                    @Override
-                    public void onNext(String aBoolean) {
-                        getView().hideProgress();
-                        getInfo();
+                        getView().setInfo(personInforEntity);
                     }
                 });
     }

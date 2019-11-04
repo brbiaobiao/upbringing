@@ -163,6 +163,8 @@ public class ExceptionHandler {
          */
         public static final int NOISE_ELIMINATION=80086;
 
+        public static final int DEFAULT_ERROR = 90090909;
+
     }
 
     public static class RespondThrowable extends Exception {

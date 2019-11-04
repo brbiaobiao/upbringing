@@ -24,4 +24,12 @@ public interface LoginApi {
 
     @POST("login/captchaLogin")
     Observable<RxHttpResponse<UserInfoEntity>> captchaLogin(@Body Map<String, String> param);
+
+    /**
+     * 修改密码
+     * @param param
+     * @return
+     */
+    @POST("login/setPwd")
+    Observable<RxHttpResponse<UserInfoEntity>> setPwd(@Body Map<String, String> param);
 }

@@ -4,10 +4,7 @@ import android.text.TextUtils;
 import android.widget.Toast;
 
 import com.outsourcing.library.net.ExceptionHandler;
-import com.teaching.upbringing.application.AppApplication;
 import com.teaching.upbringing.manager.AppManager;
-import com.teaching.upbringing.modular.user.LoginActivity;
-import com.teaching.upbringing.utils.ToastUtil;
 
 
 /**
@@ -30,28 +27,23 @@ public class AppExceptionHandler extends ExceptionHandler {
                     }
                 case 999:
                 case 506:
-                    LoginActivity.goInto(AppApplication.mAppActivity);
+                    ResponseUtils.toLogin();
+                    return new RespondThrowable(e, ERROR.DEFAULT_ERROR, e.getMessage());
                 case 9999:
-                    //ResponseUtils.outLogin(e.getMessage());
-                    return new RespondThrowable(e, ERROR.NOISE_ELIMINATION, "登录异常");
+                    return new RespondThrowable(e, ERROR.DEFAULT_ERROR, e.getMessage());
                 case 500:
-                    ToastUtil.showShort("服务器异常");
-                        return new RespondThrowable(e, ERROR.NOISE_ELIMINATION, "服务器异常");
+                    return new RespondThrowable(e, ERROR.DEFAULT_ERROR, e.getMessage());
                 case 501:
-                    ToastUtil.showShort("手机格式不正确");
+                    return new RespondThrowable(e, ERROR.DEFAULT_ERROR, e.getMessage());
                 case 509:
-                    ToastUtil.showShort("会话已失效，请退出应用后重新打开");
-                    return new RespondThrowable(e, ERROR.NOISE_ELIMINATION, "会话已失效，请退出应用后重新打开");
+                    return new RespondThrowable(e, ERROR.DEFAULT_ERROR, e.getMessage());
                 case 1001:
-                    ToastUtil.showShort("验证码不正确");
+                    return new RespondThrowable(e, ERROR.DEFAULT_ERROR, e.getMessage());
                 case 130002:
-                    ToastUtil.showShort("用户手机号已存在");
-                    return new RespondThrowable(e, ERROR.NOISE_ELIMINATION, "用户手机号已存在");
                 case 130003:
-                    ToastUtil.showShort("用户手机号不存在");
-                    return new RespondThrowable(e, ERROR.NOISE_ELIMINATION, "用户手机号不存在");
+                    return new RespondThrowable(e, ERROR.DEFAULT_ERROR, e.getMessage());
                 case 130004:
-                    ToastUtil.showShort("密码错误");
+                    return new RespondThrowable(e, ERROR.DEFAULT_ERROR, e.getMessage());
                 case -1:
                     //弹窗操作
                     return new RespondThrowable(e, 0, e.getMessage());
@@ -68,9 +60,9 @@ public class AppExceptionHandler extends ExceptionHandler {
         if (TextUtils.isEmpty(e.message)) {
             e.message = "未知异常";
         }
-        if(e.message.equals("未知异常")) {
+        if (e.message.equals("未知异常")) {
             return;
         }
-        Toast.makeText(AppManager.getApplication(),e.message,Toast.LENGTH_SHORT).show();
+        Toast.makeText(AppManager.getApplication(), e.message, Toast.LENGTH_SHORT).show();
     }
 }

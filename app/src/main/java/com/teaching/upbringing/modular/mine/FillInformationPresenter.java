@@ -37,6 +37,7 @@ public class FillInformationPresenter extends Presenter<FillInformationContract.
                 personInforModel.setNickName(info)
                         .observeOn(AndroidSchedulers.mainThread())
                         .compose(bindLife())
+                        .doOnError(throwable -> getView().hideProgress())
                         .subscribe(new NextObserver<String>() {
                             @Override
                             public void onNext(String string) {
@@ -49,6 +50,7 @@ public class FillInformationPresenter extends Presenter<FillInformationContract.
                 personInforModel.setIntroduce(info)
                         .observeOn(AndroidSchedulers.mainThread())
                         .compose(bindLife())
+                        .doOnError(throwable -> getView().hideProgress())
                         .subscribe(new NextObserver<String>() {
                             @Override
                             public void onNext(String aBoolean) {
@@ -61,6 +63,7 @@ public class FillInformationPresenter extends Presenter<FillInformationContract.
                 personInforModel.setTitle(info)
                         .observeOn(AndroidSchedulers.mainThread())
                         .compose(bindLife())
+                        .doOnError(throwable -> getView().hideProgress())
                         .subscribe(new NextObserver<String>() {
                             @Override
                             public void onNext(String aBoolean) {
@@ -73,6 +76,7 @@ public class FillInformationPresenter extends Presenter<FillInformationContract.
                 personInforModel.setBrightSpot(info)
                         .observeOn(AndroidSchedulers.mainThread())
                         .compose(bindLife())
+                        .doOnError(throwable -> getView().hideProgress())
                         .subscribe(new NextObserver<String>() {
                             @Override
                             public void onNext(String aBoolean) {
