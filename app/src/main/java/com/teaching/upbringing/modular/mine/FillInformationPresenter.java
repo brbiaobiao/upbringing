@@ -51,9 +51,9 @@ public class FillInformationPresenter extends Presenter<FillInformationContract.
                         .observeOn(AndroidSchedulers.mainThread())
                         .compose(bindLife())
                         .doOnError(throwable -> getView().hideProgress())
-                        .subscribe(new NextObserver<String>() {
+                        .subscribe(new NextObserver<Boolean>() {
                             @Override
-                            public void onNext(String aBoolean) {
+                            public void onNext(Boolean aBoolean) {
                                 getView().hideProgress();
                                 getView().upDataCallBack();
                             }

@@ -4,21 +4,27 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.GradientDrawable;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.outsourcing.library.mvp.observer.NextObserver;
+import com.outsourcing.library.mvp.rxbase.RxLife;
 import com.outsourcing.library.utils.AppUtils;
 import com.outsourcing.library.utils.DateUtils;
 import com.outsourcing.library.utils.OnResultUtil;
 import com.outsourcing.library.utils.ShapeUtils;
 import com.teaching.upbringing.R;
 import com.teaching.upbringing.entity.PersonInforEntity;
+import com.teaching.upbringing.manager.UserInfo;
 import com.teaching.upbringing.mvpBase.BaseMVPActivity;
 
+import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.Group;
 import butterknife.BindView;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 
 /**
  * @author bb
@@ -96,6 +102,21 @@ public class PersonInfoActivity extends BaseMVPActivity<PersonInforContract.Ipre
         titleRightText.setBackground(shape);
 
         getPresenter().initData();
+    }
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        UserInfo.getUserInfoChageOb()
+                .observeOn(AndroidSchedulers.mainThread())
+                .compose(bindLife(RxLife.Event.DESTROY_VIEW))
+                .subscribe(new NextObserver<UserInfo.UserInfoChangeEvent>() {
+                    @Override
+                    public void onNext(UserInfo.UserInfoChangeEvent userInfoChangeEvent) {
+                        getPresenter().initData();
+                    }
+                });
+
     }
 
     @Override

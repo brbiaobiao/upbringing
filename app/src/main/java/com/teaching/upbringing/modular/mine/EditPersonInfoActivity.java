@@ -12,6 +12,7 @@ import com.outsourcing.library.utils.OnResultUtil;
 import com.outsourcing.library.widget.dialog.ActionSheetDialog;
 import com.teaching.upbringing.R;
 import com.teaching.upbringing.entity.PersonInforEntity;
+import com.teaching.upbringing.manager.UserInfo;
 import com.teaching.upbringing.mvpBase.BaseMVPActivity;
 
 import androidx.constraintlayout.widget.Group;
@@ -96,8 +97,9 @@ public class EditPersonInfoActivity extends BaseMVPActivity<EditPersonlInfoContr
             getPresenter().setSex(position + 1);
             // TODO: 2019/11/3 后台改完接口就删
             mTvSex.setText(items[position]);
-            finish();// TODO: 2019/11/4  修改完直接回到个人信息页面
+            UserInfo.notifyUserInfoChange();
             hideProgress();
+            finish();// TODO: 2019/11/4  修改完直接回到个人信息页面
         });
     }
 

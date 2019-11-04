@@ -4,7 +4,9 @@ import android.text.TextUtils;
 import android.widget.Toast;
 
 import com.outsourcing.library.net.ExceptionHandler;
+import com.outsourcing.library.utils.PreferenceManagers;
 import com.teaching.upbringing.manager.AppManager;
+import com.teaching.upbringing.manager.UserInfo;
 
 
 /**
@@ -28,6 +30,7 @@ public class AppExceptionHandler extends ExceptionHandler {
                 case 999:
                 case 506:
                     ResponseUtils.toLogin();
+                    PreferenceManagers.saveValue(UserInfo.USERID,"");
                     return new RespondThrowable(e, ERROR.DEFAULT_ERROR, e.getMessage());
                 case 9999:
                     return new RespondThrowable(e, ERROR.DEFAULT_ERROR, e.getMessage());

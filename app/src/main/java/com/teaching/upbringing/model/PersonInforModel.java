@@ -31,7 +31,7 @@ public class PersonInforModel extends ApiModel<PersonInforApi> {
         return getApi().setNickName(map).compose(RxUtil.httpAsyn());
     }
 
-    public Observable<String> setIntroduce(String introduce) {
+    public Observable<Boolean> setIntroduce(String introduce) {
         Map<String,String> map = new HashMap<>();
         map.put("introduce",introduce);
         return getApi().setIntroduce(map).compose(RxUtil.httpAsyn());

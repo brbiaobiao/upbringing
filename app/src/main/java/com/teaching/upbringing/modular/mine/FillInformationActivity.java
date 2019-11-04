@@ -13,6 +13,7 @@ import com.outsourcing.library.utils.KeyboardUtils;
 import com.outsourcing.library.utils.ShapeUtils;
 import com.outsourcing.library.utils.StringUtils;
 import com.teaching.upbringing.R;
+import com.teaching.upbringing.manager.UserInfo;
 import com.teaching.upbringing.mvpBase.BaseMVPActivity;
 
 import butterknife.BindView;
@@ -106,6 +107,7 @@ public class FillInformationActivity extends BaseMVPActivity<FillInformationCont
         intent1.putExtra(REBACKTEXT,mEtFillInfo.getText().toString().trim());
         setResult(RESULT_OK,intent1);
         KeyboardUtils.hideSoftInput(this);
+        UserInfo.notifyUserInfoChange();
         hideProgress();// TODO: 2019/11/3 后台改完接口就删掉
         finish();
     }

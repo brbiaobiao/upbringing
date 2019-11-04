@@ -9,9 +9,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.outsourcing.library.utils.KeyboardUtils;
+import com.outsourcing.library.utils.PreferenceManagers;
 import com.teaching.upbringing.R;
 import com.teaching.upbringing.entity.CaptchaEntity;
 import com.teaching.upbringing.entity.UserInfoEntity;
+import com.teaching.upbringing.manager.UserInfo;
 import com.teaching.upbringing.modular.main.MainActivity;
 import com.teaching.upbringing.mvpBase.BaseMVPActivity;
 import com.teaching.upbringing.presenter.LoginPresenter;
@@ -131,6 +133,8 @@ public class LoginActivity extends BaseMVPActivity<LoginContract.IPresenter> imp
     public void login(UserInfoEntity entity) {
         KeyboardUtils.hideSoftInput(this);
         MainActivity.goInto(this);
+        PreferenceManagers.saveValue(UserInfo.USERID,String.valueOf(entity.getUserId()));
+        UserInfo.notifyUserInfoChange();
         finish();
     }
 }

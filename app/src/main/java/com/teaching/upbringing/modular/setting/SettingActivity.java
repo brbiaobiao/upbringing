@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.outsourcing.library.utils.PreferenceManagers;
 import com.teaching.upbringing.R;
+import com.teaching.upbringing.manager.UserInfo;
 import com.teaching.upbringing.modular.user.LoginActivity;
 import com.teaching.upbringing.modular.user.UpdatePwdActivity;
 import com.teaching.upbringing.mvpBase.BaseMVPActivity;
@@ -86,7 +87,8 @@ public class SettingActivity extends BaseMVPActivity<SettingContract.IPresenter>
     @Override
     public void loginOut() {
         hideProgress();
-        PreferenceManagers.saveValue("tokenId", "");
+        PreferenceManagers.saveValue(UserInfo.USERID, "");
+        UserInfo.notifyUserInfoChange();
         startActivity(new Intent(this, LoginActivity.class));
         finish();
     }

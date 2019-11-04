@@ -1,22 +1,26 @@
 package com.teaching.upbringing.modular.mine;
 
+import android.os.Bundle;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.outsourcing.library.utils.PreferenceManagers;
+import com.outsourcing.library.mvp.observer.NextObserver;
+import com.outsourcing.library.mvp.rxbase.RxLife;
 import com.teaching.upbringing.R;
 import com.teaching.upbringing.entity.PersonInforEntity;
+import com.teaching.upbringing.manager.UserInfo;
 import com.teaching.upbringing.modular.setting.SettingActivity;
-import com.teaching.upbringing.modular.user.LoginActivity;
 import com.teaching.upbringing.mvpBase.BaseMVPFragment;
 import com.teaching.upbringing.utils.FragmentHelper;
-import com.teaching.upbringing.utils.StringUtils;
 
+import androidx.annotation.Nullable;
 import butterknife.BindView;
 import butterknife.OnClick;
+import io.github.anotherjack.avoidonresult.ActivityResultInfo;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 
 /**
  * @author ChenHh
@@ -66,6 +70,23 @@ public class PersonlFragment extends BaseMVPFragment<PersonlContract.Ipresenter>
                 FragmentHelper.NONE,FragmentHelper.NONE);
         FragmentHelper.addFragment(getActivity(),R.id.fl_flatform,new FlatformFragment(),null,
                 FragmentHelper.NONE,FragmentHelper.NONE);
+        getPresenter().initData();
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        UserInfo.getUserInfoChageOb()
+                .compose(bindLife(RxLife.Event.DESTROY_VIEW))
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new NextObserver<UserInfo.UserInfoChangeEvent>() {
+                    @Override
+                    public void onNext(UserInfo.UserInfoChangeEvent userInfoChangeEvent) {
+                        getPresenter().initData();
+                        mTvNickname.setText("昵称");
+                        mTvSign.setText("简介");
+                    }
+                });
     }
 
     @Override
@@ -78,30 +99,24 @@ public class PersonlFragment extends BaseMVPFragment<PersonlContract.Ipresenter>
 
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        getPresenter().initData();
-    }
-
     @OnClick({R.id.iv_setting, R.id.iv_heat, R.id.tv_nickname, R.id.tv_sign, R.id.iv_to_right})
     public void onViewClicked(View view) {
-        String tokenId = PreferenceManagers.getString("tokenId", "");
-        if(StringUtils.isEmpty(tokenId)) {
-            LoginActivity.goInto(getActivity());
-            return;
-        }
-        switch (view.getId()) {
-            case R.id.iv_setting:
-                SettingActivity.goIntent(getActivity());
-                break;
-            case R.id.iv_heat:
-            case R.id.tv_nickname:
-            case R.id.tv_sign:
-            case R.id.iv_to_right:
-                PersonInfoActivity.goIntent(getActivity());
-                break;
-        }
+        UserInfo.toLoginIfUnLoginContinue(getActivity(), new NextObserver<ActivityResultInfo>() {
+            @Override
+            public void onNext(ActivityResultInfo activityResultInfo) {
+                switch (view.getId()) {
+                    case R.id.iv_setting:
+                        SettingActivity.goIntent(getActivity());
+                        break;
+                    case R.id.iv_heat:
+                    case R.id.tv_nickname:
+                    case R.id.tv_sign:
+                    case R.id.iv_to_right:
+                        PersonInfoActivity.goIntent(getActivity());
+                        break;
+                }
+            }
+        });
     }
 
     @Override
