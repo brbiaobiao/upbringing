@@ -1,5 +1,6 @@
 package com.teaching.upbringing.modular.user;
 
+import android.content.Context;
 import android.content.Intent;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -13,7 +14,6 @@ import com.teaching.upbringing.mvpBase.BaseMVPActivity;
 import com.teaching.upbringing.presenter.ForgetPresenter;
 import com.teaching.upbringing.utils.StringUtils;
 import com.teaching.upbringing.utils.TimeCountUtil;
-import com.teaching.upbringing.utils.ToastUtil;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -34,11 +34,15 @@ public class ForgetActivity extends BaseMVPActivity<ForgetContract.IPresenter> i
     @BindView(R.id.et_password_two)
     EditText mEtPwdTwo;//邀请码
 
+    public static void goInto(Context context){
+        Intent intent = new Intent(context, ForgetActivity.class);
+        context.startActivity(intent);
+    }
+
     @Override
     protected Integer getContentId() {
         return R.layout.activiy_forget;
     }
-
 
     @Override
     protected ForgetContract.IPresenter initPresenter() {
@@ -62,9 +66,7 @@ public class ForgetActivity extends BaseMVPActivity<ForgetContract.IPresenter> i
 
     @Override
     public void forgetPwd(CaptchaEntity entity) {
-        ToastUtil.showShort("密码重置成功");
-        Intent intent = new Intent(ForgetActivity.this, LoginActivity.class);
-        startActivity(intent);
+        LoginActivity.goInto(this);
         finish();
     }
 
@@ -104,19 +106,9 @@ public class ForgetActivity extends BaseMVPActivity<ForgetContract.IPresenter> i
         switch (view.getId()) {
             case R.id.tv_register:
                 getPresenter().forgetPwd(mEtLoginCode.getText().toString().trim() + "", mEtPwdOne.getText().toString().trim() + "", mEtPhone.getText().toString().trim() + "");
-                forgetPwd(null);
-
                 break;
             case R.id.tv_verification_code:
-                if (mEtPhone.length() == 0) {
-                    ToastUtil.showShort("请输入手机号码");
-                } else if (mEtPhone.length() != 11) {
-                    ToastUtil.showShort("请输入正确的手机号码");
-                } else {
-                    //   ToastUtil.showShort(mEtPhone.getText().toString().trim()+"123");
-                    getPresenter().forgetPwdCaptcha(mEtPhone.getText().toString().trim() + "");
-                    startTimecount();
-                }
+                getPresenter().forgetPwdCaptcha(mEtPhone.getText().toString().trim() + "");
                 break;
         }
     }

@@ -31,6 +31,7 @@ public class SettingPresenter extends Presenter<SettingContract.IView> implement
         mMainModels.loginOut()
                 .observeOn(AndroidSchedulers.mainThread())
                 .compose(bindLife())
+                .doOnError(throwable -> getView().hideProgress())
                 .subscribe(new NextObserver<CaptchaEntity>() {
                     @Override
                     public void onNext(CaptchaEntity testEntity) {

@@ -3,6 +3,7 @@ package com.teaching.upbringing.modular.mine;
 import android.content.Intent;
 
 import com.outsourcing.library.mvp.observer.NextObserver;
+import com.teaching.upbringing.entity.UserInfoEntity;
 import com.teaching.upbringing.model.PersonInforModel;
 import com.teaching.upbringing.presenter.Presenter;
 
@@ -38,9 +39,9 @@ public class FillInformationPresenter extends Presenter<FillInformationContract.
                         .observeOn(AndroidSchedulers.mainThread())
                         .compose(bindLife())
                         .doOnError(throwable -> getView().hideProgress())
-                        .subscribe(new NextObserver<String>() {
+                        .subscribe(new NextObserver<UserInfoEntity>() {
                             @Override
-                            public void onNext(String string) {
+                            public void onNext(UserInfoEntity userInfoEntity) {
                                 getView().hideProgress();
                                 getView().upDataCallBack();
                             }
@@ -51,9 +52,9 @@ public class FillInformationPresenter extends Presenter<FillInformationContract.
                         .observeOn(AndroidSchedulers.mainThread())
                         .compose(bindLife())
                         .doOnError(throwable -> getView().hideProgress())
-                        .subscribe(new NextObserver<Boolean>() {
+                        .subscribe(new NextObserver<UserInfoEntity>() {
                             @Override
-                            public void onNext(Boolean aBoolean) {
+                            public void onNext(UserInfoEntity userInfoEntity) {
                                 getView().hideProgress();
                                 getView().upDataCallBack();
                             }
@@ -64,9 +65,9 @@ public class FillInformationPresenter extends Presenter<FillInformationContract.
                         .observeOn(AndroidSchedulers.mainThread())
                         .compose(bindLife())
                         .doOnError(throwable -> getView().hideProgress())
-                        .subscribe(new NextObserver<String>() {
+                        .subscribe(new NextObserver<UserInfoEntity>() {
                             @Override
-                            public void onNext(String aBoolean) {
+                            public void onNext(UserInfoEntity userInfoEntity) {
                                 getView().hideProgress();
                                 getView().upDataCallBack();
                             }
@@ -77,9 +78,9 @@ public class FillInformationPresenter extends Presenter<FillInformationContract.
                         .observeOn(AndroidSchedulers.mainThread())
                         .compose(bindLife())
                         .doOnError(throwable -> getView().hideProgress())
-                        .subscribe(new NextObserver<String>() {
+                        .subscribe(new NextObserver<UserInfoEntity>() {
                             @Override
-                            public void onNext(String aBoolean) {
+                            public void onNext(UserInfoEntity userInfoEntity) {
                                 getView().hideProgress();
                                 getView().upDataCallBack();
                             }

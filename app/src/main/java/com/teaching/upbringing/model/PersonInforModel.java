@@ -3,6 +3,7 @@ package com.teaching.upbringing.model;
 import com.outsourcing.library.utils.RxUtil;
 import com.teaching.upbringing.api.PersonInforApi;
 import com.teaching.upbringing.entity.PersonInforEntity;
+import com.teaching.upbringing.entity.UserInfoEntity;
 import com.teaching.upbringing.manager.ApiManager;
 
 import java.util.HashMap;
@@ -24,32 +25,31 @@ public class PersonInforModel extends ApiModel<PersonInforApi> {
         return getApi().getUserInfo().compose(RxUtil.httpAsyn());
     }
 
-    public Observable<String> setNickName(String nickname) {
+    public Observable<UserInfoEntity> setNickName(String nickname) {
         Map<String,String> map = new HashMap<>();
         map.put("nickname",nickname);
-
         return getApi().setNickName(map).compose(RxUtil.httpAsyn());
     }
 
-    public Observable<Boolean> setIntroduce(String introduce) {
+    public Observable<UserInfoEntity> setIntroduce(String introduce) {
         Map<String,String> map = new HashMap<>();
         map.put("introduce",introduce);
         return getApi().setIntroduce(map).compose(RxUtil.httpAsyn());
     }
 
-    public Observable<String> setTitle(String title) {
+    public Observable<UserInfoEntity> setTitle(String title) {
         Map<String,String> map = new HashMap<>();
         map.put("title",title);
         return getApi().setTitle(map).compose(RxUtil.httpAsyn());
     }
 
-    public Observable<String> setBrightSpot(String brightSpot) {
+    public Observable<UserInfoEntity> setBrightSpot(String brightSpot) {
         Map<String,String> map = new HashMap<>();
         map.put("brightSpot",brightSpot);
         return getApi().setBrightSpot(map).compose(RxUtil.httpAsyn());
     }
 
-    public Observable<String> setSex(int sex) {
+    public Observable<UserInfoEntity> setSex(int sex) {
         Map<String,String> map = new HashMap<>();
         map.put("sex",sex+"");
         return getApi().setSex(map).compose(RxUtil.httpAsyn());

@@ -79,17 +79,15 @@ public class SettingActivity extends BaseMVPActivity<SettingContract.IPresenter>
                 break;
             case R.id.tv_login_out:
                 getPresenter().loginOut();
-                loginOut();
                 break;
         }
     }
 
     @Override
     public void loginOut() {
-        hideProgress();
         PreferenceManagers.saveValue(UserInfo.USERID, "");
         UserInfo.notifyUserInfoChange();
-        startActivity(new Intent(this, LoginActivity.class));
+        LoginActivity.goInto(this);
         finish();
     }
 }

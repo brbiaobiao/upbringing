@@ -95,11 +95,7 @@ public class EditPersonInfoActivity extends BaseMVPActivity<EditPersonlInfoContr
         actionSheetDialog.setOnOpenItemClickL((parent, view, position, id) -> {
             actionSheetDialog.dismiss();
             getPresenter().setSex(position + 1);
-            // TODO: 2019/11/3 后台改完接口就删
-            mTvSex.setText(items[position]);
             UserInfo.notifyUserInfoChange();
-            hideProgress();
-            finish();// TODO: 2019/11/4  修改完直接回到个人信息页面
         });
     }
 
@@ -123,12 +119,7 @@ public class EditPersonInfoActivity extends BaseMVPActivity<EditPersonlInfoContr
                 onResultUtil.call(FillInformationActivity.getCallIntent(this, "昵称",
                         "请输入昵称", 1,mTvNickname.getText().toString().trim()))
                         .filter(info -> OnResultUtil.isOk(info))
-                        .subscribe(activityResultInfo -> {
-                            String reback_text = activityResultInfo.getData().getStringExtra(FillInformationActivity.REBACKTEXT);
-                            finish();
-//                            mTvNickname.setText(reback_text);
-//                            getPresenter().getInfo();
-                        });
+                        .subscribe(activityResultInfo -> getPresenter().getInfo());
                 break;
             case R.id.ll_sex:
                 showSelectDialog();
@@ -137,34 +128,19 @@ public class EditPersonInfoActivity extends BaseMVPActivity<EditPersonlInfoContr
                 onResultUtil.call(FillInformationActivity.getCallIntent(this, "简介",
                         "简单介绍下自己吧！", 2,mTvAccount.getText().toString().trim()))
                         .filter(info -> OnResultUtil.isOk(info))
-                        .subscribe(activityResultInfo -> {
-                            String reback_text = activityResultInfo.getData().getStringExtra(FillInformationActivity.REBACKTEXT);
-                            finish();
-//                            mTvAccount.setText(reback_text);
-//                            getPresenter().getInfo();
-                        });
+                        .subscribe(activityResultInfo -> getPresenter().getInfo());
                 break;
             case R.id.ll_title:
                 onResultUtil.call(FillInformationActivity.getCallIntent(this, "头衔",
                         "请输入您的头衔", 3,mTvTitle.getText().toString().trim()))
                         .filter(info -> OnResultUtil.isOk(info))
-                        .subscribe(activityResultInfo -> {
-                            String reback_text = activityResultInfo.getData().getStringExtra(FillInformationActivity.REBACKTEXT);
-                            finish();
-//                            mTvTitle.setText(reback_text);
-//                            getPresenter().getInfo();
-                        });
+                        .subscribe(activityResultInfo -> getPresenter().getInfo());
                 break;
             case R.id.ll_bright_point:
                 onResultUtil.call(FillInformationActivity.getCallIntent(this, "亮点",
                         "请填写您的亮点，让同学们跟喜欢您", 4,mTvBrightPoint.getText().toString().trim()))
                         .filter(info -> OnResultUtil.isOk(info))
-                        .subscribe(activityResultInfo -> {
-                            String reback_text = activityResultInfo.getData().getStringExtra(FillInformationActivity.REBACKTEXT);
-                            finish();
-//                            mTvBrightPoint.setText(reback_text);
-//                            getPresenter().getInfo();
-                        });
+                        .subscribe(activityResultInfo -> getPresenter().getInfo());
                 break;
         }
     }

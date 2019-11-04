@@ -44,4 +44,16 @@ public class PhoneUtil {
             context.startActivity(intent);
         }
     }
+
+    public static boolean checkPhone(String phone) {
+        if (phone.length() == 0) {
+            ToastUtil.showShort("请输入手机号码");
+            return false;
+        } else if (phone.length() != 11) {
+            ToastUtil.showShort("请输入正确的手机号码");
+            return false;
+        }else {
+            return true;
+        }
+    }
 }

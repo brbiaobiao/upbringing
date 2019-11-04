@@ -1,12 +1,13 @@
 package com.teaching.upbringing.presenter;
 
 
-
 import com.outsourcing.library.mvp.observer.NextObserver;
 import com.teaching.upbringing.entity.CaptchaEntity;
 import com.teaching.upbringing.entity.UserInfoEntity;
 import com.teaching.upbringing.model.LoginModel;
 import com.teaching.upbringing.modular.user.LoginContract;
+import com.teaching.upbringing.utils.PhoneUtil;
+import com.teaching.upbringing.utils.ToastUtil;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 
@@ -24,14 +25,19 @@ public class LoginPresenter extends Presenter<LoginContract.IView> implements Lo
 
     @Override
     public void verification(String phone) {
+        if(!PhoneUtil.checkPhone(phone)) {
+            return;
+        }
         getView().showProgress();
         mMainModels.loginCaptcha()
                 .observeOn(AndroidSchedulers.mainThread())
                 .compose(bindLife())
+                .doOnError(throwable -> getView().hideProgress())
                 .subscribe(new NextObserver<CaptchaEntity>() {
                     @Override
                     public void onNext(CaptchaEntity testEntity) {
                         getView().hideProgress();
+                        ToastUtil.showShort("获取验证码成功");
                         getView().verification(testEntity);
                     }
                 });
@@ -39,24 +45,20 @@ public class LoginPresenter extends Presenter<LoginContract.IView> implements Lo
 
     @Override
     public void login(String captcha, String phone) {
+        if(!PhoneUtil.checkPhone(phone)) {
+            return;
+        }
         getView().showProgress();
         mMainModels.captchaLogin(captcha,phone)
                 .observeOn(AndroidSchedulers.mainThread())
                 .compose(bindLife())
+                .doOnError(throwable -> getView().hideProgress())
                 .subscribe(new NextObserver<UserInfoEntity>() {
                     @Override
                     public void onNext(UserInfoEntity userInfoEntity) {
                         getView().hideProgress();
                         getView().login(userInfoEntity);
                     }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        getView().hideProgress();
-                        super.onError(e);
-                    }
                 });
     }
-
-
 }

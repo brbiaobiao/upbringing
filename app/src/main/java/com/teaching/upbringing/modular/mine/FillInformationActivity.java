@@ -103,12 +103,9 @@ public class FillInformationActivity extends BaseMVPActivity<FillInformationCont
 
     @Override
     public void upDataCallBack() {
-        Intent intent1 = new Intent();
-        intent1.putExtra(REBACKTEXT,mEtFillInfo.getText().toString().trim());
-        setResult(RESULT_OK,intent1);
+        setResult(RESULT_OK);
         KeyboardUtils.hideSoftInput(this);
         UserInfo.notifyUserInfoChange();
-        hideProgress();// TODO: 2019/11/3 后台改完接口就删掉
         finish();
     }
 

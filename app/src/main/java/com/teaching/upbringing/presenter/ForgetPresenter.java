@@ -1,11 +1,12 @@
 package com.teaching.upbringing.presenter;
 
 
-
 import com.outsourcing.library.mvp.observer.NextObserver;
 import com.teaching.upbringing.entity.CaptchaEntity;
 import com.teaching.upbringing.model.ForgetModel;
 import com.teaching.upbringing.modular.user.ForgetContract;
+import com.teaching.upbringing.utils.PhoneUtil;
+import com.teaching.upbringing.utils.ToastUtil;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 
@@ -24,6 +25,9 @@ public class ForgetPresenter extends Presenter<ForgetContract.IView> implements 
 
     @Override
     public void forgetPwdCaptcha(String phone) {
+        if(!PhoneUtil.checkPhone(phone)) {
+            return;
+        }
         getView().showProgress();
         forgetModel.forgetPwdCaptcha(phone)
                 .observeOn(AndroidSchedulers.mainThread())
@@ -40,21 +44,20 @@ public class ForgetPresenter extends Presenter<ForgetContract.IView> implements 
 
     @Override
     public void forgetPwd(String captcha, String password, String phone) {
+        if(!PhoneUtil.checkPhone(phone)) {
+            return;
+        }
         getView().showProgress();
         forgetModel.forgetPwd(captcha,password,phone)
                 .observeOn(AndroidSchedulers.mainThread())
                 .compose(bindLife())
+                .doOnError(throwable -> getView().hideProgress())
                 .subscribe(new NextObserver<CaptchaEntity>() {
                     @Override
                     public void onNext(CaptchaEntity testEntity) {
                         getView().hideProgress();
+                        ToastUtil.showShort("密码重置成功");
                         getView().forgetPwd(testEntity);
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        getView().hideProgress();
-                        super.onError(e);
                     }
                 });
     }

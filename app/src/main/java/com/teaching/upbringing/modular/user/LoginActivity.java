@@ -19,12 +19,11 @@ import com.teaching.upbringing.mvpBase.BaseMVPActivity;
 import com.teaching.upbringing.presenter.LoginPresenter;
 import com.teaching.upbringing.utils.StringUtils;
 import com.teaching.upbringing.utils.TimeCountUtil;
-import com.teaching.upbringing.utils.ToastUtil;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class LoginActivity extends BaseMVPActivity<LoginContract.IPresenter> implements LoginContract.IView{
+public class LoginActivity extends BaseMVPActivity<LoginContract.IPresenter> implements LoginContract.IView {
 
     @BindView(R.id.tv_login)
     TextView mTvLogin;//登录
@@ -37,12 +36,12 @@ public class LoginActivity extends BaseMVPActivity<LoginContract.IPresenter> imp
     private TimeCountUtil mTimeCountUtil;
 
 
-    public static final void goInto(Context context){
+    public static final void goInto(Context context) {
         Intent intent = new Intent(context, LoginActivity.class);
         context.startActivity(intent);
     }
 
-    public static Intent getCallInto(Context context){
+    public static Intent getCallInto(Context context) {
         Intent intent = new Intent(context, LoginActivity.class);
         return intent;
     }
@@ -52,26 +51,18 @@ public class LoginActivity extends BaseMVPActivity<LoginContract.IPresenter> imp
     protected LoginContract.IPresenter initPresenter() {
         return new LoginPresenter(this);
     }
-    @OnClick({R.id.tv_verification_code,R.id.tv_login,R.id.tv_register,R.id.tv_password_login})
+
+    @OnClick({R.id.tv_verification_code, R.id.tv_login, R.id.tv_register, R.id.tv_password_login})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_login:
-                getPresenter().login(mEtLoginCode.getText().toString().trim()+"",mEtPhone.getText().toString().trim()+"");
+                getPresenter().login(mEtLoginCode.getText().toString().trim() + "", mEtPhone.getText().toString().trim() + "");
                 break;
             case R.id.tv_verification_code:
-            if(mEtPhone.length()==0){
-                ToastUtil.showShort("请输入手机号码");
-            } else if(mEtPhone.length()!=11){
-                ToastUtil.showShort("请输入正确的手机号码");
-            }else {
-                mTimeCountUtil.start();
-                //getPresenter().verification(mEtPhone.getText().toString());
-            }
+                getPresenter().verification(mEtPhone.getText().toString());
                 break;
             case R.id.tv_register:
-                Intent intent = new Intent(this, RegisterActivity.class);
-                startActivity(intent);
-
+                RegisterActivity.goInto(this);
                 break;
             case R.id.tv_password_login:
                 Intent intents = new Intent(this, PasswordLoginActivity.class);
@@ -89,11 +80,12 @@ public class LoginActivity extends BaseMVPActivity<LoginContract.IPresenter> imp
     protected void init() {
         setTitleText("");
         setTitleLeftIcon(R.mipmap.icon_close);
-//        setTitleLeftIcon(getResources().getDrawable(R.mipmap.icon_close));
+        //        setTitleLeftIcon(getResources().getDrawable(R.mipmap.icon_close));
         mTimeCountUtil = new TimeCountUtil(this, 60000, 1000, mTvCode);
         mEtLoginCode.addTextChangedListener(new MyTextWatcher(mEtLoginCode));
         mEtPhone.addTextChangedListener(new MyTextWatcher(mEtPhone));
     }
+
     private class MyTextWatcher implements TextWatcher {
         private View v;
 
@@ -113,7 +105,7 @@ public class LoginActivity extends BaseMVPActivity<LoginContract.IPresenter> imp
 
         @Override
         public void afterTextChanged(Editable s) {
-            if (!StringUtils.isEmpty(mEtPhone.getText()) && mEtPhone.getText().toString().trim().length()==11
+            if (!StringUtils.isEmpty(mEtPhone.getText()) && mEtPhone.getText().toString().trim().length() == 11
                     && mEtLoginCode.getText().toString().trim().length() >= 4) {
                 mTvLogin.setEnabled(true);
             } else {
@@ -125,15 +117,14 @@ public class LoginActivity extends BaseMVPActivity<LoginContract.IPresenter> imp
 
     @Override
     public void verification(CaptchaEntity entity) {
-
-        ToastUtil.showShort("获取验证码成功");
+        mTimeCountUtil.start();
     }
 
     @Override
     public void login(UserInfoEntity entity) {
         KeyboardUtils.hideSoftInput(this);
         MainActivity.goInto(this);
-        PreferenceManagers.saveValue(UserInfo.USERID,String.valueOf(entity.getUserId()));
+        PreferenceManagers.saveValue(UserInfo.USERID, String.valueOf(entity.getUserId()));
         UserInfo.notifyUserInfoChange();
         finish();
     }

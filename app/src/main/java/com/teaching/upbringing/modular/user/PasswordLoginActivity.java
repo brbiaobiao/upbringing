@@ -1,6 +1,5 @@
 package com.teaching.upbringing.modular.user;
 
-import android.content.Intent;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -12,10 +11,8 @@ import com.teaching.upbringing.R;
 import com.teaching.upbringing.entity.UserInfoEntity;
 import com.teaching.upbringing.modular.main.MainActivity;
 import com.teaching.upbringing.mvpBase.BaseMVPActivity;
-import com.teaching.upbringing.presenter.LoginPresenter;
 import com.teaching.upbringing.presenter.PasswordLoginPresenter;
 import com.teaching.upbringing.utils.StringUtils;
-import com.teaching.upbringing.utils.ToastUtil;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -49,7 +46,7 @@ public class PasswordLoginActivity extends BaseMVPActivity<PasswordLoginContract
                 getPresenter().passwordLogin(mEtPhone.getText().toString().trim()+"",mEtPassword.getText().toString().trim()+"");
                 break;
             case R.id.tv_forget:
-                startActivity(new Intent(this,ForgetActivity.class));
+                ForgetActivity.goInto(this);
                 break;
 
         }
