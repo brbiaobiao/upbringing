@@ -13,8 +13,8 @@ import com.outsourcing.library.mvp.rxbase.RxLife;
 import com.teaching.upbringing.R;
 import com.teaching.upbringing.entity.PersonInforEntity;
 import com.teaching.upbringing.manager.UserInfo;
+import com.teaching.upbringing.modular.setting.SettingActivity;
 import com.teaching.upbringing.mvpBase.BaseMVPFragment;
-import com.teaching.upbringing.utils.ContractUtils;
 import com.teaching.upbringing.utils.FragmentHelper;
 
 import androidx.annotation.Nullable;
@@ -108,8 +108,7 @@ public class PersonlFragment extends BaseMVPFragment<PersonlContract.Ipresenter>
             public void onNext(ActivityResultInfo activityResultInfo) {
                 switch (view.getId()) {
                     case R.id.iv_setting:
-//                        SettingActivity.goIntent(getActivity());
-                        ContractUtils.UseContractDialog(getActivity(),"1299000","18819478771");
+                        SettingActivity.goIntent(getActivity());
                         break;
                     case R.id.iv_heat:
                     case R.id.tv_nickname:
