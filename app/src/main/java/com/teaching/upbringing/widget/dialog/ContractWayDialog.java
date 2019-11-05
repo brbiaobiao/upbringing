@@ -59,9 +59,18 @@ public class ContractWayDialog extends Dialog implements View.OnClickListener {
         rl_call = findViewById(R.id.rl_call);
         rl_copy = findViewById(R.id.rl_copy);
 
+        setTvText();
+
         tv_cancel.setOnClickListener(this);
         rl_call.setOnClickListener(this);
         rl_copy.setOnClickListener(this);
+    }
+
+    private void setTvText(){
+        if(tv_wx == null || tv_phone == null) {
+            tv_wx.setText(msgArray[0]);
+            tv_phone.setText(msgArray[1]);
+        }
     }
 
     /**
