@@ -9,6 +9,9 @@ import com.teaching.upbringing.modular.user.LoginActivity;
 import com.teaching.upbringing.mvpBase.BaseMVPActivity;
 
 public class ShalpActivity extends BaseMVPActivity {
+
+    public static final String ISFIRSTOPEN = "isFirstOpen";
+
     @Override
     protected Integer getContentId() {
         return R.layout.activity_shlap;
@@ -18,9 +21,11 @@ public class ShalpActivity extends BaseMVPActivity {
     protected void init() {
         String tokenId = PreferenceManagers.getString(UserInfo.USERID, "");
         if(StringUtils.isEmpty(tokenId)) {
+            PreferenceManagers.saveValue(ISFIRSTOPEN,true);
             LoginActivity.goInto(this);
             finish();
         }else {
+            PreferenceManagers.saveValue(ISFIRSTOPEN,false);
             MainActivity.goInto(this);
             finish();
         }

@@ -14,6 +14,7 @@ import com.teaching.upbringing.R;
 import com.teaching.upbringing.entity.CaptchaEntity;
 import com.teaching.upbringing.entity.UserInfoEntity;
 import com.teaching.upbringing.manager.UserInfo;
+import com.teaching.upbringing.modular.ShalpActivity;
 import com.teaching.upbringing.modular.main.MainActivity;
 import com.teaching.upbringing.mvpBase.BaseMVPActivity;
 import com.teaching.upbringing.presenter.LoginPresenter;
@@ -34,6 +35,7 @@ public class LoginActivity extends BaseMVPActivity<LoginContract.IPresenter> imp
     @BindView(R.id.tv_verification_code)
     TextView mTvCode;//获取验证码
     private TimeCountUtil mTimeCountUtil;
+    private boolean firstOpenApp;
 
 
     public static final void goInto(Context context) {
@@ -84,6 +86,8 @@ public class LoginActivity extends BaseMVPActivity<LoginContract.IPresenter> imp
         mTimeCountUtil = new TimeCountUtil(this, 60000, 1000, mTvCode);
         mEtLoginCode.addTextChangedListener(new MyTextWatcher(mEtLoginCode));
         mEtPhone.addTextChangedListener(new MyTextWatcher(mEtPhone));
+
+        firstOpenApp = PreferenceManagers.getBoolean(ShalpActivity.ISFIRSTOPEN,false);
     }
 
     private class MyTextWatcher implements TextWatcher {
@@ -125,9 +129,18 @@ public class LoginActivity extends BaseMVPActivity<LoginContract.IPresenter> imp
         KeyboardUtils.hideSoftInput(this);
         mEtPhone.setText("");
         mEtLoginCode.setText("");
-        MainActivity.goInto(this);
         PreferenceManagers.saveValue(UserInfo.USERID, String.valueOf(entity.getUserId()));
         UserInfo.notifyUserInfoChange();
+        if(firstOpenApp) {
+            MainActivity.goInto(this);
+        }else {
+            setResult(RESULT_OK);
+        }
         finish();
+    }
+
+    @Override
+    public void isFirstOpenApp(boolean flag) {
+        firstOpenApp = flag;
     }
 }
