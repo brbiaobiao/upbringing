@@ -1,8 +1,7 @@
-package com.teaching.upbringing.widget;
+package com.teaching.upbringing.widget.dialog;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,9 +18,9 @@ import com.outsourcing.library.utils.DensityUtils;
 import com.outsourcing.library.utils.KeyboardUtils;
 import com.outsourcing.library.utils.NavigationBarUtils;
 import com.outsourcing.library.utils.ScreenUtils;
+import com.outsourcing.library.utils.StatusBarUtils;
 import com.outsourcing.library.utils.UIUtils;
 import com.teaching.upbringing.R;
-import com.outsourcing.library.utils.StatusBarUtils;
 
 /**
  * @author bb
@@ -49,12 +48,7 @@ public final class BaseDialog extends Dialog {
     public BaseDialog(Context context) {
         super(context, R.style.baseDialog);
         this.context = context;
-        setOnDismissListener(new OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialog) {
-                KeyboardUtils.hideSoftInput(tvConfirm.getContext(), tvConfirm);
-            }
-        });
+        setOnDismissListener(dialog -> KeyboardUtils.hideSoftInput(tvConfirm.getContext(), tvConfirm));
         initView();
         //        getWindow().setWindowAnimations(R.style.Dialog_Anim_Style);
 

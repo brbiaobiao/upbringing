@@ -28,7 +28,7 @@ import com.teaching.upbringing.R;
 import com.teaching.upbringing.manager.AppManager;
 import com.teaching.upbringing.utils.ToastUtil;
 import com.teaching.upbringing.widget.DefaultTitleBar;
-import com.teaching.upbringing.widget.LoadingDialog;
+import com.teaching.upbringing.widget.dialog.LoadingDialog;
 
 import androidx.annotation.DrawableRes;
 import androidx.annotation.Nullable;

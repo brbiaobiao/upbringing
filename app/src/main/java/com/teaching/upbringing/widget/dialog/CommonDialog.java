@@ -1,4 +1,4 @@
-package com.teaching.upbringing.widget;
+package com.teaching.upbringing.widget.dialog;
 
 import android.content.Context;
 import android.view.View;

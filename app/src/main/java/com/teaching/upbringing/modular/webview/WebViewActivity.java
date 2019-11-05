@@ -41,9 +41,9 @@ import com.teaching.upbringing.R;
 import com.teaching.upbringing.mvpBase.BaseMVPActivity;
 import com.teaching.upbringing.utils.PhoneUtil;
 import com.teaching.upbringing.utils.ToastUtil;
-import com.teaching.upbringing.widget.ConfigurableDialog;
-import com.teaching.upbringing.widget.LoadingDialog;
-import com.teaching.upbringing.widget.TipsDialog;
+import com.teaching.upbringing.widget.dialog.ConfigurableDialog;
+import com.teaching.upbringing.widget.dialog.LoadingDialog;
+import com.teaching.upbringing.widget.dialog.TipsDialog;
 import com.teaching.upbringing.widget.share.SaveImageSeedModule;
 import com.teaching.upbringing.widget.share.SeedEntity;
 

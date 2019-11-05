@@ -7,7 +7,7 @@ import android.net.Uri;
 
 import com.outsourcing.library.utils.StringUtils;
 import com.tbruyelle.rxpermissions2.RxPermissions;
-import com.teaching.upbringing.widget.ConfigurableDialog;
+import com.teaching.upbringing.widget.dialog.ConfigurableDialog;
 
 import androidx.fragment.app.FragmentActivity;
 

@@ -1,5 +1,6 @@
 package com.teaching.upbringing.modular.mine;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -12,8 +13,8 @@ import com.outsourcing.library.mvp.rxbase.RxLife;
 import com.teaching.upbringing.R;
 import com.teaching.upbringing.entity.PersonInforEntity;
 import com.teaching.upbringing.manager.UserInfo;
-import com.teaching.upbringing.modular.setting.SettingActivity;
 import com.teaching.upbringing.mvpBase.BaseMVPFragment;
+import com.teaching.upbringing.utils.ContractUtils;
 import com.teaching.upbringing.utils.FragmentHelper;
 
 import androidx.annotation.Nullable;
@@ -102,11 +103,13 @@ public class PersonlFragment extends BaseMVPFragment<PersonlContract.Ipresenter>
     @OnClick({R.id.iv_setting, R.id.iv_heat, R.id.tv_nickname, R.id.tv_sign, R.id.iv_to_right})
     public void onViewClicked(View view) {
         UserInfo.toLoginIfUnLoginContinue(getActivity(), new NextObserver<ActivityResultInfo>() {
+            @SuppressLint("CheckResult")
             @Override
             public void onNext(ActivityResultInfo activityResultInfo) {
                 switch (view.getId()) {
                     case R.id.iv_setting:
-                        SettingActivity.goIntent(getActivity());
+//                        SettingActivity.goIntent(getActivity());
+                        ContractUtils.UseContractDialog(getActivity(),"1299000","18819478771");
                         break;
                     case R.id.iv_heat:
                     case R.id.tv_nickname:

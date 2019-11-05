@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:background="@color/transparent"
+              android:layout_height="240dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_my_fragment_bg"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/rl_copy"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:gravity="center_vertical"
+            android:layout_marginTop="5dp"
+            android:paddingLeft="15dp">
+
+            <TextView
+                android:id="@+id/tv_wx_ti"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="微信账号"
+                android:textSize="11sp"
+                android:textColor="@color/color_9A9A9A"/>
+
+            <TextView
+                android:id="@+id/tv_wx"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="xxxxxxxxxxx"
+                android:textColor="@color/black"
+                android:layout_marginTop="5dp"
+                android:textSize="14sp"
+                android:layout_below="@id/tv_wx_ti"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="复制"
+                android:paddingTop="3dp"
+                android:paddingBottom="3dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="6dp"
+                android:textSize="14sp"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/shape_dialog_btn_sure"
+                android:textColor="@color/white"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_call"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="5dp"
+            android:paddingLeft="15dp">
+
+            <TextView
+                android:id="@+id/tv_phone_ti"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="联系电话"
+                android:textSize="11sp"
+                android:textColor="@color/color_9A9A9A"/>
+
+            <TextView
+                android:id="@+id/tv_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="xxxxxxxxxxx"
+                android:textColor="@color/black"
+                android:layout_marginTop="5dp"
+                android:textSize="14sp"
+                android:layout_below="@id/tv_phone_ti"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="拨打"
+                android:paddingTop="3dp"
+                android:paddingBottom="3dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="6dp"
+                android:textSize="14sp"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/shape_dialog_btn_sure"
+                android:textColor="@color/white"/>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/tv_cancel"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:text="取消"
+        android:textSize="16sp"
+        android:textColor="@color/blue_0294F5"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="18dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:background="@drawable/shape_my_fragment_bg"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>
