@@ -1,8 +1,15 @@
 package com.teaching.upbringing.modular.mine;
 
+import android.view.View;
+
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.listener.OnItemChildClickListener;
 import com.teaching.upbringing.R;
 import com.teaching.upbringing.adapter.FlatformAdapter;
+import com.teaching.upbringing.modular.setting.AboutUsActivity;
+import com.teaching.upbringing.modular.user.UpdatePwdActivity;
 import com.teaching.upbringing.mvpBase.BaseMVPFragment;
+import com.teaching.upbringing.utils.ContractUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +38,7 @@ public class FlatformFragment extends BaseMVPFragment<FlatformContract.Ipresente
 
     @Override
     protected void init() {
-        mRvFlatform.setLayoutManager(new GridLayoutManager(getActivity(),4));
+        mRvFlatform.setLayoutManager(new GridLayoutManager(getActivity(), 4));
         mRvFlatform.setHasFixedSize(true);
         mRvFlatform.setNestedScrollingEnabled(false);
         strings = new ArrayList<>();
@@ -46,15 +53,37 @@ public class FlatformFragment extends BaseMVPFragment<FlatformContract.Ipresente
         strings.add("修改密码");
         strings.add("商务合作");
         setAdapter(strings);
+
+        initEvent();
     }
 
     @Override
     public void setAdapter(List<String> list) {
-        if(adapter == null) {
+        if (adapter == null) {
             adapter = new FlatformAdapter(list);
             mRvFlatform.setAdapter(adapter);
-        }else {
+        } else {
             adapter.setNewData(list);
         }
+    }
+
+    private void initEvent() {
+        mRvFlatform.addOnItemTouchListener(new OnItemChildClickListener() {
+            @Override
+            public void onSimpleItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+                String text = strings.get(position);
+                switch (text) {
+                    case "联系客服":
+                        ContractUtils.UseContractDialog(getActivity(), "123456789", "12345678921");
+                        break;
+                    case "关于我们":
+                        AboutUsActivity.goInto(getActivity());
+                        break;
+                    case "修改密码":
+                        UpdatePwdActivity.goInto(getActivity());
+                        break;
+                }
+            }
+        });
     }
 }

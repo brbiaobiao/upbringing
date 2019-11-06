@@ -11,7 +11,7 @@ ext {
             multiDexEnabled  : true,
             applicationId    : "com.teaching.upbringing",
             versionCode      : 20191021,
-            versionName      : "1.0.0.JA21",
+            versionName      : "1.0.0",
             versionShowCode  : "1.0.0"
     ]
 

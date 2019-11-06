@@ -5,6 +5,7 @@ import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 
+import com.teaching.upbringing.modular.address.CommonAddActivity;
 import com.teaching.upbringing.modular.user.LoginActivity;
 
 import java.util.WeakHashMap;
@@ -50,5 +51,9 @@ public class Navigation {
 
     public void toLogin(){
         startActivity(LoginActivity.getCallInto(mContext));
+    }
+
+    public void toCommonAdd(){
+        startActivity(CommonAddActivity.goCallInto(mContext));
     }
 }

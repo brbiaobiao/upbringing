@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.teaching.upbringing.widget.SlidingButtonView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rootView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:id="@+id/ll_linearout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:id="@+id/rl_linearout"
+            android:layout_width="390dp"
+            android:paddingLeft="15dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/white">
+            <TextView
+                android:id="@+id/tv_is_defalut"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="默认"
+                android:textSize="11sp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="5dp"
+                android:textColor="@color/white"
+                android:visibility="gone"
+                android:background="@drawable/shape_address_defalt_tv"/>
+
+            <TextView
+                android:id="@+id/tv_add_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="地址位置名"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:layout_marginTop="6dp"
+                android:layout_toRightOf="@id/tv_is_defalut"/>
+
+            <TextView
+                android:id="@+id/tv_update"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="修改"
+                android:textSize="15sp"
+                android:layout_marginTop="10dp"
+                android:paddingRight="15dp"
+                android:textColor="@color/color_0AA0FE"
+                android:layout_alignParentRight="true"/>
+
+            <TextView
+                android:id="@+id/tv_add_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/color_9A9A9A"
+                android:textSize="15sp"
+                android:layout_marginTop="10dp"
+                android:paddingRight="15dp"
+                android:layout_below="@id/tv_add_title"
+                android:text="地址详情地址详情地址详情地址详情地址详情地址详情地址详情地址详情地址详情"/>
+
+
+            <View
+                style="@style/setting_divider"
+                android:layout_marginTop="15dp"
+                android:layout_below="@id/tv_add_detail"/>
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tvDelete_edittask_item"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/qb_px_10"
+            android:layout_toRightOf="@id/tv_add_detail"
+            android:background="@drawable/shape_red_coner5"
+            android:gravity="center"
+            android:text="删除"
+            android:textColor="@color/white"
+            android:textSize="14sp"/>
+
+    </LinearLayout>
+
+</com.teaching.upbringing.widget.SlidingButtonView>

@@ -20,6 +20,7 @@ public class FlatformAdapter extends BaseQuickAdapter<String, BaseViewHolder> {
 
     @Override
     protected void convert(BaseViewHolder helper, String item) {
-        helper.setText(R.id.tv_item,item);
+        helper.setText(R.id.tv_item,item)
+        .addOnClickListener(R.id.tv_item);
     }
 }

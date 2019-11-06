@@ -117,6 +117,18 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden"/>
 
+        <activity
+            android:name=".modular.setting.AboutUsActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden"/>
+
+        <activity
+            android:name=".modular.address.CommonAddActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden"/>
+
     </application>
 
 </manifest>

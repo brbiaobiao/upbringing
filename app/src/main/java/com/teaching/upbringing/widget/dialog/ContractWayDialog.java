@@ -68,9 +68,10 @@ public class ContractWayDialog extends Dialog implements View.OnClickListener {
 
     private void setTvText(){
         if(tv_wx == null || tv_phone == null) {
-            tv_wx.setText(msgArray[0]);
-            tv_phone.setText(msgArray[1]);
+            return;
         }
+        tv_wx.setText(msgArray[0]);
+        tv_phone.setText(msgArray[1]);
     }
 
     /**

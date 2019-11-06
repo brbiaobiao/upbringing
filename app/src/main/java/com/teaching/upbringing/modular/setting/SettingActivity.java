@@ -12,6 +12,7 @@ import com.teaching.upbringing.manager.UserInfo;
 import com.teaching.upbringing.modular.user.LoginActivity;
 import com.teaching.upbringing.modular.user.UpdatePwdActivity;
 import com.teaching.upbringing.mvpBase.BaseMVPActivity;
+import com.teaching.upbringing.utils.Navigation;
 import com.teaching.upbringing.utils.ToastUtil;
 
 import butterknife.BindView;
@@ -72,6 +73,7 @@ public class SettingActivity extends BaseMVPActivity<SettingContract.IPresenter>
                 UpdatePwdActivity.goInto(this);
                 break;
             case R.id.tv_common_add:
+                Navigation.getInstance(this).toCommonAdd();
                 break;
             case R.id.tv_class_area_setting:
                 break;
