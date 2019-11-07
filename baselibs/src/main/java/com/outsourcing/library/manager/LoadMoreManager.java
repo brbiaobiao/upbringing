@@ -1,9 +1,9 @@
 package com.outsourcing.library.manager;
 
+import com.scwang.smartrefresh.header.DeliveryHeader;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
-import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 
 import java.util.ArrayList;
@@ -63,7 +63,7 @@ public class LoadMoreManager<T> {
     private void setRefreshLayout(SmartRefreshLayout refreshLayout) {
         mRefreshLayout = refreshLayout;
         refreshLayout.setEnableAutoLoadMore(true);
-        ClassicsHeader headerView = new ClassicsHeader(refreshLayout.getContext());
+        DeliveryHeader headerView = new DeliveryHeader(refreshLayout.getContext());
         refreshLayout.setRefreshHeader(headerView);
         ClassicsFooter footerView = new ClassicsFooter(refreshLayout.getContext());
         refreshLayout.setRefreshFooter(footerView);

@@ -5,6 +5,7 @@ import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 
+import com.teaching.upbringing.modular.address.AddAddressActivity;
 import com.teaching.upbringing.modular.address.CommonAddActivity;
 import com.teaching.upbringing.modular.user.LoginActivity;
 
@@ -49,11 +50,25 @@ public class Navigation {
         }
     }
 
+    /**
+     * 登陆页面
+     */
     public void toLogin(){
         startActivity(LoginActivity.getCallInto(mContext));
     }
 
+    /**
+     * 常用地址页面
+     */
     public void toCommonAdd(){
         startActivity(CommonAddActivity.goCallInto(mContext));
     }
+
+    /**
+     * 添加地址页面
+     */
+    public void toAddAddress(){
+        startActivity(AddAddressActivity.getCallIntent(mContext));
+    }
+
 }

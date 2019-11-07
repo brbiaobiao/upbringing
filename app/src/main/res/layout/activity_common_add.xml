@@ -1,28 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<com.scwang.smartrefresh.layout.SmartRefreshLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/smart_rel"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.scwang.smartrefresh.layout.SmartRefreshLayout
-        android:id="@+id/smart_rel"
+    <com.scwang.smartrefresh.layout.header.ClassicsHeader
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="wrap_content"/>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
             android:layout_width="match_parent"
+            android:minHeight="50dp"
             android:layout_height="match_parent">
+
+            <TextView android:id="@+id/tv_empty_view"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_centerInParent="true"
+                      android:drawablePadding="@dimen/px_40"
+                      android:drawableTop="@mipmap/empt_data"
+                      android:text="无记录"
+                      android:visibility="gone"
+                      tools:visibility="visible"
+                      android:textColor="@color/text_gray"
+                      android:textSize="@dimen/sp_15"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_common_add"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                app:layout_constraintVertical_weight="1"
+                android:layout_height="wrap_content"
                 android:background="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -30,22 +44,25 @@
 
             <TextView
                 android:id="@+id/add_address"
+                android:layout_below="@id/rv_common_add"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="25dp"
-                android:text="添加地址"
+                android:background="@color/white"
                 android:gravity="center_horizontal"
                 android:padding="10dp"
-                android:textColor="@color/color_0AA0FE"
-                android:background="@color/white"
                 android:paddingTop="15dp"
                 android:paddingBottom="15dp"
+                android:text="添加地址"
+                android:textColor="@color/color_0AA0FE"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/rv_common_add"/>
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+                />
 
-</ScrollView>
+        </RelativeLayout>
+    </ScrollView>
+
+</com.scwang.smartrefresh.layout.SmartRefreshLayout>
+

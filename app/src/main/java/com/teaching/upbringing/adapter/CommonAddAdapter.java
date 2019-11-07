@@ -27,12 +27,12 @@ public class CommonAddAdapter extends BaseQuickAdapter<CommonAddEntity, BaseView
 
     @Override
     protected void convert(BaseViewHolder helper, CommonAddEntity item) {
-        helper.setText(R.id.tv_add_title, item.getAddr_title())
-                .setText(R.id.tv_add_detail, item.getAddr_detail())
+        helper.setText(R.id.tv_add_title, item.getLocation())
+                .setText(R.id.tv_add_detail, item.getName()+item.getHouseNumber())
         .addOnClickListener(R.id.tvDelete_edittask_item)
         .addOnClickListener(R.id.tv_update);
         TextView tvIsDefault = helper.getView(R.id.tv_is_defalut);
-        tvIsDefault.setVisibility(item.isIs_default()? View.VISIBLE:View.GONE);
+        tvIsDefault.setVisibility(item.isIfDefault()? View.VISIBLE:View.GONE);
         RelativeLayout rl_linearout = helper.getView(R.id.rl_linearout);
         rl_linearout.post(() -> {
             ViewGroup.LayoutParams layoutParams = rl_linearout.getLayoutParams();
@@ -48,4 +48,5 @@ public class CommonAddAdapter extends BaseQuickAdapter<CommonAddEntity, BaseView
         notifyItemRemoved(position);
         notifyDataSetChanged();
     }
+
 }

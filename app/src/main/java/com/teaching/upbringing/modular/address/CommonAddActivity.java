@@ -7,14 +7,13 @@ import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemChildClickListener;
-import com.outsourcing.library.manager.LoadMoreManager;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.teaching.upbringing.R;
 import com.teaching.upbringing.adapter.CommonAddAdapter;
 import com.teaching.upbringing.entity.CommonAddEntity;
 import com.teaching.upbringing.mvpBase.BaseMVPActivity;
+import com.teaching.upbringing.utils.Navigation;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -25,23 +24,26 @@ import butterknife.OnClick;
 /**
  * @author bb
  * @time 2019/11/6 15:24
- * @des ${TODO}
+ * @des ${常用地址}
  **/
 public class CommonAddActivity extends BaseMVPActivity<CommonAddContract.IPresenter> implements CommonAddContract.IView {
 
     @BindView(R.id.rv_common_add)
     RecyclerView mRvCommonAdd;
-    @BindView(R.id.add_address)
-    TextView mAddAddress;
     @BindView(R.id.smart_rel)
     SmartRefreshLayout mSmartRel;
-    private LoadMoreManager loadMoreManager;
+    @BindView(R.id.tv_empty_view)
+    TextView mTvEmptyView;
     private CommonAddAdapter addAdapter;
-    private List<CommonAddEntity> commonAddEntityList = new ArrayList<>();
 
     public static Intent goCallInto(Context context) {
         Intent intent = new Intent(context, CommonAddActivity.class);
         return intent;
+    }
+
+    @Override
+    protected CommonAddContract.IPresenter initPresenter() {
+        return new CommonAddPresenter(this);
     }
 
     @Override
@@ -52,22 +54,10 @@ public class CommonAddActivity extends BaseMVPActivity<CommonAddContract.IPresen
     @Override
     protected void init() {
         setTitleText("常用地址");
-        /*loadMoreManager = new LoadMoreManager(mSmartRel,null,null);
-        loadMoreManager.setOnKeyLoadMoreLinetener((key, pageSize, index) -> {
-            // TODO: 2019/11/6 请求数据
-        });
-        loadMoreManager.setReversal(false);
-        loadMoreManager.autoRefresh();*/
-        mSmartRel.autoRefresh();
         mRvCommonAdd.setLayoutManager(new LinearLayoutManager(this));
-
-        commonAddEntityList.add(new CommonAddEntity("广州第一人民医院", "就在海的那边山的那边啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦", true));
-        commonAddEntityList.add(new CommonAddEntity("沙美公园", "就是那个公园对对对对对对对对对对对对对都丢地对对对", false));
-        commonAddEntityList.add(new CommonAddEntity("hhhahha", "hhhahhaha", false));
-
-        setAdapter(commonAddEntityList);
+        mSmartRel.autoRefresh();
+        mSmartRel.setOnRefreshListener(refreshLayout -> getPresenter().getAddressList());
         initEvent();
-
     }
 
     private void initEvent() {
@@ -76,7 +66,7 @@ public class CommonAddActivity extends BaseMVPActivity<CommonAddContract.IPresen
             public void onSimpleItemChildClick(BaseQuickAdapter adapter, View view, int position) {
                 switch (view.getId()) {
                     case R.id.tvDelete_edittask_item:
-                        addAdapter.removeData(position);
+                        getPresenter().deleteAddress(position);
                         break;
                     case R.id.tv_update:
 
@@ -88,6 +78,7 @@ public class CommonAddActivity extends BaseMVPActivity<CommonAddContract.IPresen
 
     @OnClick(R.id.add_address)
     public void onViewClicked() {
+        Navigation.getInstance(this).toAddAddress();
     }
 
     @Override
@@ -99,4 +90,20 @@ public class CommonAddActivity extends BaseMVPActivity<CommonAddContract.IPresen
             addAdapter.setNewData(commonAddEntityList);
         }
     }
+
+    @Override
+    public void removeData(int position) {
+        addAdapter.removeData(position);
+    }
+
+    @Override
+    public void refreshFinish() {
+        mSmartRel.finishRefresh();
+    }
+
+    @Override
+    public void setEmptyView(boolean flag) {
+        mTvEmptyView.setVisibility(flag?View.VISIBLE:View.GONE);
+    }
+
 }

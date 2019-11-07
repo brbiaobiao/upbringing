@@ -1,23 +1,43 @@
 package com.teaching.upbringing.modular.mine;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.net.Uri;
+import android.os.Build;
+import android.provider.MediaStore;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.outsourcing.library.mvp.observer.NextObserver;
+import com.outsourcing.library.utils.AppUtils;
 import com.outsourcing.library.utils.DateUtils;
+import com.outsourcing.library.utils.NotificationUtils;
 import com.outsourcing.library.utils.OnResultUtil;
 import com.outsourcing.library.widget.dialog.ActionSheetDialog;
+import com.outsourcing.library.widget.dialog.listener.OnOpenItemClickL;
+import com.tbruyelle.rxpermissions2.Permission;
+import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.teaching.upbringing.R;
+import com.teaching.upbringing.application.AppFileManager;
 import com.teaching.upbringing.entity.PersonInforEntity;
 import com.teaching.upbringing.manager.UserInfo;
 import com.teaching.upbringing.mvpBase.BaseMVPActivity;
+import com.teaching.upbringing.utils.CameraUtils;
+import com.teaching.upbringing.utils.StringUtils;
+import com.teaching.upbringing.widget.dialog.TipsDialog;
+
+import java.io.File;
 
 import androidx.constraintlayout.widget.Group;
+import androidx.core.content.FileProvider;
 import butterknife.BindView;
 import butterknife.OnClick;
+import io.github.anotherjack.avoidonresult.ActivityResultInfo;
 
 /**
  * @author bb
@@ -113,7 +133,7 @@ public class EditPersonInfoActivity extends BaseMVPActivity<EditPersonlInfoContr
         }
         switch (view.getId()) {
             case R.id.iv_head_pic:
-
+                showActionSheetDialog();
                 break;
             case R.id.ll_nickname:
                 onResultUtil.call(FillInformationActivity.getCallIntent(this, "昵称",
@@ -167,5 +187,103 @@ public class EditPersonInfoActivity extends BaseMVPActivity<EditPersonlInfoContr
         //教员信息
         mTvTitle.setText(personInforEntity.getTitle());
         mTvBrightPoint.setText(personInforEntity.getBrightSpot());
+    }
+
+    private void showActionSheetDialog() {
+        final String[] stringItems = {"相机拍摄", "从相册导入"};
+        final ActionSheetDialog dialog = new ActionSheetDialog(EditPersonInfoActivity.this, stringItems, null);
+        dialog.isTitleShow(true).show();
+        dialog.title("请选择一种类型");
+        dialog.titleTextColor(Color.parseColor("#8e8e94"));
+        dialog.titleTextSize_SP(13);
+        dialog.itemTextSize(18);
+        dialog.setOnOpenItemClickL(new OnOpenItemClickL() {
+            @Override
+            public void onOpenItemClick(AdapterView<?> parent, View view, int position, long id) {
+                dialog.dismiss();
+                if (position == 0) {
+                    takePhoto();
+                } else if (position == 1) {
+                    fromTheAlbum();
+                }
+            }
+        });
+    }
+
+    private void takePhoto() {
+        RxPermissions permissions = new RxPermissions(this);
+        permissions.requestEachCombined(Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.CAMERA)
+                .subscribe(new NextObserver<Permission>() {
+                    @Override
+                    public void onNext(Permission permission) {
+                        if (permission.granted) {
+                            openCamera();
+                        } else if (permission.shouldShowRequestPermissionRationale) {
+                            TipsDialog dialog = new TipsDialog(EditPersonInfoActivity.this,getSupportFragmentManager());
+                            dialog.setTips(null, "需要授权才能使用，请进行授权");
+                            dialog.setRightBtnText("同意");
+                            dialog.setOnLeftConfirmListener(v -> dialog.dismiss());
+                            dialog.setOnRightConfirmListener(v -> {
+                                dialog.dismiss();
+                                takePhoto();
+                            });
+                            dialog.show();
+                        } else {
+                            TipsDialog dialog = new TipsDialog(EditPersonInfoActivity.this, getSupportFragmentManager());
+                            dialog.setTips(null, "请允许权限才能够进行下一步操作");
+                            dialog.setRightBtnText("确认");
+                            dialog.setOnLeftConfirmListener(v -> dialog.dismiss());
+                            dialog.setOnRightConfirmListener(v -> {
+                                NotificationUtils.toSetting(EditPersonInfoActivity.this);
+                                dialog.dismiss();
+
+                            });
+                            dialog.show();
+                        }
+                    }
+                });
+    }
+
+    private void openCamera() {
+        Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+        intent.putExtra(MediaStore.Images.Media.ORIENTATION, 0);
+        File file = new File(AppFileManager.getPictureDir(), "logo_" + System.currentTimeMillis() + ".jpg");
+        Uri uri;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            uri = FileProvider.getUriForFile(AppUtils.getApp(), getContext().getPackageName() + ".FileProvider",
+                    file);
+        } else {
+            uri = Uri.fromFile(file);
+        }
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
+        new OnResultUtil(EditPersonInfoActivity.this).call(intent)
+                .filter(info -> OnResultUtil.isOk(info))
+                .subscribe(new NextObserver<ActivityResultInfo>() {
+                    @Override
+                    public void onNext(ActivityResultInfo activityResultInfo) {
+                        boolean b = CameraUtils.savePicture(file.getPath());
+                        if (b) {
+                            getPresenter().saveUserImg(file);
+                        }
+                    }
+                });
+    }
+
+    private void fromTheAlbum() {
+        //相册导入
+        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        new OnResultUtil(EditPersonInfoActivity.this).call(intent)
+                .filter(info -> OnResultUtil.isOk(info))
+                .subscribe(new NextObserver<ActivityResultInfo>() {
+                    @Override
+                    public void onNext(ActivityResultInfo activityResultInfo) {
+                        String path = CameraUtils.handlerChoosePic(EditPersonInfoActivity.this, activityResultInfo.getData());
+                        if (!StringUtils.isEmpty(path)) {
+                            getPresenter().saveUserImg(new File(path));
+                        }
+                    }
+                });
     }
 }

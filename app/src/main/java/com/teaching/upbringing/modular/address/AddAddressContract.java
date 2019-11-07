@@ -3,28 +3,21 @@ package com.teaching.upbringing.modular.address;
 import com.outsourcing.library.mvp.IProgressAble;
 import com.outsourcing.library.mvp.rxbase.IBasePresenter;
 import com.outsourcing.library.mvp.rxbase.IContextView;
-import com.teaching.upbringing.entity.CommonAddEntity;
 
-import java.util.List;
+import java.util.Map;
 
 /**
  * @author bb
  * @time 2019/10/29 10:33
  * @des ${TODO}
  **/
-public interface CommonAddContract {
+public interface AddAddressContract {
 
     interface IView extends IContextView, IProgressAble{
-        void setAdapter(List<CommonAddEntity> commonAddEntityList);
-        void removeData(int position);
-        void refreshFinish();
-        void setEmptyView(boolean flag);
+        void afterAdd();
     }
 
     interface IPresenter extends IBasePresenter<IView>{
-
-        void getAddressList();
-
-        void deleteAddress(int position);
+        void addAddress(Map<String,Object> map);
     }
 }

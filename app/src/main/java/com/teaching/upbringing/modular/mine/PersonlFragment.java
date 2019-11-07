@@ -126,4 +126,5 @@ public class PersonlFragment extends BaseMVPFragment<PersonlContract.Ipresenter>
         mTvNickname.setText(personInforEntity.getNickname());
         mTvSign.setText(personInforEntity.getIntroduce());
     }
+
 }

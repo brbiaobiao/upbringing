@@ -5,6 +5,8 @@ import com.outsourcing.library.mvp.rxbase.IBasePresenter;
 import com.outsourcing.library.mvp.rxbase.IContextView;
 import com.teaching.upbringing.entity.PersonInforEntity;
 
+import java.io.File;
+
 /**
  * @author ChenHh
  * @time 2019/10/27 16:11
@@ -19,5 +21,6 @@ public interface EditPersonlInfoContract {
     interface Ipresenter extends IBasePresenter<IView> {
         void getInfo();
         void setSex(int sex);
+        void saveUserImg(File file);
     }
 }

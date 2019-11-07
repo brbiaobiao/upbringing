@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+    <LinearLayout
+        android:id="@+id/ll_location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingLeft="15dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="地址"
+            android:textSize="14sp"
+            android:paddingRight="47dp"
+            android:gravity="center_vertical"
+            android:textColor="@color/color_3A3A3A"/>
+
+        <TextView
+            android:id="@+id/tv_location"
+            style="@style/person_edit_infor_title_text"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            android:gravity="left"
+            android:textColorHint="@color/color_3A3A3A"
+            android:hint="点击选择" />
+    </LinearLayout>
+    <View
+        style="@style/setting_divider"
+        android:layout_marginLeft="15dp"/>
+
+    <LinearLayout
+        android:id="@+id/ll_house_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="15dp"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="门牌"
+            android:textSize="14sp"
+            android:paddingRight="47dp"
+            android:gravity="center_vertical"
+            android:textColor="@color/color_3A3A3A"/>
+
+        <EditText
+            android:id="@+id/tv_nickname"
+            style="@style/person_infor_title_text"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            android:gravity="left"
+            android:textColor="@color/color_3A3A3A"
+            android:textColorHint="@color/color_9A9A9A"
+            android:hint="如8号楼808室"
+            android:background="@null"/>
+    </LinearLayout>
+    <View
+        style="@style/setting_divider"
+        android:layout_marginLeft="15dp"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_gravity="center_vertical"
+        android:background="@color/white"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_default_add"
+            style="@style/setting_title_text_whiteout_right"
+            android:drawablePadding="@dimen/qb_px_10"
+            android:gravity="left"
+            android:text="设为默认地址" />
+
+        <Switch
+            android:id="@+id/switch_defalut"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/setting_title_text_whiteout_right"
+            android:layout_alignParentRight="true"/>
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="保存"
+        android:textSize="16sp"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:gravity="center_horizontal"
+        android:background="@drawable/shape_dialog_btn_sure"
+        android:textColor="@color/white"/>
+</LinearLayout>

@@ -6,6 +6,8 @@ import com.teaching.upbringing.entity.UserInfoEntity;
 import com.teaching.upbringing.model.PersonInforModel;
 import com.teaching.upbringing.presenter.Presenter;
 
+import java.io.File;
+
 import io.reactivex.android.schedulers.AndroidSchedulers;
 
 public class EditPersonInfoPresenter extends Presenter<EditPersonlInfoContract.IView>
@@ -50,5 +52,10 @@ public class EditPersonInfoPresenter extends Presenter<EditPersonlInfoContract.I
                         getInfo();
                     }
                 });
+    }
+
+    @Override
+    public void saveUserImg(File file) {
+
     }
 }

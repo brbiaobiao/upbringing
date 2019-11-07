@@ -2,6 +2,7 @@ package com.teaching.upbringing.manager;
 
 
 import com.outsourcing.library.net.retrofit.AppHttpClient;
+import com.teaching.upbringing.api.AddressApi;
 import com.teaching.upbringing.api.ForgetApi;
 import com.teaching.upbringing.api.LoginApi;
 import com.teaching.upbringing.api.MainApi;
@@ -40,6 +41,8 @@ public class ApiManager {
     public static ForgetApi forgetApi(){
         return AppHttpClient.create(ForgetApi.class);
     }
+
+    public static AddressApi addressApi(){return AppHttpClient.create(AddressApi.class);}
 
 
 }

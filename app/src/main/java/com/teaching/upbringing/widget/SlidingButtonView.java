@@ -9,9 +9,6 @@ import android.widget.TextView;
 import com.outsourcing.library.utils.DensityUtils;
 import com.teaching.upbringing.R;
 
-/**
- * Created by user on 2018/8/28.
- */
 
 public class SlidingButtonView extends HorizontalScrollView {
     private TextView mTextView_Delete;
