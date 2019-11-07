@@ -8,7 +8,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.provider.MediaStore;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -19,7 +18,6 @@ import com.outsourcing.library.utils.DateUtils;
 import com.outsourcing.library.utils.NotificationUtils;
 import com.outsourcing.library.utils.OnResultUtil;
 import com.outsourcing.library.widget.dialog.ActionSheetDialog;
-import com.outsourcing.library.widget.dialog.listener.OnOpenItemClickL;
 import com.tbruyelle.rxpermissions2.Permission;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.teaching.upbringing.R;
@@ -197,15 +195,12 @@ public class EditPersonInfoActivity extends BaseMVPActivity<EditPersonlInfoContr
         dialog.titleTextColor(Color.parseColor("#8e8e94"));
         dialog.titleTextSize_SP(13);
         dialog.itemTextSize(18);
-        dialog.setOnOpenItemClickL(new OnOpenItemClickL() {
-            @Override
-            public void onOpenItemClick(AdapterView<?> parent, View view, int position, long id) {
-                dialog.dismiss();
-                if (position == 0) {
-                    takePhoto();
-                } else if (position == 1) {
-                    fromTheAlbum();
-                }
+        dialog.setOnOpenItemClickL((parent, view, position, id) -> {
+            dialog.dismiss();
+            if (position == 0) {
+                takePhoto();
+            } else if (position == 1) {
+                fromTheAlbum();
             }
         });
     }
