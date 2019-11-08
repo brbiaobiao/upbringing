@@ -17,6 +17,7 @@ import com.outsourcing.library.utils.AppUtils;
 import com.outsourcing.library.utils.DateUtils;
 import com.outsourcing.library.utils.NotificationUtils;
 import com.outsourcing.library.utils.OnResultUtil;
+import com.outsourcing.library.utils.StatusBarUtil;
 import com.outsourcing.library.widget.dialog.ActionSheetDialog;
 import com.tbruyelle.rxpermissions2.Permission;
 import com.tbruyelle.rxpermissions2.RxPermissions;
@@ -102,6 +103,8 @@ public class EditPersonInfoActivity extends BaseMVPActivity<EditPersonlInfoContr
         setTitleText("编辑资料");
         mLlRegistTime.setVisibility(View.GONE);
         mLineRegistTime.setVisibility(View.GONE);
+
+        StatusBarUtil.setStatusBarColor(this,R.color.white);
 
         getPresenter().getInfo();
     }

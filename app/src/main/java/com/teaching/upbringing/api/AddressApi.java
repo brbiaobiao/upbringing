@@ -25,7 +25,7 @@ public interface AddressApi {
     Observable<RxHttpResponse<List<CommonAddEntity>>> deleteAddress(@Body Map<String,String> param);
 
     @POST("address/add")
-    Observable<RxHttpResponse<List<CommonAddEntity>>> addAddress(@Body Map<String,Object> param);
+    Observable<RxHttpResponse<CommonAddEntity>> addAddress(@Body Map<String,Object> param);
 
 
 }

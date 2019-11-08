@@ -31,7 +31,7 @@ public class AddressModel extends ApiModel<AddressApi> {
         return getApi().deleteAddress(map).compose(RxUtil.httpAsyn());
     }
 
-    public Observable<List<CommonAddEntity>> addAddress(Map<String,Object> map){
+    public Observable<CommonAddEntity> addAddress(Map<String,Object> map){
         return getApi().addAddress(map).compose(RxUtil.httpAsyn());
     }
 }

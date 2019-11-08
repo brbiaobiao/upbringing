@@ -8,7 +8,10 @@ import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import com.amap.api.services.core.PoiItem;
+import com.outsourcing.library.utils.KeyboardUtils;
 import com.outsourcing.library.utils.OnResultUtil;
+import com.outsourcing.library.utils.StatusBarUtil;
 import com.teaching.upbringing.R;
 import com.teaching.upbringing.mvpBase.BaseMVPActivity;
 
@@ -29,8 +32,8 @@ public class AddAddressActivity extends BaseMVPActivity<AddAddressContract.IPres
     TextView mTvLocation;
     @BindView(R.id.ll_location)
     LinearLayout mLlLocation;
-    @BindView(R.id.tv_nickname)
-    EditText mTvNickname;
+    @BindView(R.id.et_house_name)
+    EditText mEtHouseName;
     @BindView(R.id.ll_house_name)
     LinearLayout mLlHouseName;
     @BindView(R.id.tv_default_add)
@@ -59,6 +62,8 @@ public class AddAddressActivity extends BaseMVPActivity<AddAddressContract.IPres
     @Override
     protected void init() {
         setTitleText("添加地址");
+        StatusBarUtil.setStatusBarColor(this,R.color.white);
+        map.put("ifDefault", false);//默认传入false,表示不为默认地址
         mSwitchDefalut.setOnCheckedChangeListener((buttonView, isChecked) -> {
             is_defalt_add = isChecked;//选中为true
             map.put("ifDefault", is_defalt_add);
@@ -72,6 +77,16 @@ public class AddAddressActivity extends BaseMVPActivity<AddAddressContract.IPres
         finish();
     }
 
+    @Override
+    public String getLoaction() {
+        return mTvLocation.getText().toString().trim();
+    }
+
+    @Override
+    public String getHouseName() {
+        return mEtHouseName.getText().toString().trim();
+    }
+
     @OnClick({R.id.ll_location, R.id.tv_save})
     public void onViewClicked(View view) {
         switch (view.getId()) {
@@ -79,11 +94,19 @@ public class AddAddressActivity extends BaseMVPActivity<AddAddressContract.IPres
                 new OnResultUtil(this).call(SelectAddressActivity.goCallIntent(this))
                         .filter(info->OnResultUtil.isOk(info))
                         .subscribe(activityResultInfo -> {
-                            // TODO: 2019/11/7 添加地址返回所需字段填入map中
+                            PoiItem poiItem = activityResultInfo.getData().getParcelableExtra(SelectAddressActivity.SELECT_ADDRESS_POITEM);
+                            String title = poiItem.getTitle();
+                            mTvLocation.setText(title);
+//                            "纬度：" + poiItem.getLatLonPoint().getLatitude() + "  " + "经度：" + poiItem.getLatLonPoint().getLongitude()
+                            String latitude = String.valueOf(poiItem.getLatLonPoint().getLatitude());
+                            String longitude = String.valueOf(poiItem.getLatLonPoint().getLongitude());
+                            map.put("name",title);
+                            map.put("location",longitude+","+latitude);
                         });
                 break;
             case R.id.tv_save:
                 getPresenter().addAddress(map);
+                KeyboardUtils.hideSoftInput(this);
                 break;
         }
     }

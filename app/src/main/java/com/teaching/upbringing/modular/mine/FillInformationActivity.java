@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.outsourcing.library.utils.AppUtils;
 import com.outsourcing.library.utils.KeyboardUtils;
 import com.outsourcing.library.utils.ShapeUtils;
+import com.outsourcing.library.utils.StatusBarUtil;
 import com.outsourcing.library.utils.StringUtils;
 import com.teaching.upbringing.R;
 import com.teaching.upbringing.manager.UserInfo;
@@ -89,6 +90,7 @@ public class FillInformationActivity extends BaseMVPActivity<FillInformationCont
         titleRightText = getTitleRightText();
         GradientDrawable shape = ShapeUtils.createShape(-1, 26, -1, null, "#FEE1D2");
         titleRightText.setBackground(shape);
+        StatusBarUtil.setStatusBarColor(this,R.color.white);
 
         mEtFillInfo.addTextChangedListener(textWatcher);
         if(!StringUtils.isEmpty(info_text)) {
@@ -96,7 +98,6 @@ public class FillInformationActivity extends BaseMVPActivity<FillInformationCont
         }else {
             mEtFillInfo.setHint(hint);
         }
-
         getPresenter().getIntent(intent);
     }
 

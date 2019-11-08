@@ -7,6 +7,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import com.outsourcing.library.utils.PreferenceManagers;
+import com.outsourcing.library.utils.StatusBarUtil;
 import com.teaching.upbringing.R;
 import com.teaching.upbringing.manager.UserInfo;
 import com.teaching.upbringing.modular.user.LoginActivity;
@@ -51,6 +52,7 @@ public class SettingActivity extends BaseMVPActivity<SettingContract.IPresenter>
     @Override
     protected void init() {
         setTitleText("设置");
+        StatusBarUtil.setStatusBarColor(this,R.color.white);
         mSwitchRelease.setChecked(false);
         mSwitchRelease.setOnCheckedChangeListener((compoundButton, b) -> {
             if(b)

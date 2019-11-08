@@ -37,15 +37,7 @@ public class CommonAddPresenter extends Presenter<CommonAddContract.IView> imple
                     @Override
                     public void onNext(List<CommonAddEntity> commonAddEntities) {
                         addEntities = commonAddEntities;
-                        commonAddEntities.add(new CommonAddEntity("就在海的那边山的那边啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦", true,"广州第一人民医院"));
-                        commonAddEntities.add(new CommonAddEntity("就是那个公园对对对对对对对对对对对对对都丢地对对对", false,"沙美公园"));
-                        commonAddEntities.add(new CommonAddEntity("hhhahha", false,"hhhahhaha"));
                         getView().setAdapter(commonAddEntities);
-                        /*if(commonAddEntities.size() == 0) {
-                            getView().setEmptyView(true);
-                        }else {
-                            getView().setEmptyView(false);
-                        }*/
                         getView().refreshFinish();
                     }
 

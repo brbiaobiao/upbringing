@@ -38,6 +38,7 @@ dependencies {
 
     api files('libs/android-logging-log4j-1.0.3.jar')
     api files('libs/log4j-1.2.17.jar')
+    api files('libs/AMap2DMap_5.2.0_AMapSearch_5.7.0_AMapLocation_3.7.0_20171229.jar')
 
     api 'androidx.appcompat:appcompat:1.0.2'
     api 'androidx.recyclerview:recyclerview:1.0.2'
@@ -81,7 +82,7 @@ dependencies {
     //图片选择
     api libsConfig.takePhoto
     //定位
-    api libsConfig.location
+//    api libsConfig.location
     //混淆
     api "com.blankj:free-proguard:1.0.1"
 

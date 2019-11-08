@@ -1,5 +1,6 @@
 package com.teaching.upbringing.modular.address;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
@@ -7,12 +8,13 @@ import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemChildClickListener;
+import com.outsourcing.library.utils.OnResultUtil;
+import com.outsourcing.library.utils.StatusBarUtil;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.teaching.upbringing.R;
 import com.teaching.upbringing.adapter.CommonAddAdapter;
 import com.teaching.upbringing.entity.CommonAddEntity;
 import com.teaching.upbringing.mvpBase.BaseMVPActivity;
-import com.teaching.upbringing.utils.Navigation;
 
 import java.util.List;
 
@@ -54,6 +56,7 @@ public class CommonAddActivity extends BaseMVPActivity<CommonAddContract.IPresen
     @Override
     protected void init() {
         setTitleText("常用地址");
+        StatusBarUtil.setStatusBarColor(this,R.color.white);
         mRvCommonAdd.setLayoutManager(new LinearLayoutManager(this));
         mSmartRel.autoRefresh();
         mSmartRel.setOnRefreshListener(refreshLayout -> getPresenter().getAddressList());
@@ -76,9 +79,12 @@ public class CommonAddActivity extends BaseMVPActivity<CommonAddContract.IPresen
         });
     }
 
+    @SuppressLint("CheckResult")
     @OnClick(R.id.add_address)
     public void onViewClicked() {
-        Navigation.getInstance(this).toAddAddress();
+        new OnResultUtil(this).call(AddAddressActivity.getCallIntent(this))
+                .filter(OnResultUtil::isOk)
+                .subscribe(activityResultInfo -> getPresenter().getAddressList());
     }
 
     @Override

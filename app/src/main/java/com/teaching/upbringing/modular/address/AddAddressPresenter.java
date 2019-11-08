@@ -4,8 +4,9 @@ import com.outsourcing.library.mvp.observer.NextObserver;
 import com.teaching.upbringing.entity.CommonAddEntity;
 import com.teaching.upbringing.model.AddressModel;
 import com.teaching.upbringing.presenter.Presenter;
+import com.teaching.upbringing.utils.StringUtils;
+import com.teaching.upbringing.utils.ToastUtil;
 
-import java.util.List;
 import java.util.Map;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -30,13 +31,25 @@ public class AddAddressPresenter extends Presenter<AddAddressContract.IView> imp
 
     @Override
     public void addAddress(Map<String, Object> map) {
+        if(StringUtils.isEmpty(getView().getLoaction())) {
+            ToastUtil.showFault("请选择地址");
+            return;
+        }
+        if(StringUtils.isEmpty(getView().getHouseName())) {
+            ToastUtil.showFault("请填写门牌号");
+            return;
+        }
+        map.put("houseNumber",getView().getHouseName());
+        getView().showProgress();
         addressModel.addAddress(map)
                 .observeOn(AndroidSchedulers.mainThread())
                 .compose(bindLife())
-                .subscribe(new NextObserver<List<CommonAddEntity>>() {
+                .doOnError(throwable -> getView().hideProgress())
+                .subscribe(new NextObserver<CommonAddEntity>() {
                     @Override
-                    public void onNext(List<CommonAddEntity> commonAddEntities) {
-
+                    public void onNext(CommonAddEntity commonAddEntity) {
+                        getView().hideProgress();
+                        getView().afterAdd();
                     }
                 });
     }

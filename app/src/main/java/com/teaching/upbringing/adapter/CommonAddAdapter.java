@@ -27,7 +27,7 @@ public class CommonAddAdapter extends BaseQuickAdapter<CommonAddEntity, BaseView
 
     @Override
     protected void convert(BaseViewHolder helper, CommonAddEntity item) {
-        helper.setText(R.id.tv_add_title, item.getLocation())
+        helper.setText(R.id.tv_add_title, item.getName())
                 .setText(R.id.tv_add_detail, item.getName()+item.getHouseNumber())
         .addOnClickListener(R.id.tvDelete_edittask_item)
         .addOnClickListener(R.id.tv_update);

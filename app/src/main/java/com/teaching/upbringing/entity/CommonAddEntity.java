@@ -8,7 +8,7 @@ package com.teaching.upbringing.entity;
 public class CommonAddEntity {
 
     private String houseNumber;
-    private int id;
+    private long id;
     private boolean ifDefault;
     private String location;
     private String name;
@@ -28,11 +28,11 @@ public class CommonAddEntity {
         return this;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public CommonAddEntity setId(int id) {
+    public CommonAddEntity setId(long id) {
         this.id = id;
         return this;
     }
