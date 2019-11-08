@@ -19,11 +19,10 @@ import java.util.List;
 import androidx.recyclerview.widget.RecyclerView;
 
 /**
- * 搜索地址的适配器
- * Created by XiaoFu on 2018-01-11 15:00.
- * 注释：
- */
-
+ * @author bb
+ * @time 2019/11/7 17:20
+ * @des ${搜索地址的适配器}
+ **/
 public class SearchAddressAdapter extends RecyclerView.Adapter<SearchAddressAdapter.MyHolder> {
     private Context mContext;
     private List<PoiItem> mList;

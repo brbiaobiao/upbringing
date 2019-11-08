@@ -8,9 +8,10 @@ import com.amap.api.services.core.PoiItem;
 import com.amap.api.services.geocoder.RegeocodeResult;
 
 /**
- * Created by XiaoFu on 2017-08-03 11:35.
- * 注释：数据转换类
- */
+ * @author bb
+ * @time 2019/11/7 17:20
+ * @des ${数据转换类}
+ **/
 
 public class DataConversionUtils {
 

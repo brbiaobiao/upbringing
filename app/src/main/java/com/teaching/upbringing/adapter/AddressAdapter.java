@@ -16,9 +16,10 @@ import java.util.List;
 import androidx.recyclerview.widget.RecyclerView;
 
 /**
- * 注释：
- */
-
+ * @author bb
+ * @time 2019/11/7 17:20
+ * @des ${TODO}
+ **/
 public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.MyHolder> {
     private Context mContext;
     private List<PoiItem> mList;
