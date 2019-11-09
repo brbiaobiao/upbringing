@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+    <files-path
+        name="cardealer"
+        path="."/>
+
+    <external-path
+        name="cardealer_ex"
+        path="."/>
+
+    <external-files-path
+        name="cardealer_file_ex"
+        path="."/>
+</paths>

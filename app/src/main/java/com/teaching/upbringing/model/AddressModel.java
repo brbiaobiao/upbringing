@@ -25,7 +25,7 @@ public class AddressModel extends ApiModel<AddressApi> {
         return getApi().getAddressList().compose(RxUtil.httpAsyn());
     }
 
-    public Observable<List<CommonAddEntity>> deleteAddress(String id){
+    public Observable<CommonAddEntity> deleteAddress(String id){
         Map<String,String> map = new HashMap<>();
         map.put("id",id);
         return getApi().deleteAddress(map).compose(RxUtil.httpAsyn());

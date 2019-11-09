@@ -56,9 +56,10 @@ public class CommonAddPresenter extends Presenter<CommonAddContract.IView> imple
                 .observeOn(AndroidSchedulers.mainThread())
                 .compose(bindLife())
                 .doOnError(throwable -> getView().hideProgress())
-                .subscribe(new NextObserver<List<CommonAddEntity>>() {
+                .subscribe(new NextObserver<CommonAddEntity>() {
                     @Override
-                    public void onNext(List<CommonAddEntity> commonAddEntities) {
+                    public void onNext(CommonAddEntity commonAddEntity) {
+                        getView().hideProgress();
                         getView().removeData(position);
                     }
                 });

@@ -10,6 +10,7 @@ import com.chad.library.adapter.base.BaseViewHolder;
 import com.teaching.upbringing.R;
 import com.teaching.upbringing.entity.CommonAddEntity;
 import com.teaching.upbringing.utils.ScreenUtils;
+import com.teaching.upbringing.widget.SlidingButtonView;
 
 import java.util.List;
 
@@ -45,8 +46,17 @@ public class CommonAddAdapter extends BaseQuickAdapter<CommonAddEntity, BaseView
 
     public void removeData(int position){
         getData().remove(position);
+//        resetDeleteBtn();
         notifyItemRemoved(position);
         notifyDataSetChanged();
     }
 
+    private void resetDeleteBtn() {
+        for (int i = 0; i < getData().size(); i++) {
+            SlidingButtonView buttonView = (SlidingButtonView) getViewByPosition(i, R.id.rootView);
+            if (buttonView != null) {
+                buttonView.hideDelete();
+            }
+        }
+    }
 }

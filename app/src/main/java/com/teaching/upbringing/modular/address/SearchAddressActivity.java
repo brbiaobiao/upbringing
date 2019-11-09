@@ -2,10 +2,14 @@ package com.teaching.upbringing.modular.address;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.amap.api.location.AMapLocation;
 import com.amap.api.services.core.LatLonPoint;
@@ -28,7 +32,7 @@ import java.util.List;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
-import butterknife.OnClick;
+import butterknife.ButterKnife;
 
 /**
  * @author bb
@@ -40,6 +44,8 @@ public class SearchAddressActivity extends BaseMVPActivity<SearchAddressContract
     EditText mEtSearch;
     @BindView(R.id.rv_search_address)
     RecyclerView mRvSearchAddress;
+    @BindView(R.id.actionbar_back)
+    TextView mActionbarBack;
 
     private List<PoiItem> mList;
     private SearchAddressAdapter mSearchAddressAdapter;
@@ -64,6 +70,11 @@ public class SearchAddressActivity extends BaseMVPActivity<SearchAddressContract
     protected void init() {
         hideHeadBar();
         StatusBarUtil.setStatusBarColor(this, R.color.white);
+        mEtSearch.requestFocus();
+        mEtSearch.setFocusable(true);
+        mEtSearch.setFocusableInTouchMode(true);
+        Window window = getWindow();
+        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
         initData();
         initListener();
     }
@@ -140,6 +151,7 @@ public class SearchAddressActivity extends BaseMVPActivity<SearchAddressContract
 
             }
         };
+        mActionbarBack.setOnClickListener(view -> finish());
     }
 
     /**
@@ -182,9 +194,10 @@ public class SearchAddressActivity extends BaseMVPActivity<SearchAddressContract
         }
     }
 
-
-    @OnClick(R.id.actionbar_back)
-    public void onViewClicked() {
-        finish();
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
     }
 }
