@@ -42,6 +42,7 @@ import com.outsourcing.library.utils.ShapeUtils;
 import com.outsourcing.library.utils.StatusBarUtil;
 import com.teaching.upbringing.R;
 import com.teaching.upbringing.adapter.AddressAdapter;
+import com.teaching.upbringing.manager.UniqueSignManaga;
 import com.teaching.upbringing.mvpBase.BaseMVPActivity;
 import com.teaching.upbringing.utils.ToastUtil;
 import com.teaching.upbringing.utils.address.DataConversionUtils;
@@ -69,6 +70,8 @@ import butterknife.OnClick;
 public class SelectAddressActivity extends BaseMVPActivity<SelectAddressContract.IPresenter> implements SelectAddressContract.IView {
 
     public static final String SELECT_ADDRESS_POITEM = "select_address_poitem";
+    public static final String FOR_UPDATE_LOCATION = "for_update_location";
+
 
     @BindView(R.id.tv_city)
     TextView mTvCity;
@@ -98,7 +101,7 @@ public class SelectAddressActivity extends BaseMVPActivity<SelectAddressContract
     private boolean isSearchData = false;//是否搜索地址数据
     private int searchAllPageNum;//Poi搜索最大页数，可应用于上拉加载更多
     private int searchNowPageNum;//当前poi搜索页数
-    private float zoom = 18;//地图缩放级别
+    private float zoom = 20;//地图缩放级别
 
     private AMapLocationClient locationClient = null;
     private AMapLocationClientOption locationOption = new AMapLocationClientOption();
@@ -117,8 +120,9 @@ public class SelectAddressActivity extends BaseMVPActivity<SelectAddressContract
     private String[] permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CALL_PHONE,
             Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_LOCATION_EXTRA_COMMANDS};
 
-    public static Intent goCallIntent(Context context) {
+    public static Intent goCallIntent(Context context,String location) {
         Intent intent = new Intent(context, SelectAddressActivity.class);
+        intent.putExtra(FOR_UPDATE_LOCATION,location);
         return intent;
     }
 
@@ -159,6 +163,18 @@ public class SelectAddressActivity extends BaseMVPActivity<SelectAddressContract
         StatusBarUtil.setStatusBarColor(this, R.color.white);
         initListener();
         initPermission();
+
+        /*Intent intent = getIntent();
+        String location = intent.getStringExtra(FOR_UPDATE_LOCATION);
+        if(StringUtils.isEmpty(location)) {
+            return;
+        }
+        String[] split = location.split(",");
+        LatLonPoint latLonPoint = new LatLonPoint(Double.valueOf(split[0]),Double.valueOf(split[1]));
+        isSearchData = false;
+        doSearchQuery(true, "", "", latLonPoint);
+        moveMapCamera(latLonPoint.getLatitude(), latLonPoint.getLongitude());*/
+
     }
 
     private void initData(Bundle savedInstanceState) {
@@ -362,6 +378,7 @@ public class SelectAddressActivity extends BaseMVPActivity<SelectAddressContract
      */
     private void doWhenLocationSucess() {
         isSearchData = false;
+        mTvCity.setText(location.getCity());
         userSelectPoiItem = DataConversionUtils.changeToPoiItem(location);
         doSearchQuery(true, "", location.getCity(), new LatLonPoint(location.getLatitude(), location.getLongitude()));
         moveMapCamera(location.getLatitude(), location.getLongitude());
@@ -606,6 +623,12 @@ public class SelectAddressActivity extends BaseMVPActivity<SelectAddressContract
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_city:
+                new OnResultUtil(this).call(LocationAddrActivity.getCallIntent(this))
+                        .filter(info->OnResultUtil.isOk(info))
+                        .subscribe(activityResultInfo -> {
+                            String city_name = activityResultInfo.getData().getStringExtra(UniqueSignManaga.CITY_NAME);
+                            mTvCity.setText(city_name);
+                        });
                 break;
             case R.id.iv_location:
                 //                mIvLocation.setImageResource(R.mipmap.icon_location_gps);
@@ -619,7 +642,7 @@ public class SelectAddressActivity extends BaseMVPActivity<SelectAddressContract
                 }
                 break;
             case R.id.tv_area_name:
-                new OnResultUtil(this).call(SearchAddressActivity.getCallIntent(this))
+                new OnResultUtil(this).call(SearchAddressActivity.getCallIntent(this,mTvCity.getText().toString()))
                         .filter(info->OnResultUtil.isOk(info))
                         .subscribe(activityResultInfo -> {
                             try {

@@ -28,4 +28,8 @@ public interface AddressApi {
     Observable<RxHttpResponse<CommonAddEntity>> addAddress(@Body Map<String,Object> param);
 
 
+    @POST("address/update")
+    Observable<RxHttpResponse<CommonAddEntity>> updateAddress(@Body Map<String,Object> param);
+
+
 }

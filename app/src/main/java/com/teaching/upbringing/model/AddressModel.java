@@ -34,4 +34,8 @@ public class AddressModel extends ApiModel<AddressApi> {
     public Observable<CommonAddEntity> addAddress(Map<String,Object> map){
         return getApi().addAddress(map).compose(RxUtil.httpAsyn());
     }
+
+    public Observable<CommonAddEntity> updateAddress(Map<String,Object> map){
+        return getApi().updateAddress(map).compose(RxUtil.httpAsyn());
+    }
 }

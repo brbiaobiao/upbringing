@@ -44,8 +44,8 @@ public class SearchAddressActivity extends BaseMVPActivity<SearchAddressContract
     EditText mEtSearch;
     @BindView(R.id.rv_search_address)
     RecyclerView mRvSearchAddress;
-    @BindView(R.id.actionbar_back)
-    TextView mActionbarBack;
+    @BindView(R.id.tv_back)
+    TextView mTvBack;
 
     private List<PoiItem> mList;
     private SearchAddressAdapter mSearchAddressAdapter;
@@ -55,9 +55,11 @@ public class SearchAddressActivity extends BaseMVPActivity<SearchAddressContract
     private PoiSearch.OnPoiSearchListener mOnPoiSearchListener;
     private OnItemClickLisenter mOnItemClickLisenter;
     public AMapLocation location;
+    private String city_key;
 
-    public static Intent getCallIntent(Context context) {
+    public static Intent getCallIntent(Context context,String city_key) {
         Intent intent = new Intent(context, SearchAddressActivity.class);
+        intent.putExtra("city_key",city_key);
         return intent;
     }
 
@@ -75,6 +77,7 @@ public class SearchAddressActivity extends BaseMVPActivity<SearchAddressContract
         mEtSearch.setFocusableInTouchMode(true);
         Window window = getWindow();
         window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
+        city_key = getIntent().getStringExtra("city_key");
         initData();
         initListener();
     }
@@ -106,9 +109,9 @@ public class SearchAddressActivity extends BaseMVPActivity<SearchAddressContract
                         mSearchAddressAdapter.setList(mList, "");
                     } else {
                         if (null != location) {
-                            doSearchQuery(editable.toString(), location.getCity(), new LatLonPoint(location.getLatitude(), location.getLongitude()));
+                            doSearchQuery(editable.toString(), city_key, new LatLonPoint(location.getLatitude(), location.getLongitude()));
                         } else {
-                            doSearchQuery(editable.toString(), "", null);
+                            doSearchQuery(editable.toString(), city_key, null);
                         }
                     }
                 }
@@ -151,7 +154,7 @@ public class SearchAddressActivity extends BaseMVPActivity<SearchAddressContract
 
             }
         };
-        mActionbarBack.setOnClickListener(view -> finish());
+        mTvBack.setOnClickListener(view -> finish());
     }
 
     /**

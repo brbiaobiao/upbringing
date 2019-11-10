@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <TextView
+        android:id="@+id/tv_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/qb_px_15"
+        android:drawableLeft="@mipmap/icon_close_btn"
+        android:paddingLeft ="@dimen/qb_px_15"
+        android:paddingRight="@dimen/qb_px_15"
+        android:layout_marginTop="10dp"
+        android:paddingTop="5dp"/>
+
+    <LinearLayout
+        android:id="@+id/ll_search"
+        android:layout_width="match_parent"
+        android:layout_toRightOf="@id/tv_back"
+        android:background="@drawable/shape_search_bg"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_height="35dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:src="@mipmap/search"/>
+
+        <EditText
+            android:id="@+id/et_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="4dp"
+            android:background="@null"
+            android:paddingRight="15dp"
+            android:hint="输入搜索"
+            android:textColor="@color/color_3A3A3A"
+            android:textSize="14sp"/>
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_city"
+        android:layout_width="match_parent"
+        android:layout_below="@id/ll_search"
+        android:visibility="gone"
+        tools:visibility="visible"
+        android:layout_height="wrap_content"/>
+
+    <ScrollView
+        android:id="@+id/sl_location_city"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/ll_search">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_location_at_now"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="当前定位"
+                android:textSize="14sp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="25dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:textColor="@color/color_9A9A9A"/>
+
+            <ImageView
+                android:id="@+id/iv_location"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:src="@mipmap/icon_location"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_location_at_now"/>
+
+            <TextView
+                android:id="@+id/tvLocation_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="定位中"
+                android:layout_marginLeft="5dp"
+                app:layout_constraintTop_toTopOf="@id/iv_location"
+                app:layout_constraintBottom_toBottomOf="@id/iv_location"
+                app:layout_constraintLeft_toRightOf="@id/iv_location"
+                android:textColor="@color/color_1A1A1A"
+                android:textSize="16sp"/>
+
+            <View
+                android:id="@+id/line1"
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:layout_marginTop="15dp"
+                app:layout_constraintTop_toBottomOf="@id/tvLocation_title"
+                android:background="@color/bgGray"/>
+
+            <TextView
+                android:id="@+id/tv_location_at_now_two"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="当前定位"
+                android:textSize="14sp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintTop_toBottomOf="@id/line1"
+                app:layout_constraintStart_toStartOf="parent"
+                android:textColor="@color/color_9A9A9A"/>
+
+            <ImageView
+                android:id="@+id/iv_location_two"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:src="@mipmap/icon_location"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_location_at_now_two"/>
+
+            <TextView
+                android:id="@+id/tvLocation_title_two"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="定位中"
+                android:layout_marginLeft="5dp"
+                app:layout_constraintTop_toTopOf="@id/iv_location_two"
+                app:layout_constraintBottom_toBottomOf="@id/iv_location_two"
+                app:layout_constraintLeft_toRightOf="@id/iv_location_two"
+                android:textColor="@color/color_1A1A1A"
+                android:textSize="16sp"/>
+
+            <CheckBox
+                android:id="@+id/iv_switch_area"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tvLocation_title_two"
+                app:layout_constraintBottom_toBottomOf="@id/tvLocation_title_two"
+                android:button="@drawable/selector_up_down_triangle"
+                />
+
+            <TextView
+                android:id="@+id/switch_area"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="切换县区"
+                app:layout_constraintTop_toTopOf="@id/tvLocation_title_two"
+                app:layout_constraintBottom_toBottomOf="@id/tvLocation_title_two"
+                app:layout_constraintRight_toLeftOf="@id/iv_switch_area"
+                android:textColor="@color/color_9A9A9A"
+                android:textSize="14dp"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_area"
+                app:layout_constraintTop_toBottomOf="@id/tvLocation_title_two"
+                android:layout_margin="15dp"
+                android:visibility="gone"
+                tools:visibility="visible"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

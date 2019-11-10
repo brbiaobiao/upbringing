@@ -1,11 +1,13 @@
 package com.teaching.upbringing.entity;
 
+import java.io.Serializable;
+
 /**
  * @author bb
  * @time 2019/11/6 16:20
  * @des ${TODO}
  **/
-public class CommonAddEntity {
+public class CommonAddEntity implements Serializable {
 
     private String houseNumber;
     private long id;

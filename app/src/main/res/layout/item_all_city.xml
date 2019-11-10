@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white">
+
+
+    <TextView
+        android:id="@+id/title_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#EDEDED"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/qb_px_20"
+        android:text="未收录"
+        android:paddingTop="7dp"
+        android:paddingBottom="7dp"
+        android:paddingStart="15dp"
+        android:textColor="@color/color_9A9A9A"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="13sp" />
+
+    <TextView
+        android:id="@+id/text_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/qb_px_10"
+        android:padding="15dp"
+        android:textColor="@color/color_1A1A1A"
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@id/title_tv"
+        tools:text="112323456" />
+
+    <View style="@style/setting_divider"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_tv"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -30,7 +30,7 @@ public class AddAddressPresenter extends Presenter<AddAddressContract.IView> imp
     }
 
     @Override
-    public void addAddress(Map<String, Object> map) {
+    public void addOrUpdataAddress(boolean isNew,Map<String, Object> map) {
         if(StringUtils.isEmpty(getView().getLoaction())) {
             ToastUtil.showFault("请选择地址");
             return;
@@ -39,18 +39,32 @@ public class AddAddressPresenter extends Presenter<AddAddressContract.IView> imp
             ToastUtil.showFault("请填写门牌号");
             return;
         }
-        map.put("houseNumber",getView().getHouseName());
         getView().showProgress();
-        addressModel.addAddress(map)
-                .observeOn(AndroidSchedulers.mainThread())
-                .compose(bindLife())
-                .doOnError(throwable -> getView().hideProgress())
-                .subscribe(new NextObserver<CommonAddEntity>() {
-                    @Override
-                    public void onNext(CommonAddEntity commonAddEntity) {
-                        getView().hideProgress();
-                        getView().afterAdd();
-                    }
-                });
+        if(isNew) {
+            addressModel.addAddress(map)
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .compose(bindLife())
+                    .doOnError(throwable -> getView().hideProgress())
+                    .subscribe(new NextObserver<CommonAddEntity>() {
+                        @Override
+                        public void onNext(CommonAddEntity commonAddEntity) {
+                            getView().hideProgress();
+                            getView().afterAdd();
+                        }
+                    });
+        }else {
+            addressModel.updateAddress(map)
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .compose(bindLife())
+                    .doOnError(throwable -> getView().hideProgress())
+                    .subscribe(new NextObserver<CommonAddEntity>() {
+                        @Override
+                        public void onNext(CommonAddEntity commonAddEntity) {
+                            getView().hideProgress();
+                            getView().afterAdd();
+                        }
+                    });
+        }
+
     }
 }

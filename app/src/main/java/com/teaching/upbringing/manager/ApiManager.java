@@ -8,6 +8,7 @@ import com.teaching.upbringing.api.LoginApi;
 import com.teaching.upbringing.api.MainApi;
 import com.teaching.upbringing.api.PasswordLoginApi;
 import com.teaching.upbringing.api.PersonInforApi;
+import com.teaching.upbringing.api.RegionApi;
 import com.teaching.upbringing.api.RegisterApi;
 import com.teaching.upbringing.api.SettingApi;
 
@@ -43,6 +44,8 @@ public class ApiManager {
     }
 
     public static AddressApi addressApi(){return AppHttpClient.create(AddressApi.class);}
+
+    public static RegionApi regionApi(){return AppHttpClient.create(RegionApi.class);}
 
 
 }

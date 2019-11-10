@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import com.outsourcing.library.mvp.observer.NextObserver;
 import com.outsourcing.library.mvp.rxbase.RxLife;
-import com.outsourcing.library.utils.StatusBarUtil;
 import com.teaching.upbringing.R;
 import com.teaching.upbringing.entity.PersonInforEntity;
 import com.teaching.upbringing.manager.UserInfo;
@@ -89,7 +88,6 @@ public class PersonlFragment extends BaseMVPFragment<PersonlContract.Ipresenter>
                         mTvSign.setText("简介");
                     }
                 });
-        StatusBarUtil.setStatusBarColor(getActivity(),R.color.color_FD8440);
     }
 
     @Override

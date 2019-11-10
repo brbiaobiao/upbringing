@@ -5,6 +5,7 @@ import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 
+import com.teaching.upbringing.entity.CommonAddEntity;
 import com.teaching.upbringing.modular.address.AddAddressActivity;
 import com.teaching.upbringing.modular.address.CommonAddActivity;
 import com.teaching.upbringing.modular.user.LoginActivity;
@@ -67,8 +68,8 @@ public class Navigation {
     /**
      * 添加地址页面
      */
-    public void toAddAddress(){
-        startActivity(AddAddressActivity.getCallIntent(mContext));
+    public void toAddAddress(CommonAddEntity commonAddEntity){
+        startActivity(AddAddressActivity.getCallIntent(mContext,commonAddEntity));
     }
 
 }

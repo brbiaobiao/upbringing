@@ -72,7 +72,11 @@ public class CommonAddActivity extends BaseMVPActivity<CommonAddContract.IPresen
                         getPresenter().deleteAddress(position);
                         break;
                     case R.id.tv_update:
-
+                        CommonAddEntity commonAddEntity = (CommonAddEntity) adapter.getData().get(position);
+                        new OnResultUtil(CommonAddActivity.this).call(AddAddressActivity.getCallIntent(CommonAddActivity.this,
+                                commonAddEntity))
+                                .filter(OnResultUtil::isOk)
+                                .subscribe(activityResultInfo -> getPresenter().getAddressList());
                         break;
                 }
             }
@@ -82,7 +86,7 @@ public class CommonAddActivity extends BaseMVPActivity<CommonAddContract.IPresen
     @SuppressLint("CheckResult")
     @OnClick(R.id.add_address)
     public void onViewClicked() {
-        new OnResultUtil(this).call(AddAddressActivity.getCallIntent(this))
+        new OnResultUtil(this).call(AddAddressActivity.getCallIntent(this,null))
                 .filter(OnResultUtil::isOk)
                 .subscribe(activityResultInfo -> getPresenter().getAddressList());
     }

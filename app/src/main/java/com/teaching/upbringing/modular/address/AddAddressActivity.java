@@ -13,6 +13,7 @@ import com.outsourcing.library.utils.KeyboardUtils;
 import com.outsourcing.library.utils.OnResultUtil;
 import com.outsourcing.library.utils.StatusBarUtil;
 import com.teaching.upbringing.R;
+import com.teaching.upbringing.entity.CommonAddEntity;
 import com.teaching.upbringing.mvpBase.BaseMVPActivity;
 
 import java.util.HashMap;
@@ -28,6 +29,8 @@ import butterknife.OnClick;
  **/
 public class AddAddressActivity extends BaseMVPActivity<AddAddressContract.IPresenter> implements AddAddressContract.IView {
 
+    public static final String COMMONADDENTITY = "commonAddEntity";
+
     @BindView(R.id.tv_location)
     TextView mTvLocation;
     @BindView(R.id.ll_location)
@@ -41,11 +44,17 @@ public class AddAddressActivity extends BaseMVPActivity<AddAddressContract.IPres
     @BindView(R.id.switch_defalut)
     Switch mSwitchDefalut;
 
+    private boolean isNew = true;
+
     private boolean is_defalt_add;
     private Map<String, Object> map = new HashMap<>();
+    private String title;
+    private String location;
+    private long id;
 
-    public static Intent getCallIntent(Context context) {
+    public static Intent getCallIntent(Context context, CommonAddEntity commonAddEntity) {
         Intent intent = new Intent(context, AddAddressActivity.class);
+        intent.putExtra(COMMONADDENTITY,commonAddEntity);
         return intent;
     }
 
@@ -68,8 +77,23 @@ public class AddAddressActivity extends BaseMVPActivity<AddAddressContract.IPres
             is_defalt_add = isChecked;//选中为true
             map.put("ifDefault", is_defalt_add);
         });
+        Intent intent = getIntent();
+        CommonAddEntity commonAddEntity  = (CommonAddEntity) intent.getSerializableExtra(COMMONADDENTITY);
+        isNew = commonAddEntity == null;
+        initData(commonAddEntity);
     }
 
+    private void initData(CommonAddEntity commonAddEntity){
+        if(commonAddEntity == null) {
+            return;
+        }
+        mTvLocation.setText(commonAddEntity.getName());
+        mEtHouseName.setText(commonAddEntity.getHouseNumber());
+        is_defalt_add = commonAddEntity.isIfDefault();
+        title = commonAddEntity.getName();
+        location = commonAddEntity.getLocation();
+        id = commonAddEntity.getId();
+    }
 
     @Override
     public void afterAdd() {
@@ -91,21 +115,25 @@ public class AddAddressActivity extends BaseMVPActivity<AddAddressContract.IPres
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ll_location:
-                new OnResultUtil(this).call(SelectAddressActivity.goCallIntent(this))
+                new OnResultUtil(this).call(SelectAddressActivity.goCallIntent(this,location))
                         .filter(info->OnResultUtil.isOk(info))
                         .subscribe(activityResultInfo -> {
                             PoiItem poiItem = activityResultInfo.getData().getParcelableExtra(SelectAddressActivity.SELECT_ADDRESS_POITEM);
-                            String title = poiItem.getTitle();
+                            title = poiItem.getTitle();
                             mTvLocation.setText(title);
 //                            "纬度：" + poiItem.getLatLonPoint().getLatitude() + "  " + "经度：" + poiItem.getLatLonPoint().getLongitude()
-                            String latitude = String.valueOf(poiItem.getLatLonPoint().getLatitude());
-                            String longitude = String.valueOf(poiItem.getLatLonPoint().getLongitude());
-                            map.put("name",title);
-                            map.put("location",longitude+","+latitude);
+                            location = poiItem.getLatLonPoint().getLatitude() +","+
+                                    poiItem.getLatLonPoint().getLongitude();
                         });
                 break;
             case R.id.tv_save:
-                getPresenter().addAddress(map);
+                map.put("name", title);
+                map.put("location", location);
+                map.put("houseNumber",getHouseName());
+                if(!isNew) {
+                    map.put("id",id);
+                }
+                getPresenter().addOrUpdataAddress(isNew,map);
                 KeyboardUtils.hideSoftInput(this);
                 break;
         }
