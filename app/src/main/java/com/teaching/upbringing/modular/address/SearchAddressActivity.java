@@ -2,7 +2,6 @@ package com.teaching.upbringing.modular.address;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -32,7 +31,6 @@ import java.util.List;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * @author bb
@@ -154,7 +152,13 @@ public class SearchAddressActivity extends BaseMVPActivity<SearchAddressContract
 
             }
         };
-        mTvBack.setOnClickListener(view -> finish());
+        mTvBack.setOnClickListener(view -> onBackPressed());
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        KeyboardUtils.hideSoftInput(SearchAddressActivity.this);
     }
 
     /**
@@ -195,12 +199,5 @@ public class SearchAddressActivity extends BaseMVPActivity<SearchAddressContract
         if (null != mPoiSearch) {
             mPoiSearch = null;
         }
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
     }
 }

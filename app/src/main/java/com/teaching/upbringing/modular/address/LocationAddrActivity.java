@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
-import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -20,6 +19,7 @@ import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
+import com.outsourcing.library.utils.KeyboardUtils;
 import com.outsourcing.library.utils.OnResultUtil;
 import com.outsourcing.library.utils.StatusBarUtil;
 import com.teaching.upbringing.R;
@@ -41,7 +41,6 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -75,6 +74,8 @@ public class LocationAddrActivity extends BaseMVPActivity<LocationAddrContract.I
     ConstraintLayout mClLocation;
     @BindView(R.id.rl_city)
     RelativeLayout mRlCity;
+    @BindView(R.id.letter_tv)
+    TextView mLetterTv;
 
 
     private AMapLocationClient locationClient = null;
@@ -113,7 +114,7 @@ public class LocationAddrActivity extends BaseMVPActivity<LocationAddrContract.I
         mTvLocationTitle.setText("定位中......");
         mLayoutManager = new LinearLayoutManager(this);
         mRvCity.setLayoutManager(new LinearLayoutManager(this));
-        mRvAllCity.setLayoutManager(new LinearLayoutManager(this));
+        mRvAllCity.setLayoutManager(mLayoutManager);
         adapter = new LocationAddrCityAdapter(null);
         mRvCity.setAdapter(adapter);
         allCityAdapter = new AllCityAdapter(null);
@@ -178,6 +179,7 @@ public class LocationAddrActivity extends BaseMVPActivity<LocationAddrContract.I
             Intent intent = new Intent();
             intent.putExtra(UniqueSignManaga.CITY_NAME, listAllRegionByNameEntity.getName());
             setResult(RESULT_OK, intent);
+            KeyboardUtils.hideSoftInput(LocationAddrActivity.this);
             finish();
         });
 
@@ -186,6 +188,7 @@ public class LocationAddrActivity extends BaseMVPActivity<LocationAddrContract.I
             Intent intent = new Intent();
             intent.putExtra(UniqueSignManaga.CITY_NAME, allCityEntity.getName());
             setResult(RESULT_OK, intent);
+            KeyboardUtils.hideSoftInput(LocationAddrActivity.this);
             finish();
         });
     }
@@ -325,7 +328,13 @@ public class LocationAddrActivity extends BaseMVPActivity<LocationAddrContract.I
         }
     }
 
-    @OnClick({R.id.et_search, R.id.tv_relocation})
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        KeyboardUtils.hideSoftInput(LocationAddrActivity.this);
+    }
+
+    @OnClick({R.id.et_search, R.id.tv_relocation, R.id.tv_back})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.et_search:
@@ -333,7 +342,7 @@ public class LocationAddrActivity extends BaseMVPActivity<LocationAddrContract.I
                 break;
             case R.id.tv_relocation:
                 new OnResultUtil(this)
-                        .call(ReLoactionAddrActivity.getCallIntent(this))
+                        .call(ReLocationAddrActivity.getCallIntent(this))
                         .filter(info -> OnResultUtil.isOk(info))
                         .subscribe(activityResultInfo -> {
                             Intent intent = new Intent();
@@ -341,6 +350,9 @@ public class LocationAddrActivity extends BaseMVPActivity<LocationAddrContract.I
                             setResult(RESULT_OK, intent);
                             finish();
                         });
+                break;
+            case R.id.tv_back:
+                onBackPressed();
                 break;
         }
     }
@@ -368,7 +380,7 @@ public class LocationAddrActivity extends BaseMVPActivity<LocationAddrContract.I
     }
 
     @Override
-    public void firstAdapterUpdate(int position) {
+    public void letterUpdate(int position) {
         if (mLayoutManager == null)
             return;
         mLayoutManager.scrollToPositionWithOffset(position, 0);
@@ -376,9 +388,10 @@ public class LocationAddrActivity extends BaseMVPActivity<LocationAddrContract.I
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
+    public void setLetterText(String letterText) {
+        mLetterTv.setVisibility(View.VISIBLE);
+        mLetterTv.setText(letterText);
+
+        mLetterTv.postDelayed(() -> mLetterTv.setVisibility(View.GONE), 1000);
     }
 }

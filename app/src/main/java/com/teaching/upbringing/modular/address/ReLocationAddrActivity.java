@@ -29,6 +29,7 @@ import com.teaching.upbringing.adapter.ReLocationAddrCityAdapter;
 import com.teaching.upbringing.entity.ListAllRegionByNameEntity;
 import com.teaching.upbringing.manager.UniqueSignManaga;
 import com.teaching.upbringing.mvpBase.BaseMVPActivity;
+import com.teaching.upbringing.utils.AnimationUtil;
 import com.teaching.upbringing.utils.ToastUtil;
 
 import java.util.List;
@@ -46,7 +47,7 @@ import butterknife.BindView;
  * @time 2019/11/10 5:30
  * @des
  **/
-public class ReLoactionAddrActivity extends BaseMVPActivity<ReLocationAddrContract.IPresenter> implements ReLocationAddrContract.IView {
+public class ReLocationAddrActivity extends BaseMVPActivity<ReLocationAddrContract.IPresenter> implements ReLocationAddrContract.IView {
     @BindView(R.id.tv_back)
     TextView mTvBack;
     @BindView(R.id.et_search)
@@ -93,7 +94,7 @@ public class ReLoactionAddrActivity extends BaseMVPActivity<ReLocationAddrContra
     private boolean isShowArea = false;
 
     public static Intent getCallIntent(Context context) {
-        Intent intent = new Intent(context, ReLoactionAddrActivity.class);
+        Intent intent = new Intent(context, ReLocationAddrActivity.class);
         return intent;
     }
 
@@ -178,7 +179,7 @@ public class ReLoactionAddrActivity extends BaseMVPActivity<ReLocationAddrContra
             Intent intent = new Intent();
             intent.putExtra(UniqueSignManaga.CITY_NAME, listAllRegionByNameEntity.getName());
             setResult(RESULT_OK, intent);
-            KeyboardUtils.hideSoftInput(ReLoactionAddrActivity.this);
+            KeyboardUtils.hideSoftInput(ReLocationAddrActivity.this);
             finish();
         });
 
@@ -189,6 +190,7 @@ public class ReLoactionAddrActivity extends BaseMVPActivity<ReLocationAddrContra
                     Intent intent = new Intent();
                     intent.putExtra(UniqueSignManaga.CITY_NAME, listAllRegionByNameEntity.getName());
                     setResult(RESULT_OK, intent);
+                    KeyboardUtils.hideSoftInput(ReLocationAddrActivity.this);
                     finish();
                     break;
             }
@@ -197,11 +199,19 @@ public class ReLoactionAddrActivity extends BaseMVPActivity<ReLocationAddrContra
         mIvSwitchArea.setOnCheckedChangeListener((compoundButton, b) -> {
             if(b) {
                 mRvArea.setVisibility(View.VISIBLE);
+                mRvArea.setAnimation(AnimationUtil.moveToViewLocation());
             }else {
                 mRvArea.setVisibility(View.GONE);
             }
         });
 
+        mTvBack.setOnClickListener(v -> onBackPressed());
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        KeyboardUtils.hideSoftInput(ReLocationAddrActivity.this);
     }
 
     private void initPermission() {

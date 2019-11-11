@@ -87,7 +87,8 @@ public class LocationAddrPresenter extends Presenter<LocationAddrContract.IView>
         if(allCityEntities == null) return;
         for(int i = 0; i < allCityEntities.size(); i++) {
             if(allCityEntities.get(i).getChar_new().equalsIgnoreCase(letter)) {
-                
+                getView().letterUpdate(i-1);
+                getView().setLetterText(letter);
             }
         }
     }

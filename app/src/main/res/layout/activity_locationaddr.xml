@@ -129,8 +129,18 @@
             android:layout_width="100px"
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
             android:layout_marginBottom="40dp"/>
+
+        <TextView
+            android:id="@+id/letter_tv"
+            android:layout_width="@dimen/qb_px_80"
+            android:layout_height="@dimen/qb_px_80"
+            android:layout_centerInParent="true"
+            android:background="@drawable/shape_cartype_tv"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="23sp"
+            android:visibility="invisible" />
 
     </RelativeLayout>
 

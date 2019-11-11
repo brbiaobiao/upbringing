@@ -18,7 +18,8 @@ public interface LocationAddrContract {
     interface IView extends IContextView, IProgressAble{
         void setCityAdapter(List<ListAllRegionByNameEntity> list);
         void setAllCityAdapter(List<AllCityEntity> allCityEntities);
-        void firstAdapterUpdate(int position);
+        void letterUpdate(int position);
+        void setLetterText(String letterText);
     }
 
     interface IPresenter extends IBasePresenter<IView>{

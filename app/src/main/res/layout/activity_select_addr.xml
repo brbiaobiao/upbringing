@@ -29,6 +29,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
                 android:text="定位中"
                 android:textColor="@color/color_3A3A3A"
                 android:textSize="14sp"/>
@@ -69,7 +72,7 @@
             app:layout_constraintTop_toBottomOf="@id/ll_city"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/poi_callback_cl">
@@ -83,9 +86,12 @@
             android:id="@+id/iv_location_center"
             android:layout_width="49dp"
             android:layout_height="49dp"
-            android:layout_centerInParent="true"
+            app:layout_constraintStart_toStartOf="@+id/map"
+            app:layout_constraintEnd_toEndOf="@+id/map"
+            app:layout_constraintTop_toTopOf="@+id/map"
+            app:layout_constraintBottom_toBottomOf="@id/map"
             android:src="@mipmap/icon_location_center"/>
-    </RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     <ImageView

@@ -184,7 +184,7 @@
             android:windowSoftInputMode="adjustPan|stateHidden"/>
 
         <activity
-            android:name=".modular.address.ReLoactionAddrActivity"
+            android:name=".modular.address.ReLocationAddrActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden"/>
