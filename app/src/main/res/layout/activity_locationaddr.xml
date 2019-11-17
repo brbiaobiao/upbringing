@@ -117,7 +117,7 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="15dp"
             android:button="@drawable/selector_up_down_triangle"
-            android:visibility="gone"
+            android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="@id/iv_location"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/iv_location" />
