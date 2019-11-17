@@ -4,8 +4,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.teaching.upbringing.R;
@@ -14,6 +17,7 @@ import com.teaching.upbringing.mvpBase.BaseMVPActivity;
 import com.teaching.upbringing.presenter.ForgetPresenter;
 import com.teaching.upbringing.utils.StringUtils;
 import com.teaching.upbringing.utils.TimeCountUtil;
+import com.teaching.upbringing.utils.ToastUtil;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -33,6 +37,9 @@ public class ForgetActivity extends BaseMVPActivity<ForgetContract.IPresenter> i
     EditText mEtPwdOne;//邀请码
     @BindView(R.id.et_password_two)
     EditText mEtPwdTwo;//邀请码
+    @BindView(R.id.iv_gone)
+    ImageView mIvGone;
+    private int show =0;
 
     public static void goInto(Context context){
         Intent intent = new Intent(context, ForgetActivity.class);
@@ -66,6 +73,7 @@ public class ForgetActivity extends BaseMVPActivity<ForgetContract.IPresenter> i
 
     @Override
     public void forgetPwd(CaptchaEntity entity) {
+        ToastUtil.showShort("修改成功");
         LoginActivity.goInto(this);
         finish();
     }
@@ -101,7 +109,7 @@ public class ForgetActivity extends BaseMVPActivity<ForgetContract.IPresenter> i
     }
 
 
-    @OnClick({R.id.tv_verification_code, R.id.tv_register})
+    @OnClick({R.id.tv_verification_code, R.id.tv_register,R.id.iv_gone})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_register:
@@ -109,6 +117,19 @@ public class ForgetActivity extends BaseMVPActivity<ForgetContract.IPresenter> i
                 break;
             case R.id.tv_verification_code:
                 getPresenter().forgetPwdCaptcha(mEtPhone.getText().toString().trim() + "");
+                break;
+            case R.id.iv_gone:
+                if(show==0){
+                    mIvGone.setImageResource(R.mipmap.icon_show);
+                    mEtPwdOne.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                    mEtPwdOne.setSelection(mEtPwdOne.getText().length());
+                    show=1;
+                }else {
+                    mIvGone.setImageResource(R.mipmap.icon_gone);
+                    mEtPwdOne.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    mEtPwdOne.setSelection(mEtPwdOne.getText().length());
+                    show=0;
+                }
                 break;
         }
     }

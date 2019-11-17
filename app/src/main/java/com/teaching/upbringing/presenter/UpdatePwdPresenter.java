@@ -1,9 +1,12 @@
 package com.teaching.upbringing.presenter;
 
 import com.outsourcing.library.mvp.observer.NextObserver;
+import com.teaching.upbringing.entity.CaptchaEntity;
 import com.teaching.upbringing.entity.UserInfoEntity;
 import com.teaching.upbringing.model.LoginModel;
 import com.teaching.upbringing.modular.user.UpdatePwdContract;
+import com.teaching.upbringing.utils.PhoneUtil;
+import com.teaching.upbringing.utils.ToastUtil;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 
@@ -27,7 +30,22 @@ public class UpdatePwdPresenter extends Presenter<UpdatePwdContract.IView> imple
 
     @Override
     public void verification(String phone) {
-
+        if(!PhoneUtil.checkPhone(phone)) {
+            return;
+        }
+        getView().showProgress();
+        loginModel.updatePwdCaptcha(phone)
+                .observeOn(AndroidSchedulers.mainThread())
+                .compose(bindLife())
+                .doOnError(throwable -> getView().hideProgress())
+                .subscribe(new NextObserver<CaptchaEntity>() {
+                    @Override
+                    public void onNext(CaptchaEntity testEntity) {
+                        getView().hideProgress();
+                        ToastUtil.showShort("获取验证码成功");
+                        getView().verification(testEntity);
+                    }
+                });
     }
 
     @Override
@@ -41,7 +59,7 @@ public class UpdatePwdPresenter extends Presenter<UpdatePwdContract.IView> imple
                     @Override
                     public void onNext(UserInfoEntity userInfoEntity) {
                         getView().hideProgress();
-                        getView().updatePwd();
+                        getView().updatePwd(userInfoEntity);
                     }
                 });
     }

@@ -51,6 +51,14 @@ public class AppApplication extends BaseApplication{
         init();
     }
 
+    public static synchronized AppApplication getInstance() {
+        if (mApp == null) {
+            mApp = new AppApplication();
+        }
+        return mApp;
+    }
+
+
     private void init() {
         mApp = this;
         AppManager.setApplication(this);

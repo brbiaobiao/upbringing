@@ -56,7 +56,6 @@ public class ForgetPresenter extends Presenter<ForgetContract.IView> implements 
                     @Override
                     public void onNext(CaptchaEntity testEntity) {
                         getView().hideProgress();
-                        ToastUtil.showShort("密码重置成功");
                         getView().forgetPwd(testEntity);
                     }
                 });

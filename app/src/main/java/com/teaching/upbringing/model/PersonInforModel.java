@@ -2,6 +2,7 @@ package com.teaching.upbringing.model;
 
 import com.outsourcing.library.utils.RxUtil;
 import com.teaching.upbringing.api.PersonInforApi;
+import com.teaching.upbringing.entity.OssEntity;
 import com.teaching.upbringing.entity.PersonInforEntity;
 import com.teaching.upbringing.entity.UserInfoEntity;
 import com.teaching.upbringing.manager.ApiManager;
@@ -53,5 +54,11 @@ public class PersonInforModel extends ApiModel<PersonInforApi> {
         Map<String,String> map = new HashMap<>();
         map.put("sex",sex+"");
         return getApi().setSex(map).compose(RxUtil.httpAsyn());
+    }
+
+    public Observable<OssEntity> setOss(int code) {
+        Map<String,String> map = new HashMap<>();
+        map.put("code",code+"");
+        return getApi().setOss(map).compose(RxUtil.httpAsyn());
     }
 }

@@ -22,6 +22,8 @@ import com.outsourcing.library.mvp.IProgressAble;
 import com.outsourcing.library.mvp.MvpActivity;
 import com.outsourcing.library.mvp.rxbase.IBasePresenter;
 import com.outsourcing.library.mvp.rxbase.IContextView;
+import com.outsourcing.library.utils.AppUtils;
+import com.outsourcing.library.utils.KeyboardUtils;
 import com.outsourcing.library.utils.StatusBarUtil;
 import com.outsourcing.library.widget.AbsTitleBar;
 import com.teaching.upbringing.R;
@@ -43,7 +45,7 @@ public abstract class BaseMVPActivity<T extends IBasePresenter> extends MvpActiv
     protected AbsTitleBar mTitleBar;
 
     private boolean isInited = false;
-    private FrameLayout mFlTitleBarContent;
+    public FrameLayout mFlTitleBarContent;
 
     /**
      * 返回视图ID
@@ -87,6 +89,7 @@ public abstract class BaseMVPActivity<T extends IBasePresenter> extends MvpActiv
             mTitleBar.setTitleLeftTextClick(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    KeyboardUtils.hideSoftInput(BaseMVPActivity.this);
                     onBackPressed();
                 }
             });

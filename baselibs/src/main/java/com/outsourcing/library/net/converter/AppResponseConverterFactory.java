@@ -1,8 +1,14 @@
 package com.outsourcing.library.net.converter;
 
+import android.util.Log;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.gson.Gson;
 import com.outsourcing.library.net.ExceptionHandler;
 import com.outsourcing.library.net.RxHttpResponse;
+import com.outsourcing.library.utils.AppUtils;
 
 import java.io.IOException;
 import java.lang.annotation.Annotation;

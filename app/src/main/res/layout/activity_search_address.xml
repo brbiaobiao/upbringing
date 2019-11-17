@@ -32,14 +32,13 @@
             android:src="@mipmap/search"/>
 
         <EditText
+            android:gravity="center_vertical"
             android:id="@+id/et_search"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="4dp"
-            android:layout_marginTop="4dp"
+            android:layout_height="match_parent"
             android:background="@null"
             android:paddingRight="15dp"
-            android:hint="输入搜索"
+            android:hint="输入状态"
             android:textColor="@color/color_3A3A3A"
             android:textSize="14sp"/>
 
