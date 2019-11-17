@@ -71,6 +71,11 @@ public class PersonlFragment extends BaseMVPFragment<PersonlContract.Ipresenter>
                 FragmentHelper.NONE,FragmentHelper.NONE);
         FragmentHelper.addFragment(getActivity(),R.id.fl_flatform,new FlatformFragment(),null,
                 FragmentHelper.NONE,FragmentHelper.NONE);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
         getPresenter().initData();
     }
 

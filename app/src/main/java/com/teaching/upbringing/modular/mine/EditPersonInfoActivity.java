@@ -106,7 +106,7 @@ public class EditPersonInfoActivity extends BaseMVPActivity<EditPersonlInfoContr
 
         StatusBarUtil.setStatusBarColor(this,R.color.white);
 
-        getPresenter().getInfo();
+        getPresenter().getInfo(true);
     }
 
     private void showSelectDialog() {
@@ -140,7 +140,7 @@ public class EditPersonInfoActivity extends BaseMVPActivity<EditPersonlInfoContr
                 onResultUtil.call(FillInformationActivity.getCallIntent(this, "昵称",
                         "请输入昵称", 1,mTvNickname.getText().toString().trim()))
                         .filter(info -> OnResultUtil.isOk(info))
-                        .subscribe(activityResultInfo -> getPresenter().getInfo());
+                        .subscribe(activityResultInfo -> getPresenter().getInfo(false));
                 break;
             case R.id.ll_sex:
                 showSelectDialog();
@@ -149,19 +149,19 @@ public class EditPersonInfoActivity extends BaseMVPActivity<EditPersonlInfoContr
                 onResultUtil.call(FillInformationActivity.getCallIntent(this, "简介",
                         "简单介绍下自己吧！", 2,mTvAccount.getText().toString().trim()))
                         .filter(info -> OnResultUtil.isOk(info))
-                        .subscribe(activityResultInfo -> getPresenter().getInfo());
+                        .subscribe(activityResultInfo -> getPresenter().getInfo(false));
                 break;
             case R.id.ll_title:
                 onResultUtil.call(FillInformationActivity.getCallIntent(this, "头衔",
                         "请输入您的头衔", 3,mTvTitle.getText().toString().trim()))
                         .filter(info -> OnResultUtil.isOk(info))
-                        .subscribe(activityResultInfo -> getPresenter().getInfo());
+                        .subscribe(activityResultInfo -> getPresenter().getInfo(false));
                 break;
             case R.id.ll_bright_point:
                 onResultUtil.call(FillInformationActivity.getCallIntent(this, "亮点",
                         "请填写您的亮点，让同学们跟喜欢您", 4,mTvBrightPoint.getText().toString().trim()))
                         .filter(info -> OnResultUtil.isOk(info))
-                        .subscribe(activityResultInfo -> getPresenter().getInfo());
+                        .subscribe(activityResultInfo -> getPresenter().getInfo(false));
                 break;
         }
     }

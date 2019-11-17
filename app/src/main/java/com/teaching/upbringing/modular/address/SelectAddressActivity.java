@@ -38,11 +38,14 @@ import com.amap.api.services.poisearch.PoiSearch;
 import com.outsourcing.library.utils.AppUtils;
 import com.outsourcing.library.utils.GsonUtil;
 import com.outsourcing.library.utils.OnResultUtil;
+import com.outsourcing.library.utils.PreferenceManagers;
 import com.outsourcing.library.utils.ShapeUtils;
 import com.outsourcing.library.utils.StatusBarUtil;
 import com.teaching.upbringing.R;
 import com.teaching.upbringing.adapter.AddressAdapter;
+import com.teaching.upbringing.entity.CityHitstory;
 import com.teaching.upbringing.manager.UniqueSignManaga;
+import com.teaching.upbringing.manager.UserInfo;
 import com.teaching.upbringing.mvpBase.BaseMVPActivity;
 import com.teaching.upbringing.utils.ToastUtil;
 import com.teaching.upbringing.utils.address.DataConversionUtils;
@@ -383,6 +386,19 @@ public class SelectAddressActivity extends BaseMVPActivity<SelectAddressContract
         doSearchQuery(true, "", location.getCity(), new LatLonPoint(location.getLatitude(), location.getLongitude()));
         moveMapCamera(location.getLatitude(), location.getLongitude());
         refleshLocationMark(location.getLatitude(), location.getLongitude());
+        List<CityHitstory> cityHitstoryList = PreferenceManagers.getListObject(UserInfo.CITY_HISTORY, CityHitstory.class);
+        List<CityHitstory> cityHitstories = new ArrayList<>();
+        /*for(int i = 0; i < cityHitstoryList.size(); i++) {
+            if(!cityHitstoryList.get(i).getCity_name().equals(location.getCity())) {
+                CityHitstory cityHitstory = new CityHitstory();
+                cityHitstory.setCity_name(location.getCity());
+                cityHitstories.add(cityHitstory);
+            }
+        }*/
+        CityHitstory cityHitstory = new CityHitstory();
+        cityHitstory.setCity_name(location.getCity());
+        cityHitstories.add(cityHitstory);
+        PreferenceManagers.saveValue(UserInfo.CITY_HISTORY, cityHitstories);
     }
 
     /**
@@ -511,7 +527,7 @@ public class SelectAddressActivity extends BaseMVPActivity<SelectAddressContract
         String tips = "定位错误码：" + error;
         switch (error) {
             case 4:
-                tips = "请检查设备网络是否通畅，检查通过接口设置的网络访问超时时间，建议采用默认的30秒。";
+                tips = "请检查设备网络是否通畅";
                 break;
             case 7:
                 tips = "请仔细检查key绑定的sha1值与apk签名sha1值是否对应。";

@@ -27,8 +27,10 @@ public class PersonInfoPersenter extends Presenter<PersonInforContract.IView> im
 
 
     @Override
-    public void initData() {
-        getView().showProgress();
+    public void initData(boolean needLoading) {
+        if(needLoading) {
+            getView().showProgress();
+        }
         personInforModel.getUserInfo()
                 .observeOn(AndroidSchedulers.mainThread())
                 .compose(bindLife())

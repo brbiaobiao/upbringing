@@ -25,8 +25,10 @@ public class EditPersonInfoPresenter extends Presenter<EditPersonlInfoContract.I
     }
 
     @Override
-    public void getInfo() {
-        getView().showProgress();
+    public void getInfo(boolean needLoading) {
+        if(needLoading) {
+            getView().showProgress();
+        }
         personInforModel.getUserInfo()
                 .observeOn(AndroidSchedulers.mainThread())
                 .compose(bindLife())
@@ -49,7 +51,7 @@ public class EditPersonInfoPresenter extends Presenter<EditPersonlInfoContract.I
                 .subscribe(new NextObserver<UserInfoEntity>() {
                     @Override
                     public void onNext(UserInfoEntity userInfoEntity) {
-                        getInfo();
+                        getInfo(false);
                     }
                 });
     }

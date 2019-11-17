@@ -20,6 +20,7 @@ public interface LocationAddrContract {
         void setAllCityAdapter(List<AllCityEntity> allCityEntities);
         void letterUpdate(int position);
         void setLetterText(String letterText);
+        void setReCityAdapter(List<ListAllRegionByNameEntity> list);
     }
 
     interface IPresenter extends IBasePresenter<IView>{
@@ -27,5 +28,6 @@ public interface LocationAddrContract {
         void getListAllRegion();
         void listAllRegionByNameLike(String key);
         void onLetterUpdate(String letter);
+        void listAreaRegionByCityCityName(String cityName);
     }
 }

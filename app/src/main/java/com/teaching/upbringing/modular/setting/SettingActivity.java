@@ -90,7 +90,6 @@ public class SettingActivity extends BaseMVPActivity<SettingContract.IPresenter>
     @Override
     public void loginOut() {
         PreferenceManagers.saveValue(UserInfo.USERID, "");
-        UserInfo.notifyUserInfoChange();
         LoginActivity.goInto(this);
         finish();
     }

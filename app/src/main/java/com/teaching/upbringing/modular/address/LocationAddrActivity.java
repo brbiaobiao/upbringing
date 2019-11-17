@@ -9,6 +9,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -19,16 +20,23 @@ import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
+import com.luck.picture.lib.decoration.GridSpacingItemDecoration;
 import com.outsourcing.library.utils.KeyboardUtils;
-import com.outsourcing.library.utils.OnResultUtil;
+import com.outsourcing.library.utils.PreferenceManagers;
 import com.outsourcing.library.utils.StatusBarUtil;
 import com.teaching.upbringing.R;
 import com.teaching.upbringing.adapter.AllCityAdapter;
+import com.teaching.upbringing.adapter.CityHistotyAdapter;
 import com.teaching.upbringing.adapter.LocationAddrCityAdapter;
+import com.teaching.upbringing.adapter.ReLocationAddrCityAdapter;
 import com.teaching.upbringing.entity.AllCityEntity;
+import com.teaching.upbringing.entity.CityHitstory;
 import com.teaching.upbringing.entity.ListAllRegionByNameEntity;
 import com.teaching.upbringing.manager.UniqueSignManaga;
+import com.teaching.upbringing.manager.UserInfo;
 import com.teaching.upbringing.mvpBase.BaseMVPActivity;
+import com.teaching.upbringing.utils.AnimationUtil;
+import com.teaching.upbringing.utils.StringUtils;
 import com.teaching.upbringing.utils.ToastUtil;
 import com.teaching.upbringing.widget.QuickIndex;
 
@@ -38,6 +46,7 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
@@ -76,6 +85,18 @@ public class LocationAddrActivity extends BaseMVPActivity<LocationAddrContract.I
     RelativeLayout mRlCity;
     @BindView(R.id.letter_tv)
     TextView mLetterTv;
+    @BindView(R.id.iv_switch_area)
+    CheckBox mIvSwitchArea;
+    @BindView(R.id.switch_area)
+    TextView mSwitchArea;
+    @BindView(R.id.rv_area)
+    RecyclerView mRvArea;
+    @BindView(R.id.line)
+    View mLine;
+    @BindView(R.id.tv_city_history)
+    TextView mTvCityHistory;
+    @BindView(R.id.rv_city_history)
+    RecyclerView mRvCityHistory;
 
 
     private AMapLocationClient locationClient = null;
@@ -89,8 +110,11 @@ public class LocationAddrActivity extends BaseMVPActivity<LocationAddrContract.I
 
     private LocationAddrCityAdapter adapter;
     private AllCityAdapter allCityAdapter;
-    private String adCode;
     private LinearLayoutManager mLayoutManager;
+
+    private ReLocationAddrCityAdapter reLocationAddrCityAdapter;
+    private CityHistotyAdapter cityHistotyAdapter;
+    private boolean switchB = false;
 
     public static Intent getCallIntent(Context context) {
         Intent intent = new Intent(context, LocationAddrActivity.class);
@@ -119,9 +143,31 @@ public class LocationAddrActivity extends BaseMVPActivity<LocationAddrContract.I
         mRvCity.setAdapter(adapter);
         allCityAdapter = new AllCityAdapter(null);
         mRvAllCity.setAdapter(allCityAdapter);
+        mRvArea.setLayoutManager(new GridLayoutManager(this, 3));
+        mRvArea.addItemDecoration(new GridSpacingItemDecoration(3, 20, false));
+        reLocationAddrCityAdapter = new ReLocationAddrCityAdapter(null);
+        mRvArea.setAdapter(reLocationAddrCityAdapter);
+//        showCityHistory();
         getPresenter().getListAllRegion();
         initListener();
         initPermission();
+    }
+
+    private void showCityHistory(){
+        List<CityHitstory> cityHitstoryList = PreferenceManagers.getListObject(UserInfo.CITY_HISTORY, CityHitstory.class);
+        if(cityHitstoryList == null || cityHitstoryList.size() == 0) {
+            mLine.setVisibility(View.GONE);
+            mTvCityHistory.setVisibility(View.GONE);
+            mRvCityHistory.setVisibility(View.GONE);
+        }else {
+            mLine.setVisibility(View.VISIBLE);
+            mTvCityHistory.setVisibility(View.VISIBLE);
+            mRvCityHistory.setVisibility(View.VISIBLE);
+        }
+        mRvCityHistory.setLayoutManager(new GridLayoutManager(this, 3));
+        mRvCityHistory.addItemDecoration(new GridSpacingItemDecoration(3, 20, false));
+        cityHistotyAdapter = new CityHistotyAdapter(cityHitstoryList);
+        mRvCityHistory.setAdapter(cityHistotyAdapter);
     }
 
     private void initListener() {
@@ -131,9 +177,11 @@ public class LocationAddrActivity extends BaseMVPActivity<LocationAddrContract.I
                 if (null != loc) {
                     stopLocation();
                     if (loc.getErrorCode() == 0) {//可在其中解析amapLocation获取相应内容。
+                        mTvRelocation.setVisibility(View.GONE);
                         location = loc;
                         doWhenLocationSucess();
                     } else {
+                        mTvRelocation.setVisibility(View.VISIBLE);
                         //定位失败时，可通过ErrCode（错误码）信息来确定失败的原因，errInfo是错误信息，详见错误码表。
                         showToastWithErrorInfo(loc.getErrorCode());
                         Log.e("AmapError", "location Error, ErrCode:"
@@ -190,6 +238,35 @@ public class LocationAddrActivity extends BaseMVPActivity<LocationAddrContract.I
             setResult(RESULT_OK, intent);
             KeyboardUtils.hideSoftInput(LocationAddrActivity.this);
             finish();
+        });
+        reLocationAddrCityAdapter.setOnItemChildClickListener((adapter, view, position) -> {
+            switch (view.getId()) {
+                case R.id.area_name:
+                    ListAllRegionByNameEntity listAllRegionByNameEntity = (ListAllRegionByNameEntity) adapter.getData().get(position);
+                    Intent intent = new Intent();
+                    intent.putExtra(UniqueSignManaga.CITY_NAME, listAllRegionByNameEntity.getName());
+                    setResult(RESULT_OK, intent);
+                    KeyboardUtils.hideSoftInput(LocationAddrActivity.this);
+                    finish();
+                    break;
+            }
+        });
+        /*cityHistotyAdapter.setOnItemChildClickListener((adapter,view,position)->{
+            CityHitstory cityHitstory = (CityHitstory) adapter.getData().get(position);
+            Intent intent = new Intent();
+            intent.putExtra(UniqueSignManaga.CITY_NAME, cityHitstory.getCity_name());
+            setResult(RESULT_OK, intent);
+            KeyboardUtils.hideSoftInput(LocationAddrActivity.this);
+            finish();
+        });*/
+        mIvSwitchArea.setOnCheckedChangeListener((compoundButton, b) -> {
+            switchB = b;
+            if (b) {
+                mRvArea.setVisibility(View.VISIBLE);
+                mRvArea.setAnimation(AnimationUtil.moveToViewLocation());
+            } else {
+                mRvArea.setVisibility(View.GONE);
+            }
         });
     }
 
@@ -270,15 +347,19 @@ public class LocationAddrActivity extends BaseMVPActivity<LocationAddrContract.I
      * 当定位成功需要做的事情
      */
     private void doWhenLocationSucess() {
-        mTvLocationTitle.setText(location.getCity());
-        adCode = location.getAdCode();
+        if (StringUtils.isEmpty(location.getDistrict())) {
+            mTvLocationTitle.setText(location.getCity());
+        } else {
+            mTvLocationTitle.setText(location.getCity() + location.getDistrict());
+        }
+        getPresenter().listAreaRegionByCityCityName(location.getCity());
     }
 
     private void showToastWithErrorInfo(int error) {
         String tips = "定位错误码：" + error;
         switch (error) {
             case 4:
-                tips = "请检查设备网络是否通畅，检查通过接口设置的网络访问超时时间，建议采用默认的30秒。";
+                tips = "请检查设备网络是否通畅";
                 break;
             case 7:
                 tips = "请仔细检查key绑定的sha1值与apk签名sha1值是否对应。";
@@ -334,25 +415,26 @@ public class LocationAddrActivity extends BaseMVPActivity<LocationAddrContract.I
         KeyboardUtils.hideSoftInput(LocationAddrActivity.this);
     }
 
-    @OnClick({R.id.et_search, R.id.tv_relocation, R.id.tv_back})
+    @OnClick({R.id.et_search, R.id.tv_relocation, R.id.tv_back, R.id.switch_area})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.et_search:
                 mRvCity.setVisibility(View.VISIBLE);
                 break;
             case R.id.tv_relocation:
-                new OnResultUtil(this)
-                        .call(ReLocationAddrActivity.getCallIntent(this))
-                        .filter(info -> OnResultUtil.isOk(info))
-                        .subscribe(activityResultInfo -> {
-                            Intent intent = new Intent();
-                            intent.putExtra(UniqueSignManaga.CITY_NAME, activityResultInfo.getData().getStringExtra(UniqueSignManaga.CITY_NAME));
-                            setResult(RESULT_OK, intent);
-                            finish();
-                        });
+                mTvLocationTitle.setText("定位中.....");
+                startLocation();
                 break;
             case R.id.tv_back:
                 onBackPressed();
+                break;
+            case R.id.switch_area:
+                if (switchB) {
+                    mRvArea.setVisibility(View.VISIBLE);
+                    mRvArea.setAnimation(AnimationUtil.moveToViewLocation());
+                } else {
+                    mRvArea.setVisibility(View.GONE);
+                }
                 break;
         }
     }
@@ -393,5 +475,22 @@ public class LocationAddrActivity extends BaseMVPActivity<LocationAddrContract.I
         mLetterTv.setText(letterText);
 
         mLetterTv.postDelayed(() -> mLetterTv.setVisibility(View.GONE), 1000);
+    }
+
+    @Override
+    public void setReCityAdapter(List<ListAllRegionByNameEntity> list) {
+        if (list == null || list.size() == 0) {
+            mIvSwitchArea.setVisibility(View.GONE);
+            mSwitchArea.setVisibility(View.GONE);
+        } else {
+            mIvSwitchArea.setVisibility(View.VISIBLE);
+            mSwitchArea.setVisibility(View.VISIBLE);
+        }
+        if (reLocationAddrCityAdapter == null) {
+            reLocationAddrCityAdapter = new ReLocationAddrCityAdapter(list);
+            mRvArea.setAdapter(reLocationAddrCityAdapter);
+        } else {
+            reLocationAddrCityAdapter.setNewData(list);
+        }
     }
 }

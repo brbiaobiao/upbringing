@@ -13,6 +13,7 @@
 
         <androidx.constraintlayout.widget.Group
             android:id="@+id/gp_teacher_id"
+            android:visibility="gone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:constraint_referenced_ids="iv_teacher_id,tv_teacher_id,ll_title,line_line,ll_bright_point,line_bright_point" />

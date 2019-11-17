@@ -19,7 +19,7 @@ public interface EditPersonlInfoContract {
     }
 
     interface Ipresenter extends IBasePresenter<IView> {
-        void getInfo();
+        void getInfo(boolean needLoading);
         void setSex(int sex);
         void saveUserImg(File file);
     }

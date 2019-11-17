@@ -95,14 +95,14 @@ public class PersonInfoActivity extends BaseMVPActivity<PersonInforContract.Ipre
                 .setTitleRightTextClick(v -> {
                     new OnResultUtil(this).call(EditPersonInfoActivity.goIntent(this))
                             .filter(info -> OnResultUtil.isOk(info))
-                            .subscribe(activityResultInfo -> getPresenter().initData());
+                            .subscribe(activityResultInfo -> getPresenter().initData(false));
 
                 });
         TextView titleRightText = getTitleRightText();
         GradientDrawable shape = ShapeUtils.createShape(-1, 26, -1, null, "#FD8440");
         titleRightText.setBackground(shape);
         StatusBarUtil.setStatusBarColor(this,R.color.white);
-        getPresenter().initData();
+        getPresenter().initData(true);
     }
 
     @Override
@@ -114,7 +114,7 @@ public class PersonInfoActivity extends BaseMVPActivity<PersonInforContract.Ipre
                 .subscribe(new NextObserver<UserInfo.UserInfoChangeEvent>() {
                     @Override
                     public void onNext(UserInfo.UserInfoChangeEvent userInfoChangeEvent) {
-                        getPresenter().initData();
+                        getPresenter().initData(false);
                     }
 
                     @Override

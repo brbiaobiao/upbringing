@@ -92,4 +92,18 @@ public class LocationAddrPresenter extends Presenter<LocationAddrContract.IView>
             }
         }
     }
+
+    @Override
+    public void listAreaRegionByCityCityName(String cityName) {
+        regionModel.listAreaRegionByCityName(cityName)
+                .observeOn(AndroidSchedulers.mainThread())
+                .compose(bindLife())
+                .doOnError(throwable -> getView().hideProgress())
+                .subscribe(new NextObserver<List<ListAllRegionByNameEntity>>() {
+                    @Override
+                    public void onNext(List<ListAllRegionByNameEntity> listAllRegionByNameEntities) {
+                        getView().setReCityAdapter(listAllRegionByNameEntities);
+                    }
+                });
+    }
 }

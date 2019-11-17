@@ -17,6 +17,6 @@ public interface PersonInforContract {
     }
 
     interface Ipresenter extends IBasePresenter<IView> {
-        void initData();
+        void initData(boolean needLoading);
     }
 }

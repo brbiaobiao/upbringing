@@ -286,7 +286,7 @@ public abstract class BaseMVPActivity<T extends IBasePresenter> extends MvpActiv
     @Override
     public void showProgress() {
         if (mDialog == null)
-            mDialog = new LoadingDialog(getContext(), "加载中，请稍候...");
+            mDialog = new LoadingDialog(getContext(), "");
         mDialog.show();
     }
 

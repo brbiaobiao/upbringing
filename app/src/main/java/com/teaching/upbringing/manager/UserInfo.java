@@ -20,6 +20,8 @@ public class UserInfo {
 
     public static final String USERID = "userId";
 
+    public static final String CITY_HISTORY = "city_history";
+
     /**
      * 判断是否登录
      * @return
