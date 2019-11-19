@@ -37,7 +37,6 @@ public class RegisterPresenter extends Presenter<RegisterContract.IView> impleme
                     @Override
                     public void onNext(CaptchaEntity testEntity) {
                         getView().hideProgress();
-                        ToastUtil.showShort("注册成功");
                         getView().signInCaptcha(testEntity);
                     }
                 });

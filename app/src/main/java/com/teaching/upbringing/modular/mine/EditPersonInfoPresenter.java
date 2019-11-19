@@ -1,6 +1,7 @@
 package com.teaching.upbringing.modular.mine;
 
 import com.outsourcing.library.mvp.observer.NextObserver;
+import com.teaching.upbringing.entity.OssEntity;
 import com.teaching.upbringing.entity.PersonInforEntity;
 import com.teaching.upbringing.entity.UserInfoEntity;
 import com.teaching.upbringing.model.PersonInforModel;
@@ -59,5 +60,19 @@ public class EditPersonInfoPresenter extends Presenter<EditPersonlInfoContract.I
     @Override
     public void saveUserImg(File file) {
 
+    }
+
+    @Override
+    public void setOss(int code) {
+        personInforModel.setOss(code)
+                .observeOn(AndroidSchedulers.mainThread())
+                .compose(bindLife())
+                .doOnError(throwable -> getView().hideProgress())
+                .subscribe(new NextObserver<OssEntity>() {
+                    @Override
+                    public void onNext(OssEntity ossEntity) {
+                        getView().getOss(ossEntity);
+                    }
+                });
     }
 }

@@ -4,17 +4,23 @@ import android.content.Context;
 import android.content.Intent;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.outsourcing.library.utils.StatusBarUtil;
 import com.teaching.upbringing.R;
+import com.teaching.upbringing.entity.CaptchaEntity;
+import com.teaching.upbringing.entity.UserInfoEntity;
 import com.teaching.upbringing.mvpBase.BaseMVPActivity;
 import com.teaching.upbringing.presenter.UpdatePwdPresenter;
 import com.teaching.upbringing.utils.StringUtils;
 import com.teaching.upbringing.utils.TimeCountUtil;
+import com.teaching.upbringing.utils.ToastUtil;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -40,6 +46,9 @@ public class UpdatePwdActivity extends BaseMVPActivity<UpdatePwdContract.IPresen
     LinearLayout mLlInput;
     @BindView(R.id.tv_register)
     TextView mTvRegister;
+    @BindView(R.id.iv_gone)
+    ImageView mIvGone;
+    private int show =0;
 
     private TimeCountUtil mTimeCountUtil;
 
@@ -48,15 +57,30 @@ public class UpdatePwdActivity extends BaseMVPActivity<UpdatePwdContract.IPresen
         context.startActivity(intent);
     }
 
-    @OnClick({R.id.tv_verification_code, R.id.tv_register})
+    @OnClick({R.id.tv_verification_code, R.id.tv_register,R.id.iv_gone})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_verification_code:
+
+                getPresenter().verification(mEtPhone.getText().toString().trim());
                 break;
             case R.id.tv_register:
                 getPresenter().updatePwd(mEtLoginCode.getText().toString().trim(),
                         mEtPasswordOne.getText().toString().trim(),
                         mEtPhone.getText().toString().trim());
+                break;
+            case R.id.iv_gone:
+                if(show==0){
+                    mIvGone.setImageResource(R.mipmap.icon_show);
+                    mEtPasswordOne.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                    mEtPasswordOne.setSelection(mEtPasswordOne.getText().length());
+                    show=1;
+                }else {
+                    mIvGone.setImageResource(R.mipmap.icon_gone);
+                    mEtPasswordOne.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    mEtPasswordOne.setSelection(mEtPasswordOne.getText().length());
+                    show=0;
+                }
                 break;
         }
     }
@@ -102,7 +126,7 @@ public class UpdatePwdActivity extends BaseMVPActivity<UpdatePwdContract.IPresen
 
     @Override
     protected void init() {
-        setTitleText("修改密码");
+        setTitleText("修改登录密码");
         StatusBarUtil.setStatusBarColor(this, R.color.white);
         mTimeCountUtil = new TimeCountUtil(this, 60000, 1000, mTvCode);
         mEtLoginCode.addTextChangedListener(new MyTextWatcher(mEtLoginCode));
@@ -113,8 +137,14 @@ public class UpdatePwdActivity extends BaseMVPActivity<UpdatePwdContract.IPresen
 
 
     @Override
-    public void updatePwd() {
+    public void updatePwd(UserInfoEntity userInfoEntity) {
+        ToastUtil.showShort("修改成功");
         LoginActivity.goInto(this);
         finish();
+    }
+
+    @Override
+    public void verification(CaptchaEntity captchaEntity) {
+        mTimeCountUtil.start();
     }
 }

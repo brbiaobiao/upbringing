@@ -120,7 +120,7 @@
                 android:id="@+id/et_password_one"
                 android:maxLength="15"
                 android:textColor="#1A1A1A"
-                android:inputType="number"
+                android:inputType="textPassword"
                 android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
                 android:textSize="14sp"
                 android:textColorHint="#9a9a9a"
@@ -130,6 +130,15 @@
                 android:layout_centerVertical="true"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
+
+            <ImageView
+                android:id="@+id/iv_gone"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:src="@mipmap/icon_gone"/>
+
 
         </RelativeLayout>
 

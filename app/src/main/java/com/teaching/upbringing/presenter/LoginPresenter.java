@@ -2,6 +2,7 @@ package com.teaching.upbringing.presenter;
 
 
 import com.outsourcing.library.mvp.observer.NextObserver;
+import com.outsourcing.library.net.RxHttpResponse;
 import com.teaching.upbringing.entity.CaptchaEntity;
 import com.teaching.upbringing.entity.UserInfoEntity;
 import com.teaching.upbringing.model.LoginModel;
@@ -29,7 +30,7 @@ public class LoginPresenter extends Presenter<LoginContract.IView> implements Lo
             return;
         }
         getView().showProgress();
-        mMainModels.loginCaptcha()
+        mMainModels.loginCaptcha(phone)
                 .observeOn(AndroidSchedulers.mainThread())
                 .compose(bindLife())
                 .doOnError(throwable -> getView().hideProgress())

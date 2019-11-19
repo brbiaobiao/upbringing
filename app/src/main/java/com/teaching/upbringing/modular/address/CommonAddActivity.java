@@ -15,6 +15,7 @@ import com.teaching.upbringing.R;
 import com.teaching.upbringing.adapter.CommonAddAdapter;
 import com.teaching.upbringing.entity.CommonAddEntity;
 import com.teaching.upbringing.mvpBase.BaseMVPActivity;
+import com.teaching.upbringing.utils.ToastUtil;
 
 import java.util.List;
 
@@ -103,6 +104,7 @@ public class CommonAddActivity extends BaseMVPActivity<CommonAddContract.IPresen
 
     @Override
     public void removeData(int position) {
+        ToastUtil.showShort("删除成功");
         addAdapter.removeData(position);
     }
 

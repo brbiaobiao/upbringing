@@ -88,4 +88,6 @@ dependencies {
     api "com.blankj:free-proguard:1.0.1"
 
     api 'com.github.SpannerBear:AvoidOnResult:1.0.3'
+
+
 }

@@ -9,7 +9,6 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -86,7 +85,7 @@ public class LocationAddrActivity extends BaseMVPActivity<LocationAddrContract.I
     @BindView(R.id.letter_tv)
     TextView mLetterTv;
     @BindView(R.id.iv_switch_area)
-    CheckBox mIvSwitchArea;
+    ImageView mIvSwitchArea;
     @BindView(R.id.switch_area)
     TextView mSwitchArea;
     @BindView(R.id.rv_area)
@@ -114,7 +113,7 @@ public class LocationAddrActivity extends BaseMVPActivity<LocationAddrContract.I
 
     private ReLocationAddrCityAdapter reLocationAddrCityAdapter;
     private CityHistotyAdapter cityHistotyAdapter;
-    private boolean switchB = false;
+    private int switchB = 0;
 
     public static Intent getCallIntent(Context context) {
         Intent intent = new Intent(context, LocationAddrActivity.class);
@@ -259,13 +258,20 @@ public class LocationAddrActivity extends BaseMVPActivity<LocationAddrContract.I
             KeyboardUtils.hideSoftInput(LocationAddrActivity.this);
             finish();
         });*/
-        mIvSwitchArea.setOnCheckedChangeListener((compoundButton, b) -> {
-            switchB = b;
-            if (b) {
-                mRvArea.setVisibility(View.VISIBLE);
-                mRvArea.setAnimation(AnimationUtil.moveToViewLocation());
-            } else {
-                mRvArea.setVisibility(View.GONE);
+        mIvSwitchArea.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (switchB==0) {
+                    mRvArea.setVisibility(View.VISIBLE);
+                    mRvArea.setAnimation(AnimationUtil.moveToViewLocation());
+                    mIvSwitchArea.setImageResource(R.mipmap.icon_up_triangle);
+                    switchB=1;
+                } else {
+                    mRvArea.setVisibility(View.GONE);
+                    mIvSwitchArea.setImageResource(R.mipmap.icon_down_triangle);
+                    switchB=0;
+                }
             }
         });
 
@@ -417,7 +423,7 @@ public class LocationAddrActivity extends BaseMVPActivity<LocationAddrContract.I
         KeyboardUtils.hideSoftInput(LocationAddrActivity.this);
     }
 
-    @OnClick({R.id.et_search, R.id.tv_relocation, R.id.tv_back, R.id.switch_area})
+    @OnClick({R.id.et_search, R.id.tv_relocation, R.id.tv_back, R.id.switch_area,R.id.iv_switch_area})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.et_search:
@@ -431,13 +437,18 @@ public class LocationAddrActivity extends BaseMVPActivity<LocationAddrContract.I
                 onBackPressed();
                 break;
             case R.id.switch_area:
-                if (switchB) {
+                if (switchB==0) {
                     mRvArea.setVisibility(View.VISIBLE);
+                    mIvSwitchArea.setImageResource(R.mipmap.icon_up_triangle);
                     mRvArea.setAnimation(AnimationUtil.moveToViewLocation());
+                    switchB=1;
                 } else {
                     mRvArea.setVisibility(View.GONE);
+                    mIvSwitchArea.setImageResource(R.mipmap.icon_down_triangle);
+                    switchB=0;
                 }
                 break;
+
         }
     }
 

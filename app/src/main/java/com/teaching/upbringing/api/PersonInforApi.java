@@ -1,6 +1,8 @@
 package com.teaching.upbringing.api;
 
+import com.alibaba.sdk.android.oss.OSS;
 import com.outsourcing.library.net.RxHttpResponse;
+import com.teaching.upbringing.entity.OssEntity;
 import com.teaching.upbringing.entity.PersonInforEntity;
 import com.teaching.upbringing.entity.UserInfoEntity;
 
@@ -10,6 +12,7 @@ import io.reactivex.Observable;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.QueryMap;
 
 /**
  * @author bb
@@ -38,4 +41,12 @@ public interface PersonInforApi {
 
     @POST("user/setSex")
     Observable<RxHttpResponse<UserInfoEntity>> setSex(@Body Map<String, String> param);
+
+    @POST("user/setHeadIngUrl")
+    Observable<RxHttpResponse<UserInfoEntity>> setImgUrl(@Body Map<String, String> param);
+
+    @GET("oss/getCredentials")
+    Observable<RxHttpResponse<OssEntity>> setOss(@QueryMap Map<String, String> param);
+
+
 }

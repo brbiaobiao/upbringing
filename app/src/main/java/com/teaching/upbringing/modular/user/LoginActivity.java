@@ -2,12 +2,15 @@ package com.teaching.upbringing.modular.user;
 
 import android.content.Context;
 import android.content.Intent;
+
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+
+import com.outsourcing.library.net.RxHttpResponse;
 import com.outsourcing.library.utils.KeyboardUtils;
 import com.outsourcing.library.utils.PreferenceManagers;
 import com.teaching.upbringing.R;
@@ -20,12 +23,14 @@ import com.teaching.upbringing.mvpBase.BaseMVPActivity;
 import com.teaching.upbringing.presenter.LoginPresenter;
 import com.teaching.upbringing.utils.StringUtils;
 import com.teaching.upbringing.utils.TimeCountUtil;
+import com.teaching.upbringing.utils.ToastUtil;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 
 public class LoginActivity extends BaseMVPActivity<LoginContract.IPresenter> implements LoginContract.IView {
 
+    private static final int REQUEST_CODE_CHOOSE = 1;
     @BindView(R.id.tv_login)
     TextView mTvLogin;//登录
     @BindView(R.id.et_phone)
@@ -54,7 +59,7 @@ public class LoginActivity extends BaseMVPActivity<LoginContract.IPresenter> imp
         return new LoginPresenter(this);
     }
 
-    @OnClick({R.id.tv_verification_code, R.id.tv_login, R.id.tv_register, R.id.tv_password_login})
+    @OnClick({R.id.tv_verification_code, R.id.tv_login, R.id.tv_register, R.id.tv_password_login,R.id.iv_close})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_login:
@@ -70,6 +75,10 @@ public class LoginActivity extends BaseMVPActivity<LoginContract.IPresenter> imp
                 Intent intents = new Intent(this, PasswordLoginActivity.class);
                 startActivity(intents);
                 break;
+            case R.id.iv_close:
+                onBackPressed();
+//                finish();
+                break;
         }
     }
 
@@ -80,9 +89,7 @@ public class LoginActivity extends BaseMVPActivity<LoginContract.IPresenter> imp
 
     @Override
     protected void init() {
-        setTitleText("");
-        setTitleLeftIcon(R.mipmap.icon_close);
-        //        setTitleLeftIcon(getResources().getDrawable(R.mipmap.icon_close));
+        mFlTitleBarContent.setVisibility(View.GONE);
         mTimeCountUtil = new TimeCountUtil(this, 60000, 1000, mTvCode);
         mEtLoginCode.addTextChangedListener(new MyTextWatcher(mEtLoginCode));
         mEtPhone.addTextChangedListener(new MyTextWatcher(mEtPhone));
@@ -126,6 +133,7 @@ public class LoginActivity extends BaseMVPActivity<LoginContract.IPresenter> imp
 
     @Override
     public void login(UserInfoEntity entity) {
+        ToastUtil.showShort("登录成功");
         KeyboardUtils.hideSoftInput(this);
         mEtPhone.setText("");
         mEtLoginCode.setText("");

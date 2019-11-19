@@ -22,8 +22,10 @@ public class LoginModel extends ApiModel<LoginApi> {
         super(ApiManager.loginApi());
     }
 
-    public Observable<CaptchaEntity> loginCaptcha(){
-        return getApi().loginCaptcha().compose(RxUtil.httpAsyn());
+    public Observable<CaptchaEntity> loginCaptcha(String phone){
+//        Map<String,String> map = new HashMap<>();
+//        map.put("phone",phone);
+        return getApi().loginCaptcha(phone).compose(RxUtil.httpAsyn());
     }
 
     public Observable<UserInfoEntity> captchaLogin(String captcha, String phone){
@@ -45,5 +47,11 @@ public class LoginModel extends ApiModel<LoginApi> {
         map.put("newPassword",newPassword);
         map.put("phone",phone);
         return getApi().setPwd(map).compose(RxUtil.httpAsyn());
+    }
+
+    public Observable<CaptchaEntity> updatePwdCaptcha(String phone) {
+//        Map<String,String> map = new HashMap<>();
+//        map.put("phone",phone);
+        return getApi().updatePwdCaptcha(phone).compose(RxUtil.httpAsyn());
     }
 }

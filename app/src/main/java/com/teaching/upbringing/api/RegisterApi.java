@@ -13,6 +13,7 @@ import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 
 /**
  * @author: biao
@@ -21,8 +22,8 @@ import retrofit2.http.POST;
  */
 public interface RegisterApi {
 
-    @GET("login/signInCaptcha")
-    Observable<RxHttpResponse<CaptchaEntity>> signInCaptcha(@Field("phone") String phone);
+    @POST("login/signInCaptcha")
+    Observable<RxHttpResponse<CaptchaEntity>> signInCaptcha(@Query("phone") String phone);
 
     @POST("login/signIn")
     Observable<RxHttpResponse<CaptchaEntity>> signIn(@Body Map<String, String> param);

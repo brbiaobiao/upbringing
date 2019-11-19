@@ -15,6 +15,7 @@ import com.outsourcing.library.utils.StatusBarUtil;
 import com.teaching.upbringing.R;
 import com.teaching.upbringing.entity.CommonAddEntity;
 import com.teaching.upbringing.mvpBase.BaseMVPActivity;
+import com.teaching.upbringing.utils.ToastUtil;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -97,6 +98,7 @@ public class AddAddressActivity extends BaseMVPActivity<AddAddressContract.IPres
 
     @Override
     public void afterAdd() {
+        ToastUtil.showShort("添加成功");
         setResult(RESULT_OK);
         finish();
     }

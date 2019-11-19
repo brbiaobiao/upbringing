@@ -1,5 +1,7 @@
 package com.teaching.upbringing.entity;
 
+import com.outsourcing.library.net.RxHttpResponse;
+
 public class UserInfoEntity {
     private String headImgUrl;
     private String introduce;

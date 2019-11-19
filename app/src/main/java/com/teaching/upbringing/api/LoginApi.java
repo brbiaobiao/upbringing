@@ -11,6 +11,7 @@ import io.reactivex.Observable;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 
 /**
  * @author: biao
@@ -20,7 +21,7 @@ import retrofit2.http.POST;
 public interface LoginApi {
 
     @GET("login/loginCaptcha")
-    Observable<RxHttpResponse<CaptchaEntity>> loginCaptcha();
+    Observable<RxHttpResponse<CaptchaEntity>> loginCaptcha(@Query("phone") String phone);
 
     @POST("login/captchaLogin")
     Observable<RxHttpResponse<UserInfoEntity>> captchaLogin(@Body Map<String, String> param);
@@ -32,4 +33,7 @@ public interface LoginApi {
      */
     @POST("login/setPwd")
     Observable<RxHttpResponse<UserInfoEntity>> setPwd(@Body Map<String, String> param);
+
+    @GET("login/updatePwdCaptcha")
+    Observable<RxHttpResponse<CaptchaEntity>> updatePwdCaptcha(@Query("phone") String phone);
 }

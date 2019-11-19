@@ -15,6 +15,7 @@ import com.teaching.upbringing.mvpBase.BaseMVPActivity;
 import com.teaching.upbringing.presenter.RegisterPresenter;
 import com.teaching.upbringing.utils.StringUtils;
 import com.teaching.upbringing.utils.TimeCountUtil;
+import com.teaching.upbringing.utils.ToastUtil;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -108,6 +109,7 @@ public class RegisterActivity extends BaseMVPActivity<RegisterContract.IPresente
 
     @Override
     public void signIn(CaptchaEntity entity) {
+        ToastUtil.showShort("注册成功");
         LoginActivity.goInto(this);
         finish();
     }

@@ -17,6 +17,7 @@ import com.outsourcing.library.utils.StringUtils;
 import com.teaching.upbringing.R;
 import com.teaching.upbringing.manager.UserInfo;
 import com.teaching.upbringing.mvpBase.BaseMVPActivity;
+import com.teaching.upbringing.utils.ToastUtil;
 
 import butterknife.BindView;
 
@@ -111,6 +112,7 @@ public class FillInformationActivity extends BaseMVPActivity<FillInformationCont
     @Override
     public void upDataCallBack() {
         setResult(RESULT_OK);
+        ToastUtil.showShort("编辑成功");
         KeyboardUtils.hideSoftInput(this);
         UserInfo.notifyUserInfoChange();
         finish();
