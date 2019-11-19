@@ -150,6 +150,7 @@
             app:layout_constraintTop_toBottomOf="@id/rv_area" />
 
         <TextView
+            android:visibility="gone"
             android:id="@+id/tv_city_history"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
