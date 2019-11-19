@@ -36,6 +36,7 @@ import com.amap.api.services.geocoder.RegeocodeResult;
 import com.amap.api.services.poisearch.PoiResult;
 import com.amap.api.services.poisearch.PoiSearch;
 import com.outsourcing.library.utils.AppUtils;
+import com.outsourcing.library.utils.DensityUtils;
 import com.outsourcing.library.utils.GsonUtil;
 import com.outsourcing.library.utils.OnResultUtil;
 import com.outsourcing.library.utils.PreferenceManagers;
@@ -161,7 +162,12 @@ public class SelectAddressActivity extends BaseMVPActivity<SelectAddressContract
                     }
                 });
         TextView titleRightText = getTitleRightText();
-        GradientDrawable shape = ShapeUtils.createShape(-1, 26, -1, null, "#FD8440");
+        GradientDrawable shape = ShapeUtils.createShape(-1, 36, -1, null, "#FD8440");
+        titleRightText.setBackground(shape);
+        titleRightText.setPadding(DensityUtils.dp2px(this,13f),
+                DensityUtils.dp2px(this,3.5f),
+                DensityUtils.dp2px(this,13f),
+                DensityUtils.dp2px(this,3.5f));
         titleRightText.setBackground(shape);
         StatusBarUtil.setStatusBarColor(this, R.color.white);
         initListener();

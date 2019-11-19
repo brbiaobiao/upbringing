@@ -4,6 +4,7 @@ import com.outsourcing.library.utils.RxUtil;
 import com.teaching.upbringing.api.RegionApi;
 import com.teaching.upbringing.entity.ListAllRegionByNameEntity;
 import com.teaching.upbringing.entity.ListAllRegionEntity;
+import com.teaching.upbringing.entity.ListSubRegionEntity;
 import com.teaching.upbringing.entity.RegionByCityNameEntity;
 import com.teaching.upbringing.manager.ApiManager;
 
@@ -21,9 +22,14 @@ public class RegionModel extends ApiModel<RegionApi> {
         super(ApiManager.regionApi());
     }
 
-    public Observable<ListAllRegionEntity> listAllRegion(){
+    public Observable<List<ListAllRegionEntity>> listAllRegion(){
         return getApi().listAllRegion().compose(RxUtil.httpAsyn());
     }
+
+    public Observable<List<ListSubRegionEntity>> listSubRegion(String parentId){
+        return getApi().listSubRegion(parentId).compose(RxUtil.httpAsyn());
+    }
+
 
     /**
      * 模糊搜索市区列表

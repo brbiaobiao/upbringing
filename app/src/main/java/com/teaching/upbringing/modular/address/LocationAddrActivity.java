@@ -268,6 +268,8 @@ public class LocationAddrActivity extends BaseMVPActivity<LocationAddrContract.I
                 mRvArea.setVisibility(View.GONE);
             }
         });
+
+        mQuickindex.setOnLetterUpdateListener(s -> getPresenter().onLetterUpdate(s));
     }
 
     private void initPermission() {
@@ -457,15 +459,13 @@ public class LocationAddrActivity extends BaseMVPActivity<LocationAddrContract.I
         } else {
             allCityAdapter.setNewData(allCityEntities);
         }
-
-        mQuickindex.setOnLetterUpdateListener(s -> getPresenter().onLetterUpdate(s));
     }
 
     @Override
     public void letterUpdate(int position) {
         if (mLayoutManager == null)
             return;
-        mLayoutManager.scrollToPositionWithOffset(position, 0);
+        mLayoutManager.scrollToPositionWithOffset(position,0);
         mLayoutManager.setStackFromEnd(true);
     }
 

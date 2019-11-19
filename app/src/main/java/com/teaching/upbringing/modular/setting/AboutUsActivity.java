@@ -6,6 +6,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.outsourcing.library.utils.AppUtils;
+import com.outsourcing.library.utils.StatusBarUtil;
 import com.teaching.upbringing.BuildConfig;
 import com.teaching.upbringing.R;
 import com.teaching.upbringing.mvpBase.BaseMVPActivity;
@@ -38,6 +39,7 @@ public class AboutUsActivity extends BaseMVPActivity {
     @Override
     protected void init() {
         setTitleText("关于我们");
+        StatusBarUtil.setStatusBarColor(this, R.color.white);
         mTvVersion.setText("版本："+"v"+BuildConfig.VERSION_NAME);
         mTvAppName.setText(AppUtils.getAppName(this));
     }

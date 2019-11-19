@@ -7,6 +7,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.outsourcing.library.utils.KeyboardUtils;
+import com.outsourcing.library.utils.StatusBarUtil;
 import com.teaching.upbringing.R;
 import com.teaching.upbringing.entity.UserInfoEntity;
 import com.teaching.upbringing.modular.main.MainActivity;
@@ -60,6 +61,7 @@ public class PasswordLoginActivity extends BaseMVPActivity<PasswordLoginContract
     @Override
     protected void init() {
         setTitleText("密码登录");
+        StatusBarUtil.setStatusBarColor(this, R.color.white);
         mEtPassword.addTextChangedListener(new MyTextWatcher(mEtPassword));
         mEtPhone.addTextChangedListener(new MyTextWatcher(mEtPhone));
     }

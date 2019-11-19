@@ -41,7 +41,6 @@ public class CommonAddAdapter extends BaseQuickAdapter<CommonAddEntity, BaseView
                     ScreenUtils.getScreenWidth(rl_linearout.getContext());
             rl_linearout.setLayoutParams(layoutParams);
         });
-
     }
 
     public void removeData(int position){

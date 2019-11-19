@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.outsourcing.library.utils.AppUtils;
+import com.outsourcing.library.utils.DensityUtils;
 import com.outsourcing.library.utils.KeyboardUtils;
 import com.outsourcing.library.utils.ShapeUtils;
 import com.outsourcing.library.utils.StatusBarUtil;
@@ -88,7 +89,12 @@ public class FillInformationActivity extends BaseMVPActivity<FillInformationCont
            // upDataCallBack();
         });
         titleRightText = getTitleRightText();
-        GradientDrawable shape = ShapeUtils.createShape(-1, 26, -1, null, "#FEE1D2");
+        GradientDrawable shape = ShapeUtils.createShape(-1, 36, -1, null, "#FD8440");
+        titleRightText.setBackground(shape);
+        titleRightText.setPadding(DensityUtils.dp2px(this,13f),
+                DensityUtils.dp2px(this,3.5f),
+                DensityUtils.dp2px(this,13f),
+                DensityUtils.dp2px(this,3.5f));
         titleRightText.setBackground(shape);
         StatusBarUtil.setStatusBarColor(this,R.color.white);
 

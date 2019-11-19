@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.outsourcing.library.utils.StatusBarUtil;
 import com.teaching.upbringing.R;
 import com.teaching.upbringing.entity.CaptchaEntity;
 import com.teaching.upbringing.mvpBase.BaseMVPActivity;
@@ -50,6 +51,7 @@ public class RegisterActivity extends BaseMVPActivity<RegisterContract.IPresente
     @Override
     protected void init() {
         setTitleText("注册");
+        StatusBarUtil.setStatusBarColor(this, R.color.white);
         mTimeCountUtil = new TimeCountUtil(this, 60000, 1000, mTvCode);
         mEtLoginCode.addTextChangedListener(new MyTextWatcher(mEtLoginCode));
         mEtPhone.addTextChangedListener(new MyTextWatcher(mEtPhone));

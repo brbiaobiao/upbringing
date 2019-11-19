@@ -35,6 +35,7 @@ import com.google.android.material.tabs.TabLayout;
 import com.lypeer.fcpermission.FcPermissions;
 import com.outsourcing.library.mvp.observer.NextObserver;
 import com.outsourcing.library.utils.NotificationUtils;
+import com.outsourcing.library.utils.StatusBarUtil;
 import com.outsourcing.library.utils.StringUtils;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.teaching.upbringing.R;
@@ -148,6 +149,7 @@ public class WebViewActivity extends BaseMVPActivity<WebViewContract.Ipresenter>
         }
         super.onCreate(savedInstanceState);
         hideHeadBar();
+        StatusBarUtil.setStatusBarColor(this, R.color.white);
         initListener();
     }
 

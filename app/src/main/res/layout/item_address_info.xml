@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/linearLayout2"
     android:layout_width="match_parent"
@@ -10,15 +9,11 @@
 
     <TextView
         android:id="@+id/tv_title"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         android:layout_marginTop="18dp"
         android:textColor="@color/color_1A1A1A"
         android:textSize="16sp"
-        app:layout_constraintEnd_toStartOf="@+id/checkBox"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         tools:text="广东省博物馆"
         android:lines="1"
         android:ellipsize="end"
@@ -29,7 +24,7 @@
 
     <TextView
         android:id="@+id/tv_message"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginEnd="50dp"
         android:layout_marginLeft="15dp"
@@ -39,19 +34,20 @@
         android:textColor="@color/color_9A9A9A"
         android:textSize="14sp"
         android:layout_marginTop="6dp"
-        app:layout_constraintEnd_toStartOf="@+id/checkBox"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_title"
+        android:layout_below="@id/tv_title"
         tools:text="广东省广州市天河区珠江东路2号"/>
 
     <CheckBox
         android:id="@+id/checkBox"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        android:layout_marginTop="20dp"
         android:layout_marginRight="8dp"
+        android:layout_marginTop="-6dp"
+        android:gravity="center_vertical"
         android:button="@drawable/selector_check_box_green"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        android:layout_below="@id/tv_title"
+        android:layout_alignParentRight="true"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <View style="@style/setting_divider"
+        android:layout_below="@id/tv_message"/>
+</RelativeLayout>

@@ -14,6 +14,7 @@ import com.outsourcing.library.mvp.observer.NextObserver;
 import com.outsourcing.library.mvp.rxbase.RxLife;
 import com.outsourcing.library.utils.AppUtils;
 import com.outsourcing.library.utils.DateUtils;
+import com.outsourcing.library.utils.DensityUtils;
 import com.outsourcing.library.utils.OnResultUtil;
 import com.outsourcing.library.utils.ShapeUtils;
 import com.outsourcing.library.utils.StatusBarUtil;
@@ -99,8 +100,12 @@ public class PersonInfoActivity extends BaseMVPActivity<PersonInforContract.Ipre
 
                 });
         TextView titleRightText = getTitleRightText();
-        GradientDrawable shape = ShapeUtils.createShape(-1, 26, -1, null, "#FD8440");
+        GradientDrawable shape = ShapeUtils.createShape(-1, 36, -1, null, "#FD8440");
         titleRightText.setBackground(shape);
+        titleRightText.setPadding(DensityUtils.dp2px(this,13f),
+                DensityUtils.dp2px(this,3.5f),
+                DensityUtils.dp2px(this,13f),
+                DensityUtils.dp2px(this,3.5f));
         StatusBarUtil.setStatusBarColor(this,R.color.white);
         getPresenter().initData(true);
     }

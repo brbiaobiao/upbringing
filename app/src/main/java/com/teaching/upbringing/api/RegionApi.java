@@ -3,6 +3,7 @@ package com.teaching.upbringing.api;
 import com.outsourcing.library.net.RxHttpResponse;
 import com.teaching.upbringing.entity.ListAllRegionByNameEntity;
 import com.teaching.upbringing.entity.ListAllRegionEntity;
+import com.teaching.upbringing.entity.ListSubRegionEntity;
 import com.teaching.upbringing.entity.RegionByCityNameEntity;
 
 import java.util.List;
@@ -19,7 +20,7 @@ import retrofit2.http.Query;
 public interface RegionApi {
 
     @GET("region/listAllRegion")
-    Observable<RxHttpResponse<ListAllRegionEntity>> listAllRegion();
+    Observable<RxHttpResponse<List<ListAllRegionEntity>>> listAllRegion();
 
     @GET("region/listAllRegionByNameLike")
     Observable<RxHttpResponse<List<ListAllRegionByNameEntity>>> listAllRegionByNameLike(@Query("name") String string);
@@ -30,4 +31,7 @@ public interface RegionApi {
 
     @GET("region/listAreaRegionByCityName")
     Observable<RxHttpResponse<List<ListAllRegionByNameEntity>>> listAreaRegionByCityName(@Query("cityName") String cityName);
+
+    @GET("region/listSubRegion")
+    Observable<RxHttpResponse<List<ListSubRegionEntity>>> listSubRegion(@Query("parentId") String parentId);
 }
