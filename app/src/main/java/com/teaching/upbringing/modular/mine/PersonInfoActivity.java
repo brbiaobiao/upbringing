@@ -10,18 +10,23 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.request.RequestOptions;
 import com.outsourcing.library.mvp.observer.NextObserver;
 import com.outsourcing.library.mvp.rxbase.RxLife;
 import com.outsourcing.library.utils.AppUtils;
 import com.outsourcing.library.utils.DateUtils;
 import com.outsourcing.library.utils.DensityUtils;
 import com.outsourcing.library.utils.OnResultUtil;
+import com.outsourcing.library.utils.PreferenceManagers;
 import com.outsourcing.library.utils.ShapeUtils;
 import com.outsourcing.library.utils.StatusBarUtil;
+import com.outsourcing.library.utils.image.ImageLoader;
+import com.outsourcing.library.widget.GlideRoundTransform;
 import com.teaching.upbringing.R;
 import com.teaching.upbringing.entity.PersonInforEntity;
 import com.teaching.upbringing.manager.UserInfo;
 import com.teaching.upbringing.mvpBase.BaseMVPActivity;
+import com.teaching.upbringing.utils.StringUtils;
 
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.Group;
@@ -133,6 +138,15 @@ public class PersonInfoActivity extends BaseMVPActivity<PersonInforContract.Ipre
     @Override
     public void setInit(PersonInforEntity personInforEntity) {
         if(personInforEntity == null) return;
+
+        RequestOptions myOptions = new RequestOptions()
+                .centerCrop()
+                .fallback(R.mipmap.icon_person_head)
+                .placeholder(R.mipmap.icon_person_head)
+                .error(R.mipmap.icon_person_head)
+                .transform(new GlideRoundTransform(this, 90));
+        String head_pic = PreferenceManagers.getString(PreferenceManagers.HEAD_PIC, "");
+        ImageLoader.loadOption(this, StringUtils.isEmpty(head_pic) ? "" : head_pic, new ImageLoader.Option(myOptions), mIvHeadPic);
 
         mGpTeacherId.setVisibility(personInforEntity.isIfTeacher()?View.VISIBLE:View.GONE);
 

@@ -59,7 +59,10 @@ public class EditPersonInfoPresenter extends Presenter<EditPersonlInfoContract.I
 
     @Override
     public void saveUserImg(File file) {
-
+        if(file.exists()) {
+            return;
+        }
+        setOss(3);
     }
 
     @Override

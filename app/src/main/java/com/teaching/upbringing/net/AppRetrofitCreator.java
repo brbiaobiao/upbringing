@@ -2,7 +2,6 @@ package com.teaching.upbringing.net;
 
 
 import com.outsourcing.library.net.converter.AppResponseConverterFactory;
-import com.outsourcing.library.net.interceptor.LoggedInterceptor;
 import com.outsourcing.library.net.retrofit.RetrofitCreator;
 import com.outsourcing.library.utils.GsonUtil;
 import com.teaching.upbringing.manager.ApiConfig;
@@ -37,9 +36,9 @@ public class AppRetrofitCreator implements RetrofitCreator {
         builder.addInterceptor(new AppRequestInterceptor());
 
 
-        builder.connectTimeout(30*1000, TimeUnit.MILLISECONDS)
-                .readTimeout(30*1000,TimeUnit.MILLISECONDS)
-                .writeTimeout(30*1000,TimeUnit.MILLISECONDS)
+        builder.connectTimeout(3000*1000, TimeUnit.MILLISECONDS)
+                .readTimeout(3000*1000,TimeUnit.MILLISECONDS)
+                .writeTimeout(3000*1000,TimeUnit.MILLISECONDS)
                 .retryOnConnectionFailure(true);//失败重连
 
         OkHttpClient build = builder.build();

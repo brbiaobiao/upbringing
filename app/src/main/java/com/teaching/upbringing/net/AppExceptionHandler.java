@@ -63,9 +63,9 @@ public class AppExceptionHandler extends ExceptionHandler {
         if (TextUtils.isEmpty(e.message)) {
             e.message = "未知异常";
         }
-        if (e.message.equals("未知异常")) {
+      /*  if (e.message.equals("未知异常")) {
             return;
-        }
+        }*/
         Toast.makeText(AppManager.getApplication(), e.message, Toast.LENGTH_SHORT).show();
     }
 }

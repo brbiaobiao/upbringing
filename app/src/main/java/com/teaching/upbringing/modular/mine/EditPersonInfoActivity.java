@@ -1,12 +1,7 @@
 package com.teaching.upbringing.modular.mine;
 
-import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.net.Uri;
-import android.os.Build;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -24,37 +19,38 @@ import com.alibaba.sdk.android.oss.common.auth.OSSStsTokenCredentialProvider;
 import com.alibaba.sdk.android.oss.internal.OSSAsyncTask;
 import com.alibaba.sdk.android.oss.model.PutObjectRequest;
 import com.alibaba.sdk.android.oss.model.PutObjectResult;
+import com.bumptech.glide.request.RequestOptions;
+import com.luck.picture.lib.PictureSelector;
+import com.luck.picture.lib.config.PictureConfig;
+import com.luck.picture.lib.config.PictureMimeType;
+import com.luck.picture.lib.entity.LocalMedia;
 import com.nanchen.compresshelper.CompressHelper;
 import com.outsourcing.library.mvp.observer.NextObserver;
-import com.outsourcing.library.utils.AppUtils;
 import com.outsourcing.library.utils.DateUtils;
-import com.outsourcing.library.utils.NotificationUtils;
 import com.outsourcing.library.utils.OnResultUtil;
+import com.outsourcing.library.utils.PreferenceManagers;
 import com.outsourcing.library.utils.RxBus;
 import com.outsourcing.library.utils.StatusBarUtil;
+import com.outsourcing.library.utils.image.ImageLoader;
+import com.outsourcing.library.widget.GlideRoundTransform;
 import com.outsourcing.library.widget.dialog.ActionSheetDialog;
-import com.tbruyelle.rxpermissions2.Permission;
-import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.teaching.upbringing.R;
 import com.teaching.upbringing.application.AppApplication;
-import com.teaching.upbringing.application.AppFileManager;
 import com.teaching.upbringing.entity.Choose;
 import com.teaching.upbringing.entity.OssEntity;
 import com.teaching.upbringing.entity.PersonInforEntity;
 import com.teaching.upbringing.manager.UserInfo;
 import com.teaching.upbringing.mvpBase.BaseMVPActivity;
-import com.teaching.upbringing.utils.CameraUtils;
 import com.teaching.upbringing.utils.StringUtils;
 import com.teaching.upbringing.utils.ToastUtil;
-import com.teaching.upbringing.widget.dialog.TipsDialog;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 import androidx.constraintlayout.widget.Group;
-import androidx.core.content.FileProvider;
 import butterknife.BindView;
 import butterknife.OnClick;
-import io.github.anotherjack.avoidonresult.ActivityResultInfo;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 
 
@@ -106,6 +102,8 @@ public class EditPersonInfoActivity extends BaseMVPActivity<EditPersonlInfoContr
     private String picPath;
     private File path;
     private String key;
+    private int themeId;
+    private List<LocalMedia> selectList = new ArrayList<>();
 
     public static Intent goIntent(Context context) {
         Intent intent = new Intent(context, EditPersonInfoActivity.class);
@@ -129,6 +127,7 @@ public class EditPersonInfoActivity extends BaseMVPActivity<EditPersonlInfoContr
         mLineRegistTime.setVisibility(View.GONE);
         StatusBarUtil.setStatusBarColor(this,R.color.white);
         getPresenter().getInfo(true);
+        themeId = R.style.white_pic;
 
         /*RxBus3.getDefault().toObservable(Choose.class).observeOn(AndroidSchedulers.mainThread()).subscribe(
                 new SimpleSubscriber<Choose>() {
@@ -161,11 +160,11 @@ public class EditPersonInfoActivity extends BaseMVPActivity<EditPersonlInfoContr
         });
     }
 
-//    @Override
-//    public void finish() {
-//        setResult(RESULT_OK);
-//        super.finish();
-//    }
+    @Override
+    public void finish() {
+        setResult(RESULT_OK);
+        super.finish();
+    }
 
     @OnClick({R.id.iv_head_pic, R.id.ll_nickname, R.id.ll_sex, R.id.ll_account,
             R.id.ll_regist_time, R.id.ll_title, R.id.ll_bright_point})
@@ -175,7 +174,47 @@ public class EditPersonInfoActivity extends BaseMVPActivity<EditPersonlInfoContr
         }
         switch (view.getId()) {
             case R.id.iv_head_pic:
-                showActionSheetDialog();
+//                showActionSheetDialog();
+                PictureSelector.create(EditPersonInfoActivity.this)
+                        .openGallery(PictureMimeType.ofImage())// 全部.PictureMimeType.ofAll()、图片.ofImage()、视频.ofVideo()、音频.ofAudio()
+                        .theme(themeId)// 主题样式设置 具体参考 values/styles   用法：R.style.picture.white.style
+                        .maxSelectNum(9)// 最大图片选择数量
+                        .minSelectNum(1)// 最小选择数量
+                        .imageSpanCount(3)// 每行显示个数
+                        .selectionMode(PictureConfig.SINGLE)// 多选 or 单选
+                        .previewImage(false)// 是否可预览图片
+                        .isCamera(true)// 是否显示拍照按钮
+                        .isZoomAnim(true)// 图片列表点击 缩放效果 默认true
+                        //.imageFormat(PictureMimeType.PNG)// 拍照保存图片格式后缀,默认jpeg
+                        //.setOutputCameraPath("/CustomPath")// 自定义拍照保存路径
+                        .enableCrop(true)// 是否裁剪
+                        .compress(true)// 是否压缩
+                        .synOrAsy(true)//同步true或异步false 压缩 默认同步
+                        //.compressSavePath(getPath())//压缩图片保存地址
+                        //.sizeMultiplier(0.5f)// glide 加载图片大小 0~1之间 如设置 .glideOverride()无效
+                        .glideOverride(160, 160)// glide 加载宽高，越小图片列表越流畅，但会影响列表图片浏览的清晰度
+                        .withAspectRatio(3, 3)// 裁剪比例 如16:9 3:2 3:4 1:1 可自定义
+                        .hideBottomControls(false)// 是否显示uCrop工具栏，默认不显示
+                        .isGif(false)// 是否显示gif图片
+                        .freeStyleCropEnabled(true)// 裁剪框是否可拖拽
+                        .circleDimmedLayer(false)// 是否圆形裁剪
+                        .showCropFrame(true)// 是否显示裁剪矩形边框 圆形裁剪时建议设为false
+                        .showCropGrid(true)// 是否显示裁剪矩形网格 圆形裁剪时建议设为false
+                        .openClickSound(false)// 是否开启点击声音
+//                        .selectionMedia(false)// 是否传入已选图片
+                        //.isDragFrame(false)// 是否可拖动裁剪框(固定)
+                        //                        .videoMaxSecond(15)
+                        //                        .videoMinSecond(10)
+                        //.previewEggs(false)// 预览图片时 是否增强左右滑动图片体验(图片滑动一半即可看到上一张是否选中)
+                        //.cropCompressQuality(90)// 裁剪压缩质量 默认100
+                        .minimumCompressSize(100)// 小于100kb的图片不压缩
+                        //.cropWH()// 裁剪宽高比，设置如果大于图片本身宽高则无效
+                        //.rotateEnabled(true) // 裁剪是否可旋转图片
+                        //.scaleEnabled(true)// 裁剪是否可放大缩小图片
+                        //.videoQuality()// 视频录制质量 0 or 1
+                        //.videoSecond()//显示多少秒以内的视频or音频也可适用
+                        //.recordVideoSecond()//录制视频秒数 默认60s
+                        .forResult(PictureConfig.CHOOSE_REQUEST);//结果回调onActivityResult code
                 break;
             case R.id.ll_nickname:
                 onResultUtil.call(FillInformationActivity.getCallIntent(this, "昵称",
@@ -208,9 +247,48 @@ public class EditPersonInfoActivity extends BaseMVPActivity<EditPersonlInfoContr
     }
 
     @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            switch (requestCode) {
+                case PictureConfig.CHOOSE_REQUEST:
+                    // 图片选择结果回调
+                    selectList = PictureSelector.obtainMultipleResult(data);
+                    // 例如 LocalMedia 里面返回三种path
+                    // 1.media.getPath(); 为原图path
+                    // 2.media.getCutPath();为裁剪后path，需判断media.isCut();是否为true
+                    // 3.media.getCompressPath();为压缩后path，需判断media.isCompressed();是否为true
+                    // 如果裁剪并压缩了，已取压缩路径为准，因为是先裁剪后压缩的
+                    for (LocalMedia media : selectList) {
+                        Log.i("图片-----》", media.getCompressPath());
+                        RequestOptions myOptions = new RequestOptions()
+                                .centerCrop()
+                                .fallback(R.mipmap.icon_person_head)
+                                .placeholder(R.mipmap.icon_person_head)
+                                .error(R.mipmap.icon_person_head)
+                                .transform(new GlideRoundTransform(getContext(), 90));
+                        ImageLoader.loadOption(getContext(), media.getCompressPath(), new ImageLoader.Option(myOptions), mIvHeadPic);
+                        PreferenceManagers.saveValue(PreferenceManagers.HEAD_PIC,media.getCompressPath());
+                    }
+                    break;
+            }
+        }
+    }
+
+    @Override
     public void setInfor(PersonInforEntity personInforEntity) {
         if (personInforEntity == null)
             return;
+
+        RequestOptions myOptions = new RequestOptions()
+                .centerCrop()
+                .fallback(R.mipmap.icon_person_head)
+                .placeholder(R.mipmap.icon_person_head)
+                .error(R.mipmap.icon_person_head)
+                .transform(new GlideRoundTransform(this, 90));
+        String head_pic = PreferenceManagers.getString(PreferenceManagers.HEAD_PIC, "");
+        ImageLoader.loadOption(this, StringUtils.isEmpty(head_pic) ? "" : head_pic, new ImageLoader.Option(myOptions), mIvHeadPic);
+
         mGpTeacherId.setVisibility(personInforEntity.isIfTeacher() ? View.VISIBLE : View.GONE);
 
         //普通信息
@@ -289,108 +367,5 @@ public class EditPersonInfoActivity extends BaseMVPActivity<EditPersonlInfoContr
         });
 
 
-    }
-
-
-
-
-
-
-
-    private void showActionSheetDialog() {
-        final String[] stringItems = {"相机拍摄", "从相册导入"};
-        final ActionSheetDialog dialog = new ActionSheetDialog(EditPersonInfoActivity.this, stringItems, null);
-        dialog.isTitleShow(true).show();
-        dialog.title("请选择一种类型");
-        dialog.titleTextColor(Color.parseColor("#8e8e94"));
-        dialog.titleTextSize_SP(13);
-        dialog.itemTextSize(18);
-        dialog.setOnOpenItemClickL((parent, view, position, id) -> {
-            dialog.dismiss();
-            if (position == 0) {
-                takePhoto();
-            } else if (position == 1) {
-                fromTheAlbum();
-            }
-        });
-    }
-
-    private void takePhoto() {
-        RxPermissions permissions = new RxPermissions(this);
-        permissions.requestEachCombined(Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                Manifest.permission.READ_EXTERNAL_STORAGE,
-                Manifest.permission.CAMERA)
-                .subscribe(new NextObserver<Permission>() {
-                    @Override
-                    public void onNext(Permission permission) {
-                        if (permission.granted) {
-                            openCamera();
-                        } else if (permission.shouldShowRequestPermissionRationale) {
-                            TipsDialog dialog = new TipsDialog(EditPersonInfoActivity.this,getSupportFragmentManager());
-                            dialog.setTips(null, "需要授权才能使用，请进行授权");
-                            dialog.setRightBtnText("同意");
-                            dialog.setOnLeftConfirmListener(v -> dialog.dismiss());
-                            dialog.setOnRightConfirmListener(v -> {
-                                dialog.dismiss();
-                                takePhoto();
-                            });
-                            dialog.show();
-                        } else {
-                            TipsDialog dialog = new TipsDialog(EditPersonInfoActivity.this, getSupportFragmentManager());
-                            dialog.setTips(null, "请允许权限才能够进行下一步操作");
-                            dialog.setRightBtnText("确认");
-                            dialog.setOnLeftConfirmListener(v -> dialog.dismiss());
-                            dialog.setOnRightConfirmListener(v -> {
-                                NotificationUtils.toSetting(EditPersonInfoActivity.this);
-                                dialog.dismiss();
-
-                            });
-                            dialog.show();
-                        }
-                    }
-                });
-    }
-
-    private void openCamera() {
-        Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-        intent.putExtra(MediaStore.Images.Media.ORIENTATION, 0);
-        path = new File(AppFileManager.getPictureDir(), "logo_" + System.currentTimeMillis() + ".jpg");
-        Uri uri;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            uri = FileProvider.getUriForFile(AppUtils.getApp(), getContext().getPackageName() + ".FileProvider",
-                    path);
-        } else {
-            uri = Uri.fromFile(path);
-        }
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
-        new OnResultUtil(EditPersonInfoActivity.this).call(intent)
-                .filter(info -> OnResultUtil.isOk(info))
-                .subscribe(new NextObserver<ActivityResultInfo>() {
-                    @Override
-                    public void onNext(ActivityResultInfo activityResultInfo) {
-                        boolean b = CameraUtils.savePicture(path.getPath());
-                        if (b) {
-                           // getPresenter().saveUserImg(file);
-                            getPresenter().setOss(3);
-                        }
-                    }
-                });
-    }
-
-    private void fromTheAlbum() {
-        //相册导入
-        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        new OnResultUtil(EditPersonInfoActivity.this).call(intent)
-                .filter(info -> OnResultUtil.isOk(info))
-                .subscribe(new NextObserver<ActivityResultInfo>() {
-                    @Override
-                    public void onNext(ActivityResultInfo activityResultInfo) {
-                        path=new File( CameraUtils.handlerChoosePic(EditPersonInfoActivity.this, activityResultInfo.getData()));
-//                        if (!StringUtils.isEmpty(path)) {
-//                            getPresenter().saveUserImg(new File(path));
-//                        }
-                        getPresenter().setOss(3);
-                    }
-                });
     }
 }

@@ -4,12 +4,9 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.text.TextUtils;
 
-import androidx.annotation.NonNull;
-
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.outsourcing.library.application.BaseApplication;
-
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -21,13 +18,17 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Set;
 
+import androidx.annotation.NonNull;
+
 /**
  * preference操作管理工具
  * Created by li on 17/9/9.
  */
 public class PreferenceManagers {
     public static final String PREFERENCE_PRIVATE_SP = "park";
+    public static final String LAST_GET_VERIFICATION_CODE_TIME = "last_get_verification_code_time";
     public static final String TOKEN_ID="tokenId";
+    public static final String HEAD_PIC = "head_pic";
 
     public static int getInt(@NonNull String key, int defaultValue) {
         SharedPreferences sp = openSharePreference();

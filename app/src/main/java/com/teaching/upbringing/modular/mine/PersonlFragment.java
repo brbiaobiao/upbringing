@@ -8,14 +8,19 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.request.RequestOptions;
 import com.outsourcing.library.mvp.observer.NextObserver;
 import com.outsourcing.library.mvp.rxbase.RxLife;
+import com.outsourcing.library.utils.PreferenceManagers;
+import com.outsourcing.library.utils.image.ImageLoader;
+import com.outsourcing.library.widget.GlideRoundTransform;
 import com.teaching.upbringing.R;
 import com.teaching.upbringing.entity.PersonInforEntity;
 import com.teaching.upbringing.manager.UserInfo;
 import com.teaching.upbringing.modular.setting.SettingActivity;
 import com.teaching.upbringing.mvpBase.BaseMVPFragment;
 import com.teaching.upbringing.utils.FragmentHelper;
+import com.teaching.upbringing.utils.StringUtils;
 
 import androidx.annotation.Nullable;
 import butterknife.BindView;
@@ -128,6 +133,14 @@ public class PersonlFragment extends BaseMVPFragment<PersonlContract.Ipresenter>
 
     @Override
     public void setInfo(PersonInforEntity personInforEntity) {
+        RequestOptions myOptions = new RequestOptions()
+                .centerCrop()
+                .fallback(R.mipmap.icon_person_head)
+                .placeholder(R.mipmap.icon_person_head)
+                .error(R.mipmap.icon_person_head)
+                .transform(new GlideRoundTransform(getActivity(), 90));
+        String head_pic = PreferenceManagers.getString(PreferenceManagers.HEAD_PIC, "");
+        ImageLoader.loadOption(getActivity(), StringUtils.isEmpty(head_pic) ? "" : head_pic, new ImageLoader.Option(myOptions), mIvHeat);
         mTvNickname.setText(personInforEntity.getNickname());
         mTvSign.setText(personInforEntity.getIntroduce());
     }
