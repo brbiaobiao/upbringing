@@ -26,6 +26,8 @@ import com.teaching.upbringing.utils.ToastUtil;
 import org.json.JSONArray;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -208,8 +210,16 @@ public class SettingActivity extends BaseMVPActivity<SettingContract.IPresenter>
 
                 String province_id = options1Items.get(options1).getProvince_id();
                 String city_id = options1Items.get(options1).getCity().get(options2).getId();
-                String id = options1Items.get(options2).getCity().get(options2).getArea().get(options3).getId();
-                String tx = opt1tx + province_id + "\n" + opt2tx + city_id + "\n" + opt3tx + id;
+                String area_id = options1Items.get(options2).getCity().get(options2).getArea().get(options3).getId();
+                String adCode = options1Items.get(options2).getCity().get(options2).getArea().get(options3).getAdCode();
+                int districtLevel = options1Items.get(options2).getCity().get(options2).getArea().get(options3).getDistrictLevel();
+                Map<String,Object> map = new HashMap<>();
+                map.put("adCode",adCode);
+                map.put("areaRegionId",area_id);
+                map.put("cityRegionId",city_id);
+                map.put("districtLevel",districtLevel);
+                map.put("provinceRegionId",province_id);
+                getPresenter().setAttendClassArea(map);
             }
         })
 
