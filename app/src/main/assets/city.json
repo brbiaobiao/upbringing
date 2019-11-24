@@ -1,0 +1,100 @@
+[
+  {
+    "province_id":"1196062407345050867",
+    "province_name":"广东省",
+    "province_adCode":"440000",
+    "province_districtLevel":1,
+    "city":[
+      {
+        "adCode": "440100",
+        "districtLevel": 2,
+        "id": "1196062407345050869",
+        "name": "广州市",
+        "area":[
+          {
+            "adCode": "440103",
+            "districtLevel": 3,
+            "id": "1196062407345050871",
+            "name": "荔湾区"
+          },
+          {
+            "adCode": "440104",
+            "districtLevel": 3,
+            "id": "1196062407345050873",
+            "name": "越秀区"
+          }
+        ]
+      },
+      {
+        "adCode": "440200",
+        "districtLevel": 2,
+        "id": "1196062407345050893",
+        "name": "韶关市",
+        "area":[
+          {
+            "adCode": "440103",
+            "districtLevel": 3,
+            "id": "1196062407345050871",
+            "name": "荔湾区"
+          },
+          {
+            "adCode": "440104",
+            "districtLevel": 3,
+            "id": "1196062407345050873",
+            "name": "越秀区"
+          }
+        ]
+      }
+
+    ]
+  },
+  {
+    "province_id":"1196062407349244079",
+    "province_name":"广西壮族自治区",
+    "province_adCode":"450000",
+    "province_districtLevel":1,
+    "city":[
+      {
+        "adCode": "440100",
+        "districtLevel": 2,
+        "id": "1196062407345050869",
+        "name": "广州市",
+        "area":[
+          {
+            "adCode": "440103",
+            "districtLevel": 3,
+            "id": "1196062407345050871",
+            "name": "荔湾区"
+          },
+          {
+            "adCode": "440104",
+            "districtLevel": 3,
+            "id": "1196062407345050873",
+            "name": "越秀区"
+          }
+        ]
+      },
+      {
+        "adCode": "440200",
+        "districtLevel": 2,
+        "id": "1196062407345050893",
+        "name": "韶关市",
+        "area":[
+          {
+            "adCode": "440103",
+            "districtLevel": 3,
+            "id": "1196062407345050871",
+            "name": "荔湾区"
+          },
+          {
+            "adCode": "440104",
+            "districtLevel": 3,
+            "id": "1196062407345050873",
+            "name": "越秀区"
+          }
+        ]
+      }
+
+    ]
+  }
+]

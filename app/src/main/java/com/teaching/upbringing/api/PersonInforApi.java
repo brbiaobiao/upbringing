@@ -1,6 +1,5 @@
 package com.teaching.upbringing.api;
 
-import com.alibaba.sdk.android.oss.OSS;
 import com.outsourcing.library.net.RxHttpResponse;
 import com.teaching.upbringing.entity.OssEntity;
 import com.teaching.upbringing.entity.PersonInforEntity;
@@ -48,5 +47,6 @@ public interface PersonInforApi {
     @GET("oss/getCredentials")
     Observable<RxHttpResponse<OssEntity>> setOss(@QueryMap Map<String, String> param);
 
-
+    @POST("user/setAttendClassArea")
+    Observable<RxHttpResponse<UserInfoEntity>> setAttendClassArea(@Body Map<String, Object> param);
 }

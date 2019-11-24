@@ -61,4 +61,8 @@ public class PersonInforModel extends ApiModel<PersonInforApi> {
         map.put("code",code+"");
         return getApi().setOss(map).compose(RxUtil.httpAsyn());
     }
+
+    public Observable<UserInfoEntity> setAttendClassArea(Map<String,Object> map){
+        return getApi().setAttendClassArea(map).compose(RxUtil.httpAsyn());
+    }
 }
