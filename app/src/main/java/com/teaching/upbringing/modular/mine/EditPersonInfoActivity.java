@@ -240,7 +240,7 @@ public class EditPersonInfoActivity extends BaseMVPActivity<EditPersonlInfoContr
                 .compress(true)// 是否压缩
                 .glideOverride(160, 160)// glide 加载宽高，越小图片列表越流畅，但会影响列表图片浏览的清晰度
                 .withAspectRatio(3, 3)// 裁剪比例 如16:9 3:2 3:4 1:1 可自定义
-                .hideBottomControls(true)// 是否显示uCrop工具栏，默认不显示
+                .hideBottomControls(false)// 是否显示uCrop工具栏，默认不显示
                 .freeStyleCropEnabled(true)// 裁剪框是否可拖拽
                 .circleDimmedLayer(false)// 是否圆形裁剪
                 .showCropFrame(false)// 是否显示裁剪矩形边框 圆形裁剪时建议设为false
@@ -279,7 +279,7 @@ public class EditPersonInfoActivity extends BaseMVPActivity<EditPersonlInfoContr
                 //.sizeMultiplier(0.5f)// glide 加载图片大小 0~1之间 如设置 .glideOverride()无效
                 .glideOverride(160, 160)// glide 加载宽高，越小图片列表越流畅，但会影响列表图片浏览的清晰度
                 .withAspectRatio(3, 3)// 裁剪比例 如16:9 3:2 3:4 1:1 可自定义
-                .hideBottomControls(true)// 是否显示uCrop工具栏，默认不显示
+                .hideBottomControls(false)// 是否显示uCrop工具栏，默认不显示
                 .isGif(false)// 是否显示gif图片
                 .freeStyleCropEnabled(true)// 裁剪框是否可拖拽
                 .circleDimmedLayer(false)// 是否圆形裁剪
