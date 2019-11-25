@@ -1,11 +1,13 @@
 package com.teaching.upbringing.modular.mine;
 
+import android.os.Bundle;
+
 import com.teaching.upbringing.R;
 import com.teaching.upbringing.adapter.UsedServerAdapter;
+import com.teaching.upbringing.entity.PersonerFuncWrapper;
 import com.teaching.upbringing.mvpBase.BaseMVPFragment;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,8 +24,18 @@ public class UseredFragment extends BaseMVPFragment<UseredContract.Ipresenter> i
     RecyclerView mRvService;
 
     private UsedServerAdapter adapter;
-    private List<String> strings;
 
+    public static final String EXTRA_KEY_FUNC_LIST = "UseredFragment";
+    private ArrayList<PersonerFuncWrapper> funcWrappers;
+
+
+    public static UseredFragment newInstance(ArrayList<PersonerFuncWrapper> funcWrapperList) {
+        Bundle args = new Bundle();
+        args.putParcelableArrayList(EXTRA_KEY_FUNC_LIST, funcWrapperList);
+        UseredFragment fragment = new UseredFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     @Override
     protected Integer getContentId() {
@@ -32,25 +44,20 @@ public class UseredFragment extends BaseMVPFragment<UseredContract.Ipresenter> i
 
     @Override
     protected void init() {
+        funcWrappers = getArguments().getParcelableArrayList(EXTRA_KEY_FUNC_LIST);
         mRvService.setLayoutManager(new GridLayoutManager(getActivity(),4));
         mRvService.setHasFixedSize(true);
         mRvService.setNestedScrollingEnabled(false);
-        strings = new ArrayList<>();
-        strings.add("定制课程");
-        strings.add("售后");
-        strings.add("收藏");
-        strings.add("钱包");
-        strings.add("评价管理");
-        setAdapter(strings);
+        setAdapter(funcWrappers);
     }
 
     @Override
-    public void setAdapter(List<String> list) {
+    public void setAdapter(ArrayList<PersonerFuncWrapper> funcWrappers) {
         if(adapter == null) {
-            adapter = new UsedServerAdapter(list);
+            adapter = new UsedServerAdapter(funcWrappers);
             mRvService.setAdapter(adapter);
         }else {
-            adapter.setNewData(list);
+            adapter.setNewData(funcWrappers);
         }
     }
 }

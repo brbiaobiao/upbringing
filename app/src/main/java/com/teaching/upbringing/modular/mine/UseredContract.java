@@ -2,8 +2,9 @@ package com.teaching.upbringing.modular.mine;
 
 import com.outsourcing.library.mvp.rxbase.IBasePresenter;
 import com.outsourcing.library.mvp.rxbase.IContextView;
+import com.teaching.upbringing.entity.PersonerFuncWrapper;
 
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  * @author ChenHh
@@ -13,7 +14,7 @@ import java.util.List;
 public interface UseredContract {
 
     interface IView extends IContextView{
-        void setAdapter(List<String> list);
+        void setAdapter(ArrayList<PersonerFuncWrapper> funcWrappers);
     }
 
     interface Ipresenter extends IBasePresenter<IView> {

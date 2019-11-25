@@ -9,6 +9,7 @@ import android.widget.FrameLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import com.outsourcing.library.utils.StatusBarUtil;
 import com.teaching.upbringing.R;
 import com.teaching.upbringing.manager.AppManager;
 import com.teaching.upbringing.modular.community.CommunityFragment;
@@ -89,6 +90,7 @@ public class MainActivity extends BaseMVPActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        StatusBarUtil.setStatusBarColor(this, R.color.white);
         if (savedInstanceState != null) { // “内存重启”时调用
 
             //获取“内存重启”时保存的索引下标
@@ -135,22 +137,27 @@ public class MainActivity extends BaseMVPActivity {
             case R.id.home:
                 mcurrentPage = PAGE_HOME;
                 switchFragment(PAGE_HOME);
+//                StatusBarUtil.setStatusBarColor(this, R.color.white);
                 break;
             case R.id.study:
                 mcurrentPage = PAGE_STUDY;
                 switchFragment(PAGE_STUDY);
+//                StatusBarUtil.setStatusBarColor(this, R.color.white);
                 break;
             case R.id.community:
                 mcurrentPage = PAGE_COMMUNITY;
                 switchFragment(PAGE_COMMUNITY);
+//                StatusBarUtil.setStatusBarColor(this, R.color.white);
                 break;
             case R.id.hot:
                 mcurrentPage = PAGE_HOT;
                 switchFragment(PAGE_HOT);
+//                StatusBarUtil.setStatusBarColor(this, R.color.white);
                 break;
             case R.id.personal:
                 mcurrentPage = PAGE_MINE;
                 switchFragment(PAGE_MINE);
+//                StatusBarUtil.setStatusBarColor(this, R.color.color_CD2A2A);
                 break;
         }
     }

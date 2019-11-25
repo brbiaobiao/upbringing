@@ -59,6 +59,7 @@
     <color name="color_F6F6F6">#F6F6F6</color>
     <color name="color_d1d1d1">#d1d1d1</color>
     <color name="color_c3c3c">#3C3C3C</color>
+    <color name="color_CD2A2A">#CD2A2A</color>
 
     <!--半透明色-->
     <color name="translucent">#CCffffff</color>

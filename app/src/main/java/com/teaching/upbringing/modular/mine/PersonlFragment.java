@@ -16,11 +16,14 @@ import com.outsourcing.library.utils.image.ImageLoader;
 import com.outsourcing.library.widget.GlideRoundTransform;
 import com.teaching.upbringing.R;
 import com.teaching.upbringing.entity.PersonInforEntity;
+import com.teaching.upbringing.entity.PersonerFuncWrapper;
 import com.teaching.upbringing.manager.UserInfo;
 import com.teaching.upbringing.modular.setting.SettingActivity;
 import com.teaching.upbringing.mvpBase.BaseMVPFragment;
 import com.teaching.upbringing.utils.FragmentHelper;
 import com.teaching.upbringing.utils.StringUtils;
+
+import java.util.ArrayList;
 
 import androidx.annotation.Nullable;
 import butterknife.BindView;
@@ -72,9 +75,9 @@ public class PersonlFragment extends BaseMVPFragment<PersonlContract.Ipresenter>
                 FragmentHelper.NONE,FragmentHelper.NONE);
         FragmentHelper.addFragment(getActivity(),R.id.fl_my_order,new MyOrderFragment(),null,
                 FragmentHelper.NONE,FragmentHelper.NONE);
-        FragmentHelper.addFragment(getActivity(),R.id.fl_used_service,new UseredFragment(),null,
+        FragmentHelper.addFragment(getActivity(),R.id.fl_used_service,UseredFragment.newInstance(getUserWrapperList()),null,
                 FragmentHelper.NONE,FragmentHelper.NONE);
-        FragmentHelper.addFragment(getActivity(),R.id.fl_flatform,new FlatformFragment(),null,
+        FragmentHelper.addFragment(getActivity(),R.id.fl_flatform,FlatformFragment.newInstance(getFlatformWrapperList()),null,
                 FragmentHelper.NONE,FragmentHelper.NONE);
     }
 
@@ -143,6 +146,31 @@ public class PersonlFragment extends BaseMVPFragment<PersonlContract.Ipresenter>
         ImageLoader.loadOption(getActivity(), StringUtils.isEmpty(head_pic) ? "" : head_pic, new ImageLoader.Option(myOptions), mIvHeat);
         mTvNickname.setText(personInforEntity.getNickname());
         mTvSign.setText(personInforEntity.getIntroduce());
+    }
+
+    private ArrayList<PersonerFuncWrapper> getUserWrapperList() {
+        ArrayList<PersonerFuncWrapper> PersonerFuncWrapperList = new ArrayList<>();
+        PersonerFuncWrapperList.add(new PersonerFuncWrapper(R.mipmap.icon_my_customcourse, "定制课程"));
+        PersonerFuncWrapperList.add(new PersonerFuncWrapper(R.mipmap.icon_my_after_sales,"售后"));
+        PersonerFuncWrapperList.add(new PersonerFuncWrapper(R.mipmap.icon_my_like, "收藏"));
+        PersonerFuncWrapperList.add(new PersonerFuncWrapper(R.mipmap.icon_my_wallet,"钱包"));
+        PersonerFuncWrapperList.add(new PersonerFuncWrapper(R.mipmap.icon_my_evaluation_managa, "评价管理"));
+        return PersonerFuncWrapperList;
+    }
+
+    private ArrayList<PersonerFuncWrapper> getFlatformWrapperList() {
+        ArrayList<PersonerFuncWrapper> PersonerFuncWrapperList = new ArrayList<>();
+        PersonerFuncWrapperList.add(new PersonerFuncWrapper(R.mipmap.icon_my_certification, "认证"));
+        PersonerFuncWrapperList.add(new PersonerFuncWrapper(R.mipmap.icon_my_switch,"身份切换"));
+        PersonerFuncWrapperList.add(new PersonerFuncWrapper(R.mipmap.icon_my_teacher_recruitment, "教师招募"));
+        PersonerFuncWrapperList.add(new PersonerFuncWrapper(R.mipmap.icon_my_advice_feedback,"建议反馈"));
+        PersonerFuncWrapperList.add(new PersonerFuncWrapper(R.mipmap.icon_my_contact, "联系客服"));
+        PersonerFuncWrapperList.add(new PersonerFuncWrapper(R.mipmap.icon_my_police, "紧急报警"));
+        PersonerFuncWrapperList.add(new PersonerFuncWrapper(R.mipmap.icon_my_about_us, "关于我们"));
+        PersonerFuncWrapperList.add(new PersonerFuncWrapper(R.mipmap.icon_my_software_updates, "检测更新"));
+        PersonerFuncWrapperList.add(new PersonerFuncWrapper(R.mipmap.icon_my_change_password, "修改密码"));
+        PersonerFuncWrapperList.add(new PersonerFuncWrapper(R.mipmap.icon_my_cooperation, "商务合作"));
+        return PersonerFuncWrapperList;
     }
 
 }

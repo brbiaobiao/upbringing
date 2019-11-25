@@ -1,18 +1,19 @@
 package com.teaching.upbringing.modular.mine;
 
+import android.os.Bundle;
 import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemChildClickListener;
 import com.teaching.upbringing.R;
 import com.teaching.upbringing.adapter.FlatformAdapter;
+import com.teaching.upbringing.entity.PersonerFuncWrapper;
 import com.teaching.upbringing.modular.setting.AboutUsActivity;
 import com.teaching.upbringing.modular.user.UpdatePwdActivity;
 import com.teaching.upbringing.mvpBase.BaseMVPFragment;
 import com.teaching.upbringing.utils.ContractUtils;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -28,8 +29,18 @@ public class FlatformFragment extends BaseMVPFragment<FlatformContract.Ipresente
     @BindView(R.id.rv_flatform)
     RecyclerView mRvFlatform;
 
-    private List<String> strings;
     private FlatformAdapter adapter;
+
+    public static final String EXTRA_KEY_FUNC_LIST = "FlatformFragment";
+    private ArrayList<PersonerFuncWrapper> funcWrappers;
+
+    public static FlatformFragment newInstance(ArrayList<PersonerFuncWrapper> funcWrapperList) {
+        Bundle args = new Bundle();
+        args.putParcelableArrayList(EXTRA_KEY_FUNC_LIST, funcWrapperList);
+        FlatformFragment fragment = new FlatformFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     @Override
     protected Integer getContentId() {
@@ -38,32 +49,21 @@ public class FlatformFragment extends BaseMVPFragment<FlatformContract.Ipresente
 
     @Override
     protected void init() {
+        funcWrappers = getArguments().getParcelableArrayList(EXTRA_KEY_FUNC_LIST);
         mRvFlatform.setLayoutManager(new GridLayoutManager(getActivity(), 4));
         mRvFlatform.setHasFixedSize(true);
         mRvFlatform.setNestedScrollingEnabled(false);
-        strings = new ArrayList<>();
-        strings.add("认证");
-        strings.add("身份切换");
-        strings.add("教师招募");
-        strings.add("建议反馈");
-        strings.add("联系客服");
-        strings.add("紧急报警");
-        strings.add("关于我们");
-        strings.add("检测更新");
-        strings.add("修改密码");
-        strings.add("商务合作");
-        setAdapter(strings);
-
+        setAdapter(funcWrappers);
         initEvent();
     }
 
     @Override
-    public void setAdapter(List<String> list) {
+    public void setAdapter(ArrayList<PersonerFuncWrapper> funcWrappers) {
         if (adapter == null) {
-            adapter = new FlatformAdapter(list);
+            adapter = new FlatformAdapter(funcWrappers);
             mRvFlatform.setAdapter(adapter);
         } else {
-            adapter.setNewData(list);
+            adapter.setNewData(funcWrappers);
         }
     }
 
@@ -71,8 +71,9 @@ public class FlatformFragment extends BaseMVPFragment<FlatformContract.Ipresente
         mRvFlatform.addOnItemTouchListener(new OnItemChildClickListener() {
             @Override
             public void onSimpleItemChildClick(BaseQuickAdapter adapter, View view, int position) {
-                String text = strings.get(position);
-                switch (text) {
+                PersonerFuncWrapper funcWrapper = funcWrappers.get(position);
+                String funcName = funcWrapper.getFuncName();
+                switch (funcName) {
                     case "联系客服":
                         ContractUtils.UseContractDialog(getActivity(), "123456789", "12345678921");
                         break;

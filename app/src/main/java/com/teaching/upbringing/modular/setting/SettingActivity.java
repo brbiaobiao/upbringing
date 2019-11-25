@@ -8,7 +8,6 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
-import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
 import com.bigkoo.pickerview.view.OptionsPickerView;
 import com.google.gson.Gson;
 import com.outsourcing.library.utils.PreferenceManagers;
@@ -191,39 +190,36 @@ public class SettingActivity extends BaseMVPActivity<SettingContract.IPresenter>
 
     private void showPickerView() {// 弹出选择器
 
-        OptionsPickerView pvOptions = new OptionsPickerBuilder(this, new OnOptionsSelectListener() {
-            @Override
-            public void onOptionsSelect(int options1, int options2, int options3, View v) {
-                //返回的分别是三个级别的选中位置
-                String opt1tx = options1Items.size() > 0 ?
-                        options1Items.get(options1).getPickerViewText() : "";
+        OptionsPickerView pvOptions = new OptionsPickerBuilder(this, (options1, options2, options3, v) -> {
+            //返回的分别是三个级别的选中位置
+            String opt1tx = options1Items.size() > 0 ?
+                    options1Items.get(options1).getPickerViewText() : "";
 
-                options2Items.get(options1).get(options2);
-                String opt2tx = options2Items.size() > 0
-                        && options2Items.get(options1).size() > 0 ?
-                        options2Items.get(options1).get(options2) : "";
+            options2Items.get(options1).get(options2);
+            String opt2tx = options2Items.size() > 0
+                    && options2Items.get(options1).size() > 0 ?
+                    options2Items.get(options1).get(options2) : "";
 
-                String opt3tx = options2Items.size() > 0
-                        && options3Items.get(options1).size() > 0
-                        && options3Items.get(options1).get(options2).size() > 0 ?
-                        options3Items.get(options1).get(options2).get(options3) : "";
+            String opt3tx = options2Items.size() > 0
+                    && options3Items.get(options1).size() > 0
+                    && options3Items.get(options1).get(options2).size() > 0 ?
+                    options3Items.get(options1).get(options2).get(options3) : "";
 
-                String province_id = options1Items.get(options1).getProvince_id();
-                String city_id = options1Items.get(options1).getCity().get(options2).getId();
-                String area_id = options1Items.get(options2).getCity().get(options2).getArea().get(options3).getId();
-                String adCode = options1Items.get(options2).getCity().get(options2).getArea().get(options3).getAdCode();
-                int districtLevel = options1Items.get(options2).getCity().get(options2).getArea().get(options3).getDistrictLevel();
-                Map<String,Object> map = new HashMap<>();
-                map.put("adCode",adCode);
-                map.put("areaRegionId",area_id);
-                map.put("cityRegionId",city_id);
-                map.put("districtLevel",districtLevel);
-                map.put("provinceRegionId",province_id);
-                getPresenter().setAttendClassArea(map);
-            }
+            String province_id = options1Items.get(options1).getProvince_id();
+            String city_id = options1Items.get(options1).getCity().get(options2).getId();
+            String area_id = options1Items.get(options2).getCity().get(options2).getArea().get(options3).getId();
+            String adCode = options1Items.get(options2).getCity().get(options2).getArea().get(options3).getAdCode();
+            int districtLevel = options1Items.get(options2).getCity().get(options2).getArea().get(options3).getDistrictLevel();
+            Map<String,Object> map = new HashMap<>();
+            map.put("adCode",adCode);
+            map.put("areaRegionId",area_id);
+            map.put("cityRegionId",city_id);
+            map.put("districtLevel",districtLevel);
+            map.put("provinceRegionId",province_id);
+            getPresenter().setAttendClassArea(map);
         })
 
-                .setTitleText("城市选择")
+                .setTitleText("")
                 .setDividerColor(Color.BLACK)
                 .setTextColorCenter(Color.BLACK) //设置选中项文字颜色
                 .setContentTextSize(20)

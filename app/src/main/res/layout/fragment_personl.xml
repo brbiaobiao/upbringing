@@ -12,7 +12,7 @@
             android:id="@+id/rl_head"
             android:layout_width="match_parent"
             android:layout_height="206dp"
-            android:background="@drawable/shape_semi_circle_mine"/>
+            android:background="@mipmap/icon_person_head_bg"/>
 
         <ImageView
             android:id="@+id/iv_setting"
