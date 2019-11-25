@@ -175,6 +175,7 @@ public class EditPersonInfoActivity extends BaseMVPActivity<EditPersonlInfoContr
         }
         switch (view.getId()) {
             case R.id.iv_head_pic:
+                //垃圾后台,菜到忍无可忍
                 showActionSheetDialog();
                 break;
             case R.id.ll_nickname:
