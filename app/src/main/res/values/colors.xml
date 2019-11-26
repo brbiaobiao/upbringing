@@ -23,7 +23,7 @@
     <color name="transparent">#00ffffff</color>
     <color name="txt_main">#50B6FF</color>
     <color name="e6e6e6">#e6e6e6</color>
-    <color name="txt_invalid">#666666</color>
+    <color name="color_666666">#666666</color>
     <color name="btn_invalid">#dddddd</color>
     <color name="pg_orange">#FF6F20</color>
     <color name="getcode_color">#0284f5</color>

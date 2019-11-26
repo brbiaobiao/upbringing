@@ -144,8 +144,8 @@ public class PersonlFragment extends BaseMVPFragment<PersonlContract.Ipresenter>
                 .transform(new GlideRoundTransform(getActivity(), 90));
         String head_pic = PreferenceManagers.getString(PreferenceManagers.HEAD_PIC, "");
         ImageLoader.loadOption(getActivity(), StringUtils.isEmpty(head_pic) ? "" : head_pic, new ImageLoader.Option(myOptions), mIvHeat);
-        mTvNickname.setText(personInforEntity.getNickname());
-        mTvSign.setText(personInforEntity.getIntroduce());
+        mTvNickname.setText(StringUtils.isEmpty(personInforEntity.getNickname())?"昵称":personInforEntity.getNickname());
+        mTvSign.setText(StringUtils.isEmpty(personInforEntity.getIntroduce())?"简介":personInforEntity.getIntroduce());
     }
 
     private ArrayList<PersonerFuncWrapper> getUserWrapperList() {

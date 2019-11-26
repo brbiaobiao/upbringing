@@ -15,11 +15,11 @@
         android:id="@+id/textView_First"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="30dp"
         android:layout_gravity="center_horizontal"
         android:text="标题"
-        android:textColor="#505050"
-        android:textSize="18sp"
+        android:textColor="@color/cl_333333"
+        android:textSize="16sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -33,8 +33,8 @@
         android:layout_marginTop="15dp"
         android:gravity="center"
         android:text="020-83281821"
-        android:textColor="#50B6FF"
-        android:textSize="18sp"
+        android:textColor="@color/color_666666"
+        android:textSize="15sp"
         android:layout_marginLeft="@dimen/qb_px_40"
         android:layout_marginRight="@dimen/qb_px_40"/>
 
@@ -46,8 +46,8 @@
         android:layout_marginTop="15dp"
         android:gravity="center"
         android:text="020-83281821"
-        android:textColor="#50B6FF"
-        android:textSize="18sp"
+        android:textColor="@color/color_666666"
+        android:textSize="15sp"
         android:layout_marginLeft="@dimen/qb_px_40"
         android:layout_marginRight="@dimen/qb_px_40"/>
 
@@ -56,21 +56,20 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/px_40"
         android:layout_marginRight="@dimen/px_40"
-        android:layout_marginTop="@dimen/qb_px_15"
-        android:layout_marginBottom="@dimen/qb_px_15"
+        android:layout_marginTop="21dp"
+        android:layout_marginBottom="30dp"
         android:orientation="horizontal">
         <TextView
             android:id="@+id/textView_Cancel"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_marginRight="@dimen/px_10"
             android:background="@drawable/shape_dialog_btn_cancle"
-            android:gravity="center_horizontal"
-            android:paddingTop="@dimen/qb_px_13"
-            android:paddingBottom="@dimen/qb_px_13"
+            android:gravity="center"
+            android:textSize="14sp"
             android:text="取消"
-            android:textColor="#50B6FF"/>
+            android:textColor="@color/color_7a7a7a"/>
 
         <View
             android:id="@+id/view_Division"
@@ -87,15 +86,13 @@
             android:id="@+id/textView_Confirm"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_marginLeft="@dimen/px_10"
-            android:gravity="center_horizontal"
+            android:gravity="center"
             android:background="@drawable/shape_dialog_btn_sure"
-            android:paddingTop="@dimen/qb_px_13"
-            android:paddingBottom="@dimen/qb_px_13"
             android:text="确认"
-            android:textColor="#50B6FF"
-            android:textSize="16sp"/>
+            android:textColor="@color/white"
+            android:textSize="14sp"/>
     </LinearLayout>
 
 </LinearLayout>

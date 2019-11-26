@@ -59,7 +59,7 @@ public class FillInformationActivity extends BaseMVPActivity<FillInformationCont
         public void afterTextChanged(Editable s) {
             int length = mEtFillInfo.getText().toString().length();
             if(length!=0) {
-                GradientDrawable shape = ShapeUtils.createShape(-1, 26, -1, null, "#FD8440");
+                GradientDrawable shape = ShapeUtils.createShape(-1, 26, -1, null, "#CD2A2A");
                 titleRightText.setBackground(shape);
             }
         }

@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.scwang.smartrefresh.layout.SmartRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/smart_rel"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <com.scwang.smartrefresh.layout.header.ClassicsHeader
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:minHeight="50dp"
+            android:layout_height="match_parent">
+
+            <TextView android:id="@+id/tv_empty_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:drawablePadding="@dimen/px_40"
+                android:drawableTop="@mipmap/empt_data"
+                android:text="无记录"
+                android:visibility="gone"
+                tools:visibility="visible"
+                android:textColor="@color/text_gray"
+                android:textSize="@dimen/sp_15"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_class_area"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <TextView
+                android:id="@+id/tv_add_class_area"
+                android:layout_below="@id/rv_class_area"
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginLeft="25dp"
+                android:background="@drawable/shape_red_coner25"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text=""
+                tools:text="新增上课区域"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                />
+
+            <TextView
+                android:id="@+id/class_area_explain"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="上课区域设置说明"
+                android:textSize="14sp"
+                android:textColor="@color/color_7a7a7a"
+                android:gravity="center"
+                android:layout_below="@id/tv_add_class_area"
+                android:layout_marginTop="42dp"/>
+
+            <LinearLayout
+                android:id="@+id/ll_first_explain"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/class_area_explain"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1、"
+                    android:textColor="@color/color_7a7a7a"
+                    android:textSize="12sp"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="可选择多个上课区域，平台会根据所设置的上课区域在首页、搜索结果页展示给相应区域的用户。"
+                    android:textSize="12sp"
+                    android:textColor="@color/color_7a7a7a"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/ll_second_explain"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/ll_first_explain"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2、"
+                    android:textColor="@color/color_7a7a7a"
+                    android:textSize="12sp"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="上课区域支持全市或者单独区县。"
+                    android:textSize="12sp"
+                    android:textColor="@color/color_7a7a7a"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/ll_third_explain"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/ll_second_explain"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3、"
+                    android:textColor="@color/color_7a7a7a"
+                    android:textSize="12sp"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="上课区域之间不可覆盖，如新增了广东省广州市全市的上课区域，则不可新增广东省广州市天河区的上课区域。"
+                    android:textSize="12sp"
+                    android:textColor="@color/color_7a7a7a"/>
+            </LinearLayout>
+        </RelativeLayout>
+    </ScrollView>
+
+</com.scwang.smartrefresh.layout.SmartRefreshLayout>
+

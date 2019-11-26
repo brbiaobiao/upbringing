@@ -19,42 +19,46 @@ public class CityLevelEntity implements IPickerViewData {
      * city : [{"adCode":"440100","districtLevel":2,"id":"1196062407345050869","name":"广州市","area":[{"adCode":"440103","districtLevel":3,"id":"1196062407345050871","name":"荔湾区"},{"adCode":"440104","districtLevel":3,"id":"1196062407345050873","name":"越秀区"}]},{"adCode":"440200","districtLevel":2,"id":"1196062407345050893","name":"韶关市","area":[{"adCode":"440103","districtLevel":3,"id":"1196062407345050871","name":"荔湾区"},{"adCode":"440104","districtLevel":3,"id":"1196062407345050873","name":"越秀区"}]}]
      */
 
-    private String province_id;
-    private String province_name;
-    private String province_adCode;
-    private int province_districtLevel;
+    private String id;
+    private String name;
+    private String adCode;
+    private int districtLevel;
     private List<CityBean> city;
 
-    public String getProvince_id() {
-        return province_id;
+    public String getId() {
+        return id;
     }
 
-    public void setProvince_id(String province_id) {
-        this.province_id = province_id;
+    public CityLevelEntity setId(String id) {
+        this.id = id;
+        return this;
     }
 
-    public String getProvince_name() {
-        return province_name;
+    public String getName() {
+        return name;
     }
 
-    public void setProvince_name(String province_name) {
-        this.province_name = province_name;
+    public CityLevelEntity setName(String name) {
+        this.name = name;
+        return this;
     }
 
-    public String getProvince_adCode() {
-        return province_adCode;
+    public String getAdCode() {
+        return adCode;
     }
 
-    public void setProvince_adCode(String province_adCode) {
-        this.province_adCode = province_adCode;
+    public CityLevelEntity setAdCode(String adCode) {
+        this.adCode = adCode;
+        return this;
     }
 
-    public int getProvince_districtLevel() {
-        return province_districtLevel;
+    public int getDistrictLevel() {
+        return districtLevel;
     }
 
-    public void setProvince_districtLevel(int province_districtLevel) {
-        this.province_districtLevel = province_districtLevel;
+    public CityLevelEntity setDistrictLevel(int districtLevel) {
+        this.districtLevel = districtLevel;
+        return this;
     }
 
     public List<CityBean> getCity() {
@@ -67,7 +71,7 @@ public class CityLevelEntity implements IPickerViewData {
 
     @Override
     public String getPickerViewText() {
-        return this.province_name;
+        return this.name;
     }
 
     public static class CityBean {

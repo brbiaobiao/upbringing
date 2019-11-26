@@ -30,7 +30,7 @@ public class AppExceptionHandler extends ExceptionHandler {
                 case 999:
                 case 506:
                     ResponseUtils.toLogin();
-                    PreferenceManagers.saveValue(UserInfo.USERID,"");
+                    PreferenceManagers.saveValue(UserInfo.USERID, "");
                     return new RespondThrowable(e, ERROR.DEFAULT_ERROR, e.getMessage());
                 case 9999:
                     return new RespondThrowable(e, ERROR.DEFAULT_ERROR, e.getMessage());
@@ -47,9 +47,13 @@ public class AppExceptionHandler extends ExceptionHandler {
                     return new RespondThrowable(e, ERROR.DEFAULT_ERROR, e.getMessage());
                 case 130004:
                     return new RespondThrowable(e, ERROR.DEFAULT_ERROR, e.getMessage());
+                //                case 140001:
+                //                    return new RespondThrowable(e, ERROR.DEFAULT_ERROR, e.getMessage());
                 case -1:
                     //弹窗操作
                     return new RespondThrowable(e, 0, e.getMessage());
+                default:
+                    return new RespondThrowable(e, ERROR.DEFAULT_ERROR, e.getMessage());
             }
         }
         return super.handleException(e);

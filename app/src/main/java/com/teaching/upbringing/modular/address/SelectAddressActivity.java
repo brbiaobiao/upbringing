@@ -162,7 +162,7 @@ public class SelectAddressActivity extends BaseMVPActivity<SelectAddressContract
                     }
                 });
         TextView titleRightText = getTitleRightText();
-        GradientDrawable shape = ShapeUtils.createShape(-1, 36, -1, null, "#FD8440");
+        GradientDrawable shape = ShapeUtils.createShape(-1, 36, -1, null, "#CD2A2A");
         titleRightText.setBackground(shape);
         titleRightText.setPadding(DensityUtils.dp2px(this,13f),
                 DensityUtils.dp2px(this,3.5f),

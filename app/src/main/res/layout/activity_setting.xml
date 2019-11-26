@@ -57,7 +57,7 @@
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:textSize="14sp"
-        android:textColor="@color/color_FD8440"
+        android:textColor="@color/color_CD2A2A"
         android:layout_marginTop="15dp"
         android:gravity="center_horizontal"
         android:padding="15dp"
