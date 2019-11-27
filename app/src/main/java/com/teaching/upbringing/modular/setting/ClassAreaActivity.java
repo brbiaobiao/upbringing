@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -88,6 +89,7 @@ public class ClassAreaActivity extends BaseMVPActivity<ClassAreaContract.IPresen
     }
 
     private void initData() {
+        classAreaEntityList.clear();
         classAreaEntityList.add(new ClassAreaEntity("上课区域1", "广东省/广州市/全市"));
         classAreaEntityList.add(new ClassAreaEntity("上课区域2", "广东省/佛山市/全市"));
         classAreaEntityList.add(new ClassAreaEntity("上课区域3", "广东省/深圳市/全市"));
@@ -156,10 +158,17 @@ public class ClassAreaActivity extends BaseMVPActivity<ClassAreaContract.IPresen
                 } else {
                     city_AreaList.addAll(jsonBean.get(i).getCityList().get(c).getArea());
                 }*/
-                for (int i1 = 0; i1 < jsonBean.get(i).getCity().get(c).getArea().size(); i1++) {
-                    String name = jsonBean.get(i).getCity().get(c).getArea().get(i1).getName();
-                    city_AreaList.add(name);
-                    province_AreaList.add(city_AreaList);//添加该省所有地区数据
+                String area_name = "";
+                try {
+                    for (int j = 0; j < jsonBean.get(i).getCity().get(c).getArea().size(); j++) {
+                        area_name = jsonBean.get(i).getCity().get(c).getArea().get(j).getName();
+                        String name = jsonBean.get(i).getCity().get(c).getArea().get(j).getName();
+                        city_AreaList.add(name);
+                        province_AreaList.add(city_AreaList);//添加该省所有地区数据
+                    }
+                } catch (Exception e) {
+                    Log.d("area_name",area_name);
+                    e.printStackTrace();
                 }
             }
 
