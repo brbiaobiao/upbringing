@@ -21325,5 +21325,407 @@
         ]
       }
     ]
+  },
+  {
+    "adCode": "810000",
+    "districtLevel": 1,
+    "id": "1196062410289451923",
+    "name": "香港特别行政区",
+    "city": [
+      {
+        "adCode": "810001",
+        "districtLevel": 2,
+        "id": "1196062410289451925",
+        "name": "中西区",
+        "area": [
+          {
+            "adCode": "810001",
+            "districtLevel": 2,
+            "id": "1196062410289451925",
+            "name": "全区"
+          }
+        ]
+      },
+      {
+        "adCode": "810002",
+        "districtLevel": 2,
+        "id": "1196062410289451927",
+        "name": "湾仔区",
+        "area": [
+          {
+            "adCode": "810002",
+            "districtLevel": 2,
+            "id": "1196062410289451927",
+            "name": "全区"
+          }
+        ]
+      },
+      {
+        "adCode": "810003",
+        "districtLevel": 2,
+        "id": "1196062410289451929",
+        "name": "东区",
+        "area": [
+          {
+            "adCode": "810003",
+            "districtLevel": 2,
+            "id": "1196062410289451929",
+            "name": "全区"
+          }
+        ]
+      },
+      {
+        "adCode": "810004",
+        "districtLevel": 2,
+        "id": "1196062410289451931",
+        "name": "南区",
+        "area": [
+          {
+            "adCode": "810004",
+            "districtLevel": 2,
+            "id": "1196062410289451931",
+            "name": "全区"
+          }
+        ]
+      },
+      {
+        "adCode": "810005",
+        "districtLevel": 2,
+        "id": "1196062410289451933",
+        "name": "油尖旺区",
+        "area": [
+          {
+            "adCode": "810005",
+            "districtLevel": 2,
+            "id": "1196062410289451933",
+            "name": "全区"
+          }
+        ]
+      },
+      {
+        "adCode": "810006",
+        "districtLevel": 2,
+        "id": "1196062410289451935",
+        "name": "深水埗区",
+        "area": [
+          {
+            "adCode": "810006",
+            "districtLevel": 2,
+            "id": "1196062410289451935",
+            "name": "全区"
+          }
+        ]
+      },
+      {
+        "adCode": "810007",
+        "districtLevel": 2,
+        "id": "1196062410289451937",
+        "name": "九龙城区",
+        "area": [
+          {
+            "adCode": "810007",
+            "districtLevel": 2,
+            "id": "1196062410289451937",
+            "name": "全区"
+          }
+        ]
+      },
+      {
+        "adCode": "810008",
+        "districtLevel": 2,
+        "id": "1196062410289451939",
+        "name": "黄大仙区",
+        "area": [
+          {
+            "adCode": "810008",
+            "districtLevel": 2,
+            "id": "1196062410289451939",
+            "name": "全区"
+          }
+        ]
+      },
+      {
+        "adCode": "810009",
+        "districtLevel": 2,
+        "id": "1196062410289451941",
+        "name": "观塘区",
+        "area": [
+          {
+            "adCode": "810009",
+            "districtLevel": 2,
+            "id": "1196062410289451941",
+            "name": "全区"
+          }
+        ]
+      },
+      {
+        "adCode": "810010",
+        "districtLevel": 2,
+        "id": "1196062410289451943",
+        "name": "荃湾区",
+        "area": [
+          {
+            "adCode": "810010",
+            "districtLevel": 2,
+            "id": "1196062410289451943",
+            "name": "全区"
+          }
+        ]
+      },
+      {
+        "adCode": "810011",
+        "districtLevel": 2,
+        "id": "1196062410289451945",
+        "name": "屯门区",
+        "area": [
+          {
+            "adCode": "810011",
+            "districtLevel": 2,
+            "id": "1196062410289451945",
+            "name": "全区"
+          }
+        ]
+      },
+      {
+        "adCode": "810012",
+        "districtLevel": 2,
+        "id": "1196062410289451947",
+        "name": "元朗区",
+        "area": [
+          {
+            "adCode": "810012",
+            "districtLevel": 2,
+            "id": "1196062410289451947",
+            "name": "全区"
+          }
+        ]
+      },
+      {
+        "adCode": "810013",
+        "districtLevel": 2,
+        "id": "1196062410289451949",
+        "name": "北区",
+        "area": [
+          {
+            "adCode": "810013",
+            "districtLevel": 2,
+            "id": "1196062410289451949",
+            "name": "全区"
+          }
+        ]
+      },
+      {
+        "adCode": "810014",
+        "districtLevel": 2,
+        "id": "1196062410289451951",
+        "name": "大埔区",
+        "area": [
+          {
+            "adCode": "810014",
+            "districtLevel": 2,
+            "id": "1196062410289451951",
+            "name": "全区"
+          }
+        ]
+      },
+      {
+        "adCode": "810015",
+        "districtLevel": 2,
+        "id": "1196062410289451953",
+        "name": "西贡区",
+        "area": [
+          {
+            "adCode": "810015",
+            "districtLevel": 2,
+            "id": "1196062410289451953",
+            "name": "全区"
+          }
+        ]
+      },
+      {
+        "adCode": "810016",
+        "districtLevel": 2,
+        "id": "1196062410289451955",
+        "name": "沙田区",
+        "area": [
+          {
+            "adCode": "810016",
+            "districtLevel": 2,
+            "id": "1196062410289451955",
+            "name": "全区"
+          }
+        ]
+      },
+      {
+        "adCode": "810017",
+        "districtLevel": 2,
+        "id": "1196062410289451957",
+        "name": "葵青区",
+        "area": [
+          {
+            "adCode": "810017",
+            "districtLevel": 2,
+            "id": "1196062410289451957",
+            "name": "全区"
+          }
+        ]
+      },
+      {
+        "adCode": "810018",
+        "districtLevel": 2,
+        "id": "1196062410289451959",
+        "name": "离岛区",
+        "area": [
+          {
+            "adCode": "810018",
+            "districtLevel": 2,
+            "id": "1196062410289451959",
+            "name": "全区"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "adCode": "820000",
+    "districtLevel": 1,
+    "id": "1196062410289451961",
+    "name": "澳门特别行政区",
+    "data": [
+      {
+        "adCode": "820001",
+        "districtLevel": 2,
+        "id": "1196062410289451963",
+        "name": "花地玛堂区",
+        "area": [
+          {
+            "adCode": "820001",
+            "districtLevel": 2,
+            "id": "1196062410289451963",
+            "name": "全区"
+          }
+        ]
+      },
+      {
+        "adCode": "820002",
+        "districtLevel": 2,
+        "id": "1196062410289451965",
+        "name": "花王堂区",
+        "area": [
+          {
+            "adCode": "820002",
+            "districtLevel": 2,
+            "id": "1196062410289451965",
+            "name": "全区"
+          }
+        ]
+      },
+      {
+        "adCode": "820003",
+        "districtLevel": 2,
+        "id": "1196062410289451967",
+        "name": "望德堂区",
+        "area": [
+          {
+            "adCode": "820003",
+            "districtLevel": 2,
+            "id": "1196062410289451967",
+            "name": "全区"
+          }
+        ]
+      },
+      {
+        "adCode": "820004",
+        "districtLevel": 2,
+        "id": "1196062410289451969",
+        "name": "大堂区",
+        "area": [
+          {
+            "adCode": "820004",
+            "districtLevel": 2,
+            "id": "1196062410289451969",
+            "name": "全区"
+          }
+        ]
+      },
+      {
+        "adCode": "820005",
+        "districtLevel": 2,
+        "id": "1196062410289451971",
+        "name": "风顺堂区",
+        "area": [
+          {
+            "adCode": "820005",
+            "districtLevel": 2,
+            "id": "1196062410289451971",
+            "name": "全区"
+          }
+        ]
+      },
+      {
+        "adCode": "820006",
+        "districtLevel": 2,
+        "id": "1196062410289451973",
+        "name": "嘉模堂区",
+        "area": [
+          {
+            "adCode": "820006",
+            "districtLevel": 2,
+            "id": "1196062410289451973",
+            "name": "全区"
+          }
+        ]
+      },
+      {
+        "adCode": "820007",
+        "districtLevel": 2,
+        "id": "1196062410289451975",
+        "name": "路凼填海区",
+        "area": [
+          {
+            "adCode": "820007",
+            "districtLevel": 2,
+            "id": "1196062410289451975",
+            "name": "全区"
+          }
+        ]
+      },
+      {
+        "adCode": "820008",
+        "districtLevel": 2,
+        "id": "1196062410289451977",
+        "name": "圣方济各堂区",
+        "area": [
+          {
+            "adCode": "820008",
+            "districtLevel": 2,
+            "id": "1196062410289451977",
+            "name": "全区"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "adCode": "900000",
+    "districtLevel": 1,
+    "id": "1196062410289451979",
+    "name": "外国",
+    "city": [
+      {
+        "adCode": "900000",
+        "districtLevel": 1,
+        "id": "1196062410289451979",
+        "name": "外国",
+        "area": [
+          {
+            "adCode": "900000",
+            "districtLevel": 1,
+            "id": "1196062410289451979",
+            "name": "外国"
+          }
+        ]
+      }
+    ]
   }
 ]
