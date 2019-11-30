@@ -12,8 +12,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.lefore.tutoring.R;
 import com.outsourcing.library.utils.StatusBarUtil;
-import com.teaching.upbringing.R;
 import com.teaching.upbringing.entity.CaptchaEntity;
 import com.teaching.upbringing.entity.UserInfoEntity;
 import com.teaching.upbringing.mvpBase.BaseMVPActivity;

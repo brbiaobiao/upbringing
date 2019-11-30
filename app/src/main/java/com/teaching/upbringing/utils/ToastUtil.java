@@ -9,8 +9,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.lefore.tutoring.R;
 import com.outsourcing.library.utils.AppUtils;
-import com.teaching.upbringing.R;
 
 import java.util.ArrayList;
 import java.util.List;

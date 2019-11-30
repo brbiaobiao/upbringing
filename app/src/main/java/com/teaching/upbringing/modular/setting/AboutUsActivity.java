@@ -5,10 +5,10 @@ import android.content.Intent;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.lefore.tutoring.BuildConfig;
+import com.lefore.tutoring.R;
 import com.outsourcing.library.utils.AppUtils;
 import com.outsourcing.library.utils.StatusBarUtil;
-import com.teaching.upbringing.BuildConfig;
-import com.teaching.upbringing.R;
 import com.teaching.upbringing.mvpBase.BaseMVPActivity;
 
 import butterknife.BindView;
@@ -40,7 +40,7 @@ public class AboutUsActivity extends BaseMVPActivity {
     protected void init() {
         setTitleText("关于我们");
         StatusBarUtil.setStatusBarColor(this, R.color.white);
-        mTvVersion.setText("版本："+"v"+BuildConfig.VERSION_NAME);
+        mTvVersion.setText("版本："+"v"+ BuildConfig.VERSION_NAME);
         mTvAppName.setText(AppUtils.getAppName(this));
     }
 }

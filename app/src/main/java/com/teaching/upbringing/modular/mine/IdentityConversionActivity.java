@@ -1,22 +1,16 @@
 package com.teaching.upbringing.modular.mine;
 
-import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
+import com.lefore.tutoring.R;
 import com.outsourcing.library.utils.StatusBarUtil;
 import com.outsourcing.library.widget.dialog.ActionSheetDialog;
-import com.tbruyelle.rxpermissions2.RxPermissions;
-import com.teaching.upbringing.R;
-import com.teaching.upbringing.manager.UserInfo;
-import com.teaching.upbringing.modular.setting.AboutUsActivity;
 import com.teaching.upbringing.mvpBase.BaseMVPActivity;
 import com.teaching.upbringing.utils.ToastUtil;
-import com.teaching.upbringing.widget.dialog.ConfigurableDialog;
-
 
 import butterknife.BindView;
 import butterknife.OnClick;

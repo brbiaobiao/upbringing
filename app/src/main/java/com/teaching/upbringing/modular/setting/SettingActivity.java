@@ -6,9 +6,9 @@ import android.view.View;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import com.lefore.tutoring.R;
 import com.outsourcing.library.utils.PreferenceManagers;
 import com.outsourcing.library.utils.StatusBarUtil;
-import com.teaching.upbringing.R;
 import com.teaching.upbringing.manager.UserInfo;
 import com.teaching.upbringing.modular.user.LoginActivity;
 import com.teaching.upbringing.modular.user.UpdatePwdActivity;

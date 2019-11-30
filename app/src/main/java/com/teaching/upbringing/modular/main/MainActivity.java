@@ -9,8 +9,8 @@ import android.widget.FrameLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import com.lefore.tutoring.R;
 import com.outsourcing.library.utils.StatusBarUtil;
-import com.teaching.upbringing.R;
 import com.teaching.upbringing.manager.AppManager;
 import com.teaching.upbringing.modular.community.CommunityFragment;
 import com.teaching.upbringing.modular.home.HomeFragment;

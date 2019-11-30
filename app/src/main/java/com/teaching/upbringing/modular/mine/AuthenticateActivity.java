@@ -4,12 +4,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.widget.TextView;
 
+import com.lefore.tutoring.R;
 import com.outsourcing.library.utils.StatusBarUtil;
-import com.teaching.upbringing.R;
 import com.teaching.upbringing.entity.IdentityAuthStatusEntity;
 import com.teaching.upbringing.mvpBase.BaseMVPActivity;
 import com.teaching.upbringing.presenter.AuthenticatePresenter;
-import com.teaching.upbringing.presenter.StudentIdentityPresenter;
 
 import butterknife.BindView;
 

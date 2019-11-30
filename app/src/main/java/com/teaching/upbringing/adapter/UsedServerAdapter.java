@@ -2,7 +2,7 @@ package com.teaching.upbringing.adapter;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
-import com.teaching.upbringing.R;
+import com.lefore.tutoring.R;
 import com.teaching.upbringing.entity.PersonerFuncWrapper;
 
 import java.util.ArrayList;

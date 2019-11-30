@@ -5,9 +5,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
+import com.lefore.tutoring.R;
 import com.outsourcing.library.utils.AppUtils;
 import com.outsourcing.library.utils.StringUtils;
-import com.teaching.upbringing.R;
 
 import androidx.fragment.app.FragmentManager;
 import butterknife.BindView;

@@ -9,10 +9,10 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import com.amap.api.services.core.PoiItem;
+import com.lefore.tutoring.R;
 import com.outsourcing.library.utils.KeyboardUtils;
 import com.outsourcing.library.utils.OnResultUtil;
 import com.outsourcing.library.utils.StatusBarUtil;
-import com.teaching.upbringing.R;
 import com.teaching.upbringing.entity.CommonAddEntity;
 import com.teaching.upbringing.mvpBase.BaseMVPActivity;
 import com.teaching.upbringing.utils.ToastUtil;

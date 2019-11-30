@@ -1,8 +1,8 @@
 package com.teaching.upbringing.modular;
 
+import com.lefore.tutoring.R;
 import com.outsourcing.library.utils.PreferenceManagers;
 import com.outsourcing.library.utils.StringUtils;
-import com.teaching.upbringing.R;
 import com.teaching.upbringing.manager.UserInfo;
 import com.teaching.upbringing.modular.main.MainActivity;
 import com.teaching.upbringing.modular.user.LoginActivity;

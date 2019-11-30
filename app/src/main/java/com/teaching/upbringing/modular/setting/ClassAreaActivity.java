@@ -13,10 +13,10 @@ import com.bigkoo.pickerview.view.OptionsPickerView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemChildClickListener;
 import com.google.gson.Gson;
+import com.lefore.tutoring.R;
 import com.outsourcing.library.utils.AppUtils;
 import com.outsourcing.library.utils.StatusBarUtil;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
-import com.teaching.upbringing.R;
 import com.teaching.upbringing.adapter.ClassAreaAdapter;
 import com.teaching.upbringing.entity.CityLevelEntity;
 import com.teaching.upbringing.entity.ClassAreaEntity;
@@ -54,7 +54,7 @@ public class ClassAreaActivity extends BaseMVPActivity<ClassAreaContract.IPresen
     SmartRefreshLayout mSmartRel;
 
     private ClassAreaAdapter adapter;
-    private List<ClassAreaEntity> classAreaEntityList = new ArrayList<>();
+    private List<ClassAreaEntity> classAreaEntitys = new ArrayList<>();
 
     private boolean isaAnalysisSuccess = false;
     private ArrayList<CityLevelEntity> options1Items;
@@ -83,23 +83,9 @@ public class ClassAreaActivity extends BaseMVPActivity<ClassAreaContract.IPresen
         mTvAddClassArea.setText("添加上课区域");
         mRvClassArea.setLayoutManager(new LinearLayoutManager(this));
         mSmartRel.autoRefresh();
-        mSmartRel.setOnRefreshListener(refreshLayout -> initData());
+        mSmartRel.setOnRefreshListener(refreshLayout -> getPresenter().getClassList());
         initProvinceJson();//初始化城市数据
         initEnent();
-    }
-
-    private void initData() {
-        classAreaEntityList.clear();
-        classAreaEntityList.add(new ClassAreaEntity("上课区域1", "广东省/广州市/全市"));
-        classAreaEntityList.add(new ClassAreaEntity("上课区域2", "广东省/佛山市/全市"));
-        classAreaEntityList.add(new ClassAreaEntity("上课区域3", "广东省/深圳市/全市"));
-        if(classAreaEntityList.size() == 0) {
-            mTvAddClassArea.setText("添加上课区域");
-        }else {
-            mTvAddClassArea.setText("新增上课区域");
-        }
-        mSmartRel.finishRefresh();
-        setAdapter(classAreaEntityList);
     }
 
     @OnClick(R.id.tv_add_class_area)
@@ -232,10 +218,11 @@ public class ClassAreaActivity extends BaseMVPActivity<ClassAreaContract.IPresen
             map.put("provinceRegionId", province_id);
             boolean sure_add = true;
             String tip = "";
-            for(int i = 0; i < classAreaEntityList.size(); i++) {
-                ClassAreaEntity classAreaEntity = classAreaEntityList.get(i);
-                String area_name = classAreaEntity.getArea_name();
-                if(area_name.contains(opt2tx)&& area_name.contains("全市")) {
+            for(int i = 0; i < classAreaEntitys.size(); i++) {
+                ClassAreaEntity classAreaEntity = classAreaEntitys.get(i);
+                String city = classAreaEntity.getCity();
+                String area = classAreaEntity.getRegion();
+                if(city.equals(opt2tx)&& area.contains("全市")) {
                     sure_add = false;
                     tip = "你已添加"+opt2tx+"全市的上课区域，不能再次新增"+opt2tx+"的上课区域。";
                     break;
@@ -265,6 +252,12 @@ public class ClassAreaActivity extends BaseMVPActivity<ClassAreaContract.IPresen
 
     @Override
     public void setAdapter(List<ClassAreaEntity> classAreaEntityList) {
+        classAreaEntitys = classAreaEntityList;
+        if(classAreaEntitys.size() == 0) {
+            mTvAddClassArea.setText("添加上课区域");
+        }else {
+            mTvAddClassArea.setText("新增上课区域");
+        }
         if (adapter == null) {
             adapter = new ClassAreaAdapter(classAreaEntityList);
             mRvClassArea.setAdapter(adapter);
@@ -274,13 +267,18 @@ public class ClassAreaActivity extends BaseMVPActivity<ClassAreaContract.IPresen
     }
 
     @Override
-    public void addSuccess() {
+    public void  addSuccess() {
         mSmartRel.autoRefresh();
     }
 
     @Override
     public void removeAreaItem(int position) {
         adapter.removeItem(position);
+    }
+
+    @Override
+    public void finishRelsh() {
+        mSmartRel.finishRefresh();
     }
 
     @SuppressLint("CheckResult")

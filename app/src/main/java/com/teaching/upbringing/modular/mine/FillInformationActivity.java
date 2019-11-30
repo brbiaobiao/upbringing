@@ -9,13 +9,13 @@ import android.text.TextWatcher;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.lefore.tutoring.R;
 import com.outsourcing.library.utils.AppUtils;
 import com.outsourcing.library.utils.DensityUtils;
 import com.outsourcing.library.utils.KeyboardUtils;
 import com.outsourcing.library.utils.ShapeUtils;
 import com.outsourcing.library.utils.StatusBarUtil;
 import com.outsourcing.library.utils.StringUtils;
-import com.teaching.upbringing.R;
 import com.teaching.upbringing.manager.UserInfo;
 import com.teaching.upbringing.mvpBase.BaseMVPActivity;
 import com.teaching.upbringing.utils.ToastUtil;

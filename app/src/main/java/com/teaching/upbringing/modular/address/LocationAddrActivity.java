@@ -19,11 +19,10 @@ import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
-
+import com.lefore.tutoring.R;
 import com.outsourcing.library.utils.KeyboardUtils;
 import com.outsourcing.library.utils.PreferenceManagers;
 import com.outsourcing.library.utils.StatusBarUtil;
-import com.teaching.upbringing.R;
 import com.teaching.upbringing.adapter.AllCityAdapter;
 import com.teaching.upbringing.adapter.CityHistotyAdapter;
 import com.teaching.upbringing.adapter.LocationAddrCityAdapter;

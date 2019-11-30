@@ -8,10 +8,10 @@ import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemChildClickListener;
+import com.lefore.tutoring.R;
 import com.outsourcing.library.utils.OnResultUtil;
 import com.outsourcing.library.utils.StatusBarUtil;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
-import com.teaching.upbringing.R;
 import com.teaching.upbringing.adapter.CommonAddAdapter;
 import com.teaching.upbringing.entity.CommonAddEntity;
 import com.teaching.upbringing.mvpBase.BaseMVPActivity;

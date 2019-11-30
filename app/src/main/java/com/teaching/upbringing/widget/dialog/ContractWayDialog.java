@@ -10,7 +10,7 @@ import android.view.WindowManager;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.teaching.upbringing.R;
+import com.lefore.tutoring.R;
 
 import java.util.ArrayList;
 import java.util.List;

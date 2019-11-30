@@ -21,9 +21,13 @@ public interface ClassAreaContract {
         void addSuccess();
 
         void removeAreaItem(int position);
+
+        void finishRelsh();
     }
 
     interface IPresenter extends IBasePresenter<IView> {
+        void getClassList();
+
         void setAttendClassArea(Map<String, Object> map);
 
         void removeClassArea(int position);

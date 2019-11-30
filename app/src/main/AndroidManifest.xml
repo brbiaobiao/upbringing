@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:tools="http://schemas.android.com/tools"
-          package="com.teaching.upbringing">
+          package="com.lefore.tutoring">
 
     <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES"/>
     <!-- 用于进行网络定位 -->
@@ -47,14 +47,13 @@
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
 
     <application
-        android:name=".application.AppApplication"
+        android:name="com.teaching.upbringing.application.AppApplication"
         android:allowBackup="false"
         android:allowClearUserData="true"
         android:appComponentFactory="android.support.v4.app.CoreComponentFactory"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:largeHeap="true"
-        android:roundIcon="@mipmap/ic_launcher_round"
         android:networkSecurityConfig="@xml/network_security_config"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
@@ -62,7 +61,7 @@
         tools:replace="android:allowBackup,android:appComponentFactory"
         tools:targetApi="p"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".modular.ShalpActivity">
+        <activity android:name="com.teaching.upbringing.modular.ShalpActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -84,131 +83,131 @@
         <!--高德定位搜索poi-->
         <meta-data
             android:name="com.amap.api.v2.apikey"
-            android:value="60522b9d56a8dc074d28fb6e9a8a80d5"/>
+            android:value="73ff3464f015f5d8592398bd0f1efcbc"/>
 
         <activity
-            android:name=".modular.main.MainActivity"
+            android:name="com.teaching.upbringing.modular.main.MainActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden"/>
         <activity
-            android:name=".modular.user.LoginActivity"
-            android:launchMode="singleTask"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan|stateHidden"/>
-
-        <activity
-            android:name=".modular.webview.WebViewActivity"
+            android:name="com.teaching.upbringing.modular.user.LoginActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden"/>
 
         <activity
-            android:name=".modular.user.RegisterActivity"
-            android:launchMode="singleTask"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan|stateHidden"/>
-        <activity
-            android:name=".modular.setting.SettingActivity"
-            android:launchMode="singleTask"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan|stateHidden"/>
-        <activity
-            android:name=".modular.mine.EditPersonInfoActivity"
-            android:launchMode="singleTask"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan|stateHidden"/>
-        <activity
-            android:name=".modular.mine.PersonInfoActivity"
-            android:launchMode="singleTask"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan|stateHidden"/>
-        <activity
-            android:name=".modular.mine.FillInformationActivity"
+            android:name="com.teaching.upbringing.modular.webview.WebViewActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden"/>
 
         <activity
-            android:name=".modular.user.PasswordLoginActivity"
+            android:name="com.teaching.upbringing.modular.user.RegisterActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden"/>
+        <activity
+            android:name="com.teaching.upbringing.modular.setting.SettingActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden"/>
+        <activity
+            android:name="com.teaching.upbringing.modular.mine.EditPersonInfoActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden"/>
+        <activity
+            android:name="com.teaching.upbringing.modular.mine.PersonInfoActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden"/>
+        <activity
+            android:name="com.teaching.upbringing.modular.mine.FillInformationActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden"/>
 
         <activity
-            android:name=".modular.user.ForgetActivity"
+            android:name="com.teaching.upbringing.modular.user.PasswordLoginActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden"/>
 
         <activity
-            android:name=".modular.user.UpdatePwdActivity"
+            android:name="com.teaching.upbringing.modular.user.ForgetActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden"/>
 
         <activity
-            android:name=".modular.setting.AboutUsActivity"
+            android:name="com.teaching.upbringing.modular.user.UpdatePwdActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden"/>
 
         <activity
-            android:name=".modular.address.CommonAddActivity"
+            android:name="com.teaching.upbringing.modular.setting.AboutUsActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden"/>
 
         <activity
-            android:name=".modular.address.AddAddressActivity"
+            android:name="com.teaching.upbringing.modular.address.CommonAddActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden"/>
 
         <activity
-            android:name=".modular.address.SelectAddressActivity"
+            android:name="com.teaching.upbringing.modular.address.AddAddressActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden"/>
 
         <activity
-            android:name=".modular.address.SearchAddressActivity"
+            android:name="com.teaching.upbringing.modular.address.SelectAddressActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden"/>
 
         <activity
-            android:name=".modular.address.LocationAddrActivity"
+            android:name="com.teaching.upbringing.modular.address.SearchAddressActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden"/>
 
         <activity
-            android:name=".modular.address.ReLocationAddrActivity"
+            android:name="com.teaching.upbringing.modular.address.LocationAddrActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden"/>
+
+        <activity
+            android:name="com.teaching.upbringing.modular.address.ReLocationAddrActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden" />
 
         <activity
-            android:name=".modular.setting.ClassAreaActivity"
+            android:name="com.teaching.upbringing.modular.setting.ClassAreaActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden"/>
 
 
         <activity
-            android:name=".modular.mine.IdentityConversionActivity"
+            android:name="com.teaching.upbringing.modular.mine.IdentityConversionActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden"/>
 
         <activity
-            android:name=".modular.mine.AuthenticateActivity"
+            android:name="com.teaching.upbringing.modular.mine.AuthenticateActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden"/>
 
-        <activity android:name=".modular.mine.StudentIdentityActivity"
+        <activity android:name="com.teaching.upbringing.modular.mine.StudentIdentityActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden"/>

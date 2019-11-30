@@ -8,8 +8,8 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.lefore.tutoring.R;
 import com.outsourcing.library.widget.AbsTitleBar;
-import com.teaching.upbringing.R;
 
 import butterknife.BindView;
 

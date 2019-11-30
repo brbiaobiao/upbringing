@@ -11,8 +11,8 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 
+import com.lefore.tutoring.R;
 import com.outsourcing.library.utils.StringUtils;
-import com.teaching.upbringing.R;
 
 import java.util.ArrayList;
 import java.util.List;

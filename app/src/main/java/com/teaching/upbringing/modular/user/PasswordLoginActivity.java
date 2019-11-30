@@ -9,10 +9,10 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.lefore.tutoring.R;
 import com.outsourcing.library.utils.KeyboardUtils;
-import com.outsourcing.library.utils.StatusBarUtil;
 import com.outsourcing.library.utils.PreferenceManagers;
-import com.teaching.upbringing.R;
+import com.outsourcing.library.utils.StatusBarUtil;
 import com.teaching.upbringing.entity.UserInfoEntity;
 import com.teaching.upbringing.manager.UserInfo;
 import com.teaching.upbringing.modular.main.MainActivity;

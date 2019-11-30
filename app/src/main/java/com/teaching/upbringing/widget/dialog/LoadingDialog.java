@@ -8,8 +8,8 @@ import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.lefore.tutoring.R;
 import com.outsourcing.library.utils.StringUtils;
-import com.teaching.upbringing.R;
 
 /**
  * @author ChenHh

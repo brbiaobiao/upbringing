@@ -5,7 +5,7 @@ import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemChildClickListener;
-import com.teaching.upbringing.R;
+import com.lefore.tutoring.R;
 import com.teaching.upbringing.adapter.FlatformAdapter;
 import com.teaching.upbringing.entity.PersonerFuncWrapper;
 import com.teaching.upbringing.modular.setting.AboutUsActivity;

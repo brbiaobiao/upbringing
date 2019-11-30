@@ -1,18 +1,15 @@
 package com.teaching.upbringing.modular.mine;
 
-import android.content.Intent;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.lefore.tutoring.R;
 import com.outsourcing.library.utils.StatusBarUtil;
-import com.teaching.upbringing.R;
 import com.teaching.upbringing.entity.IdentityAuthEntity;
 import com.teaching.upbringing.entity.UserInfoEntity;
-import com.teaching.upbringing.modular.user.PasswordLoginActivity;
-import com.teaching.upbringing.modular.user.RegisterActivity;
 import com.teaching.upbringing.mvpBase.BaseMVPActivity;
 import com.teaching.upbringing.presenter.StudentIdentityPresenter;
 import com.teaching.upbringing.utils.ToastUtil;

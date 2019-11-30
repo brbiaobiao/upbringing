@@ -2,7 +2,7 @@ package com.teaching.upbringing.modular.mine;
 
 import android.os.Bundle;
 
-import com.teaching.upbringing.R;
+import com.lefore.tutoring.R;
 import com.teaching.upbringing.adapter.UsedServerAdapter;
 import com.teaching.upbringing.entity.PersonerFuncWrapper;
 import com.teaching.upbringing.mvpBase.BaseMVPFragment;

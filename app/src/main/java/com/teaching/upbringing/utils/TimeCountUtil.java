@@ -5,7 +5,7 @@ import android.app.Activity;
 import android.os.CountDownTimer;
 import android.widget.TextView;
 
-import com.teaching.upbringing.R;
+import com.lefore.tutoring.R;
 
 
 /**

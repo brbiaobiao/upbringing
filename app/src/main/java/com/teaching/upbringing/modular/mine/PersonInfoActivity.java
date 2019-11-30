@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.request.RequestOptions;
+import com.lefore.tutoring.R;
 import com.outsourcing.library.mvp.observer.NextObserver;
 import com.outsourcing.library.mvp.rxbase.RxLife;
 import com.outsourcing.library.utils.AppUtils;
@@ -22,7 +23,6 @@ import com.outsourcing.library.utils.ShapeUtils;
 import com.outsourcing.library.utils.StatusBarUtil;
 import com.outsourcing.library.utils.image.ImageLoader;
 import com.outsourcing.library.widget.GlideRoundTransform;
-import com.teaching.upbringing.R;
 import com.teaching.upbringing.entity.PersonInforEntity;
 import com.teaching.upbringing.manager.UserInfo;
 import com.teaching.upbringing.mvpBase.BaseMVPActivity;

@@ -1,6 +1,6 @@
 package com.teaching.upbringing.modular.community;
 
-import com.teaching.upbringing.R;
+import com.lefore.tutoring.R;
 import com.teaching.upbringing.mvpBase.BaseMVPFragment;
 
 /**

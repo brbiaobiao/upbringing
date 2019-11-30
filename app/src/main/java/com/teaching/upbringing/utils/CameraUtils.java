@@ -7,7 +7,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.provider.MediaStore;
 
-import com.teaching.upbringing.R;
+import com.lefore.tutoring.R;
 
 import java.io.FileInputStream;
 import java.io.IOException;

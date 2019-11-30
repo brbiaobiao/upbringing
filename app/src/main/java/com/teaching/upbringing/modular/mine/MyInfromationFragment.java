@@ -2,9 +2,9 @@ package com.teaching.upbringing.modular.mine;
 
 import android.widget.TextView;
 
+import com.lefore.tutoring.R;
 import com.outsourcing.library.utils.AppUtils;
 import com.outsourcing.library.utils.SpannableHelper;
-import com.teaching.upbringing.R;
 import com.teaching.upbringing.mvpBase.BaseMVPFragment;
 
 import butterknife.BindView;

@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
-import com.teaching.upbringing.R;
+import com.lefore.tutoring.R;
 import com.teaching.upbringing.entity.CommonAddEntity;
 import com.teaching.upbringing.utils.ScreenUtils;
 import com.teaching.upbringing.widget.SlidingButtonView;

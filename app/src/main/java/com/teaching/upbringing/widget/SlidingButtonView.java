@@ -6,8 +6,8 @@ import android.view.MotionEvent;
 import android.widget.HorizontalScrollView;
 import android.widget.TextView;
 
+import com.lefore.tutoring.R;
 import com.outsourcing.library.utils.DensityUtils;
-import com.teaching.upbringing.R;
 
 
 public class SlidingButtonView extends HorizontalScrollView {

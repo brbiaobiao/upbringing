@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.lefore.tutoring.R;
 import com.outsourcing.library.utils.AppUtils;
 import com.outsourcing.library.utils.DensityUtils;
 import com.outsourcing.library.utils.KeyboardUtils;
@@ -20,7 +21,6 @@ import com.outsourcing.library.utils.NavigationBarUtils;
 import com.outsourcing.library.utils.ScreenUtils;
 import com.outsourcing.library.utils.StatusBarUtils;
 import com.outsourcing.library.utils.UIUtils;
-import com.teaching.upbringing.R;
 
 /**
  * @author bb

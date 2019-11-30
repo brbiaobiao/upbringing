@@ -8,8 +8,8 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
+import com.lefore.tutoring.R;
 import com.outsourcing.library.utils.DensityUtils;
-import com.teaching.upbringing.R;
 
 
 public class QuickIndex extends View {

@@ -1,7 +1,7 @@
 package com.teaching.upbringing.manager;
 
 
-import com.teaching.upbringing.BuildConfig;
+import com.lefore.tutoring.BuildConfig;
 
 /**
  * @author: biao

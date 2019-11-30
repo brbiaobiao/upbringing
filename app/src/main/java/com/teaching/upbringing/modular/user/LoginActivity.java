@@ -2,19 +2,16 @@ package com.teaching.upbringing.modular.user;
 
 import android.content.Context;
 import android.content.Intent;
-
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-
-import com.outsourcing.library.net.RxHttpResponse;
+import com.lefore.tutoring.R;
 import com.outsourcing.library.utils.KeyboardUtils;
 import com.outsourcing.library.utils.PreferenceManagers;
 import com.outsourcing.library.utils.StatusBarUtil;
-import com.teaching.upbringing.R;
 import com.teaching.upbringing.entity.CaptchaEntity;
 import com.teaching.upbringing.entity.UserInfoEntity;
 import com.teaching.upbringing.manager.UserInfo;

@@ -2,7 +2,7 @@ package com.teaching.upbringing.utils;
 
 import android.text.TextUtils;
 
-import com.teaching.upbringing.R;
+import com.lefore.tutoring.R;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

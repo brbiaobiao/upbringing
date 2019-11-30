@@ -11,7 +11,7 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.amap.api.services.core.PoiItem;
-import com.teaching.upbringing.R;
+import com.lefore.tutoring.R;
 import com.teaching.upbringing.utils.address.OnItemClickLisenter;
 
 import java.util.List;

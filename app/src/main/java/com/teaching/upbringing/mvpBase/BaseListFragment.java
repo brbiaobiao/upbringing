@@ -5,10 +5,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.lefore.tutoring.R;
 import com.outsourcing.library.manager.LoadMoreManager;
 import com.outsourcing.library.mvp.rxbase.IBasePresenter;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
-import com.teaching.upbringing.R;
 
 import java.util.ArrayList;
 import java.util.List;
