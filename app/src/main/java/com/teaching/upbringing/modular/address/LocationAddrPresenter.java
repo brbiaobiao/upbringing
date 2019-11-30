@@ -1,12 +1,9 @@
 package com.teaching.upbringing.modular.address;
 
 import com.outsourcing.library.mvp.observer.NextObserver;
-import com.outsourcing.library.utils.GsonUtil;
-import com.outsourcing.library.utils.LogUtils;
 import com.teaching.upbringing.entity.AllCityEntity;
 import com.teaching.upbringing.entity.CityLevelEntity;
 import com.teaching.upbringing.entity.ListAllRegionByNameEntity;
-import com.teaching.upbringing.entity.ListAllRegionEntity;
 import com.teaching.upbringing.entity.RegionByCityNameEntity;
 import com.teaching.upbringing.model.RegionModel;
 import com.teaching.upbringing.presenter.Presenter;
@@ -70,7 +67,6 @@ public class LocationAddrPresenter extends Presenter<LocationAddrContract.IView>
                         getView().setAllCityAdapter(allCityEntities);
                     }
                 });
-        getcityTravel1();//1196062407345050867   1196062407349244079
     }
 
     /**
@@ -113,69 +109,6 @@ public class LocationAddrPresenter extends Presenter<LocationAddrContract.IView>
                     @Override
                     public void onNext(List<ListAllRegionByNameEntity> listAllRegionByNameEntities) {
                         getView().setReCityAdapter(listAllRegionByNameEntities);
-                    }
-                });
-    }
-
-    public void getcityTravel1() {
-        getView().showProgress();
-        regionModel.listAllRegion()
-                .compose(bindLife())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new NextObserver<List<ListAllRegionEntity>>() {
-                    @Override
-                    public void onNext(List<ListAllRegionEntity> listAllRegionEntityList) {
-                        for (int i = 0; i < listAllRegionEntityList.size(); i++) {
-                            List<ListAllRegionEntity.RegionRspsBean> regionRsps = listAllRegionEntityList.get(i).getRegionRsps();
-                            for (int i1 = 0; i1 < regionRsps.size(); i1++) {
-                                CityLevelEntity cityLevelEntity = new CityLevelEntity();
-                                String id = regionRsps.get(i1).getId();
-                                String name = regionRsps.get(i1).getName();
-                                cityLevelEntity.setId(id);
-                                cityLevelEntity.setName(name);
-                                //请求第二级
-                                /*regionModel.listSubRegion(id)
-                                        .compose(bindLife())
-                                        .subscribeOn(Schedulers.newThread())
-                                        .observeOn(AndroidSchedulers.mainThread())
-                                        .subscribe(new NextObserver<List<ListSubRegionEntity>>() {
-                                            @Override
-                                            public void onNext(List<ListSubRegionEntity> listSubRegionEntities) {
-                                                getView().hideProgress();
-                                                for (int i = 0; i < listSubRegionEntities.size(); i++) {
-                                                    String id = listSubRegionEntities.get(i).getId();
-                                                    String name = listSubRegionEntities.get(i).getName();
-                                                    CityLevelEntity.CityBean cityBean = new CityLevelEntity.CityBean();
-                                                    cityBean.setCity_id(id);
-                                                    cityBean.setCity_name(name);
-                                                    //请求第三级
-                                                    regionModel.listSubRegion(id)
-                                                            .compose(bindLife())
-                                                            .observeOn(AndroidSchedulers.mainThread())
-                                                            .subscribe(new NextObserver<List<ListSubRegionEntity>>() {
-                                                                @Override
-                                                                public void onNext(List<ListSubRegionEntity> listSubRegionEntities) {
-                                                                    for (int i = 0; i < listSubRegionEntities.size(); i++) {
-                                                                        String id = listSubRegionEntities.get(i).getId();
-                                                                        String name1 = listSubRegionEntities.get(i).getName();
-                                                                        CityLevelEntity.CityBean.AreaBean areaBean = new CityLevelEntity.CityBean.AreaBean();
-                                                                        areaBean.setArea_id(id);
-                                                                        areaBean.setArea_name(name1);
-                                                                        areaBeanList.add(areaBean);
-                                                                    }
-                                                                    cityBean.setArea(areaBeanList);
-                                                                }
-                                                            });
-                                                    cityBeanList.add(cityBean);
-                                                }
-                                                cityLevelEntity.setCity(cityBeanList);
-                                            }
-                                        });*/
-                                cityLevelEntityList.add(cityLevelEntity);
-                            }
-                        }
-                        String cityLevelEntityListString = GsonUtil.getIntance().toJson(cityLevelEntityList);
-                        LogUtils.d("biaocity",cityLevelEntityListString);
                     }
                 });
     }
