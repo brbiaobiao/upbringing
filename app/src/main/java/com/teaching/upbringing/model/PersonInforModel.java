@@ -2,6 +2,8 @@ package com.teaching.upbringing.model;
 
 import com.outsourcing.library.utils.RxUtil;
 import com.teaching.upbringing.api.PersonInforApi;
+import com.teaching.upbringing.entity.IdentityAuthEntity;
+import com.teaching.upbringing.entity.IdentityAuthStatusEntity;
 import com.teaching.upbringing.entity.OssEntity;
 import com.teaching.upbringing.entity.PersonInforEntity;
 import com.teaching.upbringing.entity.UserInfoEntity;
@@ -79,10 +81,13 @@ public class PersonInforModel extends ApiModel<PersonInforApi> {
         return getApi().applyStudent(map).compose(RxUtil.httpAsyn());
     }
 
-    public Observable<UserInfoEntity> gitIdentityAuth(int id) {
+    public Observable<IdentityAuthEntity> gitIdentityAuth(int id) {
         Map<String,String> map = new HashMap<>();
         map.put("id",id+"");
         return getApi().gitIdentityAuth(map).compose(RxUtil.httpAsyn());
     }
 
+    public Observable<IdentityAuthStatusEntity> getIdentityAuthStatus() {
+        return getApi().getIdentityAuthStatus().compose(RxUtil.httpAsyn());
+    }
 }

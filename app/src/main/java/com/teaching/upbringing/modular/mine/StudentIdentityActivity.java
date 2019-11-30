@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.outsourcing.library.utils.StatusBarUtil;
 import com.teaching.upbringing.R;
+import com.teaching.upbringing.entity.IdentityAuthEntity;
 import com.teaching.upbringing.entity.UserInfoEntity;
 import com.teaching.upbringing.modular.user.PasswordLoginActivity;
 import com.teaching.upbringing.modular.user.RegisterActivity;
@@ -88,6 +89,11 @@ public class StudentIdentityActivity extends BaseMVPActivity<StudentIdentityCont
 
     @Override
     public void getApplyStudent(UserInfoEntity userInfoEntity) {
+
+    }
+
+    @Override
+    public void setIdentityAuth(IdentityAuthEntity identityAuthEntity) {
 
     }
 }

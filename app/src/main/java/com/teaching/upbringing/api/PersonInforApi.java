@@ -2,6 +2,7 @@ package com.teaching.upbringing.api;
 
 import com.outsourcing.library.net.RxHttpResponse;
 import com.teaching.upbringing.entity.IdentityAuthEntity;
+import com.teaching.upbringing.entity.IdentityAuthStatusEntity;
 import com.teaching.upbringing.entity.OssEntity;
 import com.teaching.upbringing.entity.PersonInforEntity;
 import com.teaching.upbringing.entity.UserInfoEntity;
@@ -56,6 +57,9 @@ public interface PersonInforApi {
 
     @GET("identityAuth/gitIdentityAuth")
     Observable<RxHttpResponse<IdentityAuthEntity>> gitIdentityAuth(@QueryMap Map<String, String> param);
+
+    @GET("identityAuth/getIdentityAuthStatus")
+    Observable<RxHttpResponse<IdentityAuthStatusEntity>> getIdentityAuthStatus();
 
 
 }

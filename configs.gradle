@@ -9,7 +9,7 @@ ext {
             minSdkVersion    : 17,
             targetSdkVersion : 28,
             multiDexEnabled  : true,
-            applicationId    : "com.teaching.upbringing",
+            applicationId    : "com.lefore.tutoring",
             versionCode      : 20191021,
             versionName      : "1.0.0",
             versionShowCode  : "1.0.0"

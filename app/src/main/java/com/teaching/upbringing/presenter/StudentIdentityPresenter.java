@@ -32,7 +32,10 @@ public class StudentIdentityPresenter  extends Presenter<StudentIdentityContract
                 });
     }
 
+    @Override
+    public void gitIdentityAuth(int id) {
 
+    }
 
 
     @Override
