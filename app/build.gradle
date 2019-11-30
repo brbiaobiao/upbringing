@@ -25,7 +25,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.teaching.upbringing"
+        applicationId "com.lefore.tutoring"
         minSdkVersion androidConfig.minSdkVersion
         targetSdkVersion androidConfig.targetSdkVersion
         versionCode androidConfig.versionCode

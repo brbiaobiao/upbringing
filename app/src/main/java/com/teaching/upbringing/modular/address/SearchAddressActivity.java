@@ -2,9 +2,11 @@ package com.teaching.upbringing.modular.address;
 
 import android.content.Context;
 import android.content.Intent;
+import android.opengl.Visibility;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
@@ -21,6 +23,7 @@ import com.outsourcing.library.utils.StatusBarUtil;
 import com.teaching.upbringing.R;
 import com.teaching.upbringing.adapter.SearchAddressAdapter;
 import com.teaching.upbringing.mvpBase.BaseMVPActivity;
+import com.teaching.upbringing.utils.ToastUtil;
 import com.teaching.upbringing.utils.address.DatasKey;
 import com.teaching.upbringing.utils.address.OnItemClickLisenter;
 import com.teaching.upbringing.utils.address.SPUtils;
@@ -44,6 +47,8 @@ public class SearchAddressActivity extends BaseMVPActivity<SearchAddressContract
     RecyclerView mRvSearchAddress;
     @BindView(R.id.tv_back)
     TextView mTvBack;
+    @BindView(R.id.tv_data)
+    TextView mTvData;
 
     private List<PoiItem> mList;
     private SearchAddressAdapter mSearchAddressAdapter;
@@ -138,10 +143,18 @@ public class SearchAddressActivity extends BaseMVPActivity<SearchAddressContract
                                 mList.clear();
                             }
                             mList.addAll(result.getPois());// 取得第一页的poiitem数据，页数从数字0开始
-                            if (null != mSearchAddressAdapter) {
-                                mSearchAddressAdapter.setList(mList, mEtSearch.getText().toString().trim());
-                                mRvSearchAddress.smoothScrollToPosition(0);
+                            if(mList.size()==0){
+                                mRvSearchAddress.setVisibility(View.GONE);
+                                mTvData.setVisibility(View.VISIBLE);
+                            }else{
+                                mTvData.setVisibility(View.GONE);
+                                mRvSearchAddress.setVisibility(View.VISIBLE);
+                                if (null != mSearchAddressAdapter) {
+                                    mSearchAddressAdapter.setList(mList, mEtSearch.getText().toString().trim());
+                                    mRvSearchAddress.smoothScrollToPosition(0);
+                                }
                             }
+
                         }
                     }
                 }

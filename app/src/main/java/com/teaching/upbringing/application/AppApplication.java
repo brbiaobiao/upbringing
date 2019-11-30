@@ -5,7 +5,6 @@ import android.app.Activity;
 import android.os.Handler;
 import android.os.Looper;
 import android.widget.Toast;
-
 import com.outsourcing.library.application.BaseApplication;
 import com.outsourcing.library.crash.AndroidCrash;
 import com.outsourcing.library.crash.log.CrashListener;

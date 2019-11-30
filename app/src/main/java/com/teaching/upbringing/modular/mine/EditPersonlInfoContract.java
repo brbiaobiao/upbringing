@@ -19,6 +19,7 @@ public interface EditPersonlInfoContract {
     interface IView extends IContextView, IProgressAble{
         void setInfor(PersonInforEntity personInforEntity);
         void getOss(OssEntity ossEntity);
+        void getImgUrl(UserInfoEntity userInfoEntity);
     }
 
     interface Ipresenter extends IBasePresenter<IView> {
@@ -26,5 +27,6 @@ public interface EditPersonlInfoContract {
         void setSex(int sex);
         void saveUserImg(File file);
         void setOss(int code);
+        void  setImgUrl(String ImgUrl);
     }
 }

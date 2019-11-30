@@ -18,6 +18,7 @@ import com.alibaba.sdk.android.oss.common.OSSLog;
 import com.alibaba.sdk.android.oss.common.auth.OSSCredentialProvider;
 import com.alibaba.sdk.android.oss.common.auth.OSSStsTokenCredentialProvider;
 import com.alibaba.sdk.android.oss.internal.OSSAsyncTask;
+import com.alibaba.sdk.android.oss.model.ObjectMetadata;
 import com.alibaba.sdk.android.oss.model.PutObjectRequest;
 import com.alibaba.sdk.android.oss.model.PutObjectResult;
 import com.bumptech.glide.request.RequestOptions;
@@ -40,6 +41,7 @@ import com.teaching.upbringing.application.AppApplication;
 import com.teaching.upbringing.entity.Choose;
 import com.teaching.upbringing.entity.OssEntity;
 import com.teaching.upbringing.entity.PersonInforEntity;
+import com.teaching.upbringing.entity.UserInfoEntity;
 import com.teaching.upbringing.manager.UserInfo;
 import com.teaching.upbringing.mvpBase.BaseMVPActivity;
 import com.teaching.upbringing.utils.StringUtils;
@@ -145,7 +147,9 @@ public class EditPersonInfoActivity extends BaseMVPActivity<EditPersonlInfoContr
                     @Override
                     public void onNext(Choose choose) {
                         String imagePath2 = choose.getChoose();
-                        ToastUtil.showShort(imagePath2);
+                       // ToastUtil.showShort(imagePath2);
+                      //todo 上传图片
+                        getPresenter().setImgUrl(imagePath2);
                     }
                 });
     }
@@ -177,6 +181,48 @@ public class EditPersonInfoActivity extends BaseMVPActivity<EditPersonlInfoContr
             case R.id.iv_head_pic:
                 //垃圾后台,菜到忍无可忍
                 showActionSheetDialog();
+//                showActionSheetDialog();
+//                PictureSelector.create(EditPersonInfoActivity.this)
+//                        .openGallery(PictureMimeType.ofImage())// 全部.PictureMimeType.ofAll()、图片.ofImage()、视频.ofVideo()、音频.ofAudio()
+//                        .theme(themeId)// 主题样式设置 具体参考 values/styles   用法：R.style.picture.white.style
+//                        .maxSelectNum(9)// 最大图片选择数量
+//                        .minSelectNum(1)// 最小选择数量
+//                        .imageSpanCount(3)// 每行显示个数
+//                        .selectionMode(PictureConfig.SINGLE)// 多选 or 单选
+//                        .previewImage(false)// 是否可预览图片
+//                        .isCamera(true)// 是否显示拍照按钮
+//                        .isZoomAnim(false)// 图片列表点击 缩放效果 默认true
+//                        //.imageFormat(PictureMimeType.PNG)// 拍照保存图片格式后缀,默认jpeg
+//                        //.setOutputCameraPath("/CustomPath")// 自定义拍照保存路径
+//                        .enableCrop(true)// 是否裁剪
+//                        .compress(true)// 是否压缩
+//                        .synOrAsy(true)//同步true或异步false 压缩 默认同步
+//                        //.compressSavePath(getPath())//压缩图片保存地址
+//                        //.sizeMultiplier(0.5f)// glide 加载图片大小 0~1之间 如设置 .glideOverride()无效
+//                        .glideOverride(160, 160)// glide 加载宽高，越小图片列表越流畅，但会影响列表图片浏览的清晰度
+//                        .withAspectRatio(3, 3)// 裁剪比例 如16:9 3:2 3:4 1:1 可自定义
+//                        .hideBottomControls(true)// 是否显示uCrop工具栏，默认不显示
+//                        .isGif(false)// 是否显示gif图片
+//                        .freeStyleCropEnabled(true)// 裁剪框是否可拖拽
+//                        .circleDimmedLayer(false)// 是否圆形裁剪
+//                        .showCropFrame(true)// 是否显示裁剪矩形边框 圆形裁剪时建议设为false
+//                        .showCropGrid(true)// 是否显示裁剪矩形网格 圆形裁剪时建议设为false
+//                        .openClickSound(false)// 是否开启点击声音
+////                        .selectionMedia(false)// 是否传入已选图片
+//                        //.isDragFrame(false)// 是否可拖动裁剪框(固定)
+//                        //                        .videoMaxSecond(15)
+//                        //                        .videoMinSecond(10)
+//                        //.previewEggs(false)// 预览图片时 是否增强左右滑动图片体验(图片滑动一半即可看到上一张是否选中)
+//                        //.cropCompressQuality(90)// 裁剪压缩质量 默认100
+//                        .minimumCompressSize(100)// 小于100kb的图片不压缩
+//                        //.cropWH()// 裁剪宽高比，设置如果大于图片本身宽高则无效
+//                       // .rotateEnabled(true) // 裁剪是否可旋转图片
+//                       // .scaleEnabled(true)// 裁剪是否可放大缩小图片
+//                        //.videoQuality()// 视频录制质量 0 or 1
+//                        //.videoSecond()//显示多少秒以内的视频or音频也可适用
+//                        //.recordVideoSecond()//录制视频秒数 默认60s
+//                        .forResult(PictureConfig.CHOOSE_REQUEST);//结果回调onActivityResult code
+
                 break;
             case R.id.ll_nickname:
                 onResultUtil.call(FillInformationActivity.getCallIntent(this, "昵称",
@@ -207,6 +253,7 @@ public class EditPersonInfoActivity extends BaseMVPActivity<EditPersonlInfoContr
                 break;
         }
     }
+
 
     private void showActionSheetDialog() {
         final String[] stringItems = {"相机拍摄", "从相册导入"};
@@ -240,7 +287,7 @@ public class EditPersonInfoActivity extends BaseMVPActivity<EditPersonlInfoContr
                 .compress(true)// 是否压缩
                 .glideOverride(160, 160)// glide 加载宽高，越小图片列表越流畅，但会影响列表图片浏览的清晰度
                 .withAspectRatio(3, 3)// 裁剪比例 如16:9 3:2 3:4 1:1 可自定义
-                .hideBottomControls(false)// 是否显示uCrop工具栏，默认不显示
+                .hideBottomControls(true)// 是否显示uCrop工具栏，默认不显示
                 .freeStyleCropEnabled(true)// 裁剪框是否可拖拽
                 .circleDimmedLayer(false)// 是否圆形裁剪
                 .showCropFrame(false)// 是否显示裁剪矩形边框 圆形裁剪时建议设为false
@@ -279,7 +326,7 @@ public class EditPersonInfoActivity extends BaseMVPActivity<EditPersonlInfoContr
                 //.sizeMultiplier(0.5f)// glide 加载图片大小 0~1之间 如设置 .glideOverride()无效
                 .glideOverride(160, 160)// glide 加载宽高，越小图片列表越流畅，但会影响列表图片浏览的清晰度
                 .withAspectRatio(3, 3)// 裁剪比例 如16:9 3:2 3:4 1:1 可自定义
-                .hideBottomControls(false)// 是否显示uCrop工具栏，默认不显示
+                .hideBottomControls(true)// 是否显示uCrop工具栏，默认不显示
                 .isGif(false)// 是否显示gif图片
                 .freeStyleCropEnabled(true)// 裁剪框是否可拖拽
                 .circleDimmedLayer(false)// 是否圆形裁剪
@@ -302,6 +349,7 @@ public class EditPersonInfoActivity extends BaseMVPActivity<EditPersonlInfoContr
                 .forResult(PictureConfig.CHOOSE_REQUEST);//结果回调onActivityResult code
     }
 
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -315,8 +363,11 @@ public class EditPersonInfoActivity extends BaseMVPActivity<EditPersonlInfoContr
                     // 2.media.getCutPath();为裁剪后path，需判断media.isCut();是否为true
                     // 3.media.getCompressPath();为压缩后path，需判断media.isCompressed();是否为true
                     // 如果裁剪并压缩了，已取压缩路径为准，因为是先裁剪后压缩的
+
+                    getPresenter().setOss(3);
                     for (LocalMedia media : selectList) {
                         Log.i("图片-----》", media.getCompressPath());
+                         path = new File(media.getCompressPath());
                         RequestOptions myOptions = new RequestOptions()
                                 .centerCrop()
                                 .fallback(R.mipmap.icon_person_head)
@@ -367,7 +418,6 @@ public class EditPersonInfoActivity extends BaseMVPActivity<EditPersonlInfoContr
 
     @Override
     public void getOss(OssEntity ossEntity) {
-        ToastUtil.showShort("0ss");
             OSSCredentialProvider credentialProvider = new OSSStsTokenCredentialProvider(ossEntity.getAccessKeyId(), ossEntity.getAccessKeySecret(), ossEntity.getSecurityToken());
             ClientConfiguration conf = new ClientConfiguration();
             conf.setConnectionTimeout(15 * 1000); // 连接超时，默认15秒
@@ -377,7 +427,8 @@ public class EditPersonInfoActivity extends BaseMVPActivity<EditPersonlInfoContr
             OSSLog.enableLog();
             oss = new OSSClient(AppApplication.getInstance(), ossEntity.getEndPoint(), credentialProvider, conf);
 
-            String objectKey = ossEntity.getFolder()+ StringUtils.get16Random() + ".jpg";
+//            String objectKey = ossEntity.getRegion()+ StringUtils.get16Random() + ".jpg";
+        String objectKey = ossEntity.getFolder()+ StringUtils.get16Random() + ".jpg";
             Log.i("objectKey",objectKey);
 
 
@@ -385,8 +436,12 @@ public class EditPersonInfoActivity extends BaseMVPActivity<EditPersonlInfoContr
 
 
 
-        final PutObjectRequest put = new PutObjectRequest(ossEntity.getBucketName(), objectKey, CompressHelper.getDefault(this).compressToFile(path).toString());
-        Log.d("uploadName", objectKey + ":" +  CompressHelper.getDefault(this).compressToFile(path).toString());
+        final PutObjectRequest put = new PutObjectRequest(ossEntity.getBucketName(), ossEntity.getKey(), CompressHelper.getDefault(this).compressToFile(path).toString());
+//        ObjectMetadata metadata = new ObjectMetadata();
+//        metadata.setHeader("x-oss-object-acl", "public-read");
+//        put.setMetadata(metadata);
+
+        Log.d("uploadName", objectKey + ":" +  CompressHelper.getDefault(this).compressToFile(path).toString()+"  : "+ossEntity.getBucketName());
         OSSAsyncTask task = oss.asyncPutObject(put, new OSSCompletedCallback<PutObjectRequest, PutObjectResult>() {
             @Override
             public void onSuccess(PutObjectRequest request, PutObjectResult result) {
@@ -395,12 +450,12 @@ public class EditPersonInfoActivity extends BaseMVPActivity<EditPersonlInfoContr
                 Choose choose = new Choose();
                 key = null;
                 try {
-                    key = oss.presignConstrainedObjectURL(ossEntity.getBucketName(), objectKey, 3600);
+                    key = oss.presignConstrainedObjectURL(ossEntity.getBucketName(), ossEntity.getKey(), 3600);
                 } catch (ClientException e) {
                     e.printStackTrace();
                 }
                 Log.d("stringkey",key);
-                choose.setChoose(objectKey);
+                choose.setChoose(ossEntity.getKey());
 //                RxBus3.getDefault().post(choose);
                 RxBus.getDefault().post(choose);
             }
@@ -423,5 +478,10 @@ public class EditPersonInfoActivity extends BaseMVPActivity<EditPersonlInfoContr
         });
 
 
+    }
+
+    @Override
+    public void getImgUrl(UserInfoEntity userInfoEntity) {
+        ToastUtil.showShort("上传成功");
     }
 }

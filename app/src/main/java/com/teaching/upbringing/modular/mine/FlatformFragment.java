@@ -83,6 +83,12 @@ public class FlatformFragment extends BaseMVPFragment<FlatformContract.Ipresente
                     case "修改密码":
                         UpdatePwdActivity.goInto(getActivity());
                         break;
+                    case "身份切换":
+                        IdentityConversionActivity.goInto(getActivity());
+                        break;
+                    case "认证":
+                        AuthenticateActivity.goInto(getActivity());
+                        break;
                 }
             }
         });

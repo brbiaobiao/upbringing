@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.outsourcing.library.net.RxHttpResponse;
 import com.outsourcing.library.utils.KeyboardUtils;
 import com.outsourcing.library.utils.PreferenceManagers;
+import com.outsourcing.library.utils.StatusBarUtil;
 import com.teaching.upbringing.R;
 import com.teaching.upbringing.entity.CaptchaEntity;
 import com.teaching.upbringing.entity.UserInfoEntity;
@@ -89,6 +90,7 @@ public class LoginActivity extends BaseMVPActivity<LoginContract.IPresenter> imp
 
     @Override
     protected void init() {
+        StatusBarUtil.setStatusBarColor(this,R.color.white);
         mFlTitleBarContent.setVisibility(View.GONE);
         mTimeCountUtil = new TimeCountUtil(this, 60000, 1000, mTvCode);
         mEtLoginCode.addTextChangedListener(new MyTextWatcher(mEtLoginCode));

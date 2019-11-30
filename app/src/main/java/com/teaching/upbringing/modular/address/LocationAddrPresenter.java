@@ -131,8 +131,8 @@ public class LocationAddrPresenter extends Presenter<LocationAddrContract.IView>
                                 CityLevelEntity cityLevelEntity = new CityLevelEntity();
                                 String id = regionRsps.get(i1).getId();
                                 String name = regionRsps.get(i1).getName();
-                                cityLevelEntity.setProvince_id(id);
-                                cityLevelEntity.setProvince_name(name);
+                                cityLevelEntity.setId(id);
+                                cityLevelEntity.setName(name);
                                 //请求第二级
                                 /*regionModel.listSubRegion(id)
                                         .compose(bindLife())

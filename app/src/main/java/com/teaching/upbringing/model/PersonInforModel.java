@@ -62,7 +62,27 @@ public class PersonInforModel extends ApiModel<PersonInforApi> {
         return getApi().setOss(map).compose(RxUtil.httpAsyn());
     }
 
+    public Observable<UserInfoEntity> setImgUrl(String headImgUrl) {
+        Map<String,String> map = new HashMap<>();
+        map.put("headImgUrl",headImgUrl+"");
+        return getApi().setImgUrl(map).compose(RxUtil.httpAsyn());
+    }
+
     public Observable<UserInfoEntity> setAttendClassArea(Map<String,Object> map){
         return getApi().setAttendClassArea(map).compose(RxUtil.httpAsyn());
     }
+
+    public Observable<UserInfoEntity> applyStudent(String name,int sex) {
+        Map<String,String> map = new HashMap<>();
+        map.put("name",name+"");
+        map.put("sex",sex+"");
+        return getApi().applyStudent(map).compose(RxUtil.httpAsyn());
+    }
+
+    public Observable<UserInfoEntity> gitIdentityAuth(int id) {
+        Map<String,String> map = new HashMap<>();
+        map.put("id",id+"");
+        return getApi().gitIdentityAuth(map).compose(RxUtil.httpAsyn());
+    }
+
 }

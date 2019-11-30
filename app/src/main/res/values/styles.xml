@@ -160,4 +160,9 @@
         <item name="picture.folder_checked_dot">@drawable/orange_oval</item>
     </style>
 
+
+    <style name="checkBoxStyle">
+        <item name="android:button">@drawable/checkbox_style</item>
+    </style>
+
 </resources>

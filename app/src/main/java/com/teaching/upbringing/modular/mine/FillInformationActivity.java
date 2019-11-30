@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.GradientDrawable;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -35,7 +36,10 @@ public class FillInformationActivity extends BaseMVPActivity<FillInformationCont
 
     @BindView(R.id.et_fill_info)
     EditText mEtFillInfo;
+    @BindView(R.id.tv_num)
+    TextView mTvNum;
     private TextView titleRightText;
+    private int updateType;
 
     public static Intent getCallIntent(Context context,String title,String hint,int updataType,String info_text){
         Intent intent = new Intent(context, FillInformationActivity.class);
@@ -58,10 +62,20 @@ public class FillInformationActivity extends BaseMVPActivity<FillInformationCont
         @Override
         public void afterTextChanged(Editable s) {
             int length = mEtFillInfo.getText().toString().length();
+            if(updateType==1){
+                mTvNum.setText(length+"/"+"20");//昵称
+            }else if(updateType==2){
+                mTvNum.setText(length+"/"+"150");//简介
+            }else if(updateType==3){
+                mTvNum.setText(length+"/"+"15");//头衔
+            }else if(updateType==4){
+                mTvNum.setText(length+"/"+"30");//亮点
+            }
             if(length!=0) {
                 GradientDrawable shape = ShapeUtils.createShape(-1, 26, -1, null, "#CD2A2A");
                 titleRightText.setBackground(shape);
             }
+
         }
     };
 
@@ -81,6 +95,20 @@ public class FillInformationActivity extends BaseMVPActivity<FillInformationCont
         String title = intent.getStringExtra(SHOWTITLE);
         String hint = intent.getStringExtra(HINTCONTENT);
         String info_text = intent.getStringExtra(INFO_TEXT);
+        updateType = intent.getIntExtra(UPDATATYPE,0);
+        if(updateType==1){
+            mTvNum.setText(0+"/"+"20");//昵称
+            mEtFillInfo.setFilters(new InputFilter[]{new InputFilter.LengthFilter(20)});
+        }else if(updateType==2){
+            mTvNum.setText(0+"/"+"150");//简介
+            mEtFillInfo.setFilters(new InputFilter[]{new InputFilter.LengthFilter(150)});
+        }else if(updateType==3){
+            mTvNum.setText(0+"/"+"15");//头衔
+            mEtFillInfo.setFilters(new InputFilter[]{new InputFilter.LengthFilter(15)});
+        }else if(updateType==4){
+            mTvNum.setText(0+"/"+"30");//亮点
+            mEtFillInfo.setFilters(new InputFilter[]{new InputFilter.LengthFilter(30)});
+        }
         setTitleText(title);
         isShowTitleRightText(true);
         setTitleRightText("保存");

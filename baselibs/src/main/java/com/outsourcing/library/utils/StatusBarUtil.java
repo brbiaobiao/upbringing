@@ -195,15 +195,15 @@ public class StatusBarUtil {
                 StatusBarUtil.setStatusBarColor(context, android.R.color.black);
                 break;
             case 1:// 小米手机
-                StatusBarUtil.setStatusBarColor(context, R.color.white);
+                StatusBarUtil.setStatusBarColor(context,android.R.color.white);
                 MIUISetStatusBarLightMode(context.getWindow(), true);
                 break;
             case 2:// flyme手机
-                StatusBarUtil.setStatusBarColor(context, R.color.white);
+                StatusBarUtil.setStatusBarColor(context, android.R.color.white);
 //              StatusbarColorUtils.setStatusBarDarkIcon(context,true);  //参数 false 白色 true 黑色
                 break;
             case 3:// 6.0+手机
-                StatusBarUtil.setStatusBarColor(context, R.color.white);
+                StatusBarUtil.setStatusBarColor(context, android.R.color.white);
                 context.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
                 break;
         }

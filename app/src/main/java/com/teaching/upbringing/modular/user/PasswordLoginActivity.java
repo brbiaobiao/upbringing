@@ -52,7 +52,7 @@ public class PasswordLoginActivity extends BaseMVPActivity<PasswordLoginContract
     }
 
 
-    @OnClick({R.id.tv_login,R.id.tv_forget})
+    @OnClick({R.id.tv_login,R.id.tv_forget,R.id.iv_gone})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_login:

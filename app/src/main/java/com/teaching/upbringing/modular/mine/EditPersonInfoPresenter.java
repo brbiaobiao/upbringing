@@ -78,4 +78,20 @@ public class EditPersonInfoPresenter extends Presenter<EditPersonlInfoContract.I
                     }
                 });
     }
+
+    @Override
+    public void setImgUrl(String imgUrl) {
+        personInforModel.setImgUrl(imgUrl)
+                .observeOn(AndroidSchedulers.mainThread())
+                .compose(bindLife())
+                .doOnError(throwable -> getView().hideProgress())
+                .subscribe(new NextObserver<UserInfoEntity>() {
+                    @Override
+                    public void onNext(UserInfoEntity userInfoEntity) {
+                        getView().getImgUrl(userInfoEntity);
+                    }
+                });
+    }
+
+
 }

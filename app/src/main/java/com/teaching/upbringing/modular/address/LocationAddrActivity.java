@@ -19,7 +19,7 @@ import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
-import com.luck.picture.lib.decoration.GridSpacingItemDecoration;
+
 import com.outsourcing.library.utils.KeyboardUtils;
 import com.outsourcing.library.utils.PreferenceManagers;
 import com.outsourcing.library.utils.StatusBarUtil;
@@ -37,6 +37,7 @@ import com.teaching.upbringing.mvpBase.BaseMVPActivity;
 import com.teaching.upbringing.utils.AnimationUtil;
 import com.teaching.upbringing.utils.StringUtils;
 import com.teaching.upbringing.utils.ToastUtil;
+import com.teaching.upbringing.widget.GridSpacingItemDecoration;
 import com.teaching.upbringing.widget.QuickIndex;
 
 import java.util.List;

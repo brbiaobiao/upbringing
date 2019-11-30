@@ -30,4 +30,17 @@
 
     </RelativeLayout>
 
+
+   <TextView
+       android:id="@+id/tv_num"
+       android:gravity="right"
+       android:layout_marginRight="15dp"
+       android:layout_marginTop="9dp"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:textSize="10sp"
+       android:text="123/123"
+       android:textColor="#bbbbbb"/>
+
+
 </LinearLayout>

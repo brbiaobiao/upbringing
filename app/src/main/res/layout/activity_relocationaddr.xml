@@ -44,7 +44,7 @@
             android:layout_marginTop="4dp"
             android:background="@null"
             android:paddingRight="15dp"
-            android:hint="输入状态"
+            android:hint="输入搜索"
             android:textColor="@color/color_3A3A3A"
             android:textSize="14sp"/>
     </LinearLayout>

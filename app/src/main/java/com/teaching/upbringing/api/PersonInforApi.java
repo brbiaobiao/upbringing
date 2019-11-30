@@ -1,6 +1,7 @@
 package com.teaching.upbringing.api;
 
 import com.outsourcing.library.net.RxHttpResponse;
+import com.teaching.upbringing.entity.IdentityAuthEntity;
 import com.teaching.upbringing.entity.OssEntity;
 import com.teaching.upbringing.entity.PersonInforEntity;
 import com.teaching.upbringing.entity.UserInfoEntity;
@@ -41,7 +42,7 @@ public interface PersonInforApi {
     @POST("user/setSex")
     Observable<RxHttpResponse<UserInfoEntity>> setSex(@Body Map<String, String> param);
 
-    @POST("user/setHeadIngUrl")
+    @POST("user/setHeadImgUrl")
     Observable<RxHttpResponse<UserInfoEntity>> setImgUrl(@Body Map<String, String> param);
 
     @GET("oss/getCredentials")
@@ -49,4 +50,12 @@ public interface PersonInforApi {
 
     @POST("user/setAttendClassArea")
     Observable<RxHttpResponse<UserInfoEntity>> setAttendClassArea(@Body Map<String, Object> param);
+
+    @POST("identityAuth/applyStudent")
+    Observable<RxHttpResponse<UserInfoEntity>> applyStudent(@Body Map<String, String> param);
+
+    @GET("identityAuth/gitIdentityAuth")
+    Observable<RxHttpResponse<IdentityAuthEntity>> gitIdentityAuth(@QueryMap Map<String, String> param);
+
+
 }
