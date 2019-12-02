@@ -27,7 +27,7 @@ public class ClassAreaAdapter extends BaseQuickAdapter<ClassAreaEntity, BaseView
     @Override
     protected void convert(BaseViewHolder helper, ClassAreaEntity item) {
         helper.setText(R.id.tv_area_title, item.getArea_title())
-                .setText(R.id.tv_area_name, item.getArea_name())
+                .setText(R.id.tv_area_name, item.getProvince()+"/"+item.getCity()+"/"+item.getRegion())
         .addOnClickListener(R.id.tvDelete_edittask_item);
         ConstraintLayout rl_linearout = helper.getView(R.id.cl_linearout);
         rl_linearout.post(() -> {

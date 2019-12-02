@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -60,6 +59,9 @@ public class ClassAreaActivity extends BaseMVPActivity<ClassAreaContract.IPresen
     private ArrayList<CityLevelEntity> options1Items;
     private ArrayList<ArrayList<String>> options2Items = new ArrayList<>();
     private ArrayList<ArrayList<ArrayList<String>>> options3Items = new ArrayList<>();
+
+    private ArrayList<ArrayList<CityLevelEntity.CityBean>> optionItemCity = new ArrayList<>();
+    private ArrayList<ArrayList<ArrayList<CityLevelEntity.CityBean.AreaBean>>> optionItemArea = new ArrayList<>();
 
     public static final void goInto(Context context) {
         Intent intent = new Intent(context, ClassAreaActivity.class);
@@ -131,11 +133,25 @@ public class ClassAreaActivity extends BaseMVPActivity<ClassAreaContract.IPresen
         for (int i = 0; i < jsonBean.size(); i++) {//遍历省份
             ArrayList<String> cityList = new ArrayList<>();//该省的城市列表（第二级）
             ArrayList<ArrayList<String>> province_AreaList = new ArrayList<>();//该省的所有地区列表（第三极）
+            // 为了适配点击取值
+            ArrayList<CityLevelEntity.CityBean> cityBeans = new ArrayList<>();//该省的城市列表（第二级）
+            ArrayList<ArrayList<CityLevelEntity.CityBean.AreaBean>> province_areaBeans = new ArrayList<>();//该省的所有地区列表（第三极）
 
             for (int c = 0; c < jsonBean.get(i).getCity().size(); c++) {//遍历该省份的所有城市
                 String cityName = jsonBean.get(i).getCity().get(c).getName();
                 cityList.add(cityName);//添加城市
                 ArrayList<String> city_AreaList = new ArrayList<>();//该城市的所有地区列表
+
+                // 为了适配点击取值
+                CityLevelEntity.CityBean cityBean = new CityLevelEntity.CityBean();
+                cityBean.setName(cityName);
+                cityBean.setAdCode(jsonBean.get(i).getCity().get(c).getAdCode());
+                cityBean.setDistrictLevel(jsonBean.get(i).getCity().get(c).getDistrictLevel());
+                cityBean.setId(jsonBean.get(i).getCity().get(c).getId());
+                cityBeans.add(cityBean);
+
+                ArrayList<CityLevelEntity.CityBean.AreaBean> city_areaBeans = new ArrayList<>();
+
 
                 //如果无地区数据，建议添加空字符串，防止数据为null 导致三个选项长度不匹配造成崩溃
                 /*if (jsonBean.get(i).getCityList().get(c).getArea() == null
@@ -144,29 +160,41 @@ public class ClassAreaActivity extends BaseMVPActivity<ClassAreaContract.IPresen
                 } else {
                     city_AreaList.addAll(jsonBean.get(i).getCityList().get(c).getArea());
                 }*/
-                String area_name = "";
+                ArrayList<String> area_list = new ArrayList<>();
+                ArrayList<CityLevelEntity.CityBean.AreaBean> areaBeans = new ArrayList<>();
                 try {
                     for (int j = 0; j < jsonBean.get(i).getCity().get(c).getArea().size(); j++) {
-                        area_name = jsonBean.get(i).getCity().get(c).getArea().get(j).getName();
                         String name = jsonBean.get(i).getCity().get(c).getArea().get(j).getName();
-                        city_AreaList.add(name);
-                        province_AreaList.add(city_AreaList);//添加该省所有地区数据
+                        area_list.add(name);
+                        // 为了适配点击取值
+                        CityLevelEntity.CityBean.AreaBean areaBean = new CityLevelEntity.CityBean.AreaBean();
+                        areaBean.setName(name);
+                        areaBean.setAdCode(jsonBean.get(i).getCity().get(c).getArea().get(j).getAdCode());
+                        areaBean.setId(jsonBean.get(i).getCity().get(c).getArea().get(j).getId());
+                        areaBean.setDistrictLevel(jsonBean.get(i).getCity().get(c).getArea().get(j).getDistrictLevel());
+                        areaBeans.add(areaBean);
                     }
                 } catch (Exception e) {
-                    Log.d("area_name",area_name);
                     e.printStackTrace();
                 }
+                city_AreaList.addAll(area_list);
+                province_AreaList.add(city_AreaList);//添加该省所有地区数据
+
+                city_areaBeans.addAll(areaBeans);
+                province_areaBeans.add(city_areaBeans);
             }
 
             /**
              * 添加城市数据
              */
             options2Items.add(cityList);
+            optionItemCity.add(cityBeans);
 
             /**
              * 添加地区数据
              */
             options3Items.add(province_AreaList);
+            optionItemArea.add(province_areaBeans);
         }
     }
 
@@ -207,9 +235,9 @@ public class ClassAreaActivity extends BaseMVPActivity<ClassAreaContract.IPresen
 
             String province_id = options1Items.get(options1).getId();
             String city_id = options1Items.get(options1).getCity().get(options2).getId();
-            String area_id = options1Items.get(options2).getCity().get(options2).getArea().get(options3).getId();
-            String adCode = options1Items.get(options2).getCity().get(options2).getArea().get(options3).getAdCode();
-            int districtLevel = options1Items.get(options2).getCity().get(options2).getArea().get(options3).getDistrictLevel();
+            String area_id = optionItemArea.get(options1).get(options2).get(options3).getId();
+            String adCode = optionItemArea.get(options1).get(options2).get(options3).getAdCode();
+            int districtLevel = optionItemArea.get(options1).get(options2).get(options3).getDistrictLevel();
             Map<String, Object> map = new HashMap<>();
             map.put("adCode", adCode);
             map.put("areaRegionId", area_id);
