@@ -7,6 +7,7 @@ import com.chad.library.adapter.base.listener.OnItemChildClickListener;
 import com.lefore.tutoring.R;
 import com.teaching.upbringing.adapter.TeacherManagementAdapter;
 import com.teaching.upbringing.entity.PersonerFuncWrapper;
+import com.teaching.upbringing.modular.teacher.classelse.ClassListActivity;
 import com.teaching.upbringing.mvpBase.BaseMVPFragment;
 
 import java.util.ArrayList;
@@ -43,6 +44,7 @@ public class TeacherManagementFragment extends BaseMVPFragment<TeacherManagement
         } else {
             adapter.setNewData(manageWrapperList);
         }
+        initEvent();
     }
 
     @Override
@@ -76,7 +78,7 @@ public class TeacherManagementFragment extends BaseMVPFragment<TeacherManagement
                 String funcName = funcWrapper.getFuncName();
                 switch (funcName) {
                     case "找课程":
-
+                        ClassListActivity.gonInto(getActivity());
                         break;
                     case "找教员":
 

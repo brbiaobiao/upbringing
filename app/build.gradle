@@ -120,4 +120,6 @@ dependencies {
     api project(':baselibs')
     api 'com.aliyun.dpa:oss-android-sdk:2.4.5'
     implementation 'com.github.nanchen2251:CompressHelper:1.0.5'
+
+    api 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar'
 }
