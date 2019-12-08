@@ -1,61 +1,61 @@
-package com.teaching.upbringing.modular.main;
+package com.teaching.upbringing.modular.teacher;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.lefore.tutoring.R;
-import com.outsourcing.library.utils.StatusBarUtil;
-import com.teaching.upbringing.manager.AppManager;
 import com.teaching.upbringing.modular.community.CommunityFragment;
-import com.teaching.upbringing.modular.home.HomeFragment;
 import com.teaching.upbringing.modular.hot.HotFragment;
 import com.teaching.upbringing.modular.mine.PersonlFragment;
-import com.teaching.upbringing.modular.study.StudyFragment;
+import com.teaching.upbringing.modular.teacher.management.TeacherManagementFragment;
 import com.teaching.upbringing.mvpBase.BaseMVPActivity;
-import com.teaching.upbringing.utils.ToastUtil;
 
 import java.util.ArrayList;
 
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class MainActivity extends BaseMVPActivity {
+/**
+ * @author ChenHh
+ * @time 2019/12/8 0:54
+ * @des
+ **/
+public class TeacherManagerActivity extends BaseMVPActivity {
 
-
-    /**
+    /**ORDER
      * 页面页码
      */
-    public static final int PAGE_HOME = 0;
-    public static final int PAGE_STUDY = 1;
+    public static final int PAGE_ORDER = 0;
+    public static final int PAGE_MANAGEMENT = 1;
     public static final int PAGE_COMMUNITY = 2;
-    public static final int PAGE_HOT = 3;
-    public static final int PAGE_MINE = 4;
+    public static final int PAGE_WORKENCH = 3;
+    public static final int PAGE_HOT = 4;
+    public static final int PAGE_MINE = 5;
 
     //当前显示的fragment
-    private static final String CURRENT_FRAGMENT = "STATE_FRAGMENT_SHOW";
-
-    @BindView(R.id.fl_fragmentContent)
-    FrameLayout mFlFragmentContent;
-    @BindView(R.id.home)
-    RadioButton mHome;
-    @BindView(R.id.study)
-    RadioButton mStudy;
+    private static final String CURRENT_FRAGMENT_ONLY = "CURRENT_FRAGMENT_SHOW";
+    @BindView(R.id.fl_content_teacher)
+    FrameLayout mFlContentTeacher;
+    @BindView(R.id.order)
+    RadioButton mOrder;
+    @BindView(R.id.manage)
+    RadioButton mManage;
     @BindView(R.id.community)
     RadioButton mCommunity;
-    @BindView(R.id.hot)
-    RadioButton mHot;
-    @BindView(R.id.personal)
-    RadioButton mPersonal;
+    @BindView(R.id.workbench)
+    RadioButton mWorkbench;
+    @BindView(R.id.hotList)
+    RadioButton mHotList;
+    @BindView(R.id.mine)
+    RadioButton mMine;
     @BindView(R.id.main_btngroup)
     RadioGroup mMainBtngroup;
 
@@ -63,23 +63,23 @@ public class MainActivity extends BaseMVPActivity {
     private Fragment mCurrentFragment;
     private int mcurrentPage = 0;
 
-    private HomeFragment homeFragment;
-    private StudyFragment studyFragment;
-    private CommunityFragment communityFragment;
-    private HotFragment hotFragmentl;
-    private PersonlFragment personlFragment;
+    private TeacherOrderFragment orderFragment;//订单
+    private TeacherManagementFragment managementFragment;//管理
+    private CommunityFragment communityFragment;//社区
+    private TeacherWorkenchFragment workenchFragment;//工作台
+    private HotFragment hotFragmentl;//热榜
+    private PersonlFragment personlFragment;//我的
 
     private int mCurrentPageIndex = -1;
 
     public static void goInto(Context context){
-        Intent intent = new Intent(context, MainActivity.class);
+        Intent intent = new Intent(context, TeacherManagerActivity.class);
         context.startActivity(intent);
     }
 
-
     @Override
     protected Integer getContentId() {
-        return R.layout.activity_main;
+        return R.layout.activity_teacher_manager;
     }
 
     @Override
@@ -88,22 +88,22 @@ public class MainActivity extends BaseMVPActivity {
     }
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        StatusBarUtil.setStatusBarColor(this, R.color.white);
         if (savedInstanceState != null) { // “内存重启”时调用
 
             //获取“内存重启”时保存的索引下标
-            mcurrentPage = savedInstanceState.getInt(CURRENT_FRAGMENT,0);
+            mcurrentPage = savedInstanceState.getInt(CURRENT_FRAGMENT_ONLY,0);
 
             //注意，添加顺序要跟下面添加的顺序一样！！！！
             if(fragments == null) {
                 fragments = new ArrayList<>();
             }
             fragments.removeAll(fragments);
-            fragments.add(getSupportFragmentManager().findFragmentByTag(PAGE_HOME+""));
-            fragments.add(getSupportFragmentManager().findFragmentByTag(PAGE_STUDY+""));
+            fragments.add(getSupportFragmentManager().findFragmentByTag(PAGE_ORDER+""));
+            fragments.add(getSupportFragmentManager().findFragmentByTag(PAGE_MANAGEMENT+""));
             fragments.add(getSupportFragmentManager().findFragmentByTag(PAGE_COMMUNITY+""));
+            fragments.add(getSupportFragmentManager().findFragmentByTag(PAGE_WORKENCH+""));
             fragments.add(getSupportFragmentManager().findFragmentByTag(PAGE_HOT+""));
             fragments.add(getSupportFragmentManager().findFragmentByTag(PAGE_MINE+""));
 
@@ -115,50 +115,21 @@ public class MainActivity extends BaseMVPActivity {
 
             //初始化fragments
             fragments = new ArrayList<>();
-            homeFragment = new HomeFragment();
-            fragments.add(homeFragment);
-            studyFragment = new StudyFragment();
-            fragments.add(studyFragment);
+            orderFragment = new TeacherOrderFragment();
+            fragments.add(orderFragment);
+            managementFragment = new TeacherManagementFragment();
+            fragments.add(managementFragment);
             communityFragment = new CommunityFragment();
             fragments.add(communityFragment);
+            workenchFragment = new TeacherWorkenchFragment();
+            fragments.add(workenchFragment);
             hotFragmentl = new HotFragment();
             fragments.add(hotFragmentl);
             personlFragment = new PersonlFragment();
             fragments.add(personlFragment);
 
-            switchFragment(PAGE_HOME);
-            mMainBtngroup.check(R.id.home);
-        }
-    }
-
-    @OnClick({R.id.home, R.id.study, R.id.community, R.id.hot, R.id.personal})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.home:
-                mcurrentPage = PAGE_HOME;
-                switchFragment(PAGE_HOME);
-//                StatusBarUtil.setStatusBarColor(this, R.color.white);
-                break;
-            case R.id.study:
-                mcurrentPage = PAGE_STUDY;
-                switchFragment(PAGE_STUDY);
-//                StatusBarUtil.setStatusBarColor(this, R.color.white);
-                break;
-            case R.id.community:
-                mcurrentPage = PAGE_COMMUNITY;
-                switchFragment(PAGE_COMMUNITY);
-//                StatusBarUtil.setStatusBarColor(this, R.color.white);
-                break;
-            case R.id.hot:
-                mcurrentPage = PAGE_HOT;
-                switchFragment(PAGE_HOT);
-//                StatusBarUtil.setStatusBarColor(this, R.color.white);
-                break;
-            case R.id.personal:
-                mcurrentPage = PAGE_MINE;
-                switchFragment(PAGE_MINE);
-//                StatusBarUtil.setStatusBarColor(this, R.color.color_CD2A2A);
-                break;
+            switchFragment(PAGE_MANAGEMENT);
+            mMainBtngroup.check(R.id.workbench);
         }
     }
 
@@ -170,9 +141,9 @@ public class MainActivity extends BaseMVPActivity {
         Fragment fragment = fragments.get(pageIndex);
         if(!fragment.isAdded()) {
             if(mCurrentFragment == null) {
-                ft.add(R.id.fl_fragmentContent, fragment, mcurrentPage+"");
+                ft.add(R.id.fl_content_teacher, fragment, mcurrentPage+"");
             }else {
-                ft.hide(mCurrentFragment).add(R.id.fl_fragmentContent, fragment, mcurrentPage+"");
+                ft.hide(mCurrentFragment).add(R.id.fl_content_teacher, fragment, mcurrentPage+"");
             }
         }else {
             ft.hide(mCurrentFragment).show(fragment);
@@ -206,22 +177,34 @@ public class MainActivity extends BaseMVPActivity {
         //把当前显示的fragment记录下来
         mCurrentFragment = fragments.get(mcurrentPage);
     }
-    private long exitTime = 0;
 
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
-            if ((System.currentTimeMillis() - exitTime) > 2000) {
-                ToastUtil.showShort("再按一次退出应用");
-                exitTime = System.currentTimeMillis();
-            } else {
-                finish();
-                AppManager.finishAllActivity();
-            }
-            return true;
+    @OnClick({R.id.order, R.id.manage, R.id.community, R.id.workbench, R.id.hotList, R.id.mine})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.order:
+                mcurrentPage = PAGE_ORDER;
+                switchFragment(PAGE_ORDER);
+                break;
+            case R.id.manage:
+                mcurrentPage = PAGE_MANAGEMENT;
+                switchFragment(PAGE_MANAGEMENT);
+                break;
+            case R.id.community:
+                mcurrentPage = PAGE_COMMUNITY;
+                switchFragment(PAGE_COMMUNITY);
+                break;
+            case R.id.workbench:
+                mcurrentPage = PAGE_WORKENCH;
+                switchFragment(PAGE_WORKENCH);
+                break;
+            case R.id.hotList:
+                mcurrentPage = PAGE_HOT;
+                switchFragment(PAGE_HOT);
+                break;
+            case R.id.mine:
+                mcurrentPage = PAGE_MINE;
+                switchFragment(PAGE_MINE);
+                break;
         }
-        return super.onKeyDown(keyCode, event);
     }
-
-
 }

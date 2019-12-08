@@ -1,7 +1,10 @@
 package com.teaching.upbringing.modular.mine;
 
 import android.os.Bundle;
+import android.view.View;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.listener.OnItemChildClickListener;
 import com.lefore.tutoring.R;
 import com.teaching.upbringing.adapter.UsedServerAdapter;
 import com.teaching.upbringing.entity.PersonerFuncWrapper;
@@ -49,6 +52,7 @@ public class UseredFragment extends BaseMVPFragment<UseredContract.Ipresenter> i
         mRvService.setHasFixedSize(true);
         mRvService.setNestedScrollingEnabled(false);
         setAdapter(funcWrappers);
+        initEvent();
     }
 
     @Override
@@ -59,5 +63,19 @@ public class UseredFragment extends BaseMVPFragment<UseredContract.Ipresenter> i
         }else {
             adapter.setNewData(funcWrappers);
         }
+    }
+
+    private void initEvent() {
+        mRvService.addOnItemTouchListener(new OnItemChildClickListener() {
+            @Override
+            public void onSimpleItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+                PersonerFuncWrapper funcWrapper = funcWrappers.get(position);
+                String funcName = funcWrapper.getFuncName();
+                switch (funcName) {
+                    case "评价管理":
+                        break;
+                }
+            }
+        });
     }
 }

@@ -9,6 +9,7 @@ import android.widget.RelativeLayout;
 import com.lefore.tutoring.R;
 import com.outsourcing.library.utils.StatusBarUtil;
 import com.outsourcing.library.widget.dialog.ActionSheetDialog;
+import com.teaching.upbringing.modular.teacher.TeacherManagerActivity;
 import com.teaching.upbringing.mvpBase.BaseMVPActivity;
 import com.teaching.upbringing.utils.ToastUtil;
 
@@ -48,6 +49,7 @@ public class IdentityConversionActivity extends BaseMVPActivity {
             case R.id.rl_teacher:
                 mIvTeacher.setVisibility(View.VISIBLE);
                 mIvStudent.setVisibility(View.GONE);
+                TeacherManagerActivity.goInto(this);
                 break;
             case R.id.rl_student:
                 mIvTeacher.setVisibility(View.GONE);
