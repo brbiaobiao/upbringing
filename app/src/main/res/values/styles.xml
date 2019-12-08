@@ -80,6 +80,16 @@
         <item name="android:drawableEnd">@mipmap/icon_to_right_gray</item>
     </style>
 
+    <style name="class_title_text" parent="base_title_text">
+        <item name="android:textColor">@color/text_black</item>
+        <item name="android:padding">@dimen/qb_px_30</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:drawableLeft">@mipmap/icon_red_start</item>
+        <item name="android:drawableRight">@mipmap/icon_to_right_gray</item>
+        <item name="android:drawableEnd">@mipmap/icon_to_right_gray</item>
+    </style>
+
     <style name="setting_title_text_whiteout_right" parent="base_title_text">
         <item name="android:textColor">@color/text_black</item>
         <item name="android:padding">15dp</item>
